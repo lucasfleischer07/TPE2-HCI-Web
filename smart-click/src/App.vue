@@ -1,19 +1,21 @@
 <template>
-  <div id="app">
-    <header>
-      <HeaderBar></HeaderBar>
-    </header>
-    <nav>
-      <NavigationBar></NavigationBar>
-    </nav>
-    <router-view/>
-  </div>
+  <v-app>
+    <div id="app">
+      <header>
+        <HeaderBar></HeaderBar>
+      </header>
+      <nav>
+        <NavigationBar></NavigationBar>
+      </nav>
+      <router-view/>
+    </div>
+  </v-app>
 </template>
 
 
 <script>
-  import HeaderBar from "@/views/HeaderBar";
-  import NavigationBar from "@/views/NavigationBar";
+  import HeaderBar from "@/components/HeaderBar";
+  import NavigationBar from "@/components/NavigationBar";
 
   export default {
     components: {
@@ -30,6 +32,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  //Ver que color de fondo quiere la gente
+  //background-color: ;
 }
 
 nav {
@@ -44,4 +48,6 @@ nav {
     }
   }
 }
+
+
 </style>
