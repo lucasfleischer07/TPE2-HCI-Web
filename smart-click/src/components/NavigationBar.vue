@@ -4,7 +4,7 @@
       <router-link to="/devices">
           <v-btn x-large color="primary" class="nav-icons">
               <v-icon>devices</v-icon>
-              <span>devices</span>
+              <span>Dispositivos</span>
           </v-btn>
       </router-link>
 
@@ -51,7 +51,7 @@ export default {
 
   .nav-icons {
     display: inline-block;
-    margin-right: 234px;
+    margin-right: 220px;
     /*margin-right: auto;*/
   }
 

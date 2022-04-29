@@ -8,6 +8,9 @@
         <NavigationBar></NavigationBar>
       </nav>
       <router-view/>
+      <footer>
+        <FooterBar></FooterBar>
+      </footer>
     </div>
   </v-app>
 </template>
@@ -16,11 +19,14 @@
 <script>
   import HeaderBar from "@/components/HeaderBar";
   import NavigationBar from "@/components/NavigationBar";
+  import FooterBar from "@/components/FooterBar";
+
 
   export default {
     components: {
       HeaderBar,
-      NavigationBar
+      NavigationBar,
+      FooterBar
     },
   }
 </script>
