@@ -1,12 +1,27 @@
 <template>
   <div id="app">
+    <header>
+      <HeaderBar></HeaderBar>
+    </header>
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <NavigationBar></NavigationBar>
     </nav>
     <router-view/>
   </div>
 </template>
+
+
+<script>
+  import HeaderBar from "@/views/HeaderBar";
+  import NavigationBar from "@/views/NavigationBar";
+
+  export default {
+    components: {
+      HeaderBar,
+      NavigationBar
+    },
+  }
+</script>
 
 <style lang="scss">
 #app {
