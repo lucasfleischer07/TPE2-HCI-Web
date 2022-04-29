@@ -35,7 +35,7 @@ export default {
 
   data() {
     return {
-      logo_image: require('@/assets/logo.jpeg'),
+      logo_image: require('@/assets/logo.png'),
       searcher: '',
     }
   }
