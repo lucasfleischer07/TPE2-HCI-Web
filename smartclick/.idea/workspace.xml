@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1591d21b-2f48-4f61-88f6-69748508ab91" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smart-click/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../smart-click/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smart-click/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../smart-click/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smart-click/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../smart-click/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smart-click/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../smart-click/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smart-click/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../smart-click/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smart-click/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../smart-click/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smart-click/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../smart-click/vue.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28TQwxP1lCRSnnQ7UjLs6TBhOAS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../smart-click" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.serve" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1591d21b-2f48-4f61-88f6-69748508ab91" name="Changes" comment="" />
+      <created>1651238337906</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651238337906</updated>
+      <workItem from="1651238339492" duration="406000" />
+      <workItem from="1651238767663" duration="148000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
