@@ -1,10 +1,10 @@
 <template>
-  <div>DevicesView</div>
+  <div>AccountView</div>
 </template>
 
 <script>
 export default {
-  name: "DevicesView"
+  name: "AccountView"
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="div-header">
-    <router-link to="/">
+    <router-link :to="{name: 'Home'}">
       <img class="logo_img" :src=logo_image alt="SmartClick_Logo">
     </router-link>
     <div class="search-bar">
@@ -19,7 +19,9 @@
 <!--    Div vacio para que me quede mas a la derecha la barra de buscador-->
     <div></div>
     <div class="dark-help-buttons">
-      <v-btn large color="primary"><v-icon>help</v-icon></v-btn>
+      <router-link :to="{name: 'Help'}">
+        <v-btn large color="primary"><v-icon>help</v-icon></v-btn>
+      </router-link>
       <v-btn large color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark"><v-icon>dark_mode</v-icon></v-btn>
     </div>
 

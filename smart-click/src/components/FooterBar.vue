@@ -1,5 +1,6 @@
 <template>
   <div class="footer-class">
+<!--    TODO: Falta programar los botones-->
     <v-footer color="primary lighten-1" padless>
       <v-row justify="center" no-gutters>
         <v-btn
