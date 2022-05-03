@@ -1,7 +1,7 @@
 <template>
   <div>
 <!--    class="mx-auto" -> meter este atributo y va a quedar centrado-->
-    <v-card width="500" color="secondary">
+    <v-card class="mx-auto" width="500" color="secondary">
       <v-list>
         <v-list-group prepend-icon="settings">
             <template v-slot:activator>
