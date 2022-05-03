@@ -1,53 +1,101 @@
 export default {
     views: [
         {
-            name: "Home",
-            slug: "home",
+            name: "Parlante",
+            slug: "parlante",
             id: 1,
-            icon: "home"
+            iconMain: "speaker",
+            iconArrowNext: "last_page",
+            iconArrowPrevious: "first_page",
+            iconArrowPlay: "play_circle",
+            iconVolumeUp: "volume_up",
+            iconVolumeDown: "volume_down_alt",
+            iconVolumeMute: "volume_mute",
+            iconPlaylist: "queue_music",
+            iconChangeGender: "android_now_playing",
+            iconState: "info"
         },
         {
-            name: "Devices",
-            slug: "devices",
+            name: "Puerta",
+            slug: "puerta",
             id: 2,
-            icon: "devices"
+            iconMain: "door_front",
+            iconOpenDoor: "open_in_full",
+            iconCloseDoor: "close_fullscreen",
+            iconLock: "lock",
+            iconUnlock: "lock_open",
+            iconState: "info"
         },
         {
-            name: "Routines",
-            slug: "routines",
+            name: "Cortina",
+            slug: "cortina",
             id: 3,
-            icon: "calendar_month"
+            iconMain: "roller_shades",
+            iconOpen: "blinder",
+            iconClose: "roller_shades_closed",
+            iconState: "info"
+//             No hay icono de establecer posicion ya que vamos a usar un slider
+        },
+        {
+            name: "Heladera",
+            slug: "heladera",
+            id: 4,
+            iconMain: "kitchen",
+            iconState: "info"
+//             No hay icono de establecer temperatura, eso es un slider
 
         },
         {
-            name: "Account",
-            slug: "account",
-            id: 4,
-            icon: "account_circle"
-        },
-        {
-            name: "Settings",
-            slug: "settings",
+            name: "Horno",
+            slug: "horno",
             id: 5,
-            icon: "settings"
-        },
-        {
-            name: "Help",
-            slug: "help",
-            id: 6,
-            icon: "help"
-        },
-        {
-            name: "About",
-            slug: "about",
-            id: 7,
-            icon: "info"
+            iconMain: "oven_gen",
+            iconTurnOn: "toggle_on",
+            iconTurnOff: "toggle_off",
+            //             No hay icono de establecer temperatura, eso es un slider
+            // fuente calor/grill/modo convencional no es un boton, un menu
+
         },
     ],
+
+
     houses: [
         {
             nombreCasa: "casa1",
             codigoCasa: 1,
+            cuartos: [
+                {
+                    roomName: "Baño",
+                    roomDevicestotalAmoount: 5,
+                    roomDevicesActiveAmount: 3,
+                    roomDevices: [
+                        {
+                            deviceCode: 1,
+                            deviceName: "Mi Parlante"
+                        },
+                        {
+                            deviceCode: 3,
+                            deviceName: "mi Cortina"
+                        }
+                    ]
+                },
+                {
+                    roomName: "Cuarto Juan",
+                    roomDevicestotalAmoount: 3,
+                    roomDevicesActiveAmount: 2,
+                    roomDevices: [
+                        {
+                            deviceCode: 2,
+                            deviceName: "mi puerta"
+                        },
+                        {
+                            deviceCode: 3,
+                            deviceName: "mi Cortina"
+                        }
+                    ]
+                }
+
+            ],
             toString(){
                 return this.nombreCasa
             },
@@ -55,14 +103,48 @@ export default {
         {
             nombreCasa: "casa2",
             codigoCasa: 2,
+            cuartos: [
+                {
+                    roomName: "Cuarto marcela",
+                    roomDevicestotalAmoount: 4,
+                    roomDevicesActiveAmount: 3,
+                    roomDevices: [
+                        {
+                            deviceCode: 4,
+                            deviceName: "Mi horno"
+                        },
+                        {
+                            deviceCode: 3,
+                            deviceName: "mi Cortina"
+                        }
+                    ]
+                },
+                {
+                    roomName: "Cuarto Roberto",
+                    roomDevicestotalAmoount: 3,
+                    roomDevicesActiveAmount: 2,
+                    roomDevices: [
+                        {
+                            deviceCode: 5,
+                            deviceName: "mi heladera"
+                        },
+                        {
+                            deviceCode: 3,
+                            deviceName: "mi Cortina"
+                        }
+                    ]
+                }
+
+            ],
             toString(){
                 return this.nombreCasa
             },
         }
     ],
     house: {
-        nombreCasa: '',
+        nombreCasa: "",
         codigoCasa: null,
+        cuartos: null,
     }
 
 }

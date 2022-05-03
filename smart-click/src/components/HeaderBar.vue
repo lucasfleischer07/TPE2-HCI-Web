@@ -76,6 +76,7 @@ export default {
     {
       this.house.nombreCasa= selected.nombreCasa;
       this.house.codigoCasa= selected.codigoCasa;
+      this.house.cuartos=selected.cuartos;
     }
   }
 }
