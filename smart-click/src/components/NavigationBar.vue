@@ -67,7 +67,7 @@
 <style scoped>
 
   .nav-bar {
-    display: flex;
+    display: block;
     background-color: grey;
     width: 100%;
     padding: 0;
@@ -76,7 +76,9 @@
 
   .nav-icons {
     display: inline-block;
-    margin-inline: 50px;
+    width:auto;
+    margin-inline:20px;
+
 
     /*margin-right: auto;*/
   }
