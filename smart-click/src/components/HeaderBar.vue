@@ -24,6 +24,33 @@
       </router-link>
       <v-btn large color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark"><v-icon>dark_mode</v-icon></v-btn>
     </div>
+    <div >
+      <template >
+        <v-container fluid c>
+          <v-row aligned="center">
+            <v-col
+                class="d-flex"
+                cols="12"
+                sm="10"
+            >
+              <v-subheader>
+                <v-icon>home</v-icon>
+              </v-subheader>
+              <v-select
+                  :items="houses"
+                  label="House selected:"
+                  outlined class="house-selector-slider"
+                  dense
+                  @change="houseChange"
+              ></v-select>
+            </v-col>
+
+
+          </v-row>
+        </v-container>
+      </template>
+
+    </div>
 
   </div>
 
@@ -32,13 +59,23 @@
 
 
 <script>
+import store from "@/store/store.js"
+
 export default {
   name: "HeaderBar",
 
   data() {
     return {
       logo_image: require('@/assets/logo.png'),
-      searcher: '',
+      houses: store.houses,
+      house: store.house,
+    }
+  },
+  methods: {
+    houseChange(selected)
+    {
+      this.house.nombreCasa= selected.nombreCasa;
+      this.house.codigoCasa= selected.codigoCasa;
     }
   }
 }
@@ -75,6 +112,11 @@ export default {
     display: block;
     padding: 3px;
     margin: 3px;
+  }
+
+  .house-selector-slider {
+    display: flex;
+    text-align: left;
   }
 
 </style>

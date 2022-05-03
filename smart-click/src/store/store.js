@@ -43,5 +43,26 @@ export default {
             id: 7,
             icon: "info"
         },
-    ]
+    ],
+    houses: [
+        {
+            nombreCasa: "casa1",
+            codigoCasa: 1,
+            toString(){
+                return this.nombreCasa
+            },
+        },
+        {
+            nombreCasa: "casa2",
+            codigoCasa: 2,
+            toString(){
+                return this.nombreCasa
+            },
+        }
+    ],
+    house: {
+        nombreCasa: '',
+        codigoCasa: null,
+    }
+
 }

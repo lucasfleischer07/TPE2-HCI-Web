@@ -167,10 +167,7 @@
 
     data () {
       return {
-          general: [['Terminos y Condiciones',2],['Modo Oscuro',3],['Config 3',4]],
-          security: [['Terminos y Condiciones',5],['Modo Oscuro',6],['Config 3',7]],
-          notificaciones: [['Terminos y Condiciones',8],['Modo Oscuro',9],['Config 3',2]],
-        darkMode: false
+
       }
     }
 }
