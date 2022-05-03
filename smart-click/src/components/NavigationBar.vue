@@ -76,7 +76,8 @@
 
   .nav-icons {
     display: inline-block;
-    margin-right: 220px;
+    margin-inline: 50px;
+
     /*margin-right: auto;*/
   }
 
