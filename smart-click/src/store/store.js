@@ -1,9 +1,9 @@
 export default {
-    views: [
+    devices: [
         {
             name: "Parlante",
             slug: "parlante",
-            id: 1,
+            id: 0,
             iconMain: "speaker",
             iconArrowNext: "last_page",
             iconArrowPrevious: "first_page",
@@ -16,9 +16,9 @@ export default {
             iconState: "info"
         },
         {
-            name: "Puerta",
+            nwame: "Puerta",
             slug: "puerta",
-            id: 2,
+            id: 1,
             iconMain: "door_front",
             iconOpenDoor: "open_in_full",
             iconCloseDoor: "close_fullscreen",
@@ -29,7 +29,7 @@ export default {
         {
             name: "Cortina",
             slug: "cortina",
-            id: 3,
+            id: 2,
             iconMain: "roller_shades",
             iconOpen: "blinder",
             iconClose: "roller_shades_closed",
@@ -39,7 +39,7 @@ export default {
         {
             name: "Heladera",
             slug: "heladera",
-            id: 4,
+            id: 3,
             iconMain: "kitchen",
             iconState: "info"
 //             No hay icono de establecer temperatura, eso es un slider
@@ -48,7 +48,7 @@ export default {
         {
             name: "Horno",
             slug: "horno",
-            id: 5,
+            id: 4,
             iconMain: "oven_gen",
             iconTurnOn: "toggle_on",
             iconTurnOff: "toggle_off",
@@ -61,7 +61,7 @@ export default {
 
     houses: [
         {
-            nombreCasa: "casa1",
+            nombreCasa: "Casa 1",
             codigoCasa: 1,
             cuartos: [
                 {
@@ -70,11 +70,11 @@ export default {
                     roomDevicesActiveAmount: 3,
                     roomDevices: [
                         {
-                            deviceCode: 1,
+                            deviceCode: 0,
                             deviceName: "Mi Parlante"
                         },
                         {
-                            deviceCode: 3,
+                            deviceCode: 2,
                             deviceName: "mi Cortina"
                         }
                     ]
@@ -85,11 +85,11 @@ export default {
                     roomDevicesActiveAmount: 2,
                     roomDevices: [
                         {
-                            deviceCode: 2,
+                            deviceCode: 1,
                             deviceName: "mi puerta"
                         },
                         {
-                            deviceCode: 3,
+                            deviceCode: 2,
                             deviceName: "mi Cortina"
                         }
                     ]
@@ -101,7 +101,7 @@ export default {
             },
         },
         {
-            nombreCasa: "casa2",
+            nombreCasa: "Casa 2",
             codigoCasa: 2,
             cuartos: [
                 {
@@ -110,11 +110,11 @@ export default {
                     roomDevicesActiveAmount: 3,
                     roomDevices: [
                         {
-                            deviceCode: 4,
+                            deviceCode: 3,
                             deviceName: "Mi horno"
                         },
                         {
-                            deviceCode: 3,
+                            deviceCode: 2,
                             deviceName: "mi Cortina"
                         }
                     ]
@@ -125,11 +125,11 @@ export default {
                     roomDevicesActiveAmount: 2,
                     roomDevices: [
                         {
-                            deviceCode: 5,
+                            deviceCode: 4,
                             deviceName: "mi heladera"
                         },
                         {
-                            deviceCode: 3,
+                            deviceCode: 2,
                             deviceName: "mi Cortina"
                         }
                     ]

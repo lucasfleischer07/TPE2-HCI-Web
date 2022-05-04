@@ -1,9 +1,13 @@
 <template>
   <div>
-    <div class="justify-left">
-      <v-icon x-large>house</v-icon>
-      <span class="text-h5 align-center" >{{ house.nombreCasa }}</span>
+    <div class="prueba">
+          <v-icon x-large>house</v-icon>
+          <span class="text-h5 align-center" >{{ house.nombreCasa }}</span>
+<!--          <div class="add-rooms" >-->
+          <v-btn  color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
+<!--          </div>-->
     </div>
+
     <div class="rooms-class">
         <v-expansion-panels >
               <v-expansion-panel
@@ -16,6 +20,7 @@
                 <v-expansion-panel-content>
 
                  <v-icon> speaker</v-icon>
+                  <v-btn right color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -24,7 +29,6 @@
       </v-btn>
      -->
     </div>
-
 
   </div>
 </template>
@@ -42,10 +46,16 @@ export default {
 </script>
 
 <style scoped>
-
   .rooms-class{
     display: flex;
     justify-content: center;
   }
+
+  .prueba {
+    justify-content: space-between;
+  }
+  /*.add-rooms {*/
+  /*  order: 5;*/
+  /*}*/
 
 </style>

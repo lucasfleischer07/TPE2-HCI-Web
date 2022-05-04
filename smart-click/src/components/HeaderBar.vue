@@ -42,7 +42,18 @@
                   outlined class="house-selector-slider"
                   dense
                   @change="houseChange"
-              ></v-select>
+                  persistent-placeholder="false"
+                  placeholder="select house"
+              >
+              <template #append-item>
+
+                  <div class="append">
+                    <v-btn color="primary" @click="addHouse">
+                      Add House
+                    </v-btn>
+                  </div>
+                </template>
+              </v-select>
             </v-col>
 
 
@@ -77,6 +88,10 @@ export default {
       this.house.nombreCasa= selected.nombreCasa;
       this.house.codigoCasa= selected.codigoCasa;
       this.house.cuartos=selected.cuartos;
+    },
+    addHouse()
+    {
+      //Aca deberiamos ver como agregar una casa, puede ser un pop-up
     }
   }
 }
@@ -118,6 +133,12 @@ export default {
   .house-selector-slider {
     display: flex;
     text-align: left;
+  }
+
+  .append {
+    position: sticky;
+    bottom: 0;
+    background: white;
   }
 
 </style>
