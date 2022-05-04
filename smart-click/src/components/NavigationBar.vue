@@ -68,11 +68,10 @@
 
   .nav-bar {
     display: block;
-    background-color:dodgerblue;
-       /*dodgerblue*/
+    background-color: dodgerblue;
     width: 100%;
-    padding: 0;
-    margin: 0;
+    padding: 30px;
+    margin: 20px;
   }
 
   .nav-icons {

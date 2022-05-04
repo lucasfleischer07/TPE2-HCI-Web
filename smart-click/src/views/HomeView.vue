@@ -1,6 +1,6 @@
 <template>
 
-  <div class="homeView">
+  <div class="homeView" color="primary">
     <v-btn width="200px" color="primary" elevation="3" fab rounded x-large>Agregar Casa</v-btn> <br>
     <br> <br>
     <v-btn width="250px" color="primary" elevation="3" fab rounded x-large>Eliminar Casa</v-btn> <br>
@@ -20,14 +20,13 @@
 
 <style scoped>
   .homeView  {
-  background-color: #2196f3;
   min-height: 700px;
-  font-family: "helvetica neue";
-  background: url(../assets/fondo3.png), #2196f3;
-  background: url(../assets/fondo3.png),
-    -webkit-gradient(linear, right top, left top, from(#2196f3), to(#009688));
-  background: url(//.assets/fondo3.png),
-    linear-gradient(to left, #2196f3, #009688);
+  /*font-family: "helvetica neue";*/
+  /*background: url(../assets/fondo3.png), #2196f3;*/
+  /*background: url(../assets/fondo3.png),*/
+  /*  -webkit-gradient(linear, right top, left top, from(#2196f3), to(#009688));*/
+  /*background: url(//.assets/fondo3.png),*/
+  /*  linear-gradient(to left, #2196f3, #009688);*/
   }
 
 

@@ -24,9 +24,11 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
+
   }
 
   .list-routines {
     text-align: center;
+   
   }
 </style>
