@@ -38,6 +38,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  //background-color: blanchedalmond;
   //Ver que color de fondo quiere la gente
   //background-color: ;
 }

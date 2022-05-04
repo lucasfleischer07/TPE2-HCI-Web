@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <v-btn depressed icon>
       <v-icon x-large>speaker</v-icon>
@@ -43,46 +44,26 @@
       </div>
     </v-row>
   </div>
-
-  <!--  COMO HACER PARA DENTRO DE UN ROW, SUBDIVIDIR EN ROW CHICAS
-  <div>
-    <v-row>
-      <v-btn depressed icon>
-        <v-icon >volume_up</v-icon>
-      </v-btn>
-    </v-row>
-    <v-row>
-      <v-btn depressed icon>
-        <v-icon >volume_down_alt</v-icon>
-      </v-btn>
-    </v-row>
-  </div>
-  -->
-
 </template>
 
 <script>
 import store from "@/store/store.js"
 
+
 export default {
-  name: "SpeakerComp",
+    name: "PuertaComp"
 
-  data () {
-    return {
-      id : 0,    //PREGUNTAR POR QUE NO ME DEJA PONER this.id en vez de 0
-      //Aca me mandan que device en especial es NO SE COMO SE HACE LO HARDCODEO
-      device : store.house.cuartos[0].roomDevices[0],
+    data () {
+        return {
+          id : 0,    //PREGUNTAR POR QUE NO ME DEJA PONER this.id en vez de 0
+          //Aca me mandan que device en especial es NO SE COMO SE HACE LO HARDCODEO
+          device : store.house.cuartos[0].roomDevices[0],
 
-    }
-  },
+        }
+      },
 }
 </script>
 
 <style scoped>
-
-  .action-row{
-    padding-top:   0px;
-    justify-content: center;
-  }
 
 </style>

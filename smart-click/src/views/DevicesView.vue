@@ -18,8 +18,7 @@
                  <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-
-                 <v-icon> speaker</v-icon>
+                    <speaker-comp/>
                   <v-btn right color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -35,7 +34,13 @@
 
 <script>
 import store from "@/store/store"
+import SpeakerComp from "@/components/SpeakerComp";
+
 export default {
+  components: {
+    SpeakerComp
+  },
+
   name: "DevicesView",
   data() {
     return {

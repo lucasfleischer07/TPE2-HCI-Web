@@ -1,7 +1,7 @@
 <template>
-  <div class="footer-class">
+  <div >
 <!--    TODO: Falta programar los botones-->
-    <v-footer color="primary lighten-1" padless>
+    <v-footer absolute color="primary lighten-1" padless>
       <v-row justify="center" no-gutters>
         <v-btn
             v-for="link in links"
@@ -33,5 +33,5 @@ export default {
 </script>
 
 <style scoped>
-
+ 
 </style>
