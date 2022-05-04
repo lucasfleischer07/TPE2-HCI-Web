@@ -4,13 +4,41 @@
             <v-icon x-large> emoji_objects</v-icon>
         </v-btn>
         <v-switch inline> </v-switch>
+        <v-row>
 
+          <v-slider prepend-icon="brightness6"
+                    :max="100"
+                    :min="0"
+                    thumb-label
+                    v-model="slider" ></v-slider>
+          <v-text-field
+              hide-details
+              single-line
+              v-model="slider"
+          type="number"></v-text-field>
+        </v-row>
+      <v-btn fab
+            x-small
+            :color="btnColor"
+            @click="toggle= !toggle"></v-btn>
+      <v-color-picker :hide-canvas="toggle" :hide-sliders="toggle" hide-inputs
+      v-model="btnColor"></v-color-picker>
      </div>
 </template>
 
 <script>
+
+
 export default {
-name: "LightbulbComp"
+name: "LightbulbComp",
+  data () {
+    return {
+      slider:0,
+      toggle:false,
+      btnColor:"yellow"
+
+    }
+  },
 }
 </script>
 
