@@ -4,13 +4,13 @@
       <header>
         <HeaderBar></HeaderBar>
       </header>
-      <nav>
+
         <NavigationBar></NavigationBar>
-      </nav>
+
       <router-view/>
-      <footer>
+<!--      <footer>-->
         <FooterBar></FooterBar>
-      </footer>
+<!--      </footer>-->
     </div>
   </v-app>
 </template>

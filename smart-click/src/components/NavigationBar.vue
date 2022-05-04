@@ -14,28 +14,28 @@
 
 
       <router-link :to="{name: 'Devices'}">
-        <v-btn x-large color="white" class="nav-icons">
+        <v-btn x-large  class="nav-icons" >
           <v-icon>devices</v-icon>
           <span>Dispositivos</span>
         </v-btn>
       </router-link>
 
        <router-link :to="{name: 'Routines'}">
-          <v-btn x-large color="whitw" class="nav-icons" >
+          <v-btn x-large  class="nav-icons" >
               <v-icon>calendar_month</v-icon>
               <span>Rutinas</span>
           </v-btn>
       </router-link>
 
       <router-link :to="{name: 'Account'}">
-          <v-btn x-large color="whitw" class="nav-icons">
+          <v-btn x-large  class="nav-icons">
               <v-icon>account_circle</v-icon>
               <span>Cuenta</span>
           </v-btn>
       </router-link>
 
       <router-link :to="{name: 'Settings'}">
-          <v-btn x-large color="white" class="nav-icons">
+          <v-btn x-large  class="nav-icons">
               <v-icon>settings</v-icon>
               <span>Configuracion</span>
           </v-btn>

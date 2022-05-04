@@ -6,9 +6,9 @@
     <v-btn width="250px" color="primary" elevation="3" fab rounded x-large>Eliminar Casa</v-btn> <br>
     <br> <br>
     <v-btn width="300" color="primary" elevation="3" fab rounded x-large>Agregar Dispositivo</v-btn> <br>
-    <br> <br>
-    <v-btn width="350" color="primary" elevation="3" fab rounded x-large>Eliminar dispositivo</v-btn> <br>
     <br> <br> <br>
+    <v-btn width="350" color="primary" elevation="3" fab rounded x-large>Eliminar dispositivo</v-btn> <br>
+<!--     <br> <br> <br> -->
   </div>
 </template>
 
@@ -21,7 +21,7 @@
 <style scoped>
   .homeView  {
   background-color: #2196f3;
-  min-height: 1000px;
+  min-height: 700px;
   font-family: "helvetica neue";
   background: url(../assets/fondo3.png), #2196f3;
   background: url(../assets/fondo3.png),

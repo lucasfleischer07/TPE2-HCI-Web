@@ -18,8 +18,8 @@
     </v-row>
     <v-row class="action-row" justify="center">
           <v-slider v-model="sound"
-                    prepend-icon="mdi-magnify-minus-outline"
-                    @click:append="sound=0"
+                    prepend-icon="volume_down_alt"
+                    @click:prepend="sound=0"
                     />
     </v-row>
     <v-row class="action-row">

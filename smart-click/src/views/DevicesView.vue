@@ -1,9 +1,12 @@
 <template>
-  <div>
+  <div class="main-div">
     <div class="prueba">
+      <div></div>
+      <div>
           <v-icon x-large>house</v-icon>
           <span class="text-h5 align-center" >{{ house.nombreCasa }}</span>
 <!--          <div class="add-rooms" >-->
+      </div>
           <v-btn color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
 <!--          </div>-->
     </div>
@@ -19,8 +22,9 @@
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <v-row>                    
-  <speaker-comp class="devices"/>
-                                            <door-comp class="devices"/>
+                        <speaker-comp class="devices"/>
+                        <door-comp class="devices"/>
+                        <refrigerator-comp class="devices"/>
                    </v-row>
                   <v-btn right color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
                 </v-expansion-panel-content>
@@ -39,11 +43,13 @@
 import store from "@/store/store"
 import SpeakerComp from "@/components/SpeakerComp";
 import DoorComp from "@/components/DoorComp";
+import RefrigeratorComp from "@/components/RefrigeratorComp.vue";
 
 export default {
   components: {
     SpeakerComp,
-    DoorComp
+    DoorComp,
+    RefrigeratorComp,
   },
 
   name: "DevicesView",
@@ -56,12 +62,17 @@ export default {
 </script>
 
 <style scoped>
+  .main-div {
+    min-height: 110%;
+  }
+
   .rooms-class{
     display: flex;
     justify-content: center;
   }
 
   .prueba {
+    display: flex;
     justify-content: space-between;
   }
   /*.add-rooms {*/
@@ -69,7 +80,7 @@ export default {
   /*}*/
 
   .devices {
-      padding-left: 600px;
+      padding-left: 100px;
   }
 
 </style>
