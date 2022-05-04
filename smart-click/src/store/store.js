@@ -1,5 +1,6 @@
 export default {
-    devices: [
+    devices: [ 
+        // dejamos esto solo por los iconos pero los dispositivos van a ser componentes
         {
             name: "Parlante",
             slug: "parlante",
@@ -27,8 +28,8 @@ export default {
             iconState: "info"
         },
         {
-            name: "Cortina",
-            slug: "cortina",
+            name: "Lampara",
+            slug: "lampara",
             id: 2,
             iconMain: "roller_shades",
             iconOpen: "blinder",

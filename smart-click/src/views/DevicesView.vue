@@ -4,7 +4,7 @@
           <v-icon x-large>house</v-icon>
           <span class="text-h5 align-center" >{{ house.nombreCasa }}</span>
 <!--          <div class="add-rooms" >-->
-          <v-btn  color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
+          <v-btn color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
 <!--          </div>-->
     </div>
 
@@ -18,7 +18,10 @@
                  <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                    <speaker-comp/>
+                  <v-row>                    
+  <speaker-comp class="devices"/>
+                                            <door-comp class="devices"/>
+                   </v-row>
                   <v-btn right color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -35,10 +38,12 @@
 <script>
 import store from "@/store/store"
 import SpeakerComp from "@/components/SpeakerComp";
+import DoorComp from "@/components/DoorComp";
 
 export default {
   components: {
-    SpeakerComp
+    SpeakerComp,
+    DoorComp
   },
 
   name: "DevicesView",
@@ -62,5 +67,9 @@ export default {
   /*.add-rooms {*/
   /*  order: 5;*/
   /*}*/
+
+  .devices {
+      padding-left: 600px;
+  }
 
 </style>

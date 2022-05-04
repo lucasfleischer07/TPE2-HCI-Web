@@ -1,7 +1,7 @@
 <template>
   <div >
 <!--    TODO: Falta programar los botones-->
-    <v-footer absolute color="primary lighten-1" padless>
+    <v-footer class="nav-class" absolute padless>
       <v-row justify="center" no-gutters>
         <v-btn
             v-for="link in links"
@@ -13,7 +13,7 @@
           {{ link }}
         </v-btn>
         <v-col
-            class="primary lighten-1 py-4 text-center white--text font-weight-bold"
+            class="nav-class py-4 text-center white--text font-weight-bold"
             cols="12">
           {{ new Date().getFullYear() }} — <strong>SmartClick</strong>
         </v-col>
@@ -33,5 +33,8 @@ export default {
 </script>
 
 <style scoped>
+    .nav-class {
+        background-color: dodgerblue;
+    }
  
 </style>

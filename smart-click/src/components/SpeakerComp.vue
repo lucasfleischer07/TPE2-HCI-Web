@@ -1,8 +1,7 @@
 <template>
   <div>
-    <v-btn depressed icon>
-      <v-icon x-large>speaker</v-icon>
-    </v-btn>
+    <v-icon x-large>speaker</v-icon>
+
     <p>{{device.deviceName}}</p>
     <v-row class="action-row">
       <div>
@@ -18,16 +17,10 @@
       </div>
     </v-row>
     <v-row class="action-row" justify="center">
-
-      <v-btn depressed icon>
-        <v-icon x-large>volume_down_alt</v-icon>
-      </v-btn>
-      <v-btn depressed icon>
-        <v-icon x-large>volume_mute</v-icon>
-      </v-btn>
-      <v-btn depressed icon>
-        <v-icon x-large>volume_up</v-icon>
-      </v-btn>
+          <v-slider v-model="sound"
+                    prepend-icon="mdi-magnify-minus-outline"
+                    @click:append="sound=0"
+                    />
     </v-row>
     <v-row class="action-row">
       <div>
@@ -35,7 +28,7 @@
           <v-icon x-large>queue_music</v-icon>
         </v-btn >
         <v-btn depressed icon>
-          <v-icon x-large>android_now_playing</v-icon>
+          <v-icon x-large>change_circle</v-icon>
         </v-btn>
         <v-btn depressed icon>
           <v-icon x-large>info</v-icon>
@@ -69,6 +62,7 @@ export default {
 
   data () {
     return {
+      sound: 0,
       id : 0,    //PREGUNTAR POR QUE NO ME DEJA PONER this.id en vez de 0
       //Aca me mandan que device en especial es NO SE COMO SE HACE LO HARDCODEO
       device : store.house.cuartos[0].roomDevices[0],
