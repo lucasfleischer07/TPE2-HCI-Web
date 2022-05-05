@@ -3,6 +3,7 @@
         <v-btn depressed icon>
             <v-icon x-large> emoji_objects</v-icon>
         </v-btn>
+      <p>{{deviceEntity.deviceName}}</p>
         <v-switch inline> </v-switch>
         <v-row>
 
@@ -19,7 +20,7 @@
         </v-row>
       <v-btn fab
             x-small
-            :color="btnColor"
+            :color=btnColor
             @click="toggle= !toggle"></v-btn>
       <v-color-picker :hide-canvas="toggle" :hide-sliders="toggle" hide-inputs
       v-model="btnColor">
@@ -40,7 +41,7 @@ name: "LightbulbComp",
     return {
       slider:0,
       toggle:false,
-      btnColor:"yellow"
+      btnColor:"red"
 
     }
   },

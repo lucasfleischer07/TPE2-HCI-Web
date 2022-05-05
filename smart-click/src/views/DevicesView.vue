@@ -53,7 +53,9 @@ import LightbulbComp from "@/components/LightbulbComp";
 export default {
   components: {
     SpeakerComp,
-    DoorComp
+    DoorComp,
+    LightbulbComp,
+    RefrigeratorComp
   },
 
   name: "DevicesView",
