@@ -34,17 +34,16 @@
 </template>
 
 <script>
-import store from "@/store/store.js"
 
 
 export default {
     name: "DoorComp",
-
+    props: {
+      deviceEntity: {},
+    },
     data () {
         return {
-          id : 0,    //PREGUNTAR POR QUE NO ME DEJA PONER this.id en vez de 0
-          //Aca me mandan que device en especial es NO SE COMO SE HACE LO HARDCODEO
-          device : store.house.cuartos[0].roomDevices[0],
+
 
         }
       },
