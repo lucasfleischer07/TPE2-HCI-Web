@@ -22,7 +22,8 @@
             :color="btnColor"
             @click="toggle= !toggle"></v-btn>
       <v-color-picker :hide-canvas="toggle" :hide-sliders="toggle" hide-inputs
-      v-model="btnColor"></v-color-picker>
+      v-model="btnColor">
+      </v-color-picker>
      </div>
 </template>
 
