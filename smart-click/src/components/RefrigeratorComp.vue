@@ -22,14 +22,15 @@
 
 <script>
 
-import store from "@/store/store.js"
 
 export default {
     name: "RefrigeratorComp",
+    props: {
+      deviceEntity: {},
+    },
     data() {
         return {
-            refriTemp: 0,
-            house: store.house.cuartos[0].roomDevices[1],
+
         }
     }
 }

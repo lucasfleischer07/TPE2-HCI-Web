@@ -1,6 +1,28 @@
 export default {
-    devices: [ 
-        // dejamos esto solo por los iconos pero los dispositivos van a ser componentes
+    devicesMap: [
+        {
+            compName: "SpeakerComp",
+            id: 0,
+        },
+        {
+            compName: "DoorComp",
+            id: 1,
+        },
+        {
+            compName: "LightbulbComp",
+            id: 2,
+        },
+        {
+            compName: "RefrigeratorComp",
+            id: 3,
+        },
+        {
+            compName: "OvenComp",
+            id: 4,
+        },
+
+    ],
+    devices: [
         {
             name: "Parlante",
             slug: "parlante",
@@ -28,8 +50,8 @@ export default {
             iconState: "info"
         },
         {
-            name: "Lampara",
-            slug: "lampara",
+            name: "Cortina",
+            slug: "cortina",
             id: 2,
             iconMain: "roller_shades",
             iconOpen: "blinder",
@@ -75,8 +97,8 @@ export default {
                             deviceName: "Mi Parlante"
                         },
                         {
-                            deviceCode: 2,
-                            deviceName: "mi Cortina"
+                            deviceCode: 1,
+                            deviceName: "mi puerta"
                         }
                     ]
                 },

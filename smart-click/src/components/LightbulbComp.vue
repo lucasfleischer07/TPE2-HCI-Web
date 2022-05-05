@@ -31,6 +31,10 @@
 
 export default {
 name: "LightbulbComp",
+
+  props: {
+    deviceEntity: {},
+  },
   data () {
     return {
       slider:0,

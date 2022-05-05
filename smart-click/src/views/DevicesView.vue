@@ -1,39 +1,43 @@
 <template>
-  <div class="main-div">
+  <div>
     <div class="prueba">
-      <div></div>
-      <div>
-          <v-icon x-large>house</v-icon>
-          <span class="text-h5 align-center" >{{ house.nombreCasa }}</span>
-<!--          <div class="add-rooms" >-->
-      </div>
-          <v-btn color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
-<!--          </div>-->
+      <v-icon x-large>house</v-icon>
+      <span class="text-h5 align-center" >{{ house.nombreCasa }}</span>
+      <!--          <div class="add-rooms" >-->
+      <v-btn  color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
+      <!--          </div>-->
     </div>
 
     <div class="rooms-class">
-        <v-expansion-panels >
-              <v-expansion-panel
-                v-for="room in house.cuartos"
-                :key="room"
-              >
-                <v-expansion-panel-header >
-                 <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <v-row>                    
-                        <speaker-comp class="devices"/>
-                        <door-comp class="devices"/>
-                        <refrigerator-comp class="devices"/>
-                   </v-row>
-                  <v-btn right color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-     <!-- <v-btn x-large class="rooms-class" >
-        <v-icon>house</v-icon>
-      </v-btn>
-     -->
+      <v-expansion-panels >
+        <v-expansion-panel
+            v-for="room in house.cuartos"
+            :key="room"
+        >
+          <v-expansion-panel-header >
+            <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-row>
+              <v-container v-for="device in room.roomDevices" :key="device">
+                <v-container v-for="deviceProto in devicesMap" :key="deviceProto">
+                  <component v-if="deviceProto.id===device.deviceCode" :is="deviceProto.compName" deviceEntity="device"/>
+
+                </v-container>
+              </v-container>
+          <!--
+              <speaker-comp class="devices" deviceEntity="device"/>
+              <door-comp class="devices" deviceEntity="device"/>-->
+
+            </v-row>
+            <v-btn right color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <!-- <v-btn x-large class="rooms-class" >
+         <v-icon>house</v-icon>
+       </v-btn>
+      -->
     </div>
 
   </div>
@@ -43,44 +47,39 @@
 import store from "@/store/store"
 import SpeakerComp from "@/components/SpeakerComp";
 import DoorComp from "@/components/DoorComp";
-import RefrigeratorComp from "@/components/RefrigeratorComp.vue";
+import RefrigeratorComp from "@/components/RefrigeratorComp";
+import LightbulbComp from "@/components/LightbulbComp";
 
 export default {
   components: {
     SpeakerComp,
-    DoorComp,
-    RefrigeratorComp,
+    DoorComp
   },
 
   name: "DevicesView",
   data() {
     return {
-      house: store.house
+      house: store.house,
+      devicesMap: store.devicesMap
     }
   },
 }
 </script>
 
 <style scoped>
-  .main-div {
-    min-height: 110%;
-  }
+.rooms-class{
+  display: flex;
+  justify-content: center;
+}
 
-  .rooms-class{
-    display: flex;
-    justify-content: center;
-  }
+.prueba {
+  justify-content: space-between;
+}
+/*.add-rooms {*/
+/*  order: 5;*/
+/*}*/
 
-  .prueba {
-    display: flex;
-    justify-content: space-between;
-  }
-  /*.add-rooms {*/
-  /*  order: 5;*/
-  /*}*/
-
-  .devices {
-      padding-left: 100px;
-  }
-
+.devices {
+  padding-left: 30px;
+}
 </style>
