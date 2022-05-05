@@ -1,7 +1,7 @@
 <template>
 
-    <div>
-        <v-row>
+    <div class="action_btn action_btn">
+        <v-row class="action-row">
               <device-icon name-device="kitchen"/>
             </v-row>
             <p>{{deviceEntity.deviceName}}</p>
@@ -11,7 +11,7 @@
                         @change="refriTemp=number"/>
             </div>
        </v-row>
-       <v-row class="action-row" justify="center">
+       <v-row class="action-row action_btn" justify="center">
 
             <div>
                <v-slider prepend-icon="ac_unit"
@@ -45,5 +45,13 @@ export default {
 </script>
 
 <style scoped>
+  .action-row{
+    padding-top:   0px;
+    justify-content: center;
+  }
+
+  .action_btn{
+    padding: 5px;
+  }
 
 </style>
