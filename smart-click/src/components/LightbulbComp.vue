@@ -1,22 +1,26 @@
 <template>
-    <div>
+    <div class="device">
         <v-btn depressed icon>
             <v-icon x-large> emoji_objects</v-icon>
         </v-btn>
       <p>{{deviceEntity.deviceName}}</p>
         <v-switch inline> </v-switch>
-        <v-row>
+        <v-row style="width: 75%">
 
-          <v-slider prepend-icon="brightness6"
+          <v-slider prepend-icon="brightness_6"
                     :max="100"
                     :min="0"
                     thumb-label
+                    style="width: 65%"
                     v-model="slider" ></v-slider>
-          <v-text-field
+          <v-text-field dense
               hide-details
               single-line
               v-model="slider"
-          type="number"></v-text-field>
+              style="width: 15%"
+          type="number">
+          </v-text-field>
+
         </v-row>
       <v-btn fab
             x-small
@@ -40,7 +44,7 @@ name: "LightbulbComp",
   data () {
     return {
       slider:0,
-      toggle:false,
+      toggle:true,
       btnColor:"red"
 
     }
@@ -49,5 +53,7 @@ name: "LightbulbComp",
 </script>
 
 <style scoped>
-
+.device{
+  width:20%
+}
 </style>
