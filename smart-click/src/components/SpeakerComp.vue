@@ -1,11 +1,9 @@
 <template>
   <div>
-    <v-icon x-large>speaker</v-icon>
     <v-row>
-      <p>{{deviceEntity.deviceName}}</p>
-      <device-icon/>
+      <device-icon name-device="speaker"/>
     </v-row>
-
+    <p>{{deviceEntity.deviceName}}</p>
     <v-row class="action-row">
       <div>
         <v-btn depressed icon>
@@ -65,7 +63,11 @@ import DeviceIcon from "@/components/DeviceIcon";
 
 export default {
   name: "SpeakerComp",
-  components: {DeviceIcon},
+
+  components: {
+    DeviceIcon
+  },
+
   props: {
     deviceEntity: {},
   },

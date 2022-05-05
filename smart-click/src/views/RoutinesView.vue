@@ -1,5 +1,5 @@
 <template>
-  <div class="page-division">
+  <div class="routines-view">
     <div class="list-routines">
       <h2>Mis rutinas</h2>
     </div>
@@ -20,10 +20,11 @@
 
 
 <style scoped>
-  .page-division {
+  .routines-view {
     display: flex;
     justify-content: space-between;
     text-align: center;
+    min-height: 500px;
 
   }
 

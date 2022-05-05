@@ -1,8 +1,10 @@
 <template>
 
     <div>
-        <v-icon x-large>kitchen</v-icon>
-        <p>{{device.deviceName}}</p>
+        <v-row>
+              <device-icon name-device="kitchen"/>
+            </v-row>
+            <p>{{deviceEntity.deviceName}}</p>
         <v-row class="action-row">
             <div>
                <v-slider prepend-icon="device_thermostat"
@@ -21,6 +23,7 @@
 </template>
 
 <script>
+import DeviceIcon from "@/components/DeviceIcon";
 
 
 export default {
@@ -28,6 +31,11 @@ export default {
     props: {
       deviceEntity: {},
     },
+
+    components: {
+          DeviceIcon,
+    },
+
     data() {
         return {
 

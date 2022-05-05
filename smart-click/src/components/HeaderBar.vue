@@ -18,35 +18,25 @@
     </div>
 <!--    Div vacio para que me quede mas a la derecha la barra de buscador-->
     <div></div>
-    <div class="dark-help-buttons">
-      <router-link :to="{name: 'Help'}">
-        <v-btn large color="primary"><v-icon>help</v-icon></v-btn>
-      </router-link>
-      <v-btn large color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark"><v-icon>dark_mode</v-icon></v-btn>
-    </div>
-    <div >
-      <template >
+
+    <div>
+      <template>
         <v-container fluid c>
           <v-row aligned="center">
-            <v-col
-                class="d-flex"
-                cols="12"
-                sm="10"
-            >
+            <v-col class="d-flex" cols="12" sm="10">
               <v-subheader>
                 <v-icon>home</v-icon>
               </v-subheader>
               <v-select
                   :items="houses"
                   label="House selected:"
+
                   outlined class="house-selector-slider"
                   dense
                   @change="houseChange"
                   persistent-placeholder="false"
-                  placeholder="select house"
-              >
+                  placeholder="Select house">
               <template #append-item>
-
                   <div class="append">
                     <v-btn color="primary" @click="addHouse">
                       Add House
@@ -55,16 +45,19 @@
                 </template>
               </v-select>
             </v-col>
-
-
           </v-row>
         </v-container>
       </template>
+    </div>
 
+    <div class="dark-help-buttons">
+      <v-btn class="ma-lg-1" large color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark"><v-icon>dark_mode</v-icon></v-btn>
+      <router-link :to="{name: 'Help'}">
+        <v-btn large color="primary"><v-icon>help</v-icon></v-btn>
+      </router-link>
     </div>
 
   </div>
-
 </template>
 
 
@@ -82,6 +75,7 @@ export default {
       house: store.house,
     }
   },
+
   methods: {
     houseChange(selected)
     {
@@ -126,8 +120,8 @@ export default {
 
   .dark-help-buttons {
     display: block;
-    padding: 3px;
-    margin: 3px;
+    /*padding: 5px;*/
+    /*margin: 5px;*/
   }
 
   .house-selector-slider {

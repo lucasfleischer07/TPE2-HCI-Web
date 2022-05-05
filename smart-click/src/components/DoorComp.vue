@@ -1,8 +1,11 @@
 <template>
 
   <div>
-    <v-icon x-large>door_front</v-icon>
-    <p>{{device.deviceName}}</p>
+    <v-row>
+      <DeviceIcon></DeviceIcon>
+      <device-icon name-device="door_front"/>
+    </v-row>
+    <p>{{deviceEntity.deviceName}}</p>
     <v-row class="action-row  ">
       <div>
         <v-btn depressed icon>
@@ -34,13 +37,20 @@
 </template>
 
 <script>
+import DeviceIcon from "@/components/DeviceIcon";
 
 
 export default {
     name: "DoorComp",
+
     props: {
       deviceEntity: {},
     },
+
+    components: {
+        DeviceIcon
+    },
+
     data () {
         return {
 
