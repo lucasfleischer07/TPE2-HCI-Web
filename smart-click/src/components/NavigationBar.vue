@@ -1,18 +1,6 @@
 <template>
   <div class="nav-bar">
     <nav>
-
-<!--      TODO: intento fallido de hacerlo dinamico-->
-<!--      <div v-for="v in views" :key="v.id" class="nav-bar">-->
-<!--      <router-link :to="{name: {path: v.name + 'View'}, params: {id: v.id}}">-->
-<!--          <v-btn x-large color="primary" class="nav-icons">-->
-<!--              <v-icon>{{ v.icon }}</v-icon>-->
-<!--              <span>{{ v.name }}</span>-->
-<!--          </v-btn>-->
-<!--      </router-link>-->
-<!--      </div>-->
-
-
       <router-link :to="{name: 'Devices'}">
         <v-btn x-large  class="nav-icons" >
           <v-icon>devices</v-icon>
@@ -71,16 +59,15 @@
     background-color: dodgerblue;
     width: 100%;
     padding: 30px;
-    margin: 20px;
+    margin-bottom: 30px;
   }
 
   .nav-icons {
     display: inline-block;
     width:auto;
-    margin-inline:20px;
+    /*justify-content: space-evenly;*/
+    margin-inline:80px;
 
-
-    /*margin-right: auto;*/
   }
 
 </style>

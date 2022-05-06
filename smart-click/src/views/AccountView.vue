@@ -1,5 +1,5 @@
 <template>
-  <div>AccountView</div>
+  <div class="account-view">AccountView</div>
 </template>
 
 <script>
@@ -9,5 +9,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .account-view {
+    min-height: 500px;
+  }
 </style>

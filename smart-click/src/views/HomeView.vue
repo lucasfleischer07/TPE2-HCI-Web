@@ -1,14 +1,51 @@
 <template>
 
-  <div class="homeView" color="primary">
-    <v-btn width="200px" color="primary" elevation="3" fab rounded x-large>Agregar Casa</v-btn> <br>
-    <br> <br>
-    <v-btn width="250px" color="primary" elevation="3" fab rounded x-large>Eliminar Casa</v-btn> <br>
-    <br> <br>
-    <v-btn width="300" color="primary" elevation="3" fab rounded x-large>Agregar Dispositivo</v-btn> <br>
-    <br> <br> <br>
-    <v-btn width="350" color="primary" elevation="3" fab rounded x-large>Eliminar dispositivo</v-btn> <br>
-<!--     <br> <br> <br> -->
+  <div class="home-view">
+    <div class="buttons">
+      <v-btn class="font-weight-bold" height="100px" width="300px" color="success" elevation="3" x-large>
+        <div class="icon-div">
+          Agregar Casa
+          <v-icon large>house</v-icon>
+        </div>
+      </v-btn>
+      <v-btn class="font-weight-bold" height="100px" width="300px" color="error" elevation="3" x-large>
+        <div class="icon-div">
+          Eliminar Casa
+          <v-icon large>delete_forever</v-icon>
+        </div>
+      </v-btn>
+    </div>
+
+    <div class="buttons">
+      <v-btn class="font-weight-bold align-self" height="100px" width="300px" color="success" elevation="3" x-large>
+        <div class="icon-div">
+          Agregar Dispositivo
+          <v-icon large>devices
+          </v-icon>
+        </div>
+      </v-btn>
+      <v-btn class="font-weight-bold" height="100px" width="300px" color="error" elevation="3" x-large>
+        <div class="icon-div">
+          Eliminar dispositivo
+          <v-icon large>tv_off</v-icon>
+        </div>
+      </v-btn>
+    </div>
+
+    <div class="buttons">
+      <v-btn class="font-weight-bold" height="100px" width="300px" color="success" elevation="3" x-large>
+        <div class="icon-div">
+          Agregar Rutina
+          <v-icon large>edit_calendar</v-icon>
+        </div>
+      </v-btn>
+      <v-btn class="font-weight-bold" height="100px" width="300px" color="error" elevation="3" x-large>
+        <div class="icon-div">
+          Eliminar Rutina
+          <v-icon large>event_busy</v-icon>
+        </div>
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -19,16 +56,26 @@
 </script>
 
 <style scoped>
-  .homeView  {
-  min-height: 700px;
-  /*font-family: "helvetica neue";*/
-  /*background: url(../assets/fondo3.png), #2196f3;*/
-  /*background: url(../assets/fondo3.png),*/
-  /*  -webkit-gradient(linear, right top, left top, from(#2196f3), to(#009688));*/
-  /*background: url(//.assets/fondo3.png),*/
-  /*  linear-gradient(to left, #2196f3, #009688);*/
+  .home-view  {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    min-height: 500px;
   }
 
+ .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 50px;
+    font-size: 40px;
+
+  }
+
+ .icon-div {
+   display: flex;
+   align-content: center;
+   flex-direction: column;
+ }
 
 </style>
 

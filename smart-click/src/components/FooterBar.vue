@@ -1,7 +1,7 @@
 <template>
   <div>
 <!--    TODO: Falta programar los botones-->
-    <v-footer class="nav-class"  padless>
+    <v-footer class="nav-class" padless>
       <v-row class="nav-class" justify="center" no-gutters>
         <v-btn
             v-for="link in links"

@@ -1,15 +1,17 @@
 <template>
 
-    <div>
-        <v-icon x-large>kitchen</v-icon>
-        <p>{{device.deviceName}}</p>
+    <div class="action_btn action_btn">
+        <v-row class="action-row">
+              <device-icon name-device="kitchen"/>
+            </v-row>
+            <p>{{deviceEntity.deviceName}}</p>
         <v-row class="action-row">
             <div>
                <v-slider prepend-icon="device_thermostat"
                         @change="refriTemp=number"/>
             </div>
        </v-row>
-       <v-row class="action-row" justify="center">
+       <v-row class="action-row action_btn" justify="center">
 
             <div>
                <v-slider prepend-icon="ac_unit"
@@ -21,6 +23,7 @@
 </template>
 
 <script>
+import DeviceIcon from "@/components/DeviceIcon";
 
 
 export default {
@@ -28,6 +31,11 @@ export default {
     props: {
       deviceEntity: {},
     },
+
+    components: {
+          DeviceIcon,
+    },
+
     data() {
         return {
 
@@ -37,5 +45,13 @@ export default {
 </script>
 
 <style scoped>
+  .action-row{
+    padding-top:   0px;
+    justify-content: center;
+  }
+
+  .action_btn{
+    padding: 5px;
+  }
 
 </style>

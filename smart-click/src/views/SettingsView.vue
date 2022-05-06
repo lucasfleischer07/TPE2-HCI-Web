@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="settings-view">
 <!--    class="mx-auto" -> meter este atributo y va a quedar centrado-->
     <v-card class="mx-auto" width="500" color="secondary">
       <v-list>
@@ -176,6 +176,11 @@
 </script>
 
 <style scoped>
+
+  .settings-view {
+    min-height: 500px;
+  }
+
   .switch-centre{
     display: flex;
     justify-content: center;

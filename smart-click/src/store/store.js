@@ -81,7 +81,6 @@ export default {
         },
     ],
 
-
     houses: [
         {
             nombreCasa: "Casa 1",
@@ -117,7 +116,45 @@ export default {
                         }
                     ]
                 }
+            ],
+            routines: [
+                {
+                    routineName: "Encender la casa",
+                    routineTimeActivation: 3,
+                    devicesAndActions: [
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
+                    ]
+                },
+                {
 
+                    routineName: "Apagar la casa",
+                    routineTimeActivation: 3,
+                    devicesAndActions: [
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
+                    ]
+                }
             ],
             toString(){
                 return this.nombreCasa
@@ -157,7 +194,45 @@ export default {
                         }
                     ]
                 }
+            ],
+            routines: [
+                {
+                    routineName: "Encender la casa",
+                    routineTimeActivation: 3,
+                    devicesAndActions: [
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
 
+                    ]
+                },
+                {
+                    routineName: "Apagar la casa",
+                    routineTimeActivation: 3,
+                    devicesAndActions: [
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
+                        {
+                            // device : this.
+                            //action
+                        },
+                    ]
+                }
             ],
             toString(){
                 return this.nombreCasa
@@ -168,6 +243,7 @@ export default {
         nombreCasa: "",
         codigoCasa: null,
         cuartos: null,
+        routines: null,
     }
 
 }

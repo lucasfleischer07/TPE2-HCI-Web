@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <v-icon x-large>speaker</v-icon>
-    <v-row>
-      <p>{{deviceEntity.deviceName}}</p>
-      <device-icon/>
+  <div class="action_btn">
+    <v-row class="action-row action_btn" >
+      <device-icon name-device="speaker"/>
     </v-row>
-
-    <v-row class="action-row">
-      <div>
+    <p>{{deviceEntity.deviceName}}</p>
+    <v-row class="action-row action_btn">
+      <div >
         <v-btn depressed icon>
           <v-icon  x-large>first_page</v-icon>
         </v-btn >
@@ -19,7 +17,7 @@
         </v-btn>
       </div>
     </v-row>
-    <v-row class="action-row" justify="center">
+    <v-row class="action-row action_btn" >
 
       <v-btn depressed icon v-model="sound" @click="sound=0">
         <v-icon x-large>volume_down_alt</v-icon>
@@ -65,7 +63,11 @@ import DeviceIcon from "@/components/DeviceIcon";
 
 export default {
   name: "SpeakerComp",
-  components: {DeviceIcon},
+
+  components: {
+    DeviceIcon
+  },
+
   props: {
     deviceEntity: {},
   },
@@ -84,5 +86,9 @@ export default {
   padding-top:   0px;
   justify-content: center;
 }
+
+  .action_btn{
+    padding: 5px;
+  }
 
 </style>
