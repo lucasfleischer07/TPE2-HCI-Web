@@ -5,11 +5,12 @@
         <h2>Mis rutinas</h2>
       </div>
       <v-row v-for="routine in house.routines" :key="routine.name">
-        <v-col
-                       class="routines-botton">
-          <v-btn color="purple lighten-1" large width="200" rounded >
-            {{ routine.routineName }}
-          </v-btn>
+        <v-col class="routines-botton">
+          <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.slug}}">
+            <v-btn class="text-decoration-none" color="purple lighten-1" large width="200" rounded >
+              {{ routine.routineName }}
+            </v-btn>
+          </router-link>
         </v-col>
       </v-row>
     </div>
@@ -19,9 +20,9 @@
       </div>
       <div class="vertical-line"></div>
     </div>
-
     <div>
       <h2>Detalle de rutina</h2>
+      <router-view :key="$route.path"/>
     </div>
   </div>
 </template>
@@ -79,6 +80,7 @@ import store from "@/store/store.js"
 
   .routines-botton {
     padding-top: 30px;
+    text-decoration: none;
 
   }
 

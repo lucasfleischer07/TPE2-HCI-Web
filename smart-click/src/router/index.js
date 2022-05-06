@@ -18,7 +18,17 @@ const routes = [
   {
     path: '/routines',
     name: 'Routines',
-    component: () => import(/* webpackChunkName: "routines" */ '../views/RoutinesView.vue')
+    component: () => import(/* webpackChunkName: "routines" */ '../views/RoutinesView.vue'),
+    props: true,
+    children: [
+      {
+        //Matcheo lo que viene a continuacion de la ruta padre
+        path: ":routineSlug",
+        name: "routineDetailsView",
+        props: true,
+        component: () => import(/* webpackChunkName: "experienceDetails" */ "../views/RoutineDetailView.vue"),
+      }
+    ],
   },
   {
     path: '/account',
