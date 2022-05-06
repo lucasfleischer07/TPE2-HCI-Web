@@ -143,7 +143,7 @@ export default {
                     devicesAndActions: [
                         {
                             // device : this.
-                            //action
+                            // action
                         },
                         {
                             // device : this.
