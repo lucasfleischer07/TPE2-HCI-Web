@@ -117,10 +117,12 @@ export default {
                     ]
                 }
             ],
+
             routines: [
                 {
                     routineName: "Encender la casa",
                     routineTimeActivation: 3,
+                    slug: "encenderCasa",
                     devicesAndActions: [
                         {
                             // device : this.
@@ -134,12 +136,12 @@ export default {
                             // device : this.
                             //action
                         },
-                    ]
+                    ],
                 },
                 {
-
                     routineName: "Apagar la casa",
                     routineTimeActivation: 3,
+                    slug: "apagarCasa",
                     devicesAndActions: [
                         {
                             // device : this.
