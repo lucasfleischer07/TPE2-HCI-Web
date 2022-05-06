@@ -19,7 +19,6 @@ const routes = [
     path: '/routines',
     name: 'Routines',
     component: () => import(/* webpackChunkName: "routines" */ '../views/RoutinesView.vue'),
-    props: true,
     children: [
       {
         //Matcheo lo que viene a continuacion de la ruta padre
