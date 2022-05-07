@@ -1,32 +1,77 @@
 <template>
   <section>
     <div class="routine-details">
-      <p>{{detail.routineName}}</p>
-<!--      <v-list two-line>-->
-<!--              <v-list-item-group&ndash;&gt;-->
-<!--                v-model="selected">-->
-<!--                <template v-for="(device, devices) in routine">-->
-<!--                            <v-list-item :key="routine.title">-->
-<!--                              <template v-slot:default="{ active }">-->
-<!--                                <v-list-item-content>-->
-<!--                                  <v-list-item-title v-text="item.title"></v-list-item-title>-->
+      <v-row>
+        <p>{{detail.routineName}}</p>
+        <v-switch></v-switch>
+      </v-row>
 
-<!--                                  <v-list-item-subtitle-->
-<!--                                    class="text&#45;&#45;primary"-->
-<!--                                    v-text="item.headline"-->
-<!--                                  ></v-list-item-subtitle>-->
+      <v-dialog
+          ref="dialog"
+          v-model="modal2"
+          :return-value.sync="detail.routineTimeActivation"
+          width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+              v-model="detail.routineTimeActivation"
+              label="Hora de activacion"
+              prepend-icon="schedule"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+          ></v-text-field>
+        </template>
+        <v-time-picker
+            v-if="modal2"
+            v-model="detail.routineTimeActivation"
+            full-width
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+              text
+              color="primary"
+              @click="modal2 = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+              text
+              color="primary"
+              @click="$refs.dialog.save(detail.routineTimeActivation)"
+          >
+            OK
+          </v-btn>
+        </v-time-picker>
+      </v-dialog>
 
-<!--                                                               <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>-->
-<!--                                </v-list-item-content>-->
+      <v-btn-toggle
+          v-model="diasSel"
+          multiple
+      >
+        <v-btn>
+          L
+        </v-btn>
+        <v-btn>
+          M
+        </v-btn>
+        <v-btn>
+          M
+        </v-btn>
+        <v-btn>
+          J
+        </v-btn>
+        <v-btn>
+          V
+        </v-btn>
+        <v-btn>
+          S
+        </v-btn>
+        <v-btn>
+          D
+        </v-btn>
+      </v-btn-toggle>
 
-<!--                                <v-list-item-action>-->
-<!--                                  <v-list-item-action-text v-text="item.action"></v-list-item-action-text>-->
-<!--                                 </v-list-item-action>-->
-<!--                                </template>-->
-<!--                            </v-list-item>-->
-<!--                 </template>-->
-<!--                </v-list-item-group>-->
-<!--      </v-list>-->
     </div>
   </section>
 </template>
@@ -55,7 +100,12 @@ export default {
             detail => detail.slug == this.routineSlug
         )
       }
-    }
+    },
+  data(){
+      return{modal2:false,
+            menu2:false,
+            diasSel:null}
+  }
 }
 </script>
 

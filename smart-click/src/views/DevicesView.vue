@@ -46,15 +46,17 @@
 import store from "@/store/store"
 import SpeakerComp from "@/components/SpeakerComp";
 import DoorComp from "@/components/DoorComp";
-// import RefrigeratorComp from "@/components/RefrigeratorComp";
-// import LightbulbComp from "@/components/LightbulbComp";
+import RefrigeratorComp from "@/components/RefrigeratorComp";
+import LightbulbComp from "@/components/LightbulbComp";
+import OvenComp from "@/components/OvenComp";
 
 export default {
   components: {
     SpeakerComp,
     DoorComp,
     LightbulbComp,
-    RefrigeratorComp
+    RefrigeratorComp,
+    OvenComp
   },
 
   name: "DevicesView",
