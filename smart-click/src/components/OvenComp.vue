@@ -1,13 +1,14 @@
 <template>
   <div>
   <v-btn depressed icon>
-    <v-icon x-large> oven_gen</v-icon>
+    <v-icon x-large>microwave</v-icon>
   </v-btn>
   <v-switch inline> </v-switch>
     <v-slider prepend-icon="device_thermostat"
               :max="240"
               :min="90"
               thumb-label
+              style="width: 30%"
               ></v-slider>
     <v-row>
       <p>Fuente calor</p>
@@ -43,6 +44,9 @@
 <script>
 export default {
   name: "OvenComp",
+  props: {
+    deviceEntity: {},
+  },
   data(){
     return{
       fuenteCalor:undefined,
