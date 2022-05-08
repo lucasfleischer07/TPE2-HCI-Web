@@ -1,15 +1,12 @@
 <template>
     <div>
-        <v-row>
-          <v-col cols="11"
-                 >
-              <v-icon x-large class="col-6">{{nameDevice}}</v-icon>
 
-              <v-btn depressed icon class="" >
-                <v-icon  color="error" >delete_forever</v-icon>
-              </v-btn>
-          </v-col>
-        </v-row>
+        <v-icon x-large class="icon_class">{{nameDevice}}</v-icon>
+
+        <v-btn depressed icon class="trash_class" >
+          <v-icon  color="error" >delete_forever</v-icon>
+        </v-btn>
+
       </div>
 </template>
 
@@ -23,5 +20,13 @@ name: "DeviceIcon",
 </script>
 
 <style scoped>
+  .icon_class{
+    position: relative;
+    left: 40%;
+  }
+  .trash_class{
+    position: relative;
+    left: 60%;
+  }
 
 </style>

@@ -62,7 +62,7 @@
               <v-dialog v-model="confirmRemoveHouse" max-width="600px" height="600px">
                 <v-card>
                     <v-card-title>
-                      <h2>Esta seguro que desea eliminar {{ houseDeleteSelected }}</h2>
+                      <h2>Esta seguro que desea eliminar "{{ houseDeleteSelected }}"</h2>
                     </v-card-title>
 
                     <v-card-text>
@@ -217,7 +217,7 @@
                 <v-dialog v-model="confirmRemoveDevice" max-width="600px" height="600px">
                 <v-card>
                     <v-card-title>
-                      <h2>Esta seguro que desea eliminar {{ deviceDeleteSelected.deviceName }}</h2>
+                      <h2>Esta seguro que desea eliminar "{{ deviceDeleteSelected }}"</h2>
                     </v-card-title>
 
                     <v-card-text>
@@ -274,22 +274,7 @@
                 <v-row aligned="center">
                   <v-col class="d-flex" cols="12" sm="10">
                     <v-select
-                        :items="deviceAddHouseSelected.cuartos"
-                        label="Room selected:"
-                        outlined class="house-selector-slider"
-                        dense
-                        v-model="deviceAddRoomSelected"
-                        persistent-placeholder
-                        placeholder="Selecciona cuarto">
-                    </v-select>
-                  </v-col>
-                </v-row>
-              </v-container>
-              <v-container fluid c>
-                <v-row aligned="center">
-                  <v-col class="d-flex" cols="12" sm="10">
-                    <v-select
-                        :items="deviceAddRoomSelected.routines"
+                        :items="deviceAddHouseSelected.routines"
                         item-text="routineName"
                         label="Device selected:"
                         outlined class="house-selector-slider"
@@ -304,10 +289,10 @@
               <v-btn color="primary" @click.stop="confirmRemoveRoutine = true">
                   Eliminar rutina
               </v-btn>
-              <v-dialog v-model="confirmRemoveDevice" max-width="600px" height="600px">
+              <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
               <v-card>
                   <v-card-title>
-                    <h2>Esta seguro que desea eliminar {{ routineDeleteSeleceted.routineName }}</h2>
+                    <h2>Esta seguro que desea eliminar "{{ routineDeleteSeleceted }}"</h2>
                   </v-card-title>
 
                   <v-card-text>
@@ -347,7 +332,7 @@
         confirmRemoveDevice:false,
 
         routineRemove:false,
-        confirRemoveRoutine: false,
+        confirmRemoveRoutine: false,
 
         houseDeleteSelected: {},
         deviceDeleteSelected: {},
@@ -396,7 +381,9 @@
         else {
           //AGREGAR DISPOSITIVOVO
           this.confirmRemoveDevice = false
-          this.removeDevice = false
+          this.deviceRemove = false
+          this.deviceAddHouseSelected= {}
+          this.deviceAddRoomSelected= {}
           this.deviceDeleteSelected = {}
         }
       },
@@ -405,9 +392,10 @@
         console.log("No selecciono Dispositivo")
       else {
         //AGREGAR DISPOSITIVOVO
-        this.removeRoutine = false
         this.confirmRemoveRoutine = false
-        this.removeRoutine = false
+        this.routineRemove = false
+        this.deviceAddHouseSelected= {}
+        this.deviceAddRoomSelected= {}
         this.routineDeleteSelected = {}
       }
 

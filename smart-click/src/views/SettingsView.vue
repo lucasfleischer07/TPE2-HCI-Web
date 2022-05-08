@@ -161,6 +161,7 @@
 </template>
 
 <script>
+
   export default {
     name: "SettingsView",
 
