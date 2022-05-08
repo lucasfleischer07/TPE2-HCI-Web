@@ -18,7 +18,7 @@
             </v-card-title>
             <v-card-text>
               <v-text-field
-                  label="New house name"
+                  label="Nombre de nueva casa"
                   :rules="rules"
                   hide-details="auto"
                   v-model="nombreCasa"
@@ -46,7 +46,7 @@
                     <v-col class="d-flex" cols="12" sm="10">
                       <v-select
                           :items="houses"
-                          label="House selected:"
+                          label="Casa seleccionada:"
                           outlined class="house-selector-slider"
                           dense
                           v-model="houseDeleteSelected"
@@ -100,12 +100,12 @@
                       <v-col class="d-flex" cols="12" sm="10">
                         <v-select
                             :items="houses"
-                            label="House selected:"
+                            label="Casa seleccionada:"
                             outlined class="house-selector-slider"
                             dense
                             v-model="deviceAddHouseSelected"
                             persistent-placeholder
-                            placeholder="Selecciona casa ">
+                            placeholder="Seleccione una casa">
                         </v-select>
                       </v-col>
                     </v-row>
@@ -115,12 +115,12 @@
                       <v-col class="d-flex" cols="12" sm="10">
                         <v-select
                             :items="deviceAddHouseSelected.cuartos"
-                            label="Room selected:"
+                            label="Cuarto seleccionado:"
                             outlined class="house-selector-slider"
                             dense
                             v-model="deviceAddRoomSelected"
                             persistent-placeholder
-                            placeholder="elecciona cuarto">
+                            placeholder="Seleccione un cuarto">
                         </v-select>
                       </v-col>
                     </v-row>
@@ -130,18 +130,18 @@
                       <v-col class="d-flex" cols="12" sm="10">
                         <v-select
                             :items="deviceMap"
-                            label="Device selected:"
+                            label="Dispositivo seleccionado:"
                             outlined class="house-selector-slider"
                             dense
                             v-model="deviceSelected"
                             persistent-placeholder
-                            placeholder="Selecciona el dispositivo">
+                            placeholder="Seleccione el dispositivo">
                         </v-select>
                       </v-col>
                     </v-row>
                   </v-container>
                   <v-text-field
-                      label="New device name"
+                      label="Nombre del dispositivo nuevo"
                       :rules="rules"
                       hide-details="auto"
                       v-model="deviceName"
@@ -170,12 +170,12 @@
                     <v-col class="d-flex" cols="12" sm="10">
                       <v-select
                           :items="houses"
-                          label="House selected:"
+                          label="Casa seleccionada:"
                           outlined class="house-selector-slider"
                           dense
                           v-model="deviceAddHouseSelected"
                           persistent-placeholder
-                          placeholder="Selecciona casa">
+                          placeholder="Seleccione una casa">
                       </v-select>
                     </v-col>
                   </v-row>
@@ -185,12 +185,12 @@
                     <v-col class="d-flex" cols="12" sm="10">
                       <v-select
                           :items="deviceAddHouseSelected.cuartos"
-                          label="Room selected:"
+                          label="Cuarto seleccionado:"
                           outlined class="house-selector-slider"
                           dense
                           v-model="deviceAddRoomSelected"
                           persistent-placeholder
-                          placeholder="Selecciona cuarto">
+                          placeholder="Seleccione un cuarto">
                       </v-select>
                     </v-col>
                   </v-row>
@@ -201,12 +201,12 @@
                       <v-select
                           :items="deviceAddRoomSelected.roomDevices"
                           item-text="deviceName"
-                          label="Device selected:"
+                          label="Dispositivo seleccionado:"
                           outlined class="house-selector-slider"
                           dense
                           v-model="deviceDeleteSelected"
                           persistent-placeholder
-                          placeholder="Selecciona dispositivo">
+                          placeholder="Seleccione un dispositivo">
                       </v-select>
                     </v-col>
                   </v-row>
@@ -260,12 +260,12 @@
                   <v-col class="d-flex" cols="12" sm="10">
                     <v-select
                         :items="houses"
-                        label="House selected:"
+                        label="Casa seleccionada:"
                         outlined class="house-selector-slider"
                         dense
                         v-model="deviceAddHouseSelected"
                         persistent-placeholder
-                        placeholder="Selecciona casa">
+                        placeholder="Seleccione una casa">
                     </v-select>
                   </v-col>
                 </v-row>
@@ -276,12 +276,12 @@
                     <v-select
                         :items="deviceAddHouseSelected.routines"
                         item-text="routineName"
-                        label="Device selected:"
+                        label="Rutina seleccionada:"
                         outlined class="house-selector-slider"
                         dense
                         v-model="deviceDeleteSelected"
                         persistent-placeholder
-                        placeholder="Selecciona rutina">
+                        placeholder="Seleccione una rutina">
                     </v-select>
                   </v-col>
                 </v-row>

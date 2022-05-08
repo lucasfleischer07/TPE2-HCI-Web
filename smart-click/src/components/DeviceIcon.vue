@@ -1,13 +1,13 @@
 <template>
     <div>
 
-        <v-icon x-large class="icon_class">{{nameDevice}}</v-icon>
+        <v-icon x-large class="icon_class ">{{nameDevice}}</v-icon>
 
         <v-btn depressed icon class="trash_class" >
           <v-icon  color="error" >delete_forever</v-icon>
         </v-btn>
 
-      </div>
+    </div>
 </template>
 
 <script>

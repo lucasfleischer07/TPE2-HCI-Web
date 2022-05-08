@@ -6,8 +6,8 @@
         <span class="text-h5 color-class" >{{ house.nombreCasa }}</span>
       </div>
       <div class="add-button">
-        <v-btn color="primary" elevation="3" fab rounded @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
-        <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
+        <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
+        <v-dialog v-model="roomAdd" max-width="600px" height="600px">
           <v-card>
             <v-card-title>
               <h2>Agregue un nuevo dispositivo</h2>
@@ -18,7 +18,7 @@
                   <v-col class="d-flex" cols="12" sm="10">
                     <v-select
                         :items="houses"
-                        label="House selected:"
+                        label="Casa seleccionada:"
                         outlined class="house-selector-slider"
                         dense
                         v-model="deviceAddHouseSelected"
@@ -28,44 +28,15 @@
                   </v-col>
                 </v-row>
               </v-container>
-              <v-container fluid c>
-                <v-row aligned="center">
-                  <v-col class="d-flex" cols="12" sm="10">
-                    <v-select
-                        :items="deviceAddHouseSelected.cuartos"
-                        label="Room selected:"
-                        outlined class="house-selector-slider"
-                        dense
-                        v-model="deviceAddRoomSelected"
-                        persistent-placeholder
-                        placeholder="elecciona cuarto">
-                    </v-select>
-                  </v-col>
-                </v-row>
-              </v-container>
-              <v-container fluid c>
-                <v-row aligned="center">
-                  <v-col class="d-flex" cols="12" sm="10">
-                    <v-select
-                        :items="deviceMap"
-                        label="Device selected:"
-                        outlined class="house-selector-slider"
-                        dense
-                        v-model="deviceSelected"
-                        persistent-placeholder
-                        placeholder="Selecciona el dispositivo">
-                    </v-select>
-                  </v-col>
-                </v-row>
-              </v-container>
+
               <v-text-field
-                  label="New device name"
+                  label="Nombre de cuarto nuevo"
                   :rules="rules"
                   hide-details="auto"
                   v-model="deviceName"
               />
-              <v-btn color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
-                Agregar Dispositivo
+              <v-btn color="primary" @click="addRoom(deviceName,deviceAddHouseSelected)">
+                Agregar cuarto
               </v-btn>
             </v-card-text>
           </v-card>
@@ -91,7 +62,70 @@
               <door-comp class="devices" deviceEntity="device"/>-->
 
             </v-row>
-            <v-btn right color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
+            <v-btn color="primary" elevation="3" fab rounded @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
+            <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
+              <v-card>
+                <v-card-title>
+                  <h2>Agregue un nuevo dispositivo</h2>
+                </v-card-title>
+                <v-card-text>
+                  <v-container fluid c>
+                    <v-row aligned="center">
+                      <v-col class="d-flex" cols="12" sm="10">
+                        <v-select
+                            :items="houses"
+                            label="Casa seleccionada"
+                            outlined class="house-selector-slider"
+                            dense
+                            v-model="deviceAddHouseSelected"
+                            persistent-placeholder
+                            placeholder="Selecciona casa ">
+                        </v-select>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                  <v-container fluid c>
+                    <v-row aligned="center">
+                      <v-col class="d-flex" cols="12" sm="10">
+                        <v-select
+                            :items="deviceAddHouseSelected.cuartos"
+                            label="Cuarto seleccionado:"
+                            outlined class="house-selector-slider"
+                            dense
+                            v-model="deviceAddRoomSelected"
+                            persistent-placeholder
+                            placeholder="elecciona cuarto">
+                        </v-select>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                  <v-container fluid c>
+                    <v-row aligned="center">
+                      <v-col class="d-flex" cols="12" sm="10">
+                        <v-select
+                            :items="deviceMap"
+                            label="Dispositivo seleccionado:"
+                            outlined class="house-selector-slider"
+                            dense
+                            v-model="deviceSelected"
+                            persistent-placeholder
+                            placeholder="Selecciona el dispositivo">
+                        </v-select>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                  <v-text-field
+                      label="Nombre del nuevo dispositivo"
+                      :rules="rules"
+                      hide-details="auto"
+                      v-model="deviceName"
+                  />
+                  <v-btn color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
+                    Agregar Dispositivo
+                  </v-btn>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -136,17 +170,17 @@ export default {
       }
     },
 
-    removeDevice(device){
-      if (device == null)
-        console.log("No selecciono Dispositivo")
-      else {
-        //Remover DISPOSITIVOVO
-        this.removeDevice = false
-        this.confirmRemoveDevice = false
-        this.removeDevice = false
-        this.deviceDeleteSelected = {}
+
+  addRoom(roomName,house) {
+    if (roomName === "" || house == null)
+      console.log("No selecciono Dispositivo")
+    else
+      {
+        //AGREGAR CUARTO
+        this.roomAdd = false
+        this.deviceName = ""
       }
-    },
+    }
   },
 
   data() {
@@ -155,6 +189,7 @@ export default {
       houses: store.houses,
       devicesMap: store.devicesMap,
       deviceAdd: false,
+      roomAdd: false,
       deviceAddHouseSelected: {},
       deviceAddRoomSelected: {},
       deviceSelected: {},

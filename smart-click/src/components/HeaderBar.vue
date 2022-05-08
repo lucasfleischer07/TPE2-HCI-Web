@@ -50,7 +50,7 @@
                             </v-card-title>
                             <v-card-text>
                               <v-text-field
-                                label="New house name"
+                                label="Nombre de la nueva casa"
                                 :rules="rules"
                                 hide-details="auto"
                                 v-model="nombreCasa"
