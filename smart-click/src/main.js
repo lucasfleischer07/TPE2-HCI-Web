@@ -20,7 +20,7 @@ new Vue({
       themes: {
         light: {
           primary: colors.blue.base,
-          secondary: colors.indigo.base,
+          secondary: colors.indigo.white,
           accent: colors.teal.base,
           error: colors.red.base,
           warning: colors.pink.base,
@@ -28,7 +28,6 @@ new Vue({
           success: colors.green.base
         },
         dark: {
-        //TODO a definir
         }
       },
     },

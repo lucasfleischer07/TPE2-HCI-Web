@@ -1,25 +1,45 @@
 export default {
     devicesMap: [
-        {
-            compName: "SpeakerComp",
-            id: 0,
-        },
-        {
-            compName: "DoorComp",
-            id: 1,
-        },
-        {
-            compName: "LightbulbComp",
-            id: 2,
-        },
-        {
-            compName: "RefrigeratorComp",
-            id: 3,
-        },
-        {
-            compName: "OvenComp",
-            id: 4,
-        },
+            {
+                deviceName: "Parlante",
+                compName: "SpeakerComp",
+                id: 0,
+                toString(){
+                    return this.deviceName
+                },
+            },
+            {
+                deviceName: "Puerta",
+                compName: "DoorComp",
+                id: 1,
+                toString(){
+                    return this.deviceName
+                },
+            },
+            {
+                deviceName: "Lampara",
+                compName: "LightbulbComp",
+                id: 2,
+                toString(){
+                    return this.deviceName
+                },
+            },
+            {
+                deviceName: "Heladera",
+                compName: "RefrigeratorComp",
+                id: 3,
+                toString(){
+                    return this.deviceName
+                },
+            },
+            {
+                deviceName: "Horno",
+                compName: "OvenComp",
+                id: 4,
+                toString(){
+                    return this.deviceName
+                },
+            },
 
     ],
     devices: [
@@ -99,7 +119,10 @@ export default {
                             deviceCode: 1,
                             deviceName: "mi puerta"
                         }
-                    ]
+                    ],
+                    toString(){
+                        return this.roomName
+                    },
                 },
                 {
                     roomName: "Cuarto Juan",
@@ -114,7 +137,10 @@ export default {
                             deviceCode: 2,
                             deviceName: "mi Cortina"
                         }
-                    ]
+                    ],
+                    toString(){
+                        return this.roomName
+                    },
                 }
             ],
 
@@ -179,7 +205,10 @@ export default {
                             deviceCode: 2,
                             deviceName: "mi Cortina"
                         }
-                    ]
+                    ],
+                    toString(){
+                        return this.roomName
+                    },
                 },
                 {
                     roomName: "Cuarto Roberto",
@@ -194,7 +223,10 @@ export default {
                             deviceCode: 2,
                             deviceName: "mi Cortina"
                         }
-                    ]
+                    ],
+                    toString(){
+                        return this.roomName
+                    },
                 }
             ],
             routines: [

@@ -10,6 +10,6 @@ export default {
 
 <style scoped>
   .account-view {
-    min-height: 500px;
+    min-height: 530px;
   }
 </style>

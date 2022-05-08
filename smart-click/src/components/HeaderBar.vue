@@ -39,10 +39,28 @@
                     persistent-placeholder
                     placeholder="Seleccione una casa">
                 <template #append-item>
-                    <div class="append">
-                      <v-btn color="primary" @click="addHouse">
-                        Add House
+                    <div class="append color-back">
+                      <v-btn color="primary"  @click.stop="houseAdd = true">
+                        Agregar casa
                       </v-btn>
+                      <v-dialog v-model="houseAdd" max-width="600px" height="600px">
+                        <v-card>
+                            <v-card-title>
+                              <h2>Agregue una nueva casa</h2>
+                            </v-card-title>
+                            <v-card-text>
+                              <v-text-field
+                                label="New house name"
+                                :rules="rules"
+                                hide-details="auto"
+                                v-model="nombreCasa"
+                              />
+                              <v-btn color="primary" @click="addHouse(nombreCasa)">
+                                Agregar Casa
+                              </v-btn>
+                            </v-card-text>
+                        </v-card>
+                      </v-dialog>
                     </div>
                   </template>
                 </v-select>
@@ -76,6 +94,9 @@ export default {
       logo_image: require('@/assets/logo.png'),
       houses: store.houses,
       house: store.house,
+      houseAdd: false,
+      nombreCasa: "",
+      rules: [v => v.length <= 25 || 'Max 25 characters'],
     }
   },
 
@@ -87,9 +108,14 @@ export default {
       this.house.cuartos=selected.cuartos;
       this.house.routines=selected.routines;
     },
-    addHouse()
+    addHouse(text)
     {
-      //Aca deberiamos ver como agregar una casa, puede ser un pop-up
+      if (text==="")
+        console.log("Mal nombre de casa")
+      else {
+        //AGREGAR CASA
+        this.houseAdd= false
+      }
     }
   }
 }
@@ -134,7 +160,8 @@ export default {
   .append {
     position: sticky;
     bottom: 0;
-    background: white;
+    background: "primary";
+    font-weight: bold;
   }
 
 </style>

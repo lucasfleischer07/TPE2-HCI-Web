@@ -2,7 +2,7 @@
   <div class="routines-view">
     <div>
       <div class="title-padding">
-        <h2>Mis rutinas</h2>
+        <h2 class="color-title">Mis rutinas</h2>
       </div>
       <v-row v-for="routine in house.routines" :key="routine.name">
         <v-col class="routines-button">
@@ -21,7 +21,7 @@
       <div class="vertical-line"></div>
     </div>
     <div>
-      <h2 class="details-title">Detalle de rutina</h2>
+      <h2 class="details-title color-title">Detalle de rutina</h2>
       <router-view :key="$route.path"/>
     </div>
   </div>
@@ -39,7 +39,7 @@ import store from "@/store/store.js"
       return {
         house: store.house,
       }
-    }
+    },
   }
 
 </script>
@@ -47,11 +47,16 @@ import store from "@/store/store.js"
 
 
 <style scoped>
+
+  .color-title {
+    color: gray;
+  }
+
   .routines-view {
     display: flex;
     justify-content: space-evenly;
     text-align: center;
-    min-height: 500px;
+    min-height: 530px;
     padding-bottom: 20px;
 
   }
@@ -66,6 +71,7 @@ import store from "@/store/store.js"
     height: 100%;
     float: left;
     min-height: 480px;
+    background-color: gray;
   }
 
   .routines-add-button {

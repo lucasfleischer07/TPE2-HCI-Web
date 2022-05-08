@@ -3,10 +3,73 @@
     <div class="main-div">
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
-        <span class="text-h5" >{{ house.nombreCasa }}</span>
+        <span class="text-h5 color-class" >{{ house.nombreCasa }}</span>
       </div>
       <div class="add-button">
-        <v-btn color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
+        <v-btn color="primary" elevation="3" fab rounded @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
+        <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
+          <v-card>
+            <v-card-title>
+              <h2>Agregue un nuevo dispositivo</h2>
+            </v-card-title>
+            <v-card-text>
+              <v-container fluid c>
+                <v-row aligned="center">
+                  <v-col class="d-flex" cols="12" sm="10">
+                    <v-select
+                        :items="houses"
+                        label="House selected:"
+                        outlined class="house-selector-slider"
+                        dense
+                        v-model="deviceAddHouseSelected"
+                        persistent-placeholder
+                        placeholder="Selecciona casa ">
+                    </v-select>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-container fluid c>
+                <v-row aligned="center">
+                  <v-col class="d-flex" cols="12" sm="10">
+                    <v-select
+                        :items="deviceAddHouseSelected.cuartos"
+                        label="Room selected:"
+                        outlined class="house-selector-slider"
+                        dense
+                        v-model="deviceAddRoomSelected"
+                        persistent-placeholder
+                        placeholder="elecciona cuarto">
+                    </v-select>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-container fluid c>
+                <v-row aligned="center">
+                  <v-col class="d-flex" cols="12" sm="10">
+                    <v-select
+                        :items="deviceMap"
+                        label="Device selected:"
+                        outlined class="house-selector-slider"
+                        dense
+                        v-model="deviceSelected"
+                        persistent-placeholder
+                        placeholder="Selecciona el dispositivo">
+                    </v-select>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-text-field
+                  label="New device name"
+                  :rules="rules"
+                  hide-details="auto"
+                  v-model="deviceName"
+              />
+              <v-btn color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
+                Agregar Dispositivo
+              </v-btn>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
       </div>
     </div>
 
@@ -50,6 +113,8 @@ import LightbulbComp from "@/components/LightbulbComp";
 import OvenComp from "@/components/OvenComp";
 
 export default {
+  name: "DevicesView",
+
   components: {
     SpeakerComp,
     DoorComp,
@@ -58,11 +123,44 @@ export default {
     OvenComp
   },
 
-  name: "DevicesView",
+  methods: {
+    addDevice(text, deviceType, house, room) {
+      if (text === "" || deviceType == null || house == null || room == null)
+        console.log("Mal nombre de casa")
+      else {
+        //AGREGAR DISPOSITIVO
+        this.deviceAdd = false
+        house = {}
+        room = {}
+        deviceType = {}
+      }
+    },
+
+    removeDevice(device){
+      if (device == null)
+        console.log("No selecciono Dispositivo")
+      else {
+        //Remover DISPOSITIVOVO
+        this.removeDevice = false
+        this.confirmRemoveDevice = false
+        this.removeDevice = false
+        this.deviceDeleteSelected = {}
+      }
+    },
+  },
+
   data() {
     return {
       house: store.house,
-      devicesMap: store.devicesMap
+      houses: store.houses,
+      devicesMap: store.devicesMap,
+      deviceAdd: false,
+      deviceAddHouseSelected: {},
+      deviceAddRoomSelected: {},
+      deviceSelected: {},
+      deviceName: "",
+      deviceMap: store.devicesMap,
+      rules: [v => v.length <= 25 || 'Max 25 characters'],
     }
   },
 }
@@ -70,8 +168,12 @@ export default {
 
 <style scoped>
 
+  .color-class {
+    color: gray;
+  }
+
   .devices-view {
-    min-height: 500px;
+    min-height: 530px;
   }
 
   .main-div {
