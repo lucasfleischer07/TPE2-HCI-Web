@@ -1,7 +1,7 @@
 <template>
     <div class="device">
         <v-btn depressed icon>
-            <v-icon x-large> emoji_objects</v-icon>
+            <v-icon x-large>emoji_objects</v-icon>
         </v-btn>
       <p>{{deviceEntity.deviceName}}</p>
         <v-switch inline> </v-switch>

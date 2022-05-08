@@ -7,7 +7,7 @@
       <div class="search-bar">
         <v-form class="form">
               <v-col cols="0" sm="0">
-                
+
   <!--              TODO: Definir el searcher o sacarlo-->
                 <v-text-field
                     v-model="searcher"
@@ -32,12 +32,12 @@
                 </v-subheader>
                 <v-select
                     :items="houses"
-                    label="House selected:"
+                    label="Casa seleccionada:"
                     outlined class="house-selector-slider"
                     dense
                     @change="houseChange"
                     persistent-placeholder
-                    placeholder="Select house">
+                    placeholder="Seleccione una casa">
                 <template #append-item>
                     <div class="append">
                       <v-btn color="primary" @click="addHouse">

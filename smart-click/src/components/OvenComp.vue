@@ -12,8 +12,7 @@
               ></v-slider>
     <v-row>
       <p>Fuente calor</p>
-    <v-btn-toggle mandatory
-                  v-model="fuenteCalor">
+    <v-btn-toggle mandatory v-model="fuenteCalor">
       <v-btn>ABAJO</v-btn>
       <v-btn>NORMAL</v-btn>
       <v-btn>ARRIBA</v-btn>
@@ -30,7 +29,7 @@
       </v-btn-toggle>
     </v-row>
     <v-row>
-      <p>Conveccion</p>
+      <p>Convección</p>
       <v-btn-toggle mandatory
                     v-model="conveccionMode">
         <v-btn><v-icon>power_off</v-icon></v-btn>

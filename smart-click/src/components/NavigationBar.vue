@@ -25,7 +25,7 @@
       <router-link :to="{name: 'Settings'}">
           <v-btn x-large  class="nav-icons">
               <v-icon>settings</v-icon>
-              <span>Configuracion</span>
+              <span>Configuración</span>
           </v-btn>
       </router-link>
     </nav>
