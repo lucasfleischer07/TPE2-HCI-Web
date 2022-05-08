@@ -1,63 +1,66 @@
 <template>
-  <div class="div-header">
-    <router-link :to="{name: 'Home'}">
-      <img class="logo_img" :src=logo_image alt="SmartClick_Logo">
-    </router-link>
-    <div class="search-bar">
-      <v-form class="form">
-            <v-col cols="0" sm="0">
-              <v-text-field
-                  v-model="searcher"
-                  label="Buscar"
-                  outlined
-                  clearable
-              ></v-text-field>
-            </v-col>
-      </v-form>
-      <v-btn><v-icon>search</v-icon></v-btn>
-    </div>
-<!--    Div vacio para que me quede mas a la derecha la barra de buscador-->
-    <div></div>
-
-    <div>
-      <template>
-        <v-container fluid c>
-          <v-row aligned="center">
-            <v-col class="d-flex" cols="12" sm="10">
-              <v-subheader>
-                <v-icon>home</v-icon>
-              </v-subheader>
-              <v-select
-                  :items="houses"
-                  label="House selected:"
-
-                  outlined class="house-selector-slider"
-                  dense
-                  @change="houseChange"
-                  persistent-placeholder="false"
-                  placeholder="Select house">
-              <template #append-item>
-                  <div class="append">
-                    <v-btn color="primary" @click="addHouse">
-                      Add House
-                    </v-btn>
-                  </div>
-                </template>
-              </v-select>
-            </v-col>
-          </v-row>
-        </v-container>
-      </template>
-    </div>
-
-    <div class="dark-help-buttons">
-      <v-btn class="ma-lg-1" large color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark"><v-icon>dark_mode</v-icon></v-btn>
-      <router-link :to="{name: 'Help'}">
-        <v-btn large color="primary"><v-icon>help</v-icon></v-btn>
+  <header>
+    <div class="div-header">
+      <router-link :to="{name: 'Home'}">
+        <img class="logo_img" :src=logo_image alt="SmartClick_Logo">
       </router-link>
-    </div>
+      <div class="search-bar">
+        <v-form class="form">
+              <v-col cols="0" sm="0">
+                
+  <!--              TODO: Definir el searcher o sacarlo-->
+                <v-text-field
+                    v-model="searcher"
+                    label="Buscar"
+                    outlined
+                    clearable
+                ></v-text-field>
+              </v-col>
+        </v-form>
+        <v-btn><v-icon>search</v-icon></v-btn>
+      </div>
+  <!--    Div vacio para que me quede mas a la derecha la barra de buscador-->
+      <div></div>
 
-  </div>
+      <div>
+        <template>
+          <v-container fluid c>
+            <v-row aligned="center">
+              <v-col class="d-flex" cols="12" sm="10">
+                <v-subheader>
+                  <v-icon>home</v-icon>
+                </v-subheader>
+                <v-select
+                    :items="houses"
+                    label="House selected:"
+                    outlined class="house-selector-slider"
+                    dense
+                    @change="houseChange"
+                    persistent-placeholder
+                    placeholder="Select house">
+                <template #append-item>
+                    <div class="append">
+                      <v-btn color="primary" @click="addHouse">
+                        Add House
+                      </v-btn>
+                    </div>
+                  </template>
+                </v-select>
+              </v-col>
+            </v-row>
+          </v-container>
+        </template>
+      </div>
+
+      <div class="dark-help-buttons">
+        <v-btn class="ma-lg-1" large color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark"><v-icon>dark_mode</v-icon></v-btn>
+        <router-link :to="{name: 'Help'}">
+          <v-btn large color="primary"><v-icon>help</v-icon></v-btn>
+        </router-link>
+      </div>
+
+    </div>
+  </header>
 </template>
 
 
@@ -121,8 +124,6 @@ export default {
 
   .dark-help-buttons {
     display: block;
-    /*padding: 5px;*/
-    /*margin: 5px;*/
   }
 
   .house-selector-slider {

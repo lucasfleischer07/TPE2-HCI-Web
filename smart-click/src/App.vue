@@ -1,16 +1,10 @@
 <template>
   <v-app>
     <div id="app">
-      <header>
-        <HeaderBar></HeaderBar>
-      </header>
-
-        <NavigationBar></NavigationBar>
-
+      <HeaderBar></HeaderBar>
+      <NavigationBar></NavigationBar>
       <router-view/>
-<!--      <footer>-->
-        <FooterBar></FooterBar>
-<!--      </footer>-->
+      <FooterBar></FooterBar>
     </div>
   </v-app>
 </template>
@@ -38,9 +32,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  //background-color: blanchedalmond;
-  //Ver que color de fondo quiere la gente
-  //background-color: ;
 }
 
 nav {

@@ -36,15 +36,8 @@
 
 
 <script>
-  import store from "@/store/store"
   export default {
     name: "NavigationBar",
-
-    data() {
-      return {
-        views: store.views.slice(1,5),
-      }
-    }
   }
 </script>
 

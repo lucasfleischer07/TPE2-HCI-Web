@@ -21,7 +21,6 @@
               <v-col v-for="device in room.roomDevices" :key="device" class="devices">
                 <v-container v-for="deviceProto in devicesMap" :key="deviceProto">
                   <component v-if="deviceProto.id===device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
-
                 </v-container>
               </v-col>
           <!--
