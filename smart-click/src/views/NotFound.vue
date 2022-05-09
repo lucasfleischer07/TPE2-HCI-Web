@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-page">
     <h1>Not Found</h1>
     <p>Oooops no pudimos encontrar su página. Por favor trate yendo a <router-link :to="{name: 'Home'}">Página principal</router-link></p>
   </div>
@@ -12,5 +12,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .main-page {
+    min-height: 530px;
+    color: gray;
+  }
 </style>

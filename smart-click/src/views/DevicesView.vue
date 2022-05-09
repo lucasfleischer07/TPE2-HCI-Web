@@ -10,7 +10,7 @@
         <v-dialog v-model="roomAdd" max-width="600px" height="600px">
           <v-card>
             <v-card-title>
-              <h2>Agregue un nuevo dispositivo</h2>
+              <h2>Agregue una nueva habitación</h2>
             </v-card-title>
             <v-card-text>
               <v-container fluid c>
@@ -30,13 +30,13 @@
               </v-container>
 
               <v-text-field
-                  label="Nombre de cuarto nuevo"
+                  label="Nombre de la habitación"
                   :rules="rules"
                   hide-details="auto"
                   v-model="deviceName"
               />
               <v-btn color="primary" @click="addRoom(deviceName,deviceAddHouseSelected)">
-                Agregar cuarto
+                Agregar habitación
               </v-btn>
             </v-card-text>
           </v-card>
@@ -46,15 +46,15 @@
 
     <div class="rooms-class">
       <v-expansion-panels>
-        <v-expansion-panel v-for="room in house.cuartos" :key="room">
+        <v-expansion-panel v-for="room in house.cuartos" :key="room.nombreCasa">
           <v-expansion-panel-header >
             <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-row>
-              <v-col v-for="device in room.roomDevices" :key="device" class="devices">
-                <v-container v-for="deviceProto in devicesMap" :key="deviceProto">
-                  <component v-if="deviceProto.id===device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
+              <v-col v-for="device in room.roomDevices" :key="device.deviceCode" class="devices">
+                <v-container v-for="deviceProto in devicesMap" :key="deviceProto.id">
+                  <component v-if="deviceProto.id === device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
                 </v-container>
               </v-col>
           <!--

@@ -1,7 +1,7 @@
 <template>
   <v-footer padless>
     <v-col class="nav-class" cols="12">
-      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      {{ new Date().getFullYear() }} - <strong>Smart Click®</strong>
     </v-col>
   </v-footer>
 </template>
@@ -9,10 +9,6 @@
 <script>
 export default {
   name: "FooterBar",
-  // data() {
-  //   return {
-  //     links: ['Home', 'About Us', 'Help']}
-  // }
 }
 </script>
 

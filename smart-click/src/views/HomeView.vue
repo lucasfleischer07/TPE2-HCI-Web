@@ -6,15 +6,13 @@
              @click.stop="houseAdd = true">
         <div class="icon-div">
           Agregar Casa
-                <v-icon large>house</v-icon>
+          <v-icon large>house</v-icon>
         </div>
       </v-btn>
       <v-dialog v-model="houseAdd" max-width="600px" height="600px">
         <v-card>
-
             <v-card-title>
               <h2>Agregue una nueva casa</h2>
-
             </v-card-title>
             <v-card-text>
               <v-text-field
@@ -346,7 +344,7 @@
       }
     },
     methods: {
-      addHosuse(text) {
+      addHouse(text) {
         if (text === "")
           console.log("Mal nombre de casa")
         else {

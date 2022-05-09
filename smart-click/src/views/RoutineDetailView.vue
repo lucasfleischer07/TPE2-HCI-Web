@@ -1,10 +1,16 @@
 <template>
   <section>
     <div class="routine-details">
-      <v-row>
-        <p>{{detail.routineName}}</p>
-        <v-switch></v-switch>
-      </v-row>
+<!--      <v-row>-->
+        <div class="routineName-and-switch">
+          <div>
+            <p>{{detail.routineName}}</p>
+          </div>
+          <div>
+            <v-switch></v-switch>
+          </div>
+        </div>
+<!--      </v-row>-->
 
       <v-dialog
           ref="dialog"
@@ -76,5 +82,16 @@ export default {
 </script>
 
 <style scoped>
+  .routine-details {
+    color: gray;
+  }
+
+  .routineName-and-switch {
+    display: flex;
+    padding-left: 12px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
 
 </style>
