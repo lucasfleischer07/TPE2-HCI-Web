@@ -1,16 +1,24 @@
 <template>
   <div>
+
+    <v-row class="action-row action-btn">
   <v-btn depressed icon>
-    <v-icon x-large>microwave</v-icon>
+    <device-icon name-device="microwave"/>
   </v-btn>
+      </v-row>
+    <p>{{deviceEntity.deviceName}}</p>
+    <v-row class="action-row">
   <v-switch inline> </v-switch>
+    </v-row>
+      <v-row class="action-row">
     <v-slider prepend-icon="device_thermostat"
               :max="240"
               :min="90"
               thumb-label
               style="width: 30%"
               ></v-slider>
-    <v-row>
+      </v-row>
+    <v-row class="action-row action-btn">
       <p>Fuente calor</p>
     <v-btn-toggle mandatory v-model="fuenteCalor">
       <v-btn>ABAJO</v-btn>
@@ -19,7 +27,7 @@
     </v-btn-toggle>
     </v-row>
 
-    <v-row>
+    <v-row class="action-row action-btn">
       <p>Grill</p>
       <v-btn-toggle mandatory
                     v-model="grillMode">
@@ -28,7 +36,7 @@
         <v-btn><v-icon>bolt</v-icon></v-btn>
       </v-btn-toggle>
     </v-row>
-    <v-row>
+    <v-row class="action-row action-btn">
       <p>Convección</p>
       <v-btn-toggle mandatory
                     v-model="conveccionMode">
@@ -41,10 +49,15 @@
 </template>
 
 <script>
+import DeviceIcon from "@/components/DeviceIcon";
+
 export default {
   name: "OvenComp",
   props: {
     deviceEntity: {},
+  },
+  components: {
+    DeviceIcon,
   },
   data(){
     return{
@@ -58,5 +71,12 @@ export default {
 </script>
 
 <style scoped>
+.action-row{
+  justify-content: center;
+}
+
+.action-btn{
+  padding: 5px;
+}
 
 </style>

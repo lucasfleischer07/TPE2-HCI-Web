@@ -1,51 +1,63 @@
 <template>
     <div class="device">
-        <v-btn depressed icon>
-            <v-icon x-large>emoji_objects</v-icon>
-        </v-btn>
+      <v-row class="action-row action_btn">
+        <device-icon name-device="emoji_objects"/>
+      </v-row>
       <p>{{deviceEntity.deviceName}}</p>
+      <v-row class="action-row">
         <v-switch inline> </v-switch>
-        <v-row style="width: 75%">
+        </v-row>
+      <v-row class="action-row"  >
 
           <v-slider prepend-icon="brightness_6"
                     :max="100"
                     :min="0"
                     thumb-label
-                    style="width: 65%"
+
                     v-model="slider" ></v-slider>
           <v-text-field dense
               hide-details
               single-line
               v-model="slider"
-              style="width: 15%"
+
+
           type="number">
           </v-text-field>
 
         </v-row>
+
+      <v-row class="action-row action_btn">
+
+        <p>Color: </p>
       <v-btn fab
             x-small
-            :color=btnColor
+            :color=color
             @click="toggle= !toggle"></v-btn>
+        </v-row>
       <v-color-picker :hide-canvas="toggle" :hide-sliders="toggle" hide-inputs
-      v-model="btnColor">
+      v-model="color">
       </v-color-picker>
      </div>
 </template>
 
 <script>
 
-
+import DeviceIcon from "@/components/DeviceIcon";
 export default {
 name: "LightbulbComp",
 
   props: {
     deviceEntity: {},
   },
+  components: {
+    DeviceIcon,
+  },
   data () {
     return {
       slider:0,
+      modal2:false,
       toggle:true,
-      btnColor:"red"
+      color:"red"
 
     }
   },
@@ -53,7 +65,13 @@ name: "LightbulbComp",
 </script>
 
 <style scoped>
-.device{
-  width:20%
+.action-row{
+
+  justify-content: center;
 }
+
+.action_btn{
+  padding: 5px;
+}
+
 </style>
