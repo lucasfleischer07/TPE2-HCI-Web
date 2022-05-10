@@ -15,13 +15,6 @@
           </v-btn>
       </router-link>
 
-      <router-link :to="{name: 'Account'}">
-          <v-btn x-large  class="nav-icons">
-              <v-icon>account_circle</v-icon>
-              <span>Cuenta</span>
-          </v-btn>
-      </router-link>
-
       <router-link :to="{name: 'Settings'}">
           <v-btn x-large  class="nav-icons">
               <v-icon>settings</v-icon>
@@ -58,9 +51,7 @@
   .nav-icons {
     display: inline-block;
     width:auto;
-    /*justify-content: space-evenly;*/
     margin-inline:80px;
-
   }
 
 </style>

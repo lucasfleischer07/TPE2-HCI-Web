@@ -7,6 +7,7 @@
       </div>
       <div class="add-button">
         <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
+        <p class="text">AGREGAR HABITACION</p>
         <v-dialog v-model="roomAdd" max-width="600px" height="600px">
           <v-card>
             <v-card-title>
@@ -63,6 +64,7 @@
 
             </v-row>
             <v-btn color="primary" elevation="3" fab rounded @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
+            <p class="text">AGREGAR DISPOSITIVO</p>
             <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
               <v-card>
                 <v-card-title>
@@ -232,6 +234,12 @@ export default {
   .rooms-class{
     display: flex;
     justify-content: center;
+  }
+
+  .text{
+    display: inline;
+    padding-left: 10px;
+    color: grey;
   }
 
 </style>
