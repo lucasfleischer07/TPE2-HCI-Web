@@ -98,9 +98,11 @@
                       <v-col class="d-flex" cols="12" sm="10">
                         <v-select
                             :items="houses"
+                            item-text="nombreCasa"
                             label="Casa seleccionada:"
                             outlined class="house-selector-slider"
                             dense
+                            return-object
                             v-model="deviceAddHouseSelected"
                             persistent-placeholder
                             placeholder="Seleccione una casa">
@@ -113,6 +115,7 @@
                       <v-col class="d-flex" cols="12" sm="10">
                         <v-select
                             :items="deviceAddHouseSelected.cuartos"
+                            item-text="roomName"
                             label="Cuarto seleccionado:"
                             outlined class="house-selector-slider"
                             dense
@@ -128,9 +131,11 @@
                       <v-col class="d-flex" cols="12" sm="10">
                         <v-select
                             :items="deviceMap"
+                            item-text="deviceName"
                             label="Dispositivo seleccionado:"
                             outlined class="house-selector-slider"
                             dense
+                            return-object
                             v-model="deviceSelected"
                             persistent-placeholder
                             placeholder="Seleccione el dispositivo">
@@ -168,9 +173,11 @@
                     <v-col class="d-flex" cols="12" sm="10">
                       <v-select
                           :items="houses"
+                          item-text="nombreCasa"
                           label="Casa seleccionada:"
                           outlined class="house-selector-slider"
                           dense
+                          return-object
                           v-model="deviceAddHouseSelected"
                           persistent-placeholder
                           placeholder="Seleccione una casa">
@@ -183,8 +190,10 @@
                     <v-col class="d-flex" cols="12" sm="10">
                       <v-select
                           :items="deviceAddHouseSelected.cuartos"
+                          item-text="roomName"
                           label="Cuarto seleccionado:"
                           outlined class="house-selector-slider"
+                          return-object
                           dense
                           v-model="deviceAddRoomSelected"
                           persistent-placeholder
@@ -202,6 +211,7 @@
                           label="Dispositivo seleccionado:"
                           outlined class="house-selector-slider"
                           dense
+                          return-object
                           v-model="deviceDeleteSelected"
                           persistent-placeholder
                           placeholder="Seleccione un dispositivo">
@@ -277,6 +287,7 @@
                         label="Rutina seleccionada:"
                         outlined class="house-selector-slider"
                         dense
+                        return-object
                         v-model="deviceDeleteSelected"
                         persistent-placeholder
                         placeholder="Seleccione una rutina">
