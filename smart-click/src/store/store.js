@@ -4,6 +4,16 @@ export default {
                 deviceName: "Parlante",
                 compName: "SpeakerComp",
                 id: 0,
+                actions:[
+                    "Setear volumen",
+                    "Silenciar",
+                    "Reanudar",
+                    "Pausar",
+                    "Siguente",
+                    "Anterior",
+                    "Cambiar lista",
+                    "Cambiar genero",
+                ],
                 toString(){
                     return this.deviceName
                 },
@@ -12,6 +22,12 @@ export default {
                 deviceName: "Puerta",
                 compName: "DoorComp",
                 id: 1,
+                actions:[
+                    "Abrir",
+                    "Cerrar",
+                    "Bloquear",
+                    "Desbloquear"
+                ],
                 toString(){
                     return this.deviceName
                 },
@@ -20,6 +36,11 @@ export default {
                 deviceName: "Lampara",
                 compName: "LightbulbComp",
                 id: 2,
+                actions:[
+                    "Encender",
+                    "Apagar",
+                    "Setear el brillo"
+                ],
                 toString(){
                     return this.deviceName
                 },
@@ -28,6 +49,10 @@ export default {
                 deviceName: "Heladera",
                 compName: "RefrigeratorComp",
                 id: 3,
+                actions:[
+                    "Setear temperatura heladera",
+                    "Setear temperatura Freezer"
+                ],
                 toString(){
                     return this.deviceName
                 },
@@ -36,6 +61,13 @@ export default {
                 deviceName: "Horno",
                 compName: "OvenComp",
                 id: 4,
+                actions:[
+                    "Encender horno",
+                    "Apagar horno",
+                    "Setear fuente de calor",
+                    "Setear grill",
+                    "Setear conveccion",
+                ],
                 toString(){
                     return this.deviceName
                 },
