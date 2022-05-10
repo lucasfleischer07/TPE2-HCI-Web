@@ -130,7 +130,7 @@ export default {
     display: flex;
     padding-top: 10px;
     justify-content: space-between;
-    background-color: #e6f9ff;
+    background-color: #f2f9fb;
   }
 
   .div-header .logo_img {
@@ -161,7 +161,7 @@ export default {
   .append {
     position: sticky;
     bottom: 0;
-    background: "primary";
+    /*background: "primary";*/
     font-weight: bold;
   }
 
