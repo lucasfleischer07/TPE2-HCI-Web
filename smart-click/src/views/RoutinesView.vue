@@ -15,9 +15,8 @@
       </v-row>
     </div>
     <div class="routines-add-button">
-      <div class="add-button-padding">
-        <v-btn color="primary" elevation="3" fab rounded ><v-icon>add</v-icon></v-btn>
-      </div>
+
+      <AddRoutine/>
       <div class="vertical-line"></div>
     </div>
     <div>
@@ -31,9 +30,14 @@
 
 <script>
 import store from "@/store/store.js"
+import AddRoutine from "@/components/AddRoutine";
 
   export default {
     name: "RoutinesView",
+    components: {
+      AddRoutine,
+    },
+
 
     data() {
       return {
