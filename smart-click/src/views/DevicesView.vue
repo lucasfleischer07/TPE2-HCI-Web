@@ -9,7 +9,7 @@
         <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
         <p class="text">AGREGAR HABITACION</p>
         <v-dialog v-model="roomAdd" max-width="600px" height="600px">
-          <v-card>
+          <v-card @keyup.enter="addRoom(deviceName,deviceAddHouseSelected)">
             <v-card-title>
               <h2>Agregue una nueva habitación</h2>
             </v-card-title>
@@ -66,7 +66,7 @@
             <v-btn color="primary" elevation="3" fab rounded @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
             <p class="text">AGREGAR DISPOSITIVO</p>
             <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
-              <v-card>
+              <v-card @keyup.enter="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
                 <v-card-title>
                   <h2>Agregue un nuevo dispositivo</h2>
                 </v-card-title>

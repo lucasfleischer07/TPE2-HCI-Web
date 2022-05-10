@@ -44,7 +44,7 @@
                         Agregar casa
                       </v-btn>
                       <v-dialog v-model="houseAdd" max-width="600px" height="600px">
-                        <v-card>
+                        <v-card @keyup.enter="addHouse(nombreCasa)">
                             <v-card-title>
                               <h2>Agregue una nueva casa</h2>
                             </v-card-title>

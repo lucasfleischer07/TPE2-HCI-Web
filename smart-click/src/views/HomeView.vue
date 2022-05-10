@@ -10,7 +10,7 @@
         </div>
       </v-btn>
       <v-dialog v-model="houseAdd" max-width="600px" height="600px">
-        <v-card>
+        <v-card @keyup.enter="addHouse(nombreCasa)">
             <v-card-title>
               <h2>Agregue una nueva casa</h2>
             </v-card-title>
@@ -34,7 +34,7 @@
         </div>
       </v-btn>
       <v-dialog v-model="houseRemove" max-width="600px" height="600px">
-        <v-card>
+        <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
             <v-card-title>
               <h2>Seleccione casa a eliminar</h2>
             </v-card-title>
@@ -58,7 +58,7 @@
                 Eliminar casa
               </v-btn>
               <v-dialog v-model="confirmRemoveHouse" max-width="600px" height="600px">
-                <v-card>
+                <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
                     <v-card-title>
                       <h2>Esta seguro que desea eliminar "{{ houseDeleteSelected }}"</h2>
                     </v-card-title>
@@ -88,7 +88,7 @@
         </div>
       </v-btn>
       <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
-              <v-card>
+              <v-card @keyup.enter="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
                 <v-card-title>
                   <h2>Agregue un nuevo dispositivo</h2>
                 </v-card-title>
@@ -157,7 +157,7 @@
         </div>
       </v-btn>
       <v-dialog v-model="deviceRemove" max-width="600px" height="600px">
-            <v-card>
+            <v-card @keyup.enter="removeDevice(deviceDeleteSelected)">
               <v-card-title>
                 <h2>Elija dispositivo a eliminar</h2>
     
@@ -213,7 +213,7 @@
                     Eliminar dispositivo
                 </v-btn>
                 <v-dialog v-model="confirmRemoveDevice" max-width="600px" height="600px">
-                <v-card>
+                <v-card @keyup.enter="removeDevice(deviceDeleteSelected)">
                     <v-card-title>
                       <h2>Esta seguro que desea eliminar "{{ deviceDeleteSelected }}"</h2>
                     </v-card-title>
@@ -247,7 +247,7 @@
         </div>
       </v-btn>
        <v-dialog v-model="routineRemove" max-width="600px" height="600px">
-          <v-card>
+          <v-card @keyup.enter="removeRoutine(routineDeleteSeleceted)">
             <v-card-title>
               <h2>Elija rutina a eliminar</h2>
 
@@ -288,7 +288,7 @@
                   Eliminar rutina
               </v-btn>
               <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
-              <v-card>
+              <v-card @keyup.enter="removeRoutine(routineDeleteSeleceted)">
                   <v-card-title>
                     <h2>Esta seguro que desea eliminar "{{ routineDeleteSeleceted }}"</h2>
                   </v-card-title>
