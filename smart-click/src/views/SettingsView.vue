@@ -18,7 +18,7 @@
                 </v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item> Insertar Términos y condiciones aca</v-list-item>
+            <v-list-item> SmartClick no se responsabiliza de ninguna perdida ni robo de informacion. El usuario es totalmente responsable de su propia seguridad. SmartClick no se hara responsable por la ruptura de algun dispositivo vinculado.</v-list-item>
           </v-list-group>
 
           <v-list-item class="switch-centre">
@@ -26,17 +26,7 @@
 <!--            <v-list-item-icon><v-icon>dark_mode</v-icon></v-list-item-icon>-->
           </v-list-item>
 
-          <v-list-group no-action sub-group>
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <!--              Ver si quieren sacar esto o no (el icono)      -->
-                  <v-icon>dark_mode</v-icon>
-                  Config 3</v-list-item-title>
-              </v-list-item-content>
-            </template>
-            <v-list-item> Ver que poner o lo sacamos</v-list-item>
-          </v-list-group>
+
         </v-list-group>
 
         <!------------------------------------------------------------------------------------------------------------->
@@ -51,37 +41,25 @@
               <v-list-item-content >
                 <v-list-item-title>
                   <!--              Ver si quieren sacar esto o no (el icono)      -->
-                  <v-icon>receipt_long</v-icon>
-                  VER QUE METER ACA
+                  <v-icon>privacy_tip</v-icon>
+                  Datos Personales
                 </v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item>VER QUE METER ACA</v-list-item>
+            <v-list-item>SmartClick asegura que sus datos personales no seran compartidos intencionalmente con ningun otro usuario. SmartClick se reserva el derecho de utilizar los datos personales a su favor. </v-list-item>
           </v-list-group>
 
           <v-list-group no-action sub-group>
             <template v-slot:activator >
               <v-list-item-content>
                 <v-list-item-title>
-                  <!--              Ver si quieren sacar esto o no (el icono)      -->
-                  <v-icon>dark_mode</v-icon>
-                  VER QUE METER ACA</v-list-item-title>
+                  <v-icon>policy</v-icon>
+                  Consideraciones</v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item> Ver que poner o lo sacamos</v-list-item>
+            <v-list-item>SmartClick recomienda no compartir sus datos personales para evitar conflictos de privacidad. </v-list-item>
           </v-list-group>
 
-          <v-list-group no-action sub-group>
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <!--              Ver si quieren sacar esto o no (el icono)      -->
-                  <v-icon>dark_mode</v-icon>
-                  VER QUE METER ACA</v-list-item-title>
-              </v-list-item-content>
-            </template>
-            <v-list-item> Ver que poner o lo sacamos</v-list-item>
-          </v-list-group>
         </v-list-group>
 
 <!------------------------------------------------------------------------------------------------------------->
