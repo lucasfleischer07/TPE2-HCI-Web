@@ -45,7 +45,7 @@
     background-color: dodgerblue;
     width: 100%;
     padding: 30px;
-    margin-bottom: 30px;
+    margin-bottom: auto;
   }
 
   .nav-icons {

@@ -211,6 +211,9 @@ export default {
 
   .devices-view {
     min-height: 530px;
+    padding-top: 20px;
+    background-image: url("@/assets/fondo3.png");
+    background-repeat: repeat;
   }
 
   .main-div {

@@ -76,5 +76,6 @@ export default {
 <style scoped>
   .help-view {
     min-height: 530px;
+    margin-top: 30px;
   }
 </style>

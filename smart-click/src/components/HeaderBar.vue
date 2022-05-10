@@ -130,6 +130,7 @@ export default {
     display: flex;
     padding-top: 10px;
     justify-content: space-between;
+    background-color: #e6f9ff;
   }
 
   .div-header .logo_img {
