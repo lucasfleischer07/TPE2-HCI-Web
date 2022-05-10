@@ -1,17 +1,17 @@
 <template>
 
-    <div class="action_btn action_btn">
-        <v-row class="action-row">
+  <div class="action-row device-div" >
+        <v-row class="action-row action_btn">
               <device-icon name-device="kitchen"/>
-            </v-row>
-            <p>{{deviceEntity.deviceName}}</p>
+        </v-row>
+            <p class="action_btn">{{deviceEntity.deviceName}}</p>
         <v-row class="action-row">
             <div>
                <v-slider prepend-icon="device_thermostat"
                         @change="refriTemp=number"/>
             </div>
        </v-row>
-       <v-row class="action-row action_btn" justify="center">
+       <v-row class="action-row action_btn">
 
             <div>
                <v-slider prepend-icon="ac_unit"
@@ -45,6 +45,12 @@ export default {
 </script>
 
 <style scoped>
+
+  .device-div{
+    width: 110px;
+    justify-content: start;
+    height: max-content;
+  }
   .action-row{
     padding-top:   0px;
     justify-content: center;

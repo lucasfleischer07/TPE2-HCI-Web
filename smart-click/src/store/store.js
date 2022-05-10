@@ -135,7 +135,7 @@ export default {
                         },
                         {
                             deviceCode: 2,
-                            deviceName: "mi Cortina"
+                            deviceName: "mi lampara"
                         }
                     ],
                     toString(){

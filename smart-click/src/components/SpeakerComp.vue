@@ -1,5 +1,5 @@
 <template>
-  <div class="action_btn">
+  <div class="action-row" style="width: 110px">
     <v-row class="action-row action_btn" >
       <device-icon name-device="speaker"/>
     </v-row>

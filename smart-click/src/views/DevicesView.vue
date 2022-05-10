@@ -7,7 +7,7 @@
       </div>
       <div class="add-button">
         <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
-        <p class="text">AGREGAR HABITACION</p>
+        <p class="text">AGREGAR HABITACIÓN</p>
         <v-dialog v-model="roomAdd" max-width="600px" height="600px">
           <v-card @keyup.enter="addRoom(deviceName,deviceAddHouseSelected)">
             <v-card-title>

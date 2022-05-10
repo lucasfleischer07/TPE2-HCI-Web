@@ -1,48 +1,48 @@
 <template>
-  <div>
-
-    <v-row class="action-row action-btn">
-  <v-btn depressed icon>
-    <device-icon name-device="microwave"/>
-  </v-btn>
-      </v-row>
-    <p>{{deviceEntity.deviceName}}</p>
-    <v-row class="action-row">
-  <v-switch inline> </v-switch>
+  <div class="action-row" style="width: 110px">
+    <v-row class="action-row action_btn">
+      <DeviceIcon name-device="microwave"/>
     </v-row>
-      <v-row class="action-row">
+    <v-row style="justify-content: center">
+    <v-switch inline> </v-switch>
+    </v-row>
+    <v-row style="justify-content: center">
     <v-slider prepend-icon="device_thermostat"
               :max="240"
               :min="90"
               thumb-label
-              style="width: 30%"
+              style="width: 10%"
+              loader-height="0.5"
               ></v-slider>
-      </v-row>
-    <v-row class="action-row action-btn">
-      <p>Fuente calor</p>
+    </v-row>
+    <p style="padding-top: 10px">Fuente calor</p>
+    <v-row class="action-row action_btn">
+
     <v-btn-toggle mandatory v-model="fuenteCalor">
-      <v-btn>ABAJO</v-btn>
-      <v-btn>NORMAL</v-btn>
-      <v-btn>ARRIBA</v-btn>
+      <v-btn small>ABAJO</v-btn>
+      <v-btn small>NORMAL</v-btn>
+      <v-btn small>ARRIBA</v-btn>
     </v-btn-toggle>
     </v-row>
+    <p style="padding-top: 10px">Grill</p>
+    <v-row class="action-row action_btn">
 
-    <v-row class="action-row action-btn">
-      <p>Grill</p>
       <v-btn-toggle mandatory
                     v-model="grillMode">
-        <v-btn><v-icon>power_off</v-icon></v-btn>
-        <v-btn><v-icon>energy_savings_leaf</v-icon></v-btn>
-        <v-btn><v-icon>bolt</v-icon></v-btn>
+        <v-btn x-small><v-icon>power_off</v-icon></v-btn>
+        <v-btn x-small><v-icon>energy_savings_leaf</v-icon></v-btn>
+        <v-btn x-small><v-icon>bolt</v-icon></v-btn>
       </v-btn-toggle>
     </v-row>
-    <v-row class="action-row action-btn">
-      <p>Convección</p>
-      <v-btn-toggle mandatory
+    <p style="padding-top: 10px">Convección</p>
+    <v-row class="action-row action_btn">
+
+      <v-btn-toggle
+                    mandatory
                     v-model="conveccionMode">
-        <v-btn><v-icon>power_off</v-icon></v-btn>
-        <v-btn><v-icon>energy_savings_leaf</v-icon></v-btn>
-        <v-btn><v-icon>bolt</v-icon></v-btn>
+        <v-btn x-small><v-icon>power_off</v-icon></v-btn>
+        <v-btn x-small><v-icon>energy_savings_leaf</v-icon></v-btn>
+        <v-btn x-small><v-icon>bolt</v-icon></v-btn>
       </v-btn-toggle>
     </v-row>
   </div>
@@ -50,14 +50,12 @@
 
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
-
 export default {
   name: "OvenComp",
+  components: {DeviceIcon},
+
   props: {
     deviceEntity: {},
-  },
-  components: {
-    DeviceIcon,
   },
   data(){
     return{
@@ -71,12 +69,16 @@ export default {
 </script>
 
 <style scoped>
-.action-row{
-  justify-content: center;
-}
 
-.action-btn{
-  padding: 5px;
-}
+  .action-row{
+    padding-top:   10px;
+    justify-content: center;
+  }
+
+  .action_btn{
+    padding: 5px;
+  }
+
+
 
 </style>
