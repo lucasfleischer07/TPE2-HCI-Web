@@ -43,13 +43,24 @@
         <v-btn>S</v-btn>
         <v-btn>D</v-btn>
       </v-btn-toggle>
+      <p style="padding-top: 15px">Dispositivos involucrados</p>
+      <v-list two-line>
+        <template v-for="item in detail.devicesAndActions">
+          <v-list-item :key="item.device">
+          <v-list-item-content >
+            <v-list-item-title v-text="item.device"></v-list-item-title>
+
+            <v-list-item-subtitle v-text="item.action"></v-list-item-subtitle>
+          </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-list>
     </div>
   </section>
 </template>
 
 <script>
 import store from '@/store/store.js'
-
 export default {
     name: "RoutineDetailView",
 
@@ -68,16 +79,20 @@ export default {
     computed: {
       detail() {
         return store.house.routines.find(
-            detail => detail.slug == this.routineSlug
+            detail => detail.slug === this.routineSlug
         )
       }
     },
 
+
   data(){
       return{modal2:false,
             menu2:false,
-            diasSel:null}
-  }
+            diasSel:null,
+            copyStore:store}
+  },
+
+
 }
 </script>
 
@@ -92,6 +107,5 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
-
 
 </style>

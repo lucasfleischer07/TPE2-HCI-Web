@@ -151,16 +151,16 @@ export default {
                     slug: "encenderCasa",
                     devicesAndActions: [
                         {
-                            // device : this.
-                            //action
+                            device : "miparlante",
+                            action:"volumen 100",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miluz",
+                            action:"prender",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miPuerta",
+                            action:"abrir",
                         },
                     ],
                 },
@@ -170,16 +170,16 @@ export default {
                     slug: "apagarCasa",
                     devicesAndActions: [
                         {
-                            // device : this.
-                            // action
+                            device : "miparlante",
+                            action:"volumen 0,stop",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miluz",
+                            action:"apagar",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miPuerta",
+                            action:"cerrar",
                         },
                     ]
                 }
@@ -235,16 +235,16 @@ export default {
                     routineTimeActivation: 3,
                     devicesAndActions: [
                         {
-                            // device : this.
-                            //action
+                            device : "miparlante",
+                            action:"volumen 100",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miluz",
+                            action:"prender",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miPuerta",
+                            action:"abrir",
                         },
 
                     ]
@@ -254,16 +254,16 @@ export default {
                     routineTimeActivation: 3,
                     devicesAndActions: [
                         {
-                            // device : this.
-                            //action
+                            device : "miparlante",
+                            action:"volumen 0,stop",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miluz",
+                            action:"apagar",
                         },
                         {
-                            // device : this.
-                            //action
+                            device : "miPuerta",
+                            action:"cerrar",
                         },
                     ]
                 }
