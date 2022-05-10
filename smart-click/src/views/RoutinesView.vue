@@ -59,9 +59,7 @@ import store from "@/store/store.js"
     min-height: 530px;
     padding-bottom: 20px;
     padding-top: 20px;
-    background-image: url("@/assets/fondo3.png");
-    background-repeat: repeat;
-
+   
   }
 
   .title-padding {
