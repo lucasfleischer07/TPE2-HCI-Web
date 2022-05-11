@@ -1,6 +1,6 @@
 <template>
 
-  <div class="action-row" style="width: 110px">
+  <div class="action-row device-div">
     <v-row class="action-row action_btn" >
       <device-icon name-device="door_front"/>
     </v-row>
@@ -60,6 +60,12 @@ export default {
 </script>
 
 <style scoped>
+  .device-div{
+    width: 150px;
+    justify-content: start;
+    height: max-content;
+  }
+
   .action-row{
     padding-top:   0px;
     justify-content: center;

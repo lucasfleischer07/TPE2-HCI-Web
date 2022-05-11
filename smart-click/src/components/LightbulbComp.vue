@@ -1,5 +1,5 @@
 <template>
-  <div class="action-row " style="width: 130px">
+  <div class="action-row device-div">
       <v-row class="action-row action_btn">
         <DeviceIcon name-device="emoji_objects" />
       </v-row>
@@ -69,6 +69,11 @@ name: "LightbulbComp",
 
 <style scoped>
 
+.device-div{
+  width: 150px;
+  justify-content: start;
+  height: max-content;
+}
 
   .action-row{
     justify-content: center;

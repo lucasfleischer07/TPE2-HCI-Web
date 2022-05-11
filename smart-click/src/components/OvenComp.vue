@@ -1,5 +1,5 @@
 <template>
-  <div class="action-row" style="width: 130px">
+  <div class="action-row device-div">
     <v-row class="action-row action_btn">
       <DeviceIcon name-device="microwave"/>
     </v-row>
@@ -75,6 +75,11 @@ export default {
 </script>
 
 <style scoped>
+  .device-div{
+    width: 150px;
+    justify-content: start;
+    height: max-content;
+}
 
   .action-row{
     padding-top:   10px;

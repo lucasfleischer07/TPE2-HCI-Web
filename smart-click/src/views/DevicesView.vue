@@ -53,7 +53,7 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-row>
-              <v-col v-for="device in room.roomDevices" :key="device.deviceCode" class="devices">
+              <v-col v-for="device in room.roomDevices" :key="device.deviceCode" >
                 <v-container v-for="deviceProto in devicesMap" :key="deviceProto.id">
                   <component v-if="deviceProto.id === device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
                 </v-container>
@@ -63,71 +63,7 @@
               <door-comp class="devices" deviceEntity="device"/>-->
 
             </v-row>
-            <v-btn color="primary" elevation="3" fab rounded @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
-            <p class="text">AGREGAR DISPOSITIVO</p>
-            <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
-              <v-card @keyup.enter="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
-                <v-card-title>
-                  <h2>Agregue un nuevo dispositivo</h2>
-                </v-card-title>
-                <v-card-text>
-                  <v-container fluid c>
-                    <v-row aligned="center">
-                      <v-col class="d-flex" cols="12" sm="10">
-                        <v-select
-                            :items="houses"
-                            label="Casa seleccionada"
-                            outlined class="house-selector-slider"
-                            dense
-                            v-model="deviceAddHouseSelected"
-                            persistent-placeholder
-                            placeholder="Selecciona casa ">
-                        </v-select>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                  <v-container fluid c>
-                    <v-row aligned="center">
-                      <v-col class="d-flex" cols="12" sm="10">
-                        <v-select
-                            :items="deviceAddHouseSelected.cuartos"
-                            label="Cuarto seleccionado:"
-                            outlined class="house-selector-slider"
-                            dense
-                            v-model="deviceAddRoomSelected"
-                            persistent-placeholder
-                            placeholder="elecciona cuarto">
-                        </v-select>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                  <v-container fluid c>
-                    <v-row aligned="center">
-                      <v-col class="d-flex" cols="12" sm="10">
-                        <v-select
-                            :items="deviceMap"
-                            label="Dispositivo seleccionado:"
-                            outlined class="house-selector-slider"
-                            dense
-                            v-model="deviceSelected"
-                            persistent-placeholder
-                            placeholder="Selecciona el dispositivo">
-                        </v-select>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                  <v-text-field
-                      label="Nombre del nuevo dispositivo"
-                      :rules="rules"
-                      hide-details="auto"
-                      v-model="deviceName"
-                  />
-                  <v-btn color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
-                    Agregar Dispositivo
-                  </v-btn>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
+            <AddDeviceRound/>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -147,6 +83,7 @@ import DoorComp from "@/components/DoorComp";
 import RefrigeratorComp from "@/components/RefrigeratorComp";
 import LightbulbComp from "@/components/LightbulbComp";
 import OvenComp from "@/components/OvenComp";
+import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 
 export default {
   name: "DevicesView",
@@ -156,7 +93,8 @@ export default {
     DoorComp,
     LightbulbComp,
     RefrigeratorComp,
-    OvenComp
+    OvenComp,
+    AddDeviceRound
   },
 
   methods: {

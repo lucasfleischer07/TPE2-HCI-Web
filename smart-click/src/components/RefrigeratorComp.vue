@@ -47,7 +47,7 @@ export default {
 <style scoped>
 
   .device-div{
-    width: 110px;
+    width: 150px;
     justify-content: start;
     height: max-content;
   }
