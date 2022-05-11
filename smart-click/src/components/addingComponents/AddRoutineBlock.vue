@@ -174,5 +174,11 @@ export default {
     padding: 20px 0 0 20px ;
   }
 
+  .icon-div {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+  }
+
 
 </style>

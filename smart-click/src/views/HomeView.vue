@@ -1,17 +1,27 @@
 <template>
+  <div class="main-div">
+    <div class="home-view">
+      <div class="buttons">
+        <AddHouse/>
+      </div>
 
-  <div class="home-view">
-    <div class="buttons">
-      <AddHouse/>
+      <div class="buttons">
+        <AddDevice/>
+      </div>
+
+      <div class="buttons">
+        <AddRoutineBlock/>
+      </div>
     </div>
 
-    <div class="buttons">
-      <AddDevice/>
+    <div class="div-faves">
+      <h2 class="font-weight-thin">Mis Favoritos</h2>
+      <v-card class="card-favs ma-7" >
+
+          <h2>Mis Dispositivos</h2>
+      </v-card>
     </div>
 
-    <div class="buttons">
-      <AddRoutineBlock/>
-    </div>
   </div>
 </template>
 
@@ -117,27 +127,40 @@
 </script>
 
 <style scoped>
-  .home-view  {
+
+  .main-div{
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
+    justify-content: space-between;
     min-height: 530px;
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
   }
 
+  .home-view  {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+
  .buttons {
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
     font-size: 40px;
+   padding-left: 180px;
   }
 
- .icon-div {
-   display: flex;
-   align-content: center;
-   flex-direction: column;
- }
+  .div-faves{
+    padding-top: 12px;
+  }
+
+  .card-favs{
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
+    min-width: 600px;
+    min-height: 400px;
+  }
+
 
 
 </style>

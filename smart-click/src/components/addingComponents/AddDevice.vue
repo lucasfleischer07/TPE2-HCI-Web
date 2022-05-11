@@ -122,4 +122,10 @@ export default {
 
 <style scoped>
 
+  .icon-div {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+  }
+
 </style>
