@@ -48,7 +48,7 @@
     <div class="rooms-class">
       <v-expansion-panels>
         <v-expansion-panel v-for="room in house.cuartos" :key="room.nombreCasa">
-          <v-expansion-panel-header >
+          <v-expansion-panel-header>
             <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -212,8 +212,8 @@ export default {
   .devices-view {
     min-height: 530px;
     padding-top: 20px;
-    background-image: url("@/assets/fondo3.png");
-    background-repeat: repeat;
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
   }
 
   .main-div {

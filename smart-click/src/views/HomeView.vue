@@ -419,8 +419,8 @@
     justify-content: space-evenly;
     flex-direction: column;
     min-height: 530px;
-    background-image: url("@/assets/fondo3.png");
-    background-repeat: repeat ;
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
   }
 
  .buttons {

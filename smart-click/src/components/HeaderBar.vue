@@ -30,7 +30,7 @@
                 <v-subheader>
                   <v-icon>home</v-icon>
                 </v-subheader>
-                <v-select
+                <v-select color="#f2f9fb"
                     :items="houses"
                     label="Casa seleccionada:"
                     outlined class="house-selector-slider"
@@ -43,17 +43,18 @@
                       <v-btn color="primary"  @click.stop="houseAdd = true">
                         Agregar casa
                       </v-btn>
-                      <v-dialog v-model="houseAdd" max-width="600px" height="600px">
-                        <v-card @keyup.enter="addHouse(nombreCasa)">
-                            <v-card-title>
+                      <v-dialog v-model="houseAdd" max-width="600px" height="600px" color="#f2f9fb">
+                        <v-card @keyup.enter="addHouse(nombreCasa)" color="#f2f9fb">
+                            <v-card-title color="#f2f9fb">
                               <h2>Agregue una nueva casa</h2>
                             </v-card-title>
-                            <v-card-text>
+                            <v-card-text color="#f2f9fb">
                               <v-text-field
                                 label="Nombre de la nueva casa"
                                 :rules="rules"
                                 hide-details="auto"
                                 v-model="nombreCasa"
+                                color="#f2f9fb"
                               />
                               <v-btn color="primary" @click="addHouse(nombreCasa)">
                                 Agregar Casa

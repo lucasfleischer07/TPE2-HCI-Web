@@ -150,8 +150,8 @@
     min-height: 530px;
     /*margin-top: 30px;*/
     padding-top: 20px;
-    background-image: url("@/assets/fondo3.png");
-    background-repeat: repeat;
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
   }
 
   .switch-centre{

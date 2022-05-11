@@ -76,6 +76,8 @@ export default {
 <style scoped>
   .help-view {
     min-height: 530px;
-    margin-top: 30px;
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
+    padding-top: 20px;
   }
 </style>
