@@ -3,6 +3,7 @@
     <div class="add-button-padding">
       <v-btn color="primary" elevation="3" fab rounded @click.stop="routineAdd = true"><v-icon>add</v-icon></v-btn>
     </div>
+
     <v-dialog v-model="routineAdd" max-width="600px" height="600px">
       <v-card @keyup.enter="AddRoutine(routineCreated)">
         <v-card-title>
@@ -95,15 +96,18 @@
             </div>
             <div v-for="devAndAct in routineCreated" :key="devAndAct" class="device-and-actions">
 
-                <span class="text-h6">{{devAndAct.device.deviceName}}</span>
-                <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
-                  <v-icon  color="error" >delete_forever</v-icon>
-                </v-btn>
+              <span class="text-h6">{{devAndAct.device.deviceName}}</span>
+              <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
+                <v-icon  color="error" >delete_forever</v-icon>
+              </v-btn>
 
               <h3>{{devAndAct.action}}</h3>
 
             </div>
           </v-row>
+          <v-btn color="primary" @click="AddRoutine()">
+            Crear Rutina
+          </v-btn>
 
         </v-card-text>
       </v-card>
@@ -115,7 +119,7 @@
 import store from "@/store/store";
 
 export default {
-  name: "AddRoutine",
+  name: "AddRoutineRound",
 
 
   data(){
@@ -130,33 +134,28 @@ export default {
       deviceSelected: {},
       actionSelected: {},
       deviceType: {},
-      routineCreated: []
+      routineCreated: [],
+
+      rules: [v => v.length <= 25 || 'Max 25 characters'],
+
     }
   },
 
   methods: {
-    AddDevice(){
-      var routine={
-        device: this.deviceSelected,
-        action: this.actionSelected,
-      }
-      this.routineCreated.push(routine)
-    },
-
 
     AddRoutine(routine){
       if(routine == null)
         console.log("No completo la rutina completa" )
       else
         this.routineAdd = false,
-        this.houseSelected = {},
-        this.deviceSelected= {},
-        this.actionSelected= {},
-        this.roomSelected= {},
-        this.deviceType= {},
-        this.routineName="",
+            this.houseSelected = {},
+            this.deviceSelected= {},
+            this.actionSelected= {},
+            this.roomSelected= {},
+            this.deviceType= {},
+            this.routineName="",
 
-        this.routineCreated= []
+            this.routineCreated= []
 
     },
     getDeviceActions(myDevice){
@@ -166,6 +165,12 @@ export default {
     },
     DeleteDeviceFromRoutine(deviceAndAct){
       this.routineCreated.splice(this.routineCreated.indexOf(deviceAndAct),1)
+    },
+    isBlock(){
+      return this.bottonType==="block"
+    },
+    isRound() {
+      return this.bottonType==="round"
     }
   }
 }
@@ -173,9 +178,9 @@ export default {
 
 <style scoped>
 
-  .device-and-actions{
-    padding: 20px 0 0 20px ;
-  }
+.device-and-actions{
+  padding: 20px 0 0 20px ;
+}
 
 
 </style>

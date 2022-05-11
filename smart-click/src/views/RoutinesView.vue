@@ -16,7 +16,7 @@
     </div>
     <div class="routines-add-button">
 
-      <AddRoutine/>
+      <AddRoutineRound/>
       <div class="vertical-line"></div>
     </div>
     <div>
@@ -30,12 +30,12 @@
 
 <script>
 import store from "@/store/store.js"
-import AddRoutine from "@/components/AddRoutine";
+import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
 
   export default {
     name: "RoutinesView",
     components: {
-      AddRoutine,
+      AddRoutineRound,
     },
 
 

@@ -8,7 +8,7 @@
         <v-row class="action-row">
             <div>
                <v-slider prepend-icon="device_thermostat"
-                        @change="refriTemp=number"/>
+                        v-model="temperature"/>
             </div>
        </v-row>
        <v-row class="action-row action_btn">
@@ -38,7 +38,7 @@ export default {
 
     data() {
         return {
-
+          temperature: 0
         }
     }
 }
