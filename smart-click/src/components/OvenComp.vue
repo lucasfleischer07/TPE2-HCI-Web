@@ -1,19 +1,24 @@
 <template>
-  <div class="action-row" style="width: 110px">
+  <div class="action-row" style="width: 130px">
     <v-row class="action-row action_btn">
       <DeviceIcon name-device="microwave"/>
     </v-row>
     <v-row style="justify-content: center">
     <v-switch inline> </v-switch>
     </v-row>
-    <v-row style="justify-content: center">
+    <v-row class="action-row">
     <v-slider prepend-icon="device_thermostat"
               :max="240"
               :min="90"
               thumb-label
-              style="width: 10%"
+              style="width: 69%"
               loader-height="0.5"
-              ></v-slider>
+              v-model="slider" ></v-slider>
+      <v-text-field v-model="slider"
+                    hide-details
+                    single-line
+                    style="width: 31%"
+                    type="number"></v-text-field>
     </v-row>
     <p style="padding-top: 10px">Fuente calor</p>
     <v-row class="action-row action_btn">
@@ -61,7 +66,8 @@ export default {
     return{
       fuenteCalor:undefined,
       grillMode:undefined,
-      conveccionMode:undefined
+      conveccionMode:undefined,
+      slider:100
 
     }
   }
