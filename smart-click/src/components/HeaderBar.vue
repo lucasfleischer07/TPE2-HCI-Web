@@ -1,83 +1,69 @@
 <template>
   <header>
-    <div class="div-header">
-      <router-link :to="{name: 'Home'}">
-        <img class="logo_img" :src=logo_image alt="SmartClick_Logo">
-      </router-link>
-      <div class="search-bar">
-        <v-form class="form">
-              <v-col cols="0" sm="0">
-
-  <!--              TODO: Definir el searcher o sacarlo-->
-                <v-text-field
-                    v-model="searcher"
-                    label="Buscar"
-                    outlined
-                    clearable
-                ></v-text-field>
-              </v-col>
-        </v-form>
-        <v-btn><v-icon>search</v-icon></v-btn>
-      </div>
-  <!--    Div vacio para que me quede mas a la derecha la barra de buscador-->
-      <div></div>
-
-      <div>
-        <template>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-subheader>
-                  <v-icon>home</v-icon>
-                </v-subheader>
-                <v-select color="#f2f9fb"
-                    :items="houses"
-                    label="Casa seleccionada:"
-                    outlined class="house-selector-slider"
-                    dense
-                    @change="houseChange"
-                    persistent-placeholder
-                    placeholder="Seleccione una casa">
-                <template #append-item>
-                    <div class="append color-back">
-                      <v-btn color="primary"  @click.stop="houseAdd = true">
-                        Agregar casa
-                      </v-btn>
-                      <v-dialog v-model="houseAdd" max-width="600px" height="600px" color="#f2f9fb">
-                        <v-card @keyup.enter="addHouse(nombreCasa)" color="#f2f9fb">
-                            <v-card-title color="#f2f9fb">
-                              <h2>Agregue una nueva casa</h2>
-                            </v-card-title>
-                            <v-card-text color="#f2f9fb">
-                              <v-text-field
-                                label="Nombre de la nueva casa"
-                                :rules="rules"
-                                hide-details="auto"
-                                v-model="nombreCasa"
-                                color="#f2f9fb"
-                              />
-                              <v-btn color="primary" @click="addHouse(nombreCasa)">
-                                Agregar Casa
-                              </v-btn>
-                            </v-card-text>
-                        </v-card>
-                      </v-dialog>
-                    </div>
-                  </template>
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
-        </template>
-      </div>
-
-      <div class="dark-help-buttons">
-        <v-btn class="ma-lg-1" large color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark"><v-icon>dark_mode</v-icon></v-btn>
-        <router-link :to="{name: 'Help'}">
-          <v-btn large color="primary"><v-icon>help</v-icon></v-btn>
+    <div class="main-div">
+      <div class="div-header">
+        <router-link :to="{name: 'Home'}">
+          <img class="logo_img" :src=logo_image alt="SmartClick_Logo">
         </router-link>
       </div>
 
+
+      <div class="help-div">
+        <div>
+          <template>
+            <v-container fluid c>
+              <v-row aligned="center">
+                <v-col class="d-flex" cols="12" sm="20">
+                  <v-subheader>
+                    <v-icon>home</v-icon>
+                  </v-subheader>
+                  <v-select
+                      :items="houses"
+                      label="Casa seleccionada:"
+                      outlined class="house-selector-slider"
+                      dense
+                      @change="houseChange"
+                      persistent-placeholder
+                      placeholder="Seleccione una casa">
+                  <template #append-item>
+                      <div class="append color-back">
+                        <v-btn color="primary"  @click.stop="houseAdd = true">
+                          Agregar casa
+                        </v-btn>
+                        <v-dialog v-model="houseAdd" max-width="600px" height="600px" color="#f2f9fb">
+                          <v-card @keyup.enter="addHouse(nombreCasa)" color="#f2f9fb">
+                              <v-card-title color="#f2f9fb">
+                                <h2>Agregue una nueva casa</h2>
+                              </v-card-title>
+                              <v-card-text color="#f2f9fb">
+                                <v-text-field
+                                  label="Nombre de la nueva casa"
+                                  :rules="rules"
+                                  hide-details="auto"
+                                  v-model="nombreCasa"
+                                  color="#f2f9fb"
+                                />
+                                <v-btn color="primary" @click="addHouse(nombreCasa)">
+                                  Agregar Casa
+                                </v-btn>
+                              </v-card-text>
+                          </v-card>
+                        </v-dialog>
+                      </div>
+                    </template>
+                  </v-select>
+                </v-col>
+              </v-row>
+            </v-container>
+          </template>
+        </div>
+
+        <div class="help-buttons">
+          <router-link :to="{name: 'Help'}">
+            <v-btn class="ma-1" x-large color="primary"><v-icon>help</v-icon></v-btn>
+          </router-link>
+        </div>
+      </div>
     </div>
   </header>
 </template>
@@ -126,32 +112,34 @@ export default {
 
 <style scoped>
 
-  .div-header {
-    text-align: left;
+  .main-div {
     display: flex;
-    padding-top: 10px;
     justify-content: space-between;
     background-color: #f2f9fb;
   }
 
-  .div-header .logo_img {
+ .div-header {
+    text-align: left;
+    display: flex;
+    padding-top: 10px;
+    justify-content: space-between;
+  }
+
+  .help-div {
+    display: flex;
+    margin-top: 10px;
+    margin-right: 10px;
+
+  }
+
+  .logo_img {
     height: 100px;
     width: 350px;
   }
 
-  .search-bar {
-    width: auto;
-    padding: 10px;
-    display: flex;
-
-  }
-
-  .form {
-    width: 500px;
-  }
-
-  .dark-help-buttons {
+  .help-buttons {
     display: block;
+    margin-left: 35px;
   }
 
   .house-selector-slider {
@@ -162,8 +150,8 @@ export default {
   .append {
     position: sticky;
     bottom: 0;
-    /*background: "primary";*/
     font-weight: bold;
   }
+
 
 </style>

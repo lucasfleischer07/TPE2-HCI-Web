@@ -2,7 +2,7 @@
   <div class="settings-view">
     <v-card class="mx-auto" width="600">
       <v-list>
-        <v-list-group prepend-icon="settings">
+        <v-list-group :value="true" prepend-icon="settings">
             <template v-slot:activator>
               <v-list-item-title>General</v-list-item-title>
             </template>
@@ -18,11 +18,6 @@
             </template>
             <v-list-item> SmartClick no se responsabiliza de ninguna pérdida ni robo de información. El usuario es totalmente responsable de su propia seguridad. SmartClick no se hará responsable por la ruptura de ningún dispositivo vinculado.</v-list-item>
           </v-list-group>
-
-          <v-list-item class="switch-centre">
-            <v-switch label="Modo Oscuro" @change="$vuetify.theme.dark = !$vuetify.theme.dark"  ></v-switch>
-          </v-list-item>
-
 
         </v-list-group>
 

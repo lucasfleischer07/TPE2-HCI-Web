@@ -1,21 +1,21 @@
 <template>
   <div class="nav-bar">
-    <nav>
-      <router-link :to="{name: 'Devices'}">
+    <nav class="nav-buttons">
+      <router-link class="text-decoration-none" :to="{name: 'Devices'}">
         <v-btn x-large  class="nav-icons" >
           <v-icon>devices</v-icon>
           <span>Dispositivos</span>
         </v-btn>
       </router-link>
 
-       <router-link :to="{name: 'Routines'}">
+       <router-link class="text-decoration-none" :to="{name: 'Routines'}">
           <v-btn x-large  class="nav-icons" >
               <v-icon>calendar_month</v-icon>
               <span>Rutinas</span>
           </v-btn>
       </router-link>
 
-      <router-link :to="{name: 'Settings'}">
+      <router-link class="text-decoration-none" :to="{name: 'Settings'}">
           <v-btn x-large  class="nav-icons">
               <v-icon>settings</v-icon>
               <span>Configuración</span>
@@ -50,8 +50,14 @@
   }
 
   .nav-icons {
-    display: inline-block;
-    margin-inline:80px;
+    display: flex;
   }
+
+  .nav-buttons{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+
 
 </style>
