@@ -87,8 +87,22 @@
           <v-btn color="primary" @click="AddDevice()">
             Agregar dispositivo a la rutina
           </v-btn>
-          <v-row v-for="devAndAct in routineCreated" :key="devAndAct">
-            <v-icon>{{getIcon(devAndAct.device)}}</v-icon>
+          <v-row>
+            <div style="padding-top: 20px">
+              <h3>Device name:</h3>
+              <h3>Device action:</h3>
+
+            </div>
+            <div v-for="devAndAct in routineCreated" :key="devAndAct" class="device-and-actions">
+
+                <span class="text-h6">{{devAndAct.device.deviceName}}</span>
+                <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
+                  <v-icon  color="error" >delete_forever</v-icon>
+                </v-btn>
+
+              <h3>{{devAndAct.action}}</h3>
+
+            </div>
           </v-row>
 
         </v-card-text>
@@ -119,12 +133,6 @@ export default {
       routineCreated: []
     }
   },
-  computed: {
-    getIcon(myDevice){
-      return store.devicesMap.find(
-          device => device.id === myDevice.deviceCode)
-    }
-  },
 
   methods: {
     AddDevice(){
@@ -132,7 +140,7 @@ export default {
         device: this.deviceSelected,
         action: this.actionSelected,
       }
-      this.routineCreated.concat(routine)
+      this.routineCreated.push(routine)
     },
 
 
@@ -155,11 +163,19 @@ export default {
       this.deviceType= store.devicesMap.find(
           device => device.id === myDevice.deviceCode)
 
+    },
+    DeleteDeviceFromRoutine(deviceAndAct){
+      this.routineCreated.splice(this.routineCreated.indexOf(deviceAndAct),1)
     }
   }
 }
 </script>
 
 <style scoped>
+
+  .device-and-actions{
+    padding: 20px 0 0 20px ;
+  }
+
 
 </style>

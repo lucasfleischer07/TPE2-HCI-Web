@@ -64,7 +64,7 @@
                     </v-card-title>
 
                     <v-card-text>
-                        <v-btn color="primary" @click="removeHouse(houseDeleteSelected)" >
+                        <v-btn color="primary" @click="removeHouse(houseDeleteSelected.nombreCasa)" >
                             Eliminar
                         </v-btn>
                         <v-btn color="error"  @click.stop="confirmRemoveHouse=false">
@@ -225,7 +225,7 @@
                 <v-dialog v-model="confirmRemoveDevice" max-width="600px" height="600px">
                 <v-card @keyup.enter="removeDevice(deviceDeleteSelected)">
                     <v-card-title>
-                      <h2>Esta seguro que desea eliminar "{{ deviceDeleteSelected }}"</h2>
+                      <h2>Esta seguro que desea eliminar "{{ deviceDeleteSelected.deviceName }}"</h2>
                     </v-card-title>
 
                     <v-card-text>
@@ -301,7 +301,7 @@
               <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
               <v-card @keyup.enter="removeRoutine(routineDeleteSeleceted)">
                   <v-card-title>
-                    <h2>Esta seguro que desea eliminar "{{ routineDeleteSeleceted }}"</h2>
+                    <h2>Esta seguro que desea eliminar "{{ routineDeleteSeleceted.routineName }}"</h2>
                   </v-card-title>
 
                   <v-card-text>

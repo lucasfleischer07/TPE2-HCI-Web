@@ -1,7 +1,7 @@
 export default {
     devicesMap: [
             {
-                deviceIcon: "speaker",
+
                 deviceName: "Parlante",
                 compName: "SpeakerComp",
                 id: 0,
@@ -20,7 +20,6 @@ export default {
                 },
             },
             {
-                deviceIcon: "door_front",
                 deviceName: "Puerta",
                 compName: "DoorComp",
                 id: 1,
@@ -35,7 +34,6 @@ export default {
                 },
             },
             {
-                deviceIcon: "emoji_objects",
                 deviceName: "Lampara",
                 compName: "LightbulbComp",
                 id: 2,
@@ -49,7 +47,6 @@ export default {
                 },
             },
             {
-                deviceIcon: "kitchen",
                 deviceName: "Heladera",
                 compName: "RefrigeratorComp",
                 id: 3,
@@ -62,7 +59,6 @@ export default {
                 },
             },
             {
-                deviceIcon: "microwave",
                 deviceName: "Horno",
                 compName: "OvenComp",
                 id: 4,
