@@ -28,8 +28,11 @@
             x-small
             :color=btnColor
             @click="toggle= !toggle"></v-btn>
-      <v-color-picker :hide-canvas="toggle" :hide-sliders="toggle" hide-inputs
-      v-model="btnColor">
+      <v-color-picker :show-swatches="toggle" hide-canvas hide-sliders hide-inputs
+      v-model="btnColor"
+      :swatches="swatches"
+      @update:color="toggle= !toggle"
+      >
       </v-color-picker>
      </div>
 </template>
@@ -51,20 +54,23 @@ name: "LightbulbComp",
     return {
       slider:0,
       toggle:true,
-      btnColor:"red"
-
+      btnColor:"red",
+      swatches: [
+        ['#FF0000', '#AA0000', '#550000'],
+        ['#FFFF00', '#AAAA00', '#555500'],
+        ['#00FF00', '#00AA00', '#005500'],
+        ['#00FFFF', '#00AAAA', '#005555'],
+        ['#0000FF', '#0000AA', '#000055'],
+      ],
     }
   },
 }
 </script>
 
 <style scoped>
-.device{
-  width:20%
-}
+
 
   .action-row{
-    padding-top:   0px;
     justify-content: center;
   }
 
