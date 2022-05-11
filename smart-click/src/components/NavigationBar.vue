@@ -43,14 +43,14 @@
   .nav-bar {
     display: block;
     background-color: dodgerblue;
-    width: 100%;
-    padding: 30px;
-    margin-bottom: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+
   }
 
   .nav-icons {
     display: inline-block;
-    width:auto;
     margin-inline:80px;
   }
 

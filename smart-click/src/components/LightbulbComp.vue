@@ -1,5 +1,5 @@
 <template>
-  <div class="action-row " style="width: 110px">
+  <div class="action-row " style="width: 130px">
       <v-row class="action-row action_btn">
         <DeviceIcon name-device="emoji_objects" />
       </v-row>
@@ -13,13 +13,13 @@
                     :max="100"
                     :min="0"
                     thumb-label
-                    style="width: 65%"
+                    style="width: 69%"
                     v-model="slider" ></v-slider>
           <v-text-field dense
               hide-details
               single-line
               v-model="slider"
-              style="width: 15%"
+              style="width: 31%"
           type="number">
           </v-text-field>
 
