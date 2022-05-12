@@ -16,7 +16,7 @@
 
     <div class="div-faves">
       <h2 class="font-weight-thin">Mis Favoritos</h2>
-      <v-card class="card-favs ma-7" >
+      <v-card class="card-favs ma-lg-6" >
 
           <h2>Mis Dispositivos</h2>
       </v-card>
@@ -155,8 +155,7 @@
   }
 
   .card-favs{
-    background-image: url("@/assets/fondo1.jpg");
-    background-repeat: repeat round;
+    background-color: transparent;
     min-width: 600px;
     min-height: 400px;
   }
