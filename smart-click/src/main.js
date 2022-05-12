@@ -7,6 +7,7 @@ import colors from 'vuetify/lib/util/colors'
 
 
 import router from './router'
+import store from './store'
 
 
 Vue.config.productionTip = false
@@ -33,7 +34,9 @@ new Vue({
       iconfont: 'md',
     },
   }),
+
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
 
