@@ -157,7 +157,7 @@
 
   .card-favs{
     background-color: transparent;
-    min-width: 600px;
+    min-width: 1000px;
     min-height: 400px;
   }
 

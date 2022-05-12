@@ -52,7 +52,7 @@
           <v-expansion-panel-header class="expansion-panel-div">
             <span>{{room.roomName}}: {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} activos</span>
             <div class="div-button-delete-room">
-              <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete</v-icon></v-btn>
+              <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete_forever</v-icon></v-btn>
               <span class="span-class">ELIMINAR HABITACIÓN</span>
             </div>
           </v-expansion-panel-header>

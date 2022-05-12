@@ -6,11 +6,12 @@
       </div>
       <v-row v-for="routine in house.routines" :key="routine.name">
         <v-col class="routines-button">
+          <div>
           <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.slug}}">
-            <v-btn color="success" large width="250" rounded >
-              {{ routine.routineName }}
-            </v-btn>
+              <v-btn color="success" large width="250" rounded >{{ routine.routineName }}</v-btn>
           </router-link>
+            <v-btn class="delete-button" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
+          </div>
         </v-col>
       </v-row>
     </div>
