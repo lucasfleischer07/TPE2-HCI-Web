@@ -1,24 +1,24 @@
 <template>
   <section>
     <div class="routine-details">
-<!--      <v-row>-->
         <div class="routineName-and-switch">
           <div>
             <p>{{detail.routineName}}</p>
           </div>
           <div>
-            <v-switch></v-switch>
+            <v-switch class="margin-switcher"></v-switch>
           </div>
         </div>
-<!--      </v-row>-->
+    </div>
 
-      <v-dialog
+    <v-dialog
           ref="dialog"
           v-model="modal2"
           :return-value.sync="detail.routineTimeActivation"
           width="290px">
         <template v-slot:activator="{ on, attrs }">
           <v-text-field
+              style="width: 50%"
               v-model="detail.routineTimeActivation"
               label="Hora de activación"
               prepend-icon="schedule"
@@ -27,7 +27,7 @@
               v-on="on"
           ></v-text-field>
         </template>
-        <v-time-picker v-if="modal2" v-model="detail.routineTimeActivation" full-width>
+        <v-time-picker v-if="modal2" v-model="detail.routineTimeActivation" class="flex" full-width>
           <v-spacer></v-spacer>
           <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
           <v-btn text color="primary" @click="$refs.dialog.save(detail.routineTimeActivation)">OK</v-btn>
@@ -43,28 +43,29 @@
         <v-btn>S</v-btn>
         <v-btn>D</v-btn>
       </v-btn-toggle>
-      <p style="padding-top: 15px">Dispositivos involucrados</p>
-      <v-list two-line>
+
+      <p style="padding-top: 25px">Dispositivos involucrados</p>
+      <v-list two-line class="list-class">
         <template v-for="item in detail.devicesAndActions">
           <v-list-item :key="item.device">
           <v-list-item-content >
             <v-list-item-title v-text="item.device"></v-list-item-title>
-
             <v-list-item-subtitle v-text="item.action"></v-list-item-subtitle>
           </v-list-item-content>
           </v-list-item>
         </template>
       </v-list>
-    </div>
   </section>
 </template>
 
 <script>
 import store from '@/store/store.js'
-export default {
-    name: "RoutineDetailView",
 
-    props: {
+export default {
+  name: "RoutineDetailView",
+
+
+  props: {
       slug:{
           type: String,
           required: true,
@@ -103,9 +104,18 @@ export default {
 
   .routineName-and-switch {
     display: flex;
-    padding-left: 12px;
     justify-content: space-between;
     align-items: center;
   }
+
+  .list-class {
+    background-color: transparent;
+  }
+
+  .remove-button {
+    display: flex;
+    padding-left: 100px;
+  }
+
 
 </style>

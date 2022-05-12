@@ -2,15 +2,15 @@
   <div class="main-div">
     <div class="home-view">
       <div class="buttons">
-        <AddHouse/>
-      </div>
-
-      <div class="buttons">
         <AddDevice/>
       </div>
 
       <div class="buttons">
         <AddRoutineBlock/>
+      </div>
+
+      <div class="buttons">
+        <AddHouse/>
       </div>
     </div>
 
@@ -30,6 +30,7 @@
   import AddHouse from "@/components/addingComponents/AddHouse";
   import AddDevice from "@/components/addingComponents/AddDevice";
   import AddRoutineBlock from "@/components/addingComponents/AddRoutineBlock";
+
   export default {
     name: "HomeView",
 

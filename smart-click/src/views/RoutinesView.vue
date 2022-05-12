@@ -28,13 +28,15 @@
 
 
 <script>
-import store from "@/store/store.js"
-import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
+  import store from "@/store/store.js"
+  import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
+  // import RemoveRoutine from "@/components/addingComponents/RemoveRoutine";
 
   export default {
     name: "RoutinesView",
     components: {
       AddRoutineRound,
+      // RemoveRoutine
     },
 
 
@@ -84,11 +86,6 @@ import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
     display: flex;
   }
 
-  .add-button-padding {
-    padding-right: 20px;
-    padding-bottom: 25px;
-  }
-
   .routines-button {
     padding-top: 30px;
     text-decoration: none;
@@ -98,6 +95,15 @@ import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
   .details-title {
     padding-bottom: 25px;
 
+  }
+
+  .delete-routine-button-and-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .delete-button {
+    margin-left: 200px;
   }
 
   a {

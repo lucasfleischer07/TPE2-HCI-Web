@@ -1,11 +1,10 @@
 <template>
   <div>
-    <v-btn class="font-weight-bold" height="100px" width="300px" color="error" elevation="3" x-large @click.stop="routineRemove = true">
-      <div class="icon-div">
-        Eliminar Rutina
-        <v-icon large>event_busy</v-icon>
-      </div>
-    </v-btn>
+    <div class="div-button-delete-routine">
+      <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete</v-icon></v-btn>
+      <span class="span-class">ELIMINAR RUTINA</span>
+    </div>
+
     <v-dialog v-model="routineRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeRoutine(routineDeleteSelected)">
         <v-card-title>
@@ -112,4 +111,18 @@ export default {
 
 <style scoped>
 
+  .div-button-delete-routine {
+    display: flex;
+    width: auto;
+    justify-content: end;
+    /*margin-left: 200px;*/
+    align-items: center;
+  }
+
+  .span-class {
+    display: flex;
+    color: gray;
+    font-size: 13px;
+    padding-left: 10px;
+  }
 </style>

@@ -60,7 +60,7 @@
 
         <div class="help-buttons">
           <router-link :to="{name: 'Help'}">
-            <v-btn class="ma-1" x-large color="primary"><v-icon>help</v-icon></v-btn>
+            <v-btn class="ma-1" x-large color="primary"><v-icon >help</v-icon></v-btn>
           </router-link>
         </div>
       </div>

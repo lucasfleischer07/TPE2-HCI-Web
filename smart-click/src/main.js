@@ -22,17 +22,11 @@ new Vue({
           primary: colors.blue.base,
           secondary: colors.indigo.white,
           accent: colors.teal.base,
-          // error: colors.red.base,
-          error: "#b30000",
+          error: "#B30000",
           warning: colors.pink.base,
           info: colors.cyan.base,
-          // success: colors.green.base
           success: "#80ccff"
         },
-        dark: {
-          error: "#006bb3",
-          success: "#80ccff"
-        }
       },
     },
     icons: {

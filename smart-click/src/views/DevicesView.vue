@@ -50,7 +50,7 @@
       <v-expansion-panels>
         <v-expansion-panel v-for="room in house.cuartos" :key="room.nombreCasa">
           <v-expansion-panel-header class="expansion-panel-div">
-            <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
+            <span>{{room.roomName}}: {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} activos</span>
             <div class="div-button-delete-room">
               <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete</v-icon></v-btn>
               <span class="span-class">ELIMINAR HABITACIÓN</span>

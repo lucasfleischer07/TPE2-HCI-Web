@@ -1,7 +1,9 @@
 <template>
   <div>
-    <v-btn color="primary" elevation="3" fab rounded @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
-    <p class="text">AGREGAR DISPOSITIVO</p>
+    <div class="margin-div-button">
+      <v-btn color="primary" elevation="3" fab @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
+      <p class="text">AGREGAR DISPOSITIVO</p>
+    </div>
     <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
       <v-card @keyup.enter="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
         <v-card-title>
@@ -120,6 +122,11 @@ export default {
     display: inline;
     padding-left: 10px;
     color: grey;
+    font-size: 17px;
+  }
+
+  .margin-div-button {
+    margin-top: 25px;
   }
 
   .margin-button {
