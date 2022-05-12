@@ -54,7 +54,7 @@
           <v-expansion-panel-content>
             <v-row>
               <v-col v-for="device in room.roomDevices" :key="device.deviceCode" >
-                <v-container v-for="deviceProto in devicesMap" :key="deviceProto.id">
+                <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in devicesMap" :key="deviceProto.id">
                   <component v-if="deviceProto.id === device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
                 </v-container>
               </v-col>

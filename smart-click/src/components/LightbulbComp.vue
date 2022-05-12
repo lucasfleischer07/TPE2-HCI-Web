@@ -1,5 +1,6 @@
 <template>
   <div class="action-row device-div">
+    <v-card>
       <v-row class="action-row action_btn">
         <DeviceIcon name-device="emoji_objects" />
       </v-row>
@@ -34,7 +35,8 @@
       @update:color="toggle= !toggle"
       >
       </v-color-picker>
-     </div>
+    </v-card>
+  </div>
 </template>
 
 <script>

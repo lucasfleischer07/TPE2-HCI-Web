@@ -7,7 +7,7 @@
     <v-dialog v-model="routineAdd" max-width="600px" height="600px">
       <v-card @keyup.enter="AddRoutine(routineCreated)">
         <v-card-title>
-          <h2>Cree una neva rutina</h2>
+          <h2>Cree una nueva rutina</h2>
 
         </v-card-title>
         <v-card-text>
@@ -89,23 +89,18 @@
             Agregar dispositivo a la rutina
           </v-btn>
           <v-row>
-            <div style="padding-top: 20px">
-              <h3>Device name:</h3>
-              <h3>Device action:</h3>
-
-            </div>
             <div v-for="devAndAct in routineCreated" :key="devAndAct" class="device-and-actions">
+              <v-card outlined>
+                <span class="text-h6">{{devAndAct.device.deviceName}}</span>
+                <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
+                  <v-icon  color="error" >delete_forever</v-icon>
+                </v-btn>
 
-              <span class="text-h6">{{devAndAct.device.deviceName}}</span>
-              <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
-                <v-icon  color="error" >delete_forever</v-icon>
-              </v-btn>
-
-              <h3>{{devAndAct.action}}</h3>
-
+                <h3>{{devAndAct.action}}</h3>
+              </v-card>
             </div>
           </v-row>
-          <v-btn color="primary" @click="AddRoutine()">
+          <v-btn style="padding-top: 10px" color="primary" @click="AddRoutine()">
             Crear Rutina
           </v-btn>
 
@@ -142,6 +137,23 @@ export default {
   },
 
   methods: {
+    AddDevice(){
+      if (this.deviceSelected==null || this.roomSelected==null || this.deviceType==null || this.actionSelected==null) {
+        console.log("No completo la rutina completa" )
+      }
+      else{
+        var routine={
+          device: this.deviceSelected,
+          action: this.actionSelected,
+        }
+        this.routineCreated.concat(routine)
+        this.routineCreated.push(routine)
+        this.deviceSelected= {}
+        this.roomSelected= {}
+        this.deviceType= {}
+        this.actionSelected= {}
+      }
+    },
 
     AddRoutine(routine){
       if(routine == null)
@@ -166,12 +178,7 @@ export default {
     DeleteDeviceFromRoutine(deviceAndAct){
       this.routineCreated.splice(this.routineCreated.indexOf(deviceAndAct),1)
     },
-    isBlock(){
-      return this.bottonType==="block"
-    },
-    isRound() {
-      return this.bottonType==="round"
-    }
+
   }
 }
 </script>

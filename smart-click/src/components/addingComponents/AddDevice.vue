@@ -108,10 +108,11 @@ export default {
           console.log("Mal nombre de casa")
         else {
           //AGREGAR DISPOSITIVO
-          this.deviceAdd = false
-          house = {}
-          room = {}
-          deviceType = {}
+          this.deviceAdd= false,
+          this.deviceAddHouseSelected= {},
+          this.deviceAddRoomSelected= {},
+          this.deviceSelected= {},
+          this.deviceName= ""
         }
       }
 

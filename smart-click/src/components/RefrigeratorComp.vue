@@ -1,6 +1,7 @@
 <template>
 
   <div class="action-row device-div" >
+    <v-card>
         <v-row class="action-row action_btn">
               <device-icon name-device="kitchen"/>
         </v-row>
@@ -13,12 +14,13 @@
        </v-row>
        <v-row class="action-row action_btn">
 
-            <div>
+
                <v-slider prepend-icon="ac_unit"
-               @change="refriTemp=number"/>
-            </div>
+               v-model="freezerTemperature"/>
+
        </v-row>
-    </div>
+    </v-card>
+  </div>
 
 </template>
 
@@ -38,7 +40,8 @@ export default {
 
     data() {
         return {
-          temperature: 0
+          temperature: 0,
+          freezerTemperature: 0
         }
     }
 }
