@@ -6,7 +6,7 @@
       </div>
       <v-row v-for="routine in house.routines" :key="routine.name">
         <v-col class="routines-button">
-          <div>
+          <div class="delete-routine-div">
           <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.slug}}">
               <v-btn color="success" large width="250" rounded >{{ routine.routineName }}</v-btn>
           </router-link>
@@ -98,13 +98,12 @@
 
   }
 
-  .delete-routine-button-and-title {
+  .delete-routine-div {
     display: flex;
-    justify-content: space-between;
   }
 
   .delete-button {
-    margin-left: 200px;
+    margin-left: 5px;
   }
 
   a {
