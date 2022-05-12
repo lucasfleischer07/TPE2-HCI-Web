@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn class="font-weight-bold" height="100px" width="300px" color="success" elevation="3" x-large @click.stop="routineAdd = true">
+    <v-btn class="font-weight-bold" height="100px" width="300px" color="success" elevation="3" x-large @click.stop="routineAdd = true" rounded>
       <div class="icon-div">
         Agregar rutina
         <v-icon large>event_busy</v-icon>
@@ -87,7 +87,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-btn color="primary" @click="AddDevice()">
+          <v-btn class="margin-button" color="primary" @click="AddDevice()">
             Agregar dispositivo a la rutina
           </v-btn>
           <v-row>
@@ -98,12 +98,11 @@
                 <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
                   <v-icon  color="error" >delete_forever</v-icon>
                 </v-btn>
-
                 <h3>{{devAndAct.action}}</h3>
               </v-card>
             </div>
           </v-row>
-          <v-btn style="padding-top: 10px" color="primary" @click="AddRoutine()">
+          <v-btn class="margin-button2" color="primary" @click="AddRoutine()">
             Crear Rutina
           </v-btn>
 
@@ -189,6 +188,14 @@ export default {
     display: flex;
     align-content: center;
     flex-direction: column;
+  }
+
+  .margin-button {
+    margin-bottom: 20px;
+  }
+
+  .margin-button2 {
+    margin-top: 50px;
   }
 
 

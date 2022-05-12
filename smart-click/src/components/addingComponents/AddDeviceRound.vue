@@ -64,7 +64,7 @@
               hide-details="auto"
               v-model="deviceName"
           />
-          <v-btn color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
+          <v-btn class="margin-button" color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
             Agregar Dispositivo
           </v-btn>
         </v-card-text>
@@ -120,5 +120,9 @@ export default {
     display: inline;
     padding-left: 10px;
     color: grey;
+  }
+
+  .margin-button {
+    margin-top: 20px;
   }
 </style>

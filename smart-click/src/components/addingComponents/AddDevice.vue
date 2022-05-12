@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn class="font-weight-bold align-self" height="100px" width="300px" color="success" elevation="3" x-large
-           @click.stop="deviceAdd = true">
+           @click.stop="deviceAdd = true" rounded>
       <div class="icon-div">
         Agregar Dispositivo
         <v-icon large>devices
@@ -70,7 +70,7 @@
               hide-details="auto"
               v-model="deviceName"
           />
-          <v-btn color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
+          <v-btn class="margin-button" color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
             Agregar Dispositivo
           </v-btn>
         </v-card-text>
@@ -127,6 +127,10 @@ export default {
     display: flex;
     align-content: center;
     flex-direction: column;
+  }
+
+  .margin-button {
+    margin-top: 20px;
   }
 
 </style>

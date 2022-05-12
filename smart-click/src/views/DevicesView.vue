@@ -4,6 +4,7 @@
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
         <span class="text-h5 color-class" >{{ house.nombreCasa }}</span>
+        <RemoveHouse/>
       </div>
       <div class="add-button">
         <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
@@ -36,7 +37,7 @@
                   hide-details="auto"
                   v-model="deviceName"
               />
-              <v-btn color="primary" @click="addRoom(deviceName,deviceAddHouseSelected)">
+              <v-btn class="margin-button" color="primary" @click="addRoom(deviceName,deviceAddHouseSelected)">
                 Agregar habitación
               </v-btn>
             </v-card-text>
@@ -48,8 +49,12 @@
     <div class="rooms-class">
       <v-expansion-panels>
         <v-expansion-panel v-for="room in house.cuartos" :key="room.nombreCasa">
-          <v-expansion-panel-header>
+          <v-expansion-panel-header class="expansion-panel-div">
             <span>Cuarto: {{room.roomName}}, tiene {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} dispositivos activos</span>
+            <div class="div-button-delete-room">
+              <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete</v-icon></v-btn>
+              <span class="span-class">ELIMINAR HABITACIÓN</span>
+            </div>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-row>
@@ -84,11 +89,13 @@ import RefrigeratorComp from "@/components/RefrigeratorComp";
 import LightbulbComp from "@/components/LightbulbComp";
 import OvenComp from "@/components/OvenComp";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
+import RemoveHouse from "@/components/addingComponents/RemoveHouse";
 
 export default {
   name: "DevicesView",
 
   components: {
+    RemoveHouse,
     SpeakerComp,
     DoorComp,
     LightbulbComp,
@@ -162,7 +169,7 @@ export default {
 
   .house-icon {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     padding-bottom: 20px;
   }
 
@@ -183,4 +190,26 @@ export default {
     color: grey;
   }
 
+  .margin-button {
+    margin-top: 20px;
+  }
+
+  .expansion-panel-div {
+    /*display: inline-block;*/
+  }
+
+  .div-button-delete-room {
+    display: flex;
+    width: auto;
+    justify-content: end;
+    margin-right: 50px;
+    align-items: center;
+  }
+
+  .span-class {
+    display: flex;
+    color: gray;
+    font-size: 13px;
+    padding-left: 10px;
+  }
 </style>

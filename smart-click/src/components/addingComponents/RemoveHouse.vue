@@ -1,11 +1,9 @@
 <template>
   <div>
-    <v-btn class="font-weight-bold" height="100px" width="300px" color="error" elevation="3" x-large @click.stop="houseRemove = true">
-      <div class="icon-div">
-        Eliminar Casa
-        <v-icon large>delete_forever</v-icon>
-      </div>
-    </v-btn>
+    <div class="delete-div">
+      <v-btn class="delete-button" color="error" elevation="3" fab rounded @click.stop="removeHouse = true"><v-icon>delete</v-icon></v-btn>
+      <span class="delete-text">ELIMINAR CASA</span>
+    </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
         <v-card-title>
@@ -93,5 +91,22 @@ export default {
 </script>
 
 <style scoped>
+  .delete-div {
+    display: flex;
+    justify-content: flex-end;
+    color: gray;
+    align-items: center;
+  }
+
+  .delete-button {
+    margin-left: 100px;
+    margin-right: 5px;
+  }
+
+  .delete-text {
+    display: inline;
+    padding-left: 10px;
+    color: grey;
+  }
 
 </style>

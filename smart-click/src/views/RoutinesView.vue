@@ -7,7 +7,7 @@
       <v-row v-for="routine in house.routines" :key="routine.name">
         <v-col class="routines-button">
           <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.slug}}">
-            <v-btn color="purple lighten-1" large width="200" rounded >
+            <v-btn color="success" large width="250" rounded >
               {{ routine.routineName }}
             </v-btn>
           </router-link>
@@ -15,7 +15,6 @@
       </v-row>
     </div>
     <div class="routines-add-button">
-
       <AddRoutineRound/>
       <div class="vertical-line"></div>
     </div>
@@ -78,6 +77,7 @@ import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
     float: left;
     min-height: 480px;
     background-color: gray;
+    margin-left: 5px;
   }
 
   .routines-add-button {

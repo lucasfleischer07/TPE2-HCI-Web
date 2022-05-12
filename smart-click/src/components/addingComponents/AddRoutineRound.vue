@@ -85,7 +85,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-btn color="primary" @click="AddDevice()">
+          <v-btn class="margin-button" color="primary" @click="AddDevice()">
             Agregar dispositivo a la rutina
           </v-btn>
           <v-row>
@@ -100,7 +100,7 @@
               </v-card>
             </div>
           </v-row>
-          <v-btn style="padding-top: 10px" color="primary" @click="AddRoutine()">
+          <v-btn class="margin-button2" color="primary" @click="AddRoutine()">
             Crear Rutina
           </v-btn>
 
@@ -185,9 +185,17 @@ export default {
 
 <style scoped>
 
-.device-and-actions{
-  padding: 20px 0 0 20px ;
-}
+  .device-and-actions{
+    padding: 20px 0 0 20px ;
+  }
+
+  .margin-button {
+    margin-bottom: 20px;
+  }
+
+  .margin-button2 {
+    margin-top: 50px;
+  }
 
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn class="font-weight-bold" height="100px" width="300px" color="success" elevation="3" x-large
-           @click.stop="houseAdd = true">
+           @click.stop="houseAdd = true" rounded>
       <div class="icon-div">
         Agregar Casa
         <v-icon large>house</v-icon>
@@ -19,7 +19,7 @@
               hide-details="auto"
               v-model="nombreCasa"
           />
-          <v-btn color="primary" @click="addHouse(nombreCasa)">
+          <v-btn class="margin-button" color="primary" @click="addHouse(nombreCasa)">
             Agregar Casa
           </v-btn>
         </v-card-text>
@@ -65,17 +65,21 @@ export default {
 
 <style scoped>
 
-  .buttons {
-    display: flex;
-    justify-content: space-evenly;
-    padding-bottom: 50px;
-    font-size: 40px;
-  }
+/*  .buttons {*/
+/*    display: flex;*/
+/*    justify-content: space-evenly;*/
+/*    padding-bottom: 50px;*/
+/*    font-size: 40px;*/
+/*  }*/
 
   .icon-div {
     display: flex;
     align-content: center;
     flex-direction: column;
+  }
+
+  .margin-button {
+    margin-top: 20px;
   }
 
 </style>

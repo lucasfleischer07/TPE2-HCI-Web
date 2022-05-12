@@ -1,7 +1,7 @@
 <template>
   <v-footer padless>
     <v-col class="nav-class" cols="12">
-      {{ new Date().getFullYear() }} - <strong>Smart Click®</strong>
+      ® {{ new Date().getFullYear() }} - <strong>SmartClick</strong>
     </v-col>
   </v-footer>
 </template>

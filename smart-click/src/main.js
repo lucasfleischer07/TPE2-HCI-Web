@@ -23,7 +23,7 @@ new Vue({
           secondary: colors.indigo.white,
           accent: colors.teal.base,
           // error: colors.red.base,
-          error: "#006bb3",
+          error: "#b30000",
           warning: colors.pink.base,
           info: colors.cyan.base,
           // success: colors.green.base
