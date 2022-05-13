@@ -30,6 +30,7 @@
   import AddHouse from "@/components/addingComponents/AddHouse";
   import AddDevice from "@/components/addingComponents/AddDevice";
   import AddRoutineBlock from "@/components/addingComponents/AddRoutineBlock";
+  import {mapActions} from "vuex"
 
   export default {
     name: "HomeView",
@@ -69,6 +70,24 @@
       }
     },
     methods: {
+      ...mapActions("room",{
+        $createRoom: "create",   //Pongo $ para q no coincida con el metodo q esta debajo
+        $modifyRoom: "modify",
+        $deleteRoom: "delete"
+      }),
+      setResult(result){
+        //Esta es para mostrar en consola q esta devolviendo
+        console.log(result)
+      },
+      /*async createRoom(){
+        try{
+          let room = { name: "myRoom", meta: { size: "9m2"}}
+          await this.$createRoom(room)
+          this.setResult(room)
+        }catch (e){
+          this.setResult(e)
+        }
+      },*/
       addHouse(text) {
         if (text === "")
           console.log("Mal nombre de casa")

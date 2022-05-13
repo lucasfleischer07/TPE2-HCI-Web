@@ -140,28 +140,33 @@ export default {
   methods: {
 
     AddDevice(){
-      var routine={
-        device: this.deviceSelected,
-        action: this.actionSelected,
+      if(this.houseSelected == null || this.roomSelected == null || this.deviceSelected == null || this.actionSelected == null){
+        console.log("No hizo la seleccion de rutinas")
+        //MENSAJE DE ERROR
+      }else {
+        var routine = {
+          device: this.deviceSelected,
+          action: this.actionSelected,
+        }
+        this.routineCreated.concat(routine)
+        this.routineCreated.push(routine)
+        this.deviceSelected = {}
+        this.roomSelected = {}
+        this.deviceType = {}
+        this.actionSelected = {}
       }
-      this.routineCreated.concat(routine)
-      this.routineCreated.push(routine)
-      this.deviceSelected= {}
-      this.roomSelected= {}
-      this.deviceType= {}
-      this.actionSelected= {}
     },
     AddRoutine(routine){
       if(routine == null)
         console.log("No completo la rutina completa" )
       else
-        this.routineAdd = false,
-        this.houseSelected = {},
-        this.deviceSelected= {},
-        this.actionSelected= {},
-        this.roomSelected= {},
-        this.deviceType= {},
-        this.routineName="",
+        this.routineAdd = false
+        this.houseSelected = {}
+        this.deviceSelected= {}
+        this.actionSelected= {}
+        this.roomSelected= {}
+        this.deviceType= {}
+        this.routineName=""
 
         this.routineCreated= []
 
