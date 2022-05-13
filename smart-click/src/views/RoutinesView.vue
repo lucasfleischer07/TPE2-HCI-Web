@@ -54,9 +54,14 @@
 
 <style scoped>
 
-  .color-title {
-    color: gray;
+  .v-btn:focus::before {
+    opacity: 0 !important;
   }
+
+
+  .color-title {
+      color: gray;
+    }
 
   .routines-view {
     display: flex;

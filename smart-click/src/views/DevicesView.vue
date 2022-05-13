@@ -150,6 +150,10 @@ export default {
 
 <style scoped>
 
+  .v-btn:focus::before {
+    opacity: 0 !important;
+  }
+
   .color-class {
     color: gray;
   }

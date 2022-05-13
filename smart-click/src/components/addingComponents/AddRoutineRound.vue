@@ -12,7 +12,7 @@
         </v-card-title>
         <v-card-text>
           <v-text-field
-              label="Nombre de la rutina nueva"
+              label="Nombre de la nueva rutina"
               :rules="rules"
               hide-details="auto"
               v-model="routineName"
@@ -40,13 +40,13 @@
                 <v-select
                     :items="houseSelected.cuartos"
                     item-text="roomName"
-                    label="Cuarto seleccionado:"
+                    label="Habitación seleccionada:"
                     outlined class="house-selector-slider"
                     dense
                     return-object
                     v-model="roomSelected"
                     persistent-placeholder
-                    placeholder="Seleccione un cuarto">
+                    placeholder="Seleccione una habitación">
                 </v-select>
               </v-col>
             </v-row>
@@ -64,7 +64,7 @@
                     return-object
                     v-model="deviceSelected"
                     persistent-placeholder
-                    placeholder="Seleccione un cuarto">
+                    placeholder="Seleccione un dispositivo">
 
                 </v-select>
               </v-col>
@@ -75,12 +75,12 @@
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
                     :items="deviceType.actions"
-                    label="Accion seleccionada:"
+                    label="Acción seleccionada:"
                     outlined class="house-selector-slider"
                     dense
                     v-model="actionSelected"
                     persistent-placeholder
-                    placeholder="Seleccione una accion">
+                    placeholder="Seleccione una acción">
                 </v-select>
               </v-col>
             </v-row>
