@@ -1,54 +1,54 @@
 <template>
   <div class="action-row device-div">
-    <v-card>
+    <v-card class="background-card">
       <v-row class="action-row action_btn">
         <DeviceIcon name-device="microwave"/>
       </v-row>
+      <p class="text">{{deviceEntity.deviceName}}</p>
+    </v-card>
+
+    <v-card class="background-card">
       <v-row style="justify-content: center">
-      <v-switch inline> </v-switch>
+        <v-switch inline></v-switch>
       </v-row>
       <v-row class="action-row">
-      <v-slider prepend-icon="device_thermostat"
-                :max="240"
-                :min="90"
-                thumb-label
-                style="width: 69%"
-                loader-height="0.5"
-                v-model="slider" ></v-slider>
-        <v-text-field v-model="slider"
+        <v-slider class="margin-slider" prepend-icon="device_thermostat"
+                  :max="230"
+                  :min="90"
+                  style="width: 50%"
+                  v-model="slider"></v-slider>
+        <v-text-field dense
                       hide-details
                       single-line
-                      style="width: 31%"
-                      type="number"></v-text-field>
+                      v-model="slider"
+                      style="width: 1%"
+                      type="number"
+                      class="margin-text">
+        </v-text-field>
       </v-row>
-      <p style="padding-top: 10px">Fuente calor</p>
+      <p style="padding-top: 30px">Fuente calor</p>
       <v-row class="action-row action_btn">
-
-      <v-btn-toggle mandatory v-model="fuenteCalor">
-        <v-btn small>ABAJO</v-btn>
-        <v-btn small>NORMAL</v-btn>
-        <v-btn small>ARRIBA</v-btn>
-      </v-btn-toggle>
-      </v-row>
-      <p style="padding-top: 10px">Grill</p>
-      <v-row class="action-row action_btn">
-
-        <v-btn-toggle mandatory
-                      v-model="grillMode">
-          <v-btn x-small><v-icon>power_off</v-icon></v-btn>
-          <v-btn x-small><v-icon>energy_savings_leaf</v-icon></v-btn>
-          <v-btn x-small><v-icon>bolt</v-icon></v-btn>
+        <v-btn-toggle mandatory v-model="fuenteCalor">
+          <v-btn width="100px">ABAJO</v-btn>
+          <v-btn width="100px">NORMAL</v-btn>
+          <v-btn width="100px">ARRIBA</v-btn>
         </v-btn-toggle>
       </v-row>
-      <p style="padding-top: 10px">Convección</p>
+      <p style="padding-top: 30px">Grill</p>
       <v-row class="action-row action_btn">
+        <v-btn-toggle mandatory v-model="grillMode" class="grill-buttons">
+          <v-btn width="100px"><v-icon>power_off</v-icon></v-btn>
+          <v-btn width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
+          <v-btn width="100px"><v-icon>bolt</v-icon></v-btn>
+        </v-btn-toggle>
+      </v-row>
 
-        <v-btn-toggle
-                      mandatory
-                      v-model="conveccionMode">
-          <v-btn x-small><v-icon>power_off</v-icon></v-btn>
-          <v-btn x-small><v-icon>energy_savings_leaf</v-icon></v-btn>
-          <v-btn x-small><v-icon>bolt</v-icon></v-btn>
+      <p style="padding-top: 30px">Convección</p>
+      <v-row class="action-row action_btn">
+        <v-btn-toggle mandatory v-model="conveccionMode">
+          <v-btn width="100px"><v-icon>power_off</v-icon></v-btn>
+          <v-btn width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
+          <v-btn width="100px"><v-icon>bolt</v-icon></v-btn>
         </v-btn-toggle>
       </v-row>
     </v-card>
@@ -69,7 +69,7 @@ export default {
       fuenteCalor:undefined,
       grillMode:undefined,
       conveccionMode:undefined,
-      slider:100
+      slider:90
 
     }
   }
@@ -77,8 +77,9 @@ export default {
 </script>
 
 <style scoped>
+
   .device-div{
-    width: 150px;
+    width: 310px;
     justify-content: start;
     height: max-content;
 }
@@ -90,6 +91,23 @@ export default {
 
   .action_btn{
     padding: 5px;
+  }
+
+  .margin-text {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .text {
+    margin-bottom: 20px;
+  }
+
+  .margin-slider {
+    margin-left: 10px;
+  }
+
+  .background-card {
+    background-color: #E6F2FF;
   }
 
 

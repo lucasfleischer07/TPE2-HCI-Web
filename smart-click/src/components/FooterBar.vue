@@ -17,5 +17,4 @@ export default {
       background-color: dodgerblue;
       text-align: center;
     }
- 
 </style>

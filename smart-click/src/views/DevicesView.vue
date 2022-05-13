@@ -1,6 +1,10 @@
 <template>
   <div class="devices-view">
-    <div class="main-div">
+    <div v-if="(house.cuartos == null)" class="h1-title">
+      <v-icon x-large>house</v-icon>
+      <h1>Seleccione una casa</h1>
+    </div>
+    <div v-else class="main-div">
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
         <span class="text-h5 color-class" >{{ house.nombreCasa }}</span>
@@ -56,9 +60,9 @@
               <span class="span-class">ELIMINAR HABITACIÓN</span>
             </div>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content >
             <v-row>
-              <v-col v-for="device in room.roomDevices" :key="device.deviceCode" >
+              <v-col v-for="device in room.roomDevices" :key="device.deviceCode" class="flex-grow-0 col-division">
                 <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in devicesMap" :key="deviceProto.id">
                   <component v-if="deviceProto.id === device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
                 </v-container>
@@ -77,7 +81,6 @@
        </v-btn>
       -->
     </div>
-
   </div>
 </template>
 
@@ -182,6 +185,13 @@ export default {
     padding-bottom: 10px;
   }
 
+  .h1-title {
+    /*display: flex;*/
+    justify-content: center;
+    color: gray;
+    padding-top: 20px;
+  }
+
 
   .rooms-class{
     display: flex;
@@ -198,8 +208,8 @@ export default {
     margin-top: 20px;
   }
 
-  .expansion-panel-div {
-    /*display: inline-block;*/
+  .col-division {
+    padding-right: 100px;
   }
 
   .div-button-delete-room {
@@ -216,4 +226,5 @@ export default {
     font-size: 13px;
     padding-left: 10px;
   }
+
 </style>

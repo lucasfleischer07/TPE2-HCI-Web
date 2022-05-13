@@ -103,13 +103,13 @@ export default {
             iconState: "info"
         },
         {
-            name: "Cortina",
-            slug: "cortina",
-            id: 2,
-            iconMain: "roller_shades",
-            iconOpen: "blinder",
-            iconClose: "roller_shades_closed",
-            iconState: "info"
+            // name: "Cortina",
+            // slug: "cortina",
+            // id: 2,
+            // iconMain: "roller_shades",
+            // iconOpen: "blinder",
+            // iconClose: "roller_shades_closed",
+            // iconState: "info"
 //             No hay icono de establecer posicion ya que vamos a usar un slider
         },
         {
@@ -150,7 +150,7 @@ export default {
                         },
                         {
                             deviceCode: 1,
-                            deviceName: "mi puerta"
+                            deviceName: "Mi Puerta"
                         }
                     ],
                     toString(){
@@ -164,11 +164,11 @@ export default {
                     roomDevices: [
                         {
                             deviceCode: 1,
-                            deviceName: "mi puerta"
+                            deviceName: "Mi Puerta"
                         },
                         {
                             deviceCode: 2,
-                            deviceName: "mi lampara"
+                            deviceName: "Mi Lámpara"
                         }
                     ],
                     toString(){
@@ -232,11 +232,11 @@ export default {
                     roomDevices: [
                         {
                             deviceCode: 3,
-                            deviceName: "Mi horno"
+                            deviceName: "Mi Heladera"
                         },
                         {
                             deviceCode: 2,
-                            deviceName: "mi Cortina"
+                            deviceName: "Mi Lámpara"
                         }
                     ],
                     toString(){
@@ -250,11 +250,11 @@ export default {
                     roomDevices: [
                         {
                             deviceCode: 4,
-                            deviceName: "mi heladera"
+                            deviceName: "Mi Horno"
                         },
                         {
                             deviceCode: 2,
-                            deviceName: "mi Cortina"
+                            deviceName: "Mi Lámpara"
                         }
                     ],
                     toString(){
@@ -269,15 +269,15 @@ export default {
                     devicesAndActions: [
                         {
                             device : "miparlante",
-                            action:"volumen 100",
+                            action: "volumen 100",
                         },
                         {
                             device : "miluz",
-                            action:"prender",
+                            action: "prender",
                         },
                         {
                             device : "miPuerta",
-                            action:"abrir",
+                            action: "abrir",
                         },
 
                     ]

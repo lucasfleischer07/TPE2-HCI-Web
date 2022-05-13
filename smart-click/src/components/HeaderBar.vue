@@ -15,7 +15,7 @@
               <v-row aligned="center">
                 <v-col class="d-flex" cols="12" sm="20">
                   <v-subheader>
-                    <v-icon>home</v-icon>
+                    <v-icon x-large>home</v-icon>
                   </v-subheader>
                   <v-select
                       :items="houses"
@@ -24,6 +24,7 @@
                       dense
                       @change="houseChange"
                       persistent-placeholder
+                      height="50px"
                       placeholder="Seleccione una casa">
                   <template #append-item>
                       <div class="append color-back">
@@ -139,7 +140,8 @@ export default {
 
   .help-buttons {
     display: block;
-    margin-left: 35px;
+    margin-left: 100px;
+    margin-top: 6px;
   }
 
   .house-selector-slider {

@@ -1,36 +1,33 @@
 <template>
-
   <div class="action-row device-div">
-    <v-card>
+    <v-card class="background-card">
       <v-row class="action-row action_btn" >
         <device-icon name-device="door_front"/>
       </v-row>
-      <p>{{deviceEntity.deviceName}}</p>
+      <p class="text">{{deviceEntity.deviceName}}</p>
+    </v-card>
+
+    <v-card class="background-card">
       <v-row class="action-row  action_btn">
-        <div >
-          <v-btn depressed icon >
-            <v-icon x-large>open_in_full</v-icon>
-          </v-btn >
-          <v-btn depressed icon>
-            <v-icon x-large>close_fullscreen</v-icon>
-          </v-btn>
-        </div>
-      </v-row>
-      <v-row class="action-row  action_btn">
-        <div >
-          <v-btn depressed icon>
-            <v-icon x-large>lock</v-icon>
-          </v-btn >
-          <v-btn depressed icon>
-            <v-icon x-large>lock_open</v-icon>
-          </v-btn>
-        </div>
-      </v-row>
-      <v-row class="action-row  action_btn">
-        <v-btn depressed icon>
-            <v-icon x-large>info</v-icon>
-        </v-btn >
-      </v-row>
+          <div class="div-margin">
+            <v-btn depressed icon class="button-margin">
+              <v-icon x-large>open_in_full</v-icon>
+            </v-btn >
+            <v-btn depressed icon>
+              <v-icon x-large>close_fullscreen</v-icon>
+            </v-btn>
+          </div>
+        </v-row>
+        <v-row class="action-row  action_btn">
+          <div class="div-margin">
+            <v-btn depressed icon class="button-margin">
+              <v-icon x-large>lock</v-icon>
+            </v-btn >
+            <v-btn depressed icon>
+              <v-icon x-large>lock_open</v-icon>
+            </v-btn>
+          </div>
+        </v-row>
     </v-card>
   </div>
 </template>
@@ -66,12 +63,28 @@ export default {
     height: max-content;
   }
 
+  .text {
+    margin-bottom: 20px;
+  }
+
+  .button-margin {
+    margin-right: 35px;
+  }
+
+  .div-margin {
+    margin-bottom: 25px;
+  }
+
   .action-row{
-    padding-top:   0px;
     justify-content: center;
   }
 
   .action_btn{
     padding: 5px;
   }
+
+  .background-card {
+    background-color: #E6F2FF;
+  }
+
 </style>
