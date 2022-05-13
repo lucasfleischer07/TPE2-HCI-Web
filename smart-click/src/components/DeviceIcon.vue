@@ -1,10 +1,8 @@
 <template>
     <div>
-
         <v-icon x-large class="icon_class ">{{nameDevice}}</v-icon>
-
         <v-btn depressed icon class="trash_class" >
-          <v-icon  color="error" >delete_forever</v-icon>
+          <v-icon color="error" >delete_forever</v-icon>
         </v-btn>
 
     </div>
@@ -28,5 +26,6 @@ name: "DeviceIcon",
     position: relative;
     left: 60%;
   }
+
 
 </style>

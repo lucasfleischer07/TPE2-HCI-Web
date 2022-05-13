@@ -27,6 +27,8 @@ new Vue({
           warning: colors.pink.base,
           info: colors.cyan.base,
           success: "#80ccff"
+          // success: "#003d66"
+
         },
       },
     },

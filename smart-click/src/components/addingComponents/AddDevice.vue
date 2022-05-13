@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn class="font-weight-bold align-self" height="100px" width="300px" color="success" elevation="3" x-large
+    <v-btn class="font-weight-bold align-self hover-btn" height="100px" width="300px" color="success" elevation="3" x-large
            @click.stop="deviceAdd = true" rounded>
       <div class="icon-div">
         Agregar Dispositivo
@@ -131,6 +131,10 @@ export default {
 
   .margin-button {
     margin-top: 20px;
+  }
+
+  .hover-btn:hover {
+    opacity: 75%;
   }
 
 </style>

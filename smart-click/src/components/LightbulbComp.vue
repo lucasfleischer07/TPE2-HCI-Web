@@ -2,33 +2,34 @@
   <div class="action-row device-div">
     <v-card>
       <v-row class="action-row action_btn">
-        <DeviceIcon name-device="emoji_objects" />
+        <DeviceIcon name-device="emoji_objects"/>
       </v-row>
       <p>{{deviceEntity.deviceName}}</p>
       <v-row class="action-row action_btn" >
-        <v-switch inline> </v-switch>
+        <v-switch inline></v-switch>
       </v-row>
       <v-row class="action-row action_btn" >
-
-          <v-slider prepend-icon="brightness_6"
+          <v-slider class="margin-slider" prepend-icon="brightness_6"
                     :max="100"
                     :min="0"
-                    thumb-label
-                    style="width: 69%"
-                    v-model="slider" ></v-slider>
+                    style="width: 50%"
+                    v-model="slider"></v-slider>
           <v-text-field dense
               hide-details
               single-line
               v-model="slider"
-              style="width: 31%"
-          type="number">
+              style="width: 20%"
+              type="number"
+              prefix="%"
+              class="margin-text">
           </v-text-field>
 
       </v-row>
       <v-btn fab
             x-small
             :color=btnColor
-            @click="toggle= !toggle"></v-btn>
+            @click="toggle= !toggle"
+            class="margin-button"></v-btn>
       <v-color-picker :show-swatches="toggle" hide-canvas hide-sliders hide-inputs
       v-model="btnColor"
       :swatches="swatches"
@@ -71,14 +72,27 @@ name: "LightbulbComp",
 
 <style scoped>
 
+.margin-slider {
+  margin-left: 10px;
+}
+
 .device-div{
-  width: 150px;
+  width: 200px;
   justify-content: start;
   height: max-content;
 }
 
   .action-row{
     justify-content: center;
+  }
+
+  .margin-text {
+    margin-right: 10px;
+  }
+
+  .margin-button {
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
 
   .action_btn{

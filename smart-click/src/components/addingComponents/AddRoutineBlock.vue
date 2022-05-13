@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn class="font-weight-bold" height="100px" width="300px" color="success" elevation="3" x-large @click.stop="routineAdd = true" rounded>
+    <v-btn class="font-weight-bold hover-btn" height="100px" width="300px" color="success" elevation="3" x-large @click.stop="routineAdd = true" rounded>
       <div class="icon-div">
         Agregar rutina
         <v-icon large>event_busy</v-icon>
@@ -196,6 +196,10 @@ export default {
 
   .margin-button2 {
     margin-top: 50px;
+  }
+
+  .hover-btn:hover {
+    opacity: 75%;
   }
 
 

@@ -7,37 +7,21 @@
       <p>{{deviceEntity.deviceName}}</p>
       <v-row class="action-row action_btn">
         <div >
-          <v-btn depressed icon>
-            <v-icon  x-large>first_page</v-icon>
-          </v-btn >
-          <v-btn depressed icon>
-            <v-icon x-large>play_circle</v-icon>
-          </v-btn>
-          <v-btn depressed icon>
-            <v-icon x-large>last_page</v-icon>
-          </v-btn>
+          <v-btn depressed icon><v-icon  x-large>first_page</v-icon></v-btn >
+          <v-btn class="margin-separation-icons" depressed icon><v-icon x-large>play_circle</v-icon></v-btn>
+          <v-btn depressed icon><v-icon x-large>last_page</v-icon></v-btn>
         </div>
       </v-row>
       <v-row class="action-row action_btn" >
 
-        <v-btn depressed icon v-model="sound" @click="sound=0">
-          <v-icon x-large>volume_down_alt</v-icon>
-        </v-btn>
-        <v-slider v-model="sound">
-
-        </v-slider>
+        <v-btn depressed icon v-model="sound" @click="sound=0"><v-icon x-large>volume_down_alt</v-icon></v-btn>
+        <v-slider v-model="sound"></v-slider>
       </v-row>
       <v-row class="action-row">
         <div>
-          <v-btn depressed icon>
-            <v-icon x-large>queue_music</v-icon>
-          </v-btn >
-          <v-btn depressed icon>
-            <v-icon x-large>radio</v-icon>
-          </v-btn>
-          <v-btn depressed icon>
-            <v-icon x-large>info</v-icon>
-          </v-btn>
+          <v-btn depressed icon><v-icon x-large>queue_music</v-icon></v-btn >
+          <v-btn class="margin-separation-icons" depressed icon><v-icon x-large>radio</v-icon></v-btn>
+          <v-btn depressed icon><v-icon x-large>info</v-icon></v-btn>
         </div>
       </v-row>
     </v-card>
@@ -91,12 +75,17 @@ export default {
 }
 
 .action-row{
-  padding-top:   0px;
+  padding-top: 0;
   justify-content: center;
 }
 
   .action_btn{
     padding: 5px;
+  }
+
+  .margin-separation-icons {
+    margin-left: 15px;
+    margin-right: 15px;
   }
 
 </style>
