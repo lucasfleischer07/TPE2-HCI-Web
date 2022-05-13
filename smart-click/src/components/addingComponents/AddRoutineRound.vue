@@ -138,20 +138,20 @@ export default {
 
   methods: {
     AddDevice(){
-      if (this.deviceSelected==null || this.roomSelected==null || this.deviceType==null || this.actionSelected==null) {
-        console.log("No completo la rutina completa" )
-      }
-      else{
-        var routine={
+      if(this.houseSelected == null || this.roomSelected == null || this.deviceSelected == null || this.actionSelected == null){
+        console.log("No hizo la seleccion de rutinas")
+        //MENSAJE DE ERROR
+      }else {
+        var routine = {
           device: this.deviceSelected,
           action: this.actionSelected,
         }
         this.routineCreated.concat(routine)
         this.routineCreated.push(routine)
-        this.deviceSelected= {}
-        this.roomSelected= {}
-        this.deviceType= {}
-        this.actionSelected= {}
+        this.deviceSelected = {}
+        this.roomSelected = {}
+        this.deviceType = {}
+        this.actionSelected = {}
       }
     },
 
