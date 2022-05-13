@@ -102,7 +102,7 @@
         if (device == null)
           console.log("No selecciono Dispositivo")
         else {
-          //AGREGAR DISPOSITIVOVO
+          //ELIMINAR DISPOSITIVOVO
           this.confirmRemoveDevice = false
           this.deviceRemove = false
           this.deviceAddHouseSelected= {}
@@ -114,7 +114,7 @@
       if (routine == null)
         console.log("No selecciono Dispositivo")
       else {
-        //AGREGAR DISPOSITIVOVO
+        //ELIMINAR RUTINA
         this.confirmRemoveRoutine = false
         this.routineRemove = false
         this.deviceAddHouseSelected= {}

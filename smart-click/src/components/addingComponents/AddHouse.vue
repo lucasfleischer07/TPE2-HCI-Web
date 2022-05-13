@@ -71,6 +71,9 @@ export default {
 /*    padding-bottom: 50px;*/
 /*    font-size: 40px;*/
 /*  }*/
+  .v-btn:focus::before {
+    opacity: 0 !important;
+  }
 
   .icon-div {
     display: flex;

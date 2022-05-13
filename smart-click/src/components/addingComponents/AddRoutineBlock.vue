@@ -42,13 +42,13 @@
                 <v-select
                     :items="houseSelected.cuartos"
                     item-text="roomName"
-                    label="Habitacion seleccionada:"
+                    label="Habitación seleccionada:"
                     outlined class="house-selector-slider"
                     dense
                     return-object
                     v-model="roomSelected"
                     persistent-placeholder
-                    placeholder="Seleccione una habitacion">
+                    placeholder="Seleccione una habitación">
                 </v-select>
               </v-col>
             </v-row>
@@ -77,12 +77,12 @@
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
                     :items="deviceType.actions"
-                    label="Accion seleccionada:"
+                    label="Acción seleccionada:"
                     outlined class="house-selector-slider"
                     dense
                     v-model="actionSelected"
                     persistent-placeholder
-                    placeholder="Seleccione una accion">
+                    placeholder="Seleccione una acción">
                 </v-select>
               </v-col>
             </v-row>

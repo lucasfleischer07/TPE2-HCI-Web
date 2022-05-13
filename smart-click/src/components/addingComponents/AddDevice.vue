@@ -37,12 +37,12 @@
                 <v-select
                     :items="deviceAddHouseSelected.cuartos"
                     item-text="roomName"
-                    label="Cuarto seleccionado:"
+                    label="Habitación seleccionada:"
                     outlined class="house-selector-slider"
                     dense
                     v-model="deviceAddRoomSelected"
                     persistent-placeholder
-                    placeholder="Seleccione un cuarto">
+                    placeholder="Seleccione una habitación">
                 </v-select>
               </v-col>
             </v-row>
