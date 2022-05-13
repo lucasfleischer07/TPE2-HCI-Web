@@ -1,6 +1,6 @@
 <template>
-  <div class="action-row device-div" >
-    <v-card>
+  <div  >
+    <v-card depressed class="action-row device-div">
       <v-row class="action-row action_btn" >
         <device-icon name-device="speaker"/>
       </v-row>

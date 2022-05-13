@@ -104,6 +104,7 @@ export default {
     AddDeviceRound
   },
 
+
   methods: {
     addDevice(text, deviceType, house, room) {
       if (text === "" || deviceType == null || house == null || room == null)
