@@ -52,6 +52,10 @@ class Home{
     }
 }
 
+class HomeMeta{
+    constructor() {
+        this.houseRoutines=[]
+    }
+}
 
-
-export {HouseApi,Home }
+export {HouseApi,Home,HomeMeta }
