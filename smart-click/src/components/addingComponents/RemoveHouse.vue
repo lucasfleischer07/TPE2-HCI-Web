@@ -2,7 +2,6 @@
   <div>
     <div class="delete-div">
       <v-btn class="delete-button" color="error" elevation="3" fab rounded @click.stop="houseRemove = true"><v-icon>delete_forever</v-icon></v-btn>
-      <span class="delete-text">ELIMINAR CASA</span>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
@@ -108,12 +107,6 @@ export default {
   .delete-button {
     margin-left: 100px;
     margin-right: 5px;
-  }
-
-  .delete-text {
-    display: inline;
-    padding-left: 10px;
-    color: grey;
   }
 
   .padding-btn {

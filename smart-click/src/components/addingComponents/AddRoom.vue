@@ -1,7 +1,6 @@
 <template>
   <div class="add-button">
     <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
-    <p class="text">AGREGAR HABITACIÓN</p>
     <v-dialog v-model="roomAdd" max-width="600px" height="600px">
       <v-card @keyup.enter="createRoom(roomName)">
         <v-card-title>
@@ -95,15 +94,14 @@ export default {
 
 <style scoped>
 
-
-.v-btn:focus::before {
-  opacity: 0 !important;
-}
-
-
-
 .margin-button {
   margin-top: 20px;
+}
+
+.add-button {
+  padding-right: 90px;
+  justify-content: flex-end;
+  padding-bottom: 10px;
 }
 
 

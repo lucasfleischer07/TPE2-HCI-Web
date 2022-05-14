@@ -1,9 +1,9 @@
 <template>
   <div class="devices-view">
-<!--    <div v-if="(house.cuartos == null)" class="h1-title">-->
-<!--      <v-icon x-large>house</v-icon>-->
-<!--      <h1>Seleccione una casa</h1>-->
-<!--    </div>-->
+    <!--    <div v-if="(house.cuartos == null)" class="h1-title">-->
+    <!--      <v-icon x-large>house</v-icon>-->
+    <!--      <h1>Seleccione una casa</h1>-->
+    <!--    </div>-->
     <div class="main-div">
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
@@ -15,12 +15,11 @@
 
     <div class="rooms-class">
       <v-expansion-panels>
-        <v-expansion-panel v-for="room in house.cuartos" :key="room.nombreCasa">
+        <v-expansion-panel class="expansion-panel-margin" v-for="room in house.cuartos" :key="room.nombreCasa">
           <v-expansion-panel-header class="expansion-panel-div">
-            <span>{{room.roomName}}: {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} activos</span>
+            <span> {{room.roomName}}: dispositivos activos {{room.roomDevicesActiveAmount}}/{{room.roomDevicestotalAmoount}}</span>
             <div class="div-button-delete-room">
               <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete_forever</v-icon></v-btn>
-              <span class="span-class">ELIMINAR HABITACIÓN</span>
             </div>
           </v-expansion-panel-header>
           <v-expansion-panel-content >
@@ -30,9 +29,9 @@
                   <component v-if="deviceProto.id === device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
                 </v-container>
               </v-col>
-          <!--
-              <speaker-comp class="devices" deviceEntity="device"/>
-              <door-comp class="devices" deviceEntity="device"/>-->
+              <!--
+                  <speaker-comp class="devices" deviceEntity="device"/>
+                  <door-comp class="devices" deviceEntity="device"/>-->
 
             </v-row>
             <AddDeviceRound/>
@@ -103,77 +102,53 @@ export default {
 
 <style scoped>
 
-  .v-btn:focus::before {
-    opacity: 0 !important;
-  }
+/*.v-btn:focus::before {*/
+/*  opacity: 0 !important;*/
+/*}*/
 
-  .color-class {
-    color: gray;
-  }
+.color-class {
+  color: gray;
+}
 
-  .devices-view {
-    min-height: 530px;
-    padding-top: 20px;
-    background-image: url("@/assets/fondo1.jpg");
-    background-repeat: repeat round;
-  }
+.devices-view {
+  min-height: 530px;
+  padding-top: 20px;
+  background-image: url("@/assets/fondo1.jpg");
+  background-repeat: repeat round;
+}
 
-  .main-div {
-    display: flex;
-    justify-content: space-around;
+.main-div {
+  display: flex;
+  justify-content: space-between;
 
-  }
+}
 
-  .house-icon {
-    display: flex;
-    align-items: center;
-    padding-bottom: 20px;
-  }
+.house-icon {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-left: 200px;
+}
 
-  .add-button {
-    justify-content: flex-end;
-    padding-bottom: 10px;
-  }
+.rooms-class{
+  display: flex;
+  justify-content: center;
+}
 
-  .h1-title {
-    justify-content: center;
-    color: gray;
-    padding-top: 20px;
-  }
+.col-division {
+  padding-right: 100px;
+}
 
+.div-button-delete-room {
+  display: flex;
+  width: auto;
+  justify-content: end;
+  margin-right: 50px;
+  align-items: center;
+}
 
-  .rooms-class{
-    display: flex;
-    justify-content: center;
-  }
-
-  .text{
-    display: inline;
-    padding-left: 10px;
-    color: grey;
-  }
-
-  .margin-button {
-    margin-top: 20px;
-  }
-
-  .col-division {
-    padding-right: 100px;
-  }
-
-  .div-button-delete-room {
-    display: flex;
-    width: auto;
-    justify-content: end;
-    margin-right: 50px;
-    align-items: center;
-  }
-
-  .span-class {
-    display: flex;
-    color: gray;
-    font-size: 13px;
-    padding-left: 10px;
-  }
+.expansion-panel-margin{
+  margin-bottom: 15px;
+}
 
 </style>
