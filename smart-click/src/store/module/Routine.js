@@ -8,19 +8,19 @@ export default {
     actions: {
         async createRoutine({dispatch}, routine) {
             const result = await RoutineApi.add(routine)
-            dispatch("getAll")          //Con esto ejecuto una accion desde otra accion,
+            dispatch("getAllRoutine")          //Con esto ejecuto una accion desde otra accion,
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Routine(),result)
         },
         async modifyRoutine({dispatch}, routine) {
             const result = await RoutineApi.modify(routine)
-            dispatch("getAll")
+            dispatch("getAllRoutine")
             return result
 
         },
         async deleteRoutine({dispatch}, id) {
             const result = await RoutineApi.delete(id)
-            dispatch("getAll")
+            dispatch("getAllRoutine")
             return result
         },
         async getAllRoutine({commit}) {
@@ -31,13 +31,13 @@ export default {
         },
         async getRoutine({dispatch},id) {
             const result = await RoutineApi.getAll(id)
-            dispatch("getAll")
+            dispatch("getAllRoutine")
             return Object.assign(new Routine(),result)
         },
 
         async executeRoutine({dispatch},id) {
             const result = await RoutineApi.executeRoutine(id)
-            dispatch("getAll")
+            dispatch("getAllRoutine")
             return result
         },
 
