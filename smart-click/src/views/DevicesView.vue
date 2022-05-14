@@ -1,20 +1,22 @@
 <template>
   <div class="devices-view">
-    <div v-if="(house.cuartos == null)" class="h1-title">
-      <v-icon x-large>house</v-icon>
-      <h1>Seleccione una casa</h1>
-    </div>
-    <div v-else class="main-div">
+<!--    <div v-if="(house.cuartos == null)" class="h1-title">-->
+<!--      <v-icon x-large>house</v-icon>-->
+<!--      <h1>Seleccione una casa</h1>-->
+<!--    </div>-->
+    <div class="main-div">
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
         <span class="text-h5 color-class" >{{ house.nombreCasa }}</span>
         <RemoveHouse/>
       </div>
+
+
       <div class="add-button">
         <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
         <p class="text">AGREGAR HABITACIÓN</p>
         <v-dialog v-model="roomAdd" max-width="600px" height="600px">
-          <v-card @keyup.enter="addRoom(deviceName,deviceAddHouseSelected)">
+          <v-card @keyup.enter="createRoom(roomName,deviceAddHouseSelected)">
             <v-card-title>
               <h2>Agregue una nueva habitación</h2>
             </v-card-title>
@@ -39,9 +41,9 @@
                   label="Nombre de la habitación"
                   :rules="rules"
                   hide-details="auto"
-                  v-model="deviceName"
+                  v-model="roomName"
               />
-              <v-btn class="margin-button" color="primary" @click="addRoom(deviceName,deviceAddHouseSelected)">
+              <v-btn class="margin-button" color="primary" @click="createRoom(roomName,deviceAddHouseSelected)">
                 Agregar habitación
               </v-btn>
             </v-card-text>
@@ -93,6 +95,9 @@ import LightbulbComp from "@/components/LightbulbComp";
 import OvenComp from "@/components/OvenComp";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 import RemoveHouse from "@/components/addingComponents/RemoveHouse";
+import {mapState, mapActions} from "vuex";
+import {Room} from "@/Api/Room"
+
 
 export default {
   name: "DevicesView",
@@ -104,11 +109,20 @@ export default {
     LightbulbComp,
     RefrigeratorComp,
     OvenComp,
-    AddDeviceRound
+    AddDeviceRound,
   },
 
+  computed: {
+    ...mapState("Room", {
+      room: (state) => state.room,
+    }),
+  },
 
   methods: {
+    ...mapActions("Room", {
+      $createRoom: "create"
+    }),
+
     addDevice(text, deviceType, house, room) {
       if (text === "" || deviceType == null || house == null || room == null)
         console.log("Mal nombre de casa")
@@ -122,14 +136,16 @@ export default {
     },
 
 
-  addRoom(roomName,house) {
-    if (roomName === "" || house == null)
-      console.log("No selecciono Dispositivo")
-    else
-      {
-        //AGREGAR CUARTO
+    async createRoom(roomName) {
+      const room = new Room(null, roomName, null);
+
+      try {
+        this.room = await this.$createRoom(room);
+        this.room = Object.assign(new Room(), this.room);
         this.roomAdd = false
-        this.deviceName = ""
+        this.roomName = ""
+      } catch (e) {
+        console.log(e)
       }
     }
   },
@@ -144,9 +160,9 @@ export default {
       deviceAddHouseSelected: {},
       deviceAddRoomSelected: {},
       deviceSelected: {},
-      deviceName: "",
+      roomName: "",
       deviceMap: store.devicesMap,
-      rules: [v => v.length <= 25 || 'Max 25 characters'],
+      rules: [v => v.length <= 25 || 'Máximo 25 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
 }

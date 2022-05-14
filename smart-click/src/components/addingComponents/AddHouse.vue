@@ -43,9 +43,7 @@ export default {
       houses: store.houses,
       houseAdd: false,
       nombreCasa: "",
-
-
-      rules: [v => v.length <= 25 || 'Max 25 characters',v => v.length >= 3 || 'Min 3 characters'],
+      rules: [v => v.length <= 25 || 'Máximo 25 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
 
