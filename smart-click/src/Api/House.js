@@ -54,7 +54,7 @@ class Home{
 
 class HomeMeta{
     constructor() {
-        this.houseRoutines=[]
+        this.homeRoutines=[]
     }
 }
 
