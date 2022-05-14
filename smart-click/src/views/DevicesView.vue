@@ -1,9 +1,9 @@
 <template>
   <div class="devices-view">
-    <!--    <div v-if="(house.cuartos == null)" class="h1-title">-->
-    <!--      <v-icon x-large>house</v-icon>-->
-    <!--      <h1>Seleccione una casa</h1>-->
-    <!--    </div>-->
+<!--    <div v-if="(house.cuartos == null)" class="h1-title">-->
+<!--      <v-icon x-large>house</v-icon>-->
+<!--      <h1>Seleccione una casa</h1>-->
+<!--    </div>-->
     <div class="main-div">
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
@@ -15,12 +15,10 @@
 
     <div class="rooms-class">
       <v-expansion-panels>
-        <v-expansion-panel class="expansion-panel-margin" v-for="room in house.cuartos" :key="room.nombreCasa">
+        <v-expansion-panel v-for="room in house.cuartos" :key="room.nombreCasa">
           <v-expansion-panel-header class="expansion-panel-div">
-            <span> {{room.roomName}}: dispositivos activos {{room.roomDevicesActiveAmount}}/{{room.roomDevicestotalAmoount}}</span>
-            <div class="div-button-delete-room">
-              <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete_forever</v-icon></v-btn>
-            </div>
+            <span>{{room.roomName}}: {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} activos</span>
+            <RemoveRoom :room_selected="room"/>
           </v-expansion-panel-header>
           <v-expansion-panel-content >
             <v-row>
@@ -29,9 +27,9 @@
                   <component v-if="deviceProto.id === device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
                 </v-container>
               </v-col>
-              <!--
-                  <speaker-comp class="devices" deviceEntity="device"/>
-                  <door-comp class="devices" deviceEntity="device"/>-->
+          <!--
+              <speaker-comp class="devices" deviceEntity="device"/>
+              <door-comp class="devices" deviceEntity="device"/>-->
 
             </v-row>
             <AddDeviceRound/>
@@ -58,6 +56,7 @@ import RemoveHouse from "@/components/addingComponents/RemoveHouse";
 import {mapState} from "vuex";
 import AddHouse from "@/components/addingComponents/AddHouse";
 import AddRoom from "@/components/addingComponents/AddRoom";
+import RemoveRoom from "@/components/addingComponents/RemoveRoom";
 
 
 export default {
@@ -72,7 +71,8 @@ export default {
     OvenComp,
     AddDeviceRound,
     AddHouse,
-    AddRoom
+    AddRoom,
+    RemoveRoom
   },
 
   computed: {
@@ -102,53 +102,77 @@ export default {
 
 <style scoped>
 
-/*.v-btn:focus::before {*/
-/*  opacity: 0 !important;*/
-/*}*/
+  .v-btn:focus::before {
+    opacity: 0 !important;
+  }
 
-.color-class {
-  color: gray;
-}
+  .color-class {
+    color: gray;
+  }
 
-.devices-view {
-  min-height: 530px;
-  padding-top: 20px;
-  background-image: url("@/assets/fondo1.jpg");
-  background-repeat: repeat round;
-}
+  .devices-view {
+    min-height: 530px;
+    padding-top: 20px;
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
+  }
 
-.main-div {
-  display: flex;
-  justify-content: space-between;
+  .main-div {
+    display: flex;
+    justify-content: space-around;
 
-}
+  }
 
-.house-icon {
-  display: flex;
-  align-items: center;
-  padding-bottom: 20px;
-  padding-left: 200px;
-}
+  .house-icon {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+  }
 
-.rooms-class{
-  display: flex;
-  justify-content: center;
-}
+  .add-button {
+    justify-content: flex-end;
+    padding-bottom: 10px;
+  }
 
-.col-division {
-  padding-right: 100px;
-}
+  .h1-title {
+    justify-content: center;
+    color: gray;
+    padding-top: 20px;
+  }
 
-.div-button-delete-room {
-  display: flex;
-  width: auto;
-  justify-content: end;
-  margin-right: 50px;
-  align-items: center;
-}
 
-.expansion-panel-margin{
-  margin-bottom: 15px;
-}
+  .rooms-class{
+    display: flex;
+    justify-content: center;
+  }
+
+  .text{
+    display: inline;
+    padding-left: 10px;
+    color: grey;
+  }
+
+  .margin-button {
+    margin-top: 20px;
+  }
+
+  .col-division {
+    padding-right: 100px;
+  }
+
+  .div-button-delete-room {
+    display: flex;
+    width: auto;
+    justify-content: end;
+    margin-right: 50px;
+    align-items: center;
+  }
+
+  .span-class {
+    display: flex;
+    color: gray;
+    font-size: 13px;
+    padding-left: 10px;
+  }
 
 </style>
