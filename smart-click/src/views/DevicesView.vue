@@ -10,46 +10,7 @@
         <span class="text-h5 color-class" >{{ house.nombreCasa }}</span>
         <RemoveHouse/>
       </div>
-
-
-      <div class="add-button">
-        <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
-        <p class="text">AGREGAR HABITACIÓN</p>
-        <v-dialog v-model="roomAdd" max-width="600px" height="600px">
-          <v-card @keyup.enter="createRoom(roomName,deviceAddHouseSelected)">
-            <v-card-title>
-              <h2>Agregue una nueva habitación</h2>
-            </v-card-title>
-            <v-card-text>
-              <v-container fluid c>
-                <v-row aligned="center">
-                  <v-col class="d-flex" cols="12" sm="10">
-                    <v-select
-                        :items="houses"
-                        label="Casa seleccionada:"
-                        outlined class="house-selector-slider"
-                        dense
-                        v-model="deviceAddHouseSelected"
-                        persistent-placeholder
-                        placeholder="Selecciona casa ">
-                    </v-select>
-                  </v-col>
-                </v-row>
-              </v-container>
-
-              <v-text-field
-                  label="Nombre de la habitación"
-                  :rules="rules"
-                  hide-details="auto"
-                  v-model="roomName"
-              />
-              <v-btn class="margin-button" color="primary" @click="createRoom(roomName,deviceAddHouseSelected)">
-                Agregar habitación
-              </v-btn>
-            </v-card-text>
-          </v-card>
-        </v-dialog>
-      </div>
+      <AddRoom/>
     </div>
 
     <div class="rooms-class">
@@ -95,8 +56,9 @@ import LightbulbComp from "@/components/LightbulbComp";
 import OvenComp from "@/components/OvenComp";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 import RemoveHouse from "@/components/addingComponents/RemoveHouse";
-import {mapState, mapActions} from "vuex";
-import {Room} from "@/Api/Room"
+import {mapState} from "vuex";
+import AddHouse from "@/components/addingComponents/AddHouse";
+import AddRoom from "@/components/addingComponents/AddRoom";
 
 
 export default {
@@ -110,6 +72,8 @@ export default {
     RefrigeratorComp,
     OvenComp,
     AddDeviceRound,
+    AddHouse,
+    AddRoom
   },
 
   computed: {
@@ -118,41 +82,10 @@ export default {
     }),
   },
 
-  methods: {
-    ...mapActions("Room", {
-      $createRoom: "create"
-    }),
-
-    addDevice(text, deviceType, house, room) {
-      if (text === "" || deviceType == null || house == null || room == null)
-        console.log("Mal nombre de casa")
-      else {
-        //AGREGAR DISPOSITIVO
-        this.deviceAdd = false
-        house = {}
-        room = {}
-        deviceType = {}
-      }
-    },
-
-
-    async createRoom(roomName) {
-      const room = new Room(null, roomName, null);
-
-      try {
-        this.room = await this.$createRoom(room);
-        this.room = Object.assign(new Room(), this.room);
-        this.roomAdd = false
-        this.roomName = ""
-      } catch (e) {
-        console.log(e)
-      }
-    }
-  },
 
   data() {
     return {
-      house: store.house,
+      house: store.houses[0],
       houses: store.houses,
       devicesMap: store.devicesMap,
       deviceAdd: false,
