@@ -187,7 +187,6 @@ export default {
   }
 
   .h1-title {
-    /*display: flex;*/
     justify-content: center;
     color: gray;
     padding-top: 20px;

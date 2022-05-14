@@ -1,5 +1,5 @@
 <template>
-  <v-footer padless>
+  <v-footer padless outlined>
     <v-col class="nav-class" cols="12">
       ® {{ new Date().getFullYear() }} - <strong>SmartClick</strong>
     </v-col>

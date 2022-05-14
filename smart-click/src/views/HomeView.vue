@@ -18,7 +18,7 @@
       <h2 class="font-weight-thin">Mis Favoritos</h2>
       <v-card class="card-favs ma-lg-6" >
 
-          <h2>Mis Dispositivos</h2>
+        <h2>Mis Dispositivos</h2>
       </v-card>
     </div>
 
@@ -31,16 +31,13 @@
   import AddDevice from "@/components/addingComponents/AddDevice";
   import AddRoutineBlock from "@/components/addingComponents/AddRoutineBlock";
   import {mapActions} from "vuex"
-
   export default {
     name: "HomeView",
-
     components: {
       AddHouse,
       AddDevice,
       AddRoutineBlock
     },
-
     data() {
       return {
         deviceMap: store.devicesMap,
@@ -48,20 +45,15 @@
         houseAdd: false,
         nombreCasa: "",
         deviceAdd: false,
-
         houseRemove: false,
         confirmRemoveHouse:false,
-
         deviceRemove: false,
         confirmRemoveDevice:false,
-
         routineRemove:false,
         confirmRemoveRoutine: false,
-
         houseDeleteSelected: {},
         deviceDeleteSelected: {},
         routineDeleteSeleceted: {},
-
         deviceAddHouseSelected: {},
         deviceAddRoomSelected: {},
         deviceSelected: {},
@@ -102,9 +94,9 @@
         else {
           //AGREGAR DISPOSITIVO
           this.deviceAdd = false
-              house = {}
-              room = {}
-              deviceType = {}
+          house = {}
+          room = {}
+          deviceType = {}
         }
       },
       removeHouse(houseToDelete) {
@@ -130,24 +122,22 @@
         }
       },
       removeRoutine(routine) {
-      if (routine == null)
-        console.log("No selecciono Dispositivo")
-      else {
-        //ELIMINAR RUTINA
-        this.confirmRemoveRoutine = false
-        this.routineRemove = false
-        this.deviceAddHouseSelected= {}
-        this.deviceAddRoomSelected= {}
-        this.routineDeleteSelected = {}
-      }
-
+        if (routine == null)
+          console.log("No selecciono Dispositivo")
+        else {
+          //ELIMINAR RUTINA
+          this.confirmRemoveRoutine = false
+          this.routineRemove = false
+          this.deviceAddHouseSelected= {}
+          this.deviceAddRoomSelected= {}
+          this.routineDeleteSelected = {}
+        }
       }
     }
   }
 </script>
 
 <style scoped>
-
   .main-div{
     display: flex;
     justify-content: space-between;
@@ -155,32 +145,24 @@
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
   }
-
   .home-view  {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
   }
-
- .buttons {
+  .buttons {
     display: flex;
     justify-content: space-evenly;
     padding-bottom: 40px;
     font-size: 40px;
-   padding-left: 180px;
+    padding-left: 180px;
   }
-
   .div-faves{
     padding-top: 12px;
   }
-
   .card-favs{
     background-color: transparent;
     min-width: 1000px;
     min-height: 400px;
   }
-
-
-
 </style>
-
