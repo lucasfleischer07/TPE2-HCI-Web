@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="div-button-delete-routine">
-      <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeHouse = true"><v-icon>delete</v-icon></v-btn>
+      <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="routineRemove = true"><v-icon>delete</v-icon></v-btn>
       <span class="span-class">ELIMINAR RUTINA</span>
     </div>
 
@@ -73,6 +73,7 @@
 <script>
 
 import store from "@/store/store";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "RemoveRoutine",
@@ -90,8 +91,32 @@ export default {
       rules: [v => v.length <= 25 || 'Max 25 characters'],
     }
   },
+  computed: {
+    ...mapState("Routine", {
+      routines: (state) => state.routines,
+    }),},
+
   methods: {
-    removeRoutine(routine) {
+    ...mapActions("Routine", {
+      $removeRoutine: "deleteRoutine",}),
+
+    async removeRoutine(routineToDelete) {
+      try {
+        await this.$removeRoutine(routineToDelete.id);
+        this.routines = null;
+
+      } catch (e) {
+       // this.setResult(e);
+      }
+
+      this.confirmRemoveRoutine = false
+      this.routineRemove = false
+      this.deviceAddHouseSelected= {}
+      this.deviceAddRoomSelected= {}
+      this.routineDeleteSelected = {}
+    }
+
+    /*removeRoutine(routine) {
       if (routine == null)
         console.log("No selecciono Dispositivo")
       else {
@@ -103,7 +128,7 @@ export default {
         this.routineDeleteSelected = {}
       }
 
-    }
+    }*/
   }
 
 }

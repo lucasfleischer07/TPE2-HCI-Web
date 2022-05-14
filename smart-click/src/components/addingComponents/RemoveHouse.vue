@@ -82,7 +82,7 @@ export default {
         this.house = null;
 
       } catch (e) {
-        this.setResult(e);
+       // this.setResult(e);
       }
 
       this.confirmRemoveHouse = false
