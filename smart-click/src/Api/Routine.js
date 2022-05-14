@@ -11,7 +11,7 @@ class RoutineApi{
     }
 
     static async modify(routine){
-        return await Api.put(RoutineApi.getUrl(routine.id),routine)        //le pasamos room.id para matchear la sintaxis de la api
+        return await Api.put(RoutineApi.getUrl(routine.id),routine)
     }
 
     static async delete(id){

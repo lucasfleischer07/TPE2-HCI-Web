@@ -1,42 +1,41 @@
 import {Api} from "@/Api/Api";
 
-
 class HouseApi{
     static getUrl(slug){
         return `${Api.baseUrl}/homes${  slug ? `/${slug}` : ""}`
     }
 
-    static async add(home){
-        return await Api.post(HouseApi.getUrl(),home)
+    static async add(home,controller){
+        return await Api.post(HouseApi.getUrl(),home,controller)
     }
 
-    static async modify(home){
-        return await Api.put(HouseApi.getUrl(home.id),home)        //le pasamos room.id para matchear la sintaxis de la api
+    static async modify(home, controller){
+        return await Api.put(HouseApi.getUrl(home.id),home, controller)
     }
 
-    static async delete(id){
-        return await Api.delete(HouseApi.getUrl(id))
+    static async delete(id, controller){
+        return await Api.delete(HouseApi.getUrl(id), controller)
     }
 
-    static async getAll(){
-        return await Api.get(HouseApi.getUrl())
+    static async getAll(controller){
+        return await Api.get(HouseApi.getUrl(), controller)
 
     }
 
-    static async get(id){
-        return await Api.get(HouseApi.getUrl(id))
+    static async get(id, controller){
+        return await Api.get(HouseApi.getUrl(id), controller)
     }
 
-    static async getRooms(id){
-        return await Api.get(HouseApi.getUrl(`${id}/rooms`))
+    static async getRooms(id, controller){
+        return await Api.get(HouseApi.getUrl(`${id}/rooms`), controller)
     }
 
-    static async addRoom(homeId,roomId){
-        return await Api.post(HouseApi.getUrl(`${homeId}/rooms/${roomId}`))
+    static async addRoom(homeId,roomId, controller){
+        return await Api.post(HouseApi.getUrl(`${homeId}/rooms/${roomId}`), controller)
     }
 
-    static async deleteRoom(roomId){
-        return await Api.delete(HouseApi.getUrl(`rooms/${roomId}`))
+    static async deleteRoom(roomId, controller){
+        return await Api.delete(HouseApi.getUrl(`rooms/${roomId}`), controller)
     }
 
 }

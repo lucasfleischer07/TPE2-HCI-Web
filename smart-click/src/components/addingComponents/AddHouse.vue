@@ -8,7 +8,7 @@
       </div>
     </v-btn>
     <v-dialog v-model="houseAdd" max-width="600px" height="600px">
-      <v-card @keyup.enter="addHouse(nombreCasa)">
+      <v-card  @keyup.enter="createHouse(nombreCasa)">
         <v-card-title>
           <h2>Agregue una nueva casa</h2>
         </v-card-title>
@@ -19,7 +19,7 @@
               hide-details="auto"
               v-model="nombreCasa"
           />
-          <v-btn class="margin-button" color="primary" @click="addHouse(nombreCasa)">
+          <v-btn  class="margin-button" color="primary" @click="createHouse(nombreCasa)">
             Agregar Casa
           </v-btn>
         </v-card-text>
@@ -32,6 +32,8 @@
 
 <script>
 import store from "@/store/store";
+import { mapState, mapActions } from "vuex";
+import { Home } from "../../Api/House";
 
 export default {
   name: "AddHouse",
@@ -42,11 +44,48 @@ export default {
       houseAdd: false,
       nombreCasa: "",
 
-      rules: [v => v.length <= 25 || 'Max 25 characters'],
+
+      rules: [v => v.length <= 25 || 'Max 25 characters',v => v.length >= 3 || 'Min 3 characters'],
     }
   },
+
+  computed: {
+    ...mapState("House", {
+      house: (state) => state.house,
+    }),
+    canCreate() {
+      return !this.house;
+    },
+    canOperate() {
+      return this.house;
+    },
+    canAbort() {
+      return this.controller;
+    },
+
+  },
+
   methods: {
-    addHouse(text) {
+    ...mapActions("House", {
+      $createHouse: "createHome",
+
+    }),
+    async createHouse(name) {
+      const house = new Home(null, name, {});
+
+      try {
+        this.house = await this.$createHouse(house);
+        this.house = Object.assign(new Home(), this.house);
+        this.houseAdd = false
+        this.nombreCasa = ""
+      } catch (e) {
+        console.log(e)
+      }
+
+    },
+
+
+  /*addHouse(text) {
       if (text === "")
         console.log("Mal nombre de casa")
       else {
@@ -54,10 +93,13 @@ export default {
         this.houseAdd = false
         this.nombreCasa = ""
       }
-    },
+    },*/
   }
-
 }
+
+
+
+
 
 
 

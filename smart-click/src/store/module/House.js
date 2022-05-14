@@ -8,47 +8,47 @@ export default {
     },
     actions: {
         async createHome({dispatch}, home) {
-            const result = await HouseApi.add(home)
-            dispatch("getAll")          //Con esto ejecuto una accion desde otra accion,
+            const result = await HouseApi.add(home);
+            dispatch("getAllHomes") ;      //Con esto ejecuto una accion desde otra accion,
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Home(),result);
         },
         async modifyHome({dispatch}, home) {
             const result = await HouseApi.modify(home)
-            dispatch("getAll")
+            dispatch("getAllHomes")
             return result
 
         },
         async deleteHome({dispatch}, id) {
             const result = await HouseApi.delete(id)
-            dispatch("getAll")
+            dispatch("getAllHomes")
             return result
         },
-        async getAllHomes({commit}) {
-            let result = await HouseApi.getAll()
+        async getAllHomes({commit},controller) {
+            let result = await HouseApi.getAll(controller)
             result = result.map((home) => Object.assign(new Home(),home))
             commit("update", result)
             return result
         },
         async getHome({dispatch},id) {
             const result = await HouseApi.getAll(id)
-            dispatch("getAll")
+            dispatch("getAllHomes")
             return Object.assign(new Home(),result);
         },
         async getHomeRooms({dispatch},id) {
             let result = await HouseApi.getRooms(id);
             result = result.map((room) => Object.assign(new Room(),room));
-            dispatch("getAll")
+            dispatch("getAllHomes")
             return result
         },
         async addHomeRoom({dispatch},homeId,roomId) {
             const result = await HouseApi.addRoom(homeId,roomId)
-            dispatch("getAll")
+            dispatch("getAllHomes")
             return result
         },
         async deleteHomeRoom({dispatch},id) {
             const result = await HouseApi.deleteRoom(id)
-            dispatch("getAll")
+            dispatch("getAllHomes")
             return result
         }
 

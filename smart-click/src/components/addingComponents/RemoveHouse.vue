@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="delete-div">
-      <v-btn class="delete-button" color="error" elevation="3" fab rounded @click.stop="removeHouse = true"><v-icon>delete_forever</v-icon></v-btn>
+      <v-btn class="delete-button" color="error" elevation="3" fab rounded @click="removeHouse(houseDeleteSelected)"><v-icon>delete_forever</v-icon></v-btn>
       <span class="delete-text">ELIMINAR CASA</span>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
@@ -52,6 +52,7 @@
 
 <script>
 import store from "@/store/store";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "RemoveHouse",
@@ -65,18 +66,34 @@ export default {
       confirmRemoveHouse:false,
 
 
+
       houseDeleteSelected: {},
 
       rules: [v => v.length <= 25 || 'Max 25 characters'],
     }
   },
-  methods: {
+  computed: {
+    ...mapState("House", {
+      house: (state) => state.house,
+    }),
 
-    removeHouse(houseToDelete) {
+  },
+  methods: {
+    ...mapActions("House", {
+      $removeHouse: "deleteHome",}),
+    async removeHouse(houseToDelete) {
       if (houseToDelete == null)
         console.log("No selecciono casa")
       else {
-        this.houses.splice(this.houses.indexOf(houseToDelete), 1)
+        try {
+          let state;
+          await this.$delete(state,"63081bbd3a8b2008");
+          this.house = null;
+
+        } catch (e) {
+          //this.setResult(e);
+        }
+
         this.confirmRemoveHouse = false
         this.houseRemove = false
         this.houseDeleteSelected = {}

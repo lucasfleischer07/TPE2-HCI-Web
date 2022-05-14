@@ -11,7 +11,7 @@ class DeviceApi{
     }
 
     static async modify(device){
-        return await Api.put(DeviceApi.getUrl(device.id),device)        //le pasamos room.id para matchear la sintaxis de la api
+        return await Api.put(DeviceApi.getUrl(device.id),device)
     }
 
     static async delete(id){

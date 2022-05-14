@@ -18,7 +18,7 @@
                     <v-icon x-large>home</v-icon>
                   </v-subheader>
                   <v-select
-                      :items="houses"
+                      :items="updateHouse"
                       label="Casa seleccionada:"
                       outlined class="house-selector-slider"
                       dense
@@ -72,7 +72,9 @@
 
 
 <script>
-import store from "@/store/store.js"
+
+import {mapActions, mapState} from "vuex";
+import {Home} from "@/Api/House";
 
 export default {
   name: "HeaderBar",
@@ -80,15 +82,61 @@ export default {
   data() {
     return {
       logo_image: require('@/assets/logo.png'),
-      houses: store.houses,
-      house: store.house,
+
+
       houseAdd: false,
       nombreCasa: "",
-      rules: [v => v.length <= 25 || 'Max 25 characters'],
-    }
+      rules:[v => v.length >= 3 || 'Min 3 characters'],}
+  },
+
+  computed: {
+    ...mapState("House", {
+      house: (state) => state.house,
+    }),
+    canCreate() {
+      return !this.house;
+    },
+    canOperate() {
+      return this.house;
+    },
+    canAbort() {
+      return this.controller;
+    },
+    updateHouse(){
+      this.$getAllHouses(this.controller)
+      return this.house}
+
   },
 
   methods: {
+    ...mapActions("House", {
+      $createHouse: "createHome",
+      $getAllHouses: "getAllHomes",
+
+    }),
+    async createHouse(name) {
+      const house = new Home(null, name, {});
+
+      try {
+        this.house = await this.$createHouse(house);
+        this.house = Object.assign(new Home(), this.house);
+        this.houseAdd= false;
+        this.nombreCasa=""
+
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async getAllHouses() {
+      try {
+        this.controller = new AbortController();
+        await this.$getAllHouses(this.controller);
+        this.controller = null;
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
     houseChange(selected)
     {
       this.house.nombreCasa= selected.nombreCasa;
