@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="delete-div">
-      <v-btn class="delete-button" color="error" elevation="3" fab rounded @click="removeHouse(houseDeleteSelected)"><v-icon>delete_forever</v-icon></v-btn>
+      <v-btn class="delete-button" color="error" elevation="3" fab rounded @click.stop="houseRemove = true"><v-icon>delete_forever</v-icon></v-btn>
       <span class="delete-text">ELIMINAR CASA</span>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
         <v-card-title>
-          <h2>Seleccione casa a eliminar</h2>
+          <h2>Seleccione la casa a eliminar</h2>
         </v-card-title>
         <v-card-text>
           <v-container fluid c>
@@ -25,7 +25,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-btn color="primary" @click.stop="confirmRemoveHouse=true">
+          <v-btn color="error" @click.stop="confirmRemoveHouse=true">
             Eliminar casa
           </v-btn>
           <v-dialog v-model="confirmRemoveHouse" max-width="600px" height="600px">
@@ -33,12 +33,11 @@
               <v-card-title>
                 <h2>Esta seguro que desea eliminar "{{ houseDeleteSelected }}"</h2>
               </v-card-title>
-
               <v-card-text>
-                <v-btn color="primary" @click="removeHouse(houseDeleteSelected.nombreCasa)" >
+                <v-btn class="padding-btn" color="error" @click="removeHouse(houseDeleteSelected)" >
                   Eliminar
                 </v-btn>
-                <v-btn color="error"  @click.stop="confirmRemoveHouse=false">
+                <v-btn color="grey"  @click.stop="confirmRemoveHouse=false">
                   Cancelar
                 </v-btn>
               </v-card-text>
@@ -51,7 +50,6 @@
 </template>
 
 <script>
-import store from "@/store/store";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -59,47 +57,39 @@ export default {
 
   data() {
     return {
-      houses: store.houses,
-
-
       houseRemove: false,
       confirmRemoveHouse:false,
-
-
-
       houseDeleteSelected: {},
-
       rules: [v => v.length <= 25 || 'Max 25 characters'],
     }
   },
+
+
   computed: {
     ...mapState("House", {
       house: (state) => state.house,
     }),
 
   },
+
+
   methods: {
     ...mapActions("House", {
       $removeHouse: "deleteHome",}),
+
     async removeHouse(houseToDelete) {
-      if (houseToDelete == null)
-        console.log("No selecciono casa")
-      else {
-        try {
-          let state;
-          await this.$delete(state,"63081bbd3a8b2008");
-          this.house = null;
+      try {
+        await this.$removeHouse(houseToDelete.id);
+        this.house = null;
 
-        } catch (e) {
-          //this.setResult(e);
-        }
-
-        this.confirmRemoveHouse = false
-        this.houseRemove = false
-        this.houseDeleteSelected = {}
+      } catch (e) {
+        this.setResult(e);
       }
-    }
 
+      this.confirmRemoveHouse = false
+      this.houseRemove = false
+      this.houseDeleteSelected = {}
+    }
 
   }
 
@@ -124,6 +114,10 @@ export default {
     display: inline;
     padding-left: 10px;
     color: grey;
+  }
+
+  .padding-btn {
+    margin-right: 25px;
   }
 
 </style>
