@@ -8,19 +8,19 @@ export default {
     actions: {
         async createDevice({dispatch}, device) {
             const result = await DeviceApi.add(device)
-            dispatch("getAll")          //Con esto ejecuto una accion desde otra accion,
+            dispatch("getAllDevice")          //Con esto ejecuto una accion desde otra accion,
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Device(),result);
         },
         async modifyDevice({dispatch}, device) {
             const result = await DeviceApi.modify(device)
-            dispatch("getAll")
+            dispatch("getAllDevice")
             return result
 
         },
         async deleteDevice({dispatch}, id) {
             const result = await DeviceApi.delete(id)
-            dispatch("getAll")
+            dispatch("getAllDevice")
             return result
         },
         async getAllDevices({commit}) {
@@ -30,17 +30,17 @@ export default {
         },
         async getDevice({dispatch},id) {
             const result = await DeviceApi.getAll(id)
-            dispatch("getAll")
+            dispatch("getAllDevice")
             return Object.assign(new Device(),result);
         },
         async getDeviceState({dispatch},id) {
             const result = await DeviceApi.getState(id)
-            dispatch("getAll")
+            dispatch("getAllDevice")
             return result
         },
         async executeDeviceAction({dispatch},id,action) {
             const result = await DeviceApi.executeAction(id,action)
-            dispatch("getAll")
+            dispatch("getAllDevice")
             return result
         },
 

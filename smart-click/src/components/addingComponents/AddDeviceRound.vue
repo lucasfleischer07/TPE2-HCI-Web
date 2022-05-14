@@ -5,7 +5,7 @@
       <p class="text">AGREGAR DISPOSITIVO</p>
     </div>
     <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
-      <v-card @keyup.enter="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
+      <v-card @keyup.enter="addDevice()">
         <v-card-title>
           <h2>Agregue un nuevo dispositivo</h2>
         </v-card-title>
@@ -66,7 +66,7 @@
               hide-details="auto"
               v-model="deviceName"
           />
-          <v-btn class="margin-button" color="primary" @click="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
+          <v-btn class="margin-button" color="primary" @click="addDevice()">
             Agregar Dispositivo
           </v-btn>
         </v-card-text>
@@ -79,6 +79,8 @@
 
 <script>
 import store from "@/store/store";
+import {mapActions} from "vuex";
+import {Device} from "@/Api/Device";
 
 export default {
   name: "AddDeviceRound",
@@ -98,21 +100,37 @@ export default {
     }
   },
   methods: {
+    ...mapActions("Devices", {
+      $createDevice: "createDevice",
 
-    addDevice(text, deviceType, house, room) {
-      if (text === "" || deviceType == null || house == null || room == null)
+    }),
+    ...mapActions("Room", {
+      $addDevice: "addDevice",
+
+    }),
+    async addDevice() {
+      if (this.deviceName === "" || this.deviceSelected == null || this.deviceAddHouseSelected == null || this.deviceAddRoomSelected == null)
         console.log("Mal nombre de casa")
       else {
-        //AGREGAR DISPOSITIVO
-        this.deviceAdd= false,
-        this.deviceAddHouseSelected= {},
-        this.deviceAddRoomSelected= {},
-        this.deviceSelected= {},
-        this.deviceName= ""
+        const type={
+          id: "c89b94e8581855bc"  //SACAR ESTO DESPUES, ESTA HARDCODEADO
+        }
+        const device = new Device(null, this.deviceName, type/*this.deviceSelected*/, {});
+
+        try {
+          this.device = await this.$createDevice(device);
+          this.device = Object.assign(new Device(), this.device);
+          //this.$addDevice(this.deviceAddRoomSelected.id,this.device.id) FALTA HACER
+        } catch (e) {
+          console.log(e)
+        }
+        this.deviceAdd = false,
+            this.deviceAddHouseSelected = {},
+            this.deviceAddRoomSelected = {},
+            this.deviceSelected = {},
+            this.deviceName = ""
       }
     }
-
-
   }
 }
 </script>

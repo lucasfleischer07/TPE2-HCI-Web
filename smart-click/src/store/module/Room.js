@@ -1,4 +1,5 @@
 import {RoomApi,Room} from "@/Api/Room";
+import {Device} from "@/Api/Device";
 
 export default{
     namespaced: true,
@@ -33,6 +34,22 @@ export default{
             const result = await RoomApi.get(id)
             dispatch("getAll")
             return Object.assign(new Room(),result);
+        },
+        async getDevices({dispatch},id){
+            let result = await RoomApi.getDevices(id)
+            dispatch("getAll")
+            result = result.map((device) => Object.assign(new Device(),device))
+            return result;
+        },
+        async addDevice({dispatch},roomId,deviceId){
+            const result = await RoomApi.addDevice(roomId,deviceId)
+            dispatch("getAll")
+            return result
+        },
+        async deleteDevice({dispatch},deviceId){
+            const result = await RoomApi.deleteDevice(deviceId)
+            dispatch("getAll")
+            return result
         }
 
     },

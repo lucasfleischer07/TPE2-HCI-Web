@@ -38,13 +38,12 @@ class DeviceApi{
 }
 
 class Device{
-    constructor(id,name,type,state,meta) {
+    constructor(id,name,type,meta) {
         if (id) {
             this.id=id;
         }
         this.name=name;
         this.type=type;
-        this.state=state;
         this.meta=meta;
     }
     toString(){

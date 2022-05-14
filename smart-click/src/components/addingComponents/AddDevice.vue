@@ -83,6 +83,8 @@
 
 <script>
 import store from "@/store/store";
+import {mapActions} from "vuex";
+import {Device} from "@/Api/Device";
 
 export default {
   name: "AddDevice",
@@ -101,23 +103,39 @@ export default {
         rules: [v => v.length <= 25 || 'Max 25 characters'],
       }
     },
-    methods: {
+  methods: {
+    ...mapActions("Devices", {
+      $createDevice: "createDevice",
 
-      addDevice(text, deviceType, house, room) {
-        if (text === "" || deviceType == null || house == null || room == null)
-          console.log("Mal nombre de casa")
-        else {
-          //AGREGAR DISPOSITIVO
-          this.deviceAdd= false,
-          this.deviceAddHouseSelected= {},
-          this.deviceAddRoomSelected= {},
-          this.deviceSelected= {},
-          this.deviceName= ""
+    }),
+    ...mapActions("Room", {
+      $addDevice: "addDevice",
+
+    }),
+    async addDevice() {
+      if (this.deviceName === "" || this.deviceSelected == null || this.deviceAddHouseSelected == null || this.deviceAddRoomSelected == null)
+        console.log("Mal nombre de casa")
+      else {
+        const type={
+          id: "c89b94e8581855bc"  //SACAR ESTO DESPUES, ESTA HARDCODEADO
         }
+        const device = new Device(null, this.deviceName, type/*this.deviceSelected*/, {});
+
+        try {
+          this.device = await this.$createDevice(device);
+          this.device = Object.assign(new Device(), this.device);
+          //this.$addDevice(this.deviceAddRoomSelected.id,this.device.id) FALTA HACER
+        } catch (e) {
+          console.log(e)
+        }
+        this.deviceAdd = false,
+            this.deviceAddHouseSelected = {},
+            this.deviceAddRoomSelected = {},
+            this.deviceSelected = {},
+            this.deviceName = ""
       }
-
-
     }
+  }
 }
 </script>
 

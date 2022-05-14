@@ -33,7 +33,7 @@
 <script>
 import store from "@/store/store";
 import { mapState, mapActions } from "vuex";
-import { Home } from "../../Api/House";
+import { Home,HomeMeta } from "../../Api/House";
 
 export default {
   name: "AddHouse",
@@ -71,7 +71,8 @@ export default {
 
     }),
     async createHouse(name) {
-      const house = new Home(null, name, {});
+      const houseMeta= new HomeMeta();
+      const house = new Home(null, name, houseMeta);
 
       try {
         this.house = await this.$createHouse(house);

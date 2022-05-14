@@ -116,6 +116,7 @@
 import store from "@/store/store";
 import {mapActions} from "vuex";
 import {Routine} from "@/Api/Routine";
+import {Home} from "@/Api/House";
 
 export default {
   name: "AddRoutineBlock",
@@ -142,6 +143,10 @@ export default {
   methods: {
     ...mapActions("Routine",{
       $createRoutine: "createRoutine",
+    }),
+    ...mapActions("House", {
+      $modifyHouse: "modifyHome",
+
     }),
 
   //EL DEVICE ESTA HARCODEADO PERO ANDA
@@ -171,6 +176,9 @@ export default {
         try {
           let routine = new Routine(null, this.routineName, this.routineCreated, {})
           routine = await this.$createRoutine(routine)
+          routine = Object.assign(new Home(), routine);
+          this.houseSelected.meta.homeRoutines.push(routine)
+          await this.$modifyHouse(this.houseSelected) //Modifico la casa y le agrego la rutina
           this.setResult(routine)
         } catch (e) {
           this.setResult(e)
