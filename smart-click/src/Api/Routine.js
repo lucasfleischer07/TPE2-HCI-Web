@@ -6,30 +6,30 @@ class RoutineApi{
         return `${Api.baseUrl}/routines${  slug ? `/${slug}` : ""}`
     }
 
-    static async add(routine){
-        return await Api.post(RoutineApi.getUrl(),routine)
+    static async add(routine,controller){
+        return await Api.post(RoutineApi.getUrl(),routine,controller)
     }
 
-    static async modify(routine){
-        return await Api.put(RoutineApi.getUrl(routine.id),routine)
+    static async modify(routine,controller){
+        return await Api.put(RoutineApi.getUrl(routine.id),routine,controller)
     }
 
-    static async delete(id){
-        return await Api.delete(RoutineApi.getUrl(id))
+    static async delete(id,controller){
+        return await Api.delete(RoutineApi.getUrl(id),controller)
     }
 
-    static async getAll(){
-        return await Api.get(RoutineApi.getUrl())
+    static async getAll(controller){
+        return await Api.get(RoutineApi.getUrl(),controller)
 
     }
 
-    static async get(id){
-        return await Api.get(RoutineApi.getUrl(id))
+    static async get(id,controller){
+        return await Api.get(RoutineApi.getUrl(id),controller)
     }
 
 
-    static async executeRoutine(id){
-        return await Api.put(RoutineApi.getUrl(`${id}/execute`))
+    static async executeRoutine(id,controller){
+        return await Api.put(RoutineApi.getUrl(`${id}/execute`),controller)
     }
 
 }

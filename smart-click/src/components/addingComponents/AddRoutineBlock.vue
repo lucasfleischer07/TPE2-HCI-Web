@@ -114,6 +114,8 @@
 
 <script>
 import store from "@/store/store";
+import {mapActions} from "vuex";
+import {Routine} from "@/Api/Routine";
 
 export default {
   name: "AddRoutineBlock",
@@ -138,37 +140,52 @@ export default {
   },
 
   methods: {
+    ...mapActions("Routine",{
+      $createRoutine: "createRoutine",
+    }),
 
+  //EL DEVICE ESTA HARCODEADO PERO ANDA
     AddDevice(){
-      if(this.houseSelected == null || this.roomSelected == null || this.deviceSelected == null || this.actionSelected == null){
+      if(!this.houseSelected || !this.roomSelected  || !this.deviceSelected  || !this.actionSelected ){
         console.log("No hizo la seleccion de rutinas")
         //MENSAJE DE ERROR
       }else {
-        var routine = {
-          device: this.deviceSelected,
-          action: this.actionSelected,
+        var actions = {
+          device: { id: "1fbc9ada2d9b1641"}, //this.deviceSelected.deviceCode,
+          actionName: "turnOn",
+          params: [],
+          meta: {}
         }
-        this.routineCreated.concat(routine)
-        this.routineCreated.push(routine)
+        this.routineCreated.push(actions)
         this.deviceSelected = {}
         this.roomSelected = {}
         this.deviceType = {}
         this.actionSelected = {}
       }
     },
-    AddRoutine(routine){
-      if(routine == null)
-        console.log("No completo la rutina completa" )
-      else
-        this.routineAdd = false
-        this.houseSelected = {}
-        this.deviceSelected= {}
-        this.actionSelected= {}
-        this.roomSelected= {}
-        this.deviceType= {}
-        this.routineName=""
 
-        this.routineCreated= []
+    async AddRoutine(){
+      if(this.routineCreated == null)
+        console.log("No completo la rutina completa" )
+      else {
+        try {
+          let routine = new Routine(null, this.routineName, this.routineCreated, {})
+          routine = await this.$createRoutine(routine)
+          this.setResult(routine)
+        } catch (e) {
+          this.setResult(e)
+        }
+
+        this.routineAdd = false,
+            this.houseSelected = {},
+            this.deviceSelected = {},
+            this.actionSelected = {},
+            this.roomSelected = {},
+            this.deviceType = {},
+            this.routineName = "",
+
+            this.routineCreated = []
+      }
 
     },
     getDeviceActions(myDevice){
