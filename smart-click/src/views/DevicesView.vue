@@ -76,10 +76,16 @@ export default {
     ...mapState("ProtoDevice", {
       $allTypes: "devicesTypes",
     }),
+    ...mapState("Room", {
+      $rooms: "rooms",
+    }),
   },
 
   watch: {
     $myHome(){
+      this.updateRooms()
+    },
+    $rooms(){
       this.updateRooms()
     }
   },
