@@ -1,45 +1,39 @@
 <template>
   <div class="devices-view">
-<!--    <div v-if="(house.cuartos == null)" class="h1-title">-->
-<!--      <v-icon x-large>house</v-icon>-->
-<!--      <h1>Seleccione una casa</h1>-->
-<!--    </div>-->
-    <div class="main-div">
-      <div class="house-icon">
-        <v-icon x-large>house</v-icon>
-        <span class="text-h4 color-class" >{{ $myHome.name }}</span>
-        <RemoveHouse/>
-      </div>
+    <div v-if="Object.entries($myHome).length ===  0" class="h1-title">
+      <v-icon x-large>house</v-icon>
+      <h1>Seleccione una casa</h1>
     </div>
-    <AddRoom/>
+    <div v-else>
+      <div class="main-div">
+        <div class="house-icon">
+          <v-icon x-large>house</v-icon>
+          <span class="text-h4 color-class">{{ $myHome.name }}</span>
+          <RemoveHouse/>
+        </div>
+      </div>
+      <AddRoom/>
 
-    <div class="rooms-class">
-      <v-expansion-panels>
-        <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
-          <v-expansion-panel-header class="expansion-panel-div">
-            <span>{{room.name}}:  dispositivos totales y  activos</span>
-            <RemoveRoom :room_selected="room"/>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content >
-            <v-row>
-              <v-col v-for="device in getRoomDevices(room)" :key="device.id" class="flex-grow-0 col-division">
-                <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
-                  <component v-if="deviceProto.id === device.id" :is="deviceProto.name" :deviceEntity="device"/>
-                </v-container>
-              </v-col>
-          <!--
-              <speaker-comp class="devices" deviceEntity="device"/>
-              <door-comp class="devices" deviceEntity="device"/>-->
-
-            </v-row>
-            <AddDeviceRound/>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-      <!-- <v-btn x-large class="rooms-class" >
-         <v-icon>house</v-icon>
-       </v-btn>
-      -->
+      <div class="rooms-class">
+        <v-expansion-panels>
+          <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
+            <v-expansion-panel-header class="expansion-panel-div">
+              <span>{{room.name}}:  dispositivos totales y  activos</span>
+              <RemoveRoom :room_selected="room"/>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content >
+              <v-row>
+                <v-col v-for="device in getRoomDevices(room)" :key="device.id" class="flex-grow-0 col-division">
+                  <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
+                    <component v-if="deviceProto.id === device.id" :is="deviceProto.name" :deviceEntity="device"/>
+                  </v-container>
+                </v-col>
+              </v-row>
+              <AddDeviceRound/>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </div>
     </div>
   </div>
 </template>
