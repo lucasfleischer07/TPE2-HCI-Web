@@ -7,7 +7,7 @@
     <div class="main-div">
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
-        <span class="text-h4 color-class" >{{ house.nombreCasa }}</span>
+        <span class="text-h4 color-class" >{{ $myHome.name }}</span>
         <RemoveHouse/>
       </div>
     </div>
@@ -15,16 +15,16 @@
 
     <div class="rooms-class">
       <v-expansion-panels>
-        <v-expansion-panel class="expansion-panel-margin" v-for="room in house.cuartos" :key="room.nombreCasa">
+        <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
           <v-expansion-panel-header class="expansion-panel-div">
-            <span>{{room.roomName}}: {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} activos</span>
+            <span>{{room.name}}:  dispositivos totales y  activos</span>
             <RemoveRoom :room_selected="room"/>
           </v-expansion-panel-header>
           <v-expansion-panel-content >
             <v-row>
-              <v-col v-for="device in room.roomDevices" :key="device.deviceCode" class="flex-grow-0 col-division">
-                <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in devicesMap" :key="deviceProto.id">
-                  <component v-if="deviceProto.id === device.deviceCode" :is="deviceProto.compName" :deviceEntity="device"/>
+              <v-col v-for="device in getRoomDevices(room)" :key="device.id" class="flex-grow-0 col-division">
+                <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
+                  <component v-if="deviceProto.id === device.id" :is="deviceProto.name" :deviceEntity="device"/>
                 </v-container>
               </v-col>
           <!--
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import store from "@/store/store"
 import SpeakerComp from "@/components/SpeakerComp";
 import DoorComp from "@/components/DoorComp";
 import RefrigeratorComp from "@/components/RefrigeratorComp";
@@ -53,7 +52,7 @@ import LightbulbComp from "@/components/LightbulbComp";
 import OvenComp from "@/components/OvenComp";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 import RemoveHouse from "@/components/addingComponents/RemoveHouse";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 import AddHouse from "@/components/addingComponents/AddHouse";
 import AddRoom from "@/components/addingComponents/AddRoom";
 import RemoveRoom from "@/components/addingComponents/RemoveRoom";
@@ -76,24 +75,63 @@ export default {
   },
 
   computed: {
-    ...mapState("Room", {
-      room: (state) => state.room,
+    ...mapState("House", {
+      $house: "homes",
+      $myHome: "houseSelected"
     }),
+    ...mapState("ProtoDevice", {
+      $allTypes: "devicesTypes",
+    }),
+  },
+
+  watch: {
+    $myHome(){
+      this.updateRooms()
+    }
+  },
+
+
+  methods: {
+    ...mapActions("House", {
+      $getHomeRooms: "getHomeRooms",
+    }),
+    ...mapActions("Room", {
+      $getRoomDevices: "getDevices",
+    }),
+    ...mapActions("ProtoDevice", {
+      $getAllDevicesTypes: "getAllDevicesTypes",
+    }),
+    async updateRooms(){
+
+      try {
+        this.rooms = await this.$getHomeRooms(this.$myHome.id)
+      } catch (e) {
+        console.log(e)
+      }
+
+    },
+    async getRoomDevices(room){
+      try {
+        await this.$getRoomDevices(room.id)
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async updateProto(){
+      try {
+        await this.$getAllDevicesTypes()
+      } catch (e) {
+        console.log(e)
+      }
+    }
   },
 
 
   data() {
     return {
-      house: store.houses[0],
-      houses: store.houses,
-      devicesMap: store.devicesMap,
-      deviceAdd: false,
-      roomAdd: false,
-      deviceAddHouseSelected: {},
-      deviceAddRoomSelected: {},
-      deviceSelected: {},
+      rooms: [],
+      protoDevices: this.updateProto(),
       roomName: "",
-      deviceMap: store.devicesMap,
       rules: [v => v.length <= 25 || 'Máximo 25 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },

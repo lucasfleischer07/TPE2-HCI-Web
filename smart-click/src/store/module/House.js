@@ -42,8 +42,8 @@ export default {
             dispatch("getAllHomes")
             return result
         },
-        async addHomeRoom({dispatch},homeId,roomId) {
-            const result = await HouseApi.addRoom(homeId,roomId)
+        async addHomeRoom({dispatch},idArrays) {
+            const result = await HouseApi.addRoom(idArrays[0],idArrays[1])
             dispatch("getAllHomes")
             return result
         },

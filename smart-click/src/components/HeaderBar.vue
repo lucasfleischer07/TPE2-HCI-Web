@@ -24,6 +24,7 @@
                       outlined 
                       class="house-selector-slider"
                       dense
+                      @change="selectHome"
                       return-object
                       persistent-placeholder
                       height="50px"
@@ -34,7 +35,7 @@
                           Agregar casa
                         </v-btn>
                         <v-dialog v-model="houseAdd" max-width="600px" height="600px" color="#f2f9fb">
-                          <v-card @keyup.enter="addHouse(nombreCasa)" color="#f2f9fb">
+                          <v-card @keyup.enter="createHouse()" color="#f2f9fb">
                               <v-card-title color="#f2f9fb">
                                 <h2>Agregue una nueva casa</h2>
                               </v-card-title>
@@ -45,7 +46,7 @@
                                   hide-details="auto"
                                   v-model="nombreCasa"
                                 />
-                                <v-btn :disabled="nombreCasa.length < 3 || nombreCasa.length > 60" class="margin-top" color="primary" @click="addHouse(nombreCasa)">
+                                <v-btn :disabled="nombreCasa.length < 3 || nombreCasa.length > 60" class="margin-top" color="primary" @click="createHouse()">
                                   Agregar Casa
                                 </v-btn>
                               </v-card-text>
@@ -117,14 +118,14 @@ export default {
     ...mapActions("House", {
       $createHouse: "createHome",
       $getAllHouses: "getAllHomes",
+      $changeCurrentHome: "changeCurrentHome"
 
     }),
-    async createHouse(name) {
-      const house = new Home(null, name, {});
+    async createHouse() {
+      let house = new Home(null,this.nombreCasa , {});
 
       try {
-        this.house = await this.$createHouse(house);
-        this.house = Object.assign(new Home(), this.house);
+        await this.$createHouse(house);
         this.houseAdd= false;
         this.nombreCasa=""
 
@@ -141,17 +142,11 @@ export default {
         this.setResult(e);
       }
     },
-
-
-    addHouse(text)
-    {
-      if (text==="")
-        console.log("Mal nombre de casa")
-      else {
-        //AGREGAR CASA
-        this.houseAdd= false
-      }
+    async selectHome(home){
+      await this.$changeCurrentHome(home)
     }
+
+
   }
 }
 </script>

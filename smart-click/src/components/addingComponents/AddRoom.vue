@@ -14,10 +14,12 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="houses"
+                    :items="$house"
                     label="Casa seleccionada:"
                     outlined class="house-selector-slider"
                     dense
+                    item-text="name"
+                    return-object
                     v-model="houseSelected"
                     persistent-placeholder
                     placeholder="Selecciona casa ">
@@ -43,7 +45,7 @@
 
 <script>
 import store from "@/store/store";
-import { mapActions } from "vuex";
+import {mapActions, mapState} from "vuex";
 import {Room} from "@/Api/Room";
 
 export default {
@@ -59,19 +61,29 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState( "House", {
+      $house: "homes",
+    })
+  },
 
   methods: {
     ...mapActions("Room", {
       $createRoom: "create"
     }),
+    ...mapActions("House",{
+      $addHomeRoom : "addHomeRoom"
+    }),
 
 
     async createRoom(roomName) {
-      const room = new Room(null, roomName, null);
+      let room = new Room(null, roomName, null);
 
       try {
-        this.room = await this.$createRoom(room);
-        this.room = Object.assign(new Room(), this.room);
+        room =(await this.$createRoom(room));
+        room = Object.assign(new Room(), room);
+        let array= [this.houseSelected.id,room.id]
+        await this.$addHomeRoom(array)
         this.roomAdd = false
         this.roomName = ""
       } catch (e) {
