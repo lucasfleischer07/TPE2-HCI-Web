@@ -29,7 +29,7 @@
 
 
 <script>
-  import store from "@/store/store.js"
+  // import store from "@/store/store.js"
   import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
   // import RemoveRoutine from "@/components/addingComponents/RemoveRoutine";
 
@@ -43,7 +43,7 @@
 
     data() {
       return {
-        house: store.house,
+        // house: store.house,
       }
     },
   }

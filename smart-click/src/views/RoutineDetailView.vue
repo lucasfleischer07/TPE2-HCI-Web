@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import store from '@/store/store.js'
+// import store from '@/store/store.js'
 
 export default {
   name: "RoutineDetailView",
@@ -77,20 +77,21 @@ export default {
       },
     },
 
-    computed: {
-      detail() {
-        return store.house.routines.find(
-            detail => detail.slug === this.routineSlug
-        )
-      }
-    },
+    // computed: {
+    //   detail() {
+    //     // return store.house.routines.find(
+    //     //     detail => detail.slug === this.routineSlug
+    //     // )
+    //   }
+    // },
 
 
   data(){
       return{modal2:false,
             menu2:false,
             diasSel:null,
-            copyStore:store}
+            // copyStore:store
+      }
   },
 
 

@@ -201,11 +201,11 @@ export default {
       }
 
     },
-    getDeviceActions(myDevice){
-      this.deviceType= store.devicesMap.find(
-          device => device.id === myDevice.deviceCode)
-
-    },
+    // getDeviceActions(myDevice){
+    //   this.deviceType= store.devicesMap.find(
+    //       device => device.id === myDevice.deviceCode)
+    //
+    // },
     DeleteDeviceFromRoutine(deviceAndAct){
       this.routineCreated.splice(this.routineCreated.indexOf(deviceAndAct),1)
     }
