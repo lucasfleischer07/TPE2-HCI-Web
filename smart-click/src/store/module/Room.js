@@ -41,8 +41,8 @@ export default{
             result = result.map((device) => Object.assign(new Device(),device))
             return result;
         },
-        async addDevice({dispatch},roomId,deviceId){
-            const result = await RoomApi.addDevice(roomId,deviceId)
+        async addDevice({dispatch},ids){
+            const result = await RoomApi.addDevice(ids[0],ids[1])
             dispatch("getAll")
             return result
         },

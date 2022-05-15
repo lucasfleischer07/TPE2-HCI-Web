@@ -43,12 +43,16 @@ class Device{
             this.id=id;
         }
         this.name=name;
-        this.type=type;
+        this.type=new Type (type);
         this.meta=meta;
     }
     toString(){
         return JSON.stringify(this,null,2)
     }
+}
+class Type{
+    constructor(type){
+    this.id=type;}
 }
 
 export { DeviceApi, Device }
