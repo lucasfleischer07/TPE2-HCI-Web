@@ -15,13 +15,12 @@
     </div>
 
     <div class="div-faves">
-      <h2 class="font-weight-thin">Mis Favoritos</h2>
-      <v-card class="card-favs ma-lg-6" >
-
-        <h2>Mis Dispositivos</h2>
+      <h2 class="favs-text"> Dispositivos Favoritos</h2>
+      <v-card class="card-favs" >
+          <OvenComp class="buttons"/>
+        xq caranchos no se agrega el horno
       </v-card>
     </div>
-
   </div>
 </template>
 
@@ -138,6 +137,7 @@
 </script>
 
 <style scoped>
+
   .main-div{
     display: flex;
     justify-content: space-between;
@@ -145,11 +145,13 @@
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
   }
+
   .home-view  {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
   }
+
   .buttons {
     display: flex;
     justify-content: space-evenly;
@@ -157,12 +159,34 @@
     font-size: 40px;
     padding-left: 180px;
   }
+
   .div-faves{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-top: 12px;
   }
+
+  .favs-text{
+    display: flex;
+    align-items: center;
+    font-weight: lighter;
+    color: grey;
+  }
+
+  .favs-add-button{
+      display: flex;
+      justify-content: end;
+      margin-right: 15px;
+      padding-top: 15px;
+  }
+
   .card-favs{
+    display: flex;
     background-color: transparent;
     min-width: 1000px;
     min-height: 400px;
+    margin-right: 20px;
   }
+
 </style>

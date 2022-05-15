@@ -31,6 +31,7 @@
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
                     :items="deviceAddHouseSelected.cuartos"
+                    :disabled="Object.entries(deviceAddHouseSelected).length ===  0"
                     item-text="roomName"
                     label="Habitación seleccionada:"
                     outlined class="house-selector-slider"
@@ -63,9 +64,8 @@
               label="Nombre del dispositivo nuevo"
               :rules="rules"
               hide-details="auto"
-              v-model="deviceName"
-          />
-          <v-btn class="margin-button" color="primary" @click="addDevice()">
+              v-model="deviceName"/>
+          <v-btn :disabled=" Object.entries(deviceAddHouseSelected).length ===  0 || Object.entries(deviceAddRoomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || deviceName.length < 3 || deviceName.length > 60" class="margin-button" color="primary" @click="addDevice()">
             Agregar Dispositivo
           </v-btn>
         </v-card-text>
@@ -95,7 +95,7 @@ export default {
       deviceAddRoomSelected: {},
       deviceSelected: {},
       deviceName: "",
-      rules: [v => v.length <= 25 || 'Max 25 characters'],
+      rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
     }
   },
   methods: {

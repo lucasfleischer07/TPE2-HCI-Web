@@ -1,6 +1,9 @@
 <template>
   <div class="add-button">
-    <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
+    <div class="rooms-alignment">
+      <h1 class="text-rooms" >Habitaciones:</h1>
+      <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
+    </div>
     <v-dialog v-model="roomAdd" max-width="600px" height="600px">
       <v-card @keyup.enter="createRoom(roomName)">
         <v-card-title>
@@ -29,7 +32,7 @@
               hide-details="auto"
               v-model="roomName"
           />
-          <v-btn class="margin-button" color="primary" @click="createRoom(roomName)">
+          <v-btn :disabled=" Object.entries(houseSelected).length ===  0 || roomName.length < 3 || roomName.length > 60" class="margin-button" color="primary" @click="createRoom(roomName)">
             Agregar habitación
           </v-btn>
         </v-card-text>
@@ -52,7 +55,7 @@ export default {
       roomAdd: false,
       houseSelected: {},
       roomName: "",
-      rules: [v => v.length <= 25 || 'Máximo 25 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
+      rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
 
@@ -78,17 +81,7 @@ export default {
 
 
   }
-
-
-
-
 }
-
-
-
-
-
-
 
 </script>
 
@@ -99,11 +92,23 @@ export default {
 }
 
 .add-button {
-  padding-right: 90px;
+  padding-right: 6px;
   justify-content: flex-end;
   padding-bottom: 10px;
 }
 
+.text-rooms{
+  color: grey;
+  font-weight: lighter;
+  margin-top: 16px;
+}
 
+.rooms-alignment{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 90px;
+  padding-left: 10px;
+  align-items: flex-end;
+}
 
 </style>

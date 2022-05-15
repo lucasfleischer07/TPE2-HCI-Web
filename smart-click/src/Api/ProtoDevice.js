@@ -3,7 +3,7 @@ import {Api} from "@/Api/Api";
 
 class ProtoDeviceApi {
     static getUrl(slug){
-        return `${Api.baseUrl}/devicesTypes${  slug ? `/${slug}` : ""}`
+        return `${Api.baseUrl}/devicetypes${  slug ? `/${slug}` : ""}`
     }
 
 

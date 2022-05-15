@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="delete-div">
-      <v-btn class="delete-button" color="error" elevation="3" fab rounded @click.stop="houseRemove = true"><v-icon>delete_forever</v-icon></v-btn>
+      <v-btn class="delete-button" small color="error" elevation="3" fab rounded @click.stop="houseRemove = true"><v-icon>delete_forever</v-icon></v-btn>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
@@ -19,12 +19,12 @@
                     dense
                     v-model="houseDeleteSelected"
                     persistent-placeholder
-                    placeholder="Seleccione casa a remover">
+                    placeholder="Seleccione casa a eliminar">
                 </v-select>
               </v-col>
             </v-row>
           </v-container>
-          <v-btn color="error" @click.stop="confirmRemoveHouse=true">
+          <v-btn :disabled=" Object.entries(houseDeleteSelected).length ===  0" color="error" @click.stop="confirmRemoveHouse=true">
             Eliminar casa
           </v-btn>
           <v-dialog v-model="confirmRemoveHouse" max-width="600px" height="600px">
@@ -59,7 +59,7 @@ export default {
       houseRemove: false,
       confirmRemoveHouse:false,
       houseDeleteSelected: {},
-      rules: [v => v.length <= 25 || 'Max 25 characters'],
+      rules: [v => !(v.empty) || 'Seleccione una casa'],
     }
   },
 
@@ -105,9 +105,10 @@ export default {
   }
 
   .delete-button {
-    margin-left: 100px;
-    margin-right: 5px;
-  }
+     margin-left: 50px;
+     margin-right: 5px;
+     margin-bottom: 4px;
+   }
 
   .padding-btn {
     margin-right: 25px;

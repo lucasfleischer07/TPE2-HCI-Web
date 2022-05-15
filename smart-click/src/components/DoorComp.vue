@@ -87,4 +87,10 @@ export default {
     background-color: #E6F2FF;
   }
 
+   .favourite{
+      padding-right: 110px;
+      padding-top: 10px;
+    }
+
+
 </style>

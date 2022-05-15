@@ -4,7 +4,8 @@ import {Room} from "@/Api/Room";
 export default {
     namespaced: true,
     state: {
-        homes: []
+        homes: [],
+        houseSelected: {}
     },
     actions: {
         async createHome({dispatch}, home) {
@@ -27,7 +28,7 @@ export default {
         async getAllHomes({commit},controller) {
             let result = await HouseApi.getAll(controller)
             result = result.map((home) => Object.assign(new Home(),home))
-            commit("update", result)
+            commit("updateHomes", result )
             return result
         },
         async getHome({dispatch},id) {
@@ -50,12 +51,18 @@ export default {
             const result = await HouseApi.deleteRoom(id)
             dispatch("getAllHomes")
             return result
+        },
+        changeCurrentHome({commit},home){
+            commit("updateMyHouse",home)
         }
 
     },
     mutations: {
-        update(state, homes) {
+        updateHomes(state, homes) {
             state.homes = homes
+        },
+        updateMyHouse(state,home){
+            state.houseSelected=home
         }
 
     }

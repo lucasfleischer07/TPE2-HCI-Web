@@ -18,11 +18,13 @@
                     <v-icon x-large>home</v-icon>
                   </v-subheader>
                   <v-select
-                      :items="updateHouse"
+                      :items="update"
                       label="Casa seleccionada:"
-                      outlined class="house-selector-slider"
+                      item-text="name"
+                      outlined 
+                      class="house-selector-slider"
                       dense
-                      @change="houseChange"
+                      return-object
                       persistent-placeholder
                       height="50px"
                       placeholder="Seleccione una casa">
@@ -42,9 +44,8 @@
                                   :rules="rules"
                                   hide-details="auto"
                                   v-model="nombreCasa"
-                                  color="#f2f9fb"
                                 />
-                                <v-btn color="primary" @click="addHouse(nombreCasa)">
+                                <v-btn :disabled="nombreCasa.length < 3 || nombreCasa.length > 60" class="margin-top" color="primary" @click="addHouse(nombreCasa)">
                                   Agregar Casa
                                 </v-btn>
                               </v-card-text>
@@ -83,16 +84,20 @@ export default {
     return {
       logo_image: require('@/assets/logo.png'),
 
-
+      myHouse: this.getAllHouses(),
       houseAdd: false,
       nombreCasa: "",
-      rules:[v => v.length >= 3 || 'Min 3 characters'],}
+      rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
+    }
   },
 
   computed: {
     ...mapState("House", {
-      house: (state) => state.house,
+          $house: "homes",
     }),
+    update(){
+        return this.$house
+    },
     canCreate() {
       return !this.house;
     },
@@ -137,13 +142,7 @@ export default {
       }
     },
 
-    houseChange(selected)
-    {
-      this.house.nombreCasa= selected.nombreCasa;
-      this.house.codigoCasa= selected.codigoCasa;
-      this.house.cuartos=selected.cuartos;
-      this.house.routines=selected.routines;
-    },
+
     addHouse(text)
     {
       if (text==="")
@@ -201,6 +200,10 @@ export default {
     position: sticky;
     bottom: 0;
     font-weight: bold;
+  }
+
+  .margin-top {
+    margin-top: 20px;
   }
 
 

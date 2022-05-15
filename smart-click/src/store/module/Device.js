@@ -26,7 +26,7 @@ export default {
         async getAllDevices({commit}) {
             let result = await DeviceApi.getAll()
             result = result.map((device) => Object.assign(new Device(),device))
-            commit("update", result)
+            commit("updateDevices", result)
         },
         async getDevice({dispatch},id) {
             const result = await DeviceApi.getAll(id)
@@ -47,7 +47,7 @@ export default {
 
     },
     mutations: {
-        update(state, devices) {
+        updateDevices(state, devices) {
             state.devices = devices
         }
     }

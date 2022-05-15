@@ -9,7 +9,7 @@ export default {
         async getAllDevicesTypes({commit}) {
             let result = await ProtoDeviceApi.getAll()
             result = result.map((device) => Object.assign(new ProtoDevice(),device));
-            commit("update", result)
+            commit("updateProtoDevices", result)
             return result
         },
         async getDeviceType({dispatch},id) {
@@ -22,7 +22,7 @@ export default {
 
     },
     mutations: {
-        update(state, devicesTypes) {
+        updateProtoDevices(state, devicesTypes) {
             state.devicesTypes = devicesTypes
         }
     }

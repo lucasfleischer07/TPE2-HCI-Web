@@ -7,18 +7,12 @@
       </div>
     </v-btn>
     <v-dialog v-model="routineAdd" max-width="600px" height="600px">
-      <v-card @keyup.enter="AddRoutine(routineCreated)">
+      <v-card @keyup.enter="AddRoutine">
         <v-card-title>
           <h2>Cree una nueva rutina</h2>
 
         </v-card-title>
         <v-card-text>
-          <v-text-field
-              label="Nombre de la nueva rutina"
-              :rules="rules"
-              hide-details="auto"
-              v-model="routineName"
-          />
           <v-container fluid c>
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
@@ -42,6 +36,7 @@
                 <v-select
                     :items="houseSelected.cuartos"
                     item-text="roomName"
+                    :disabled="Object.entries(houseSelected).length ===  0"
                     label="Habitación seleccionada:"
                     outlined class="house-selector-slider"
                     dense
@@ -59,6 +54,7 @@
                 <v-select
                     :items="roomSelected.roomDevices"
                     item-text="deviceName"
+                    :disabled="Object.entries(roomSelected).length ===  0"
                     @change="getDeviceActions"
                     label="Dispositivo Seleccionado:"
                     outlined class="house-selector-slider"
@@ -78,6 +74,7 @@
                 <v-select
                     :items="deviceType.actions"
                     label="Acción seleccionada:"
+                    :disabled="Object.entries(deviceSelected).length ===  0"
                     outlined class="house-selector-slider"
                     dense
                     v-model="actionSelected"
@@ -87,14 +84,20 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-btn class="margin-button" color="primary" @click="AddDevice()">
+          <v-text-field
+              label="Nombre de la nueva rutina"
+              class="margin-button3"
+              :rules="rules"
+              hide-details="auto"
+              v-model="routineName"
+          />
+          <v-btn :disabled="Object.entries(houseSelected).length ===  0 || Object.entries(roomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || Object.entries(actionSelected).length ===  0" class="margin-button" color="primary" @click="AddDevice">
             Agregar dispositivo a la rutina
           </v-btn>
           <v-row>
-
             <div v-for="devAndAct in routineCreated" :key="devAndAct" class="device-and-actions">
               <v-card outlined>
-                <span class="text-h6">{{devAndAct.device.deviceName}}</span>
+                <span class="text-h6">{{devAndAct.device.id}}</span>
                 <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
                   <v-icon  color="error" >delete_forever</v-icon>
                 </v-btn>
@@ -102,7 +105,7 @@
               </v-card>
             </div>
           </v-row>
-          <v-btn class="margin-button2" color="primary" @click="AddRoutine()">
+          <v-btn :disabled="Object.entries(routineCreated).length ===  0 || routineName.length < 3 || routineName.length > 60" class="margin-button2" color="primary" @click="AddRoutine()">
             Crear Rutina
           </v-btn>
 
@@ -128,14 +131,14 @@ export default {
       routineAdd: false,
 
       routineName: "",
-      houseSelected:{},
+      houseSelected: {},
       roomSelected: {},
       deviceSelected: {},
       actionSelected: {},
       deviceType: {},
       routineCreated: [],
+      rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
 
-      rules: [v => v.length <= 25 || 'Max 25 characters'],
 
     }
   },
@@ -149,9 +152,16 @@ export default {
 
     }),
 
+    checkParam(objectToCheck){
+      if (Object.entries(objectToCheck).length !== 0){
+        return true
+      }
+      return false
+    },
+
   //EL DEVICE ESTA HARCODEADO PERO ANDA
     AddDevice(){
-      if(!this.houseSelected || !this.roomSelected  || !this.deviceSelected  || !this.actionSelected ){
+      if(!this.checkParam(this.houseSelected)  || !this.checkParam(this.roomSelected)  || !this.checkParam(this.deviceSelected) || !this.checkParam(this.actionSelected)){
         console.log("No hizo la seleccion de rutinas")
         //MENSAJE DE ERROR
       }else {
@@ -169,11 +179,12 @@ export default {
       }
     },
 
-    async AddRoutine(){
-      if(this.routineCreated == null)
+    async AddRoutine() {
+      if(!this.checkParam(this.routineCreated) )
         console.log("No completo la rutina completa" )
       else {
         try {
+
           let routine = new Routine(null, this.routineName, this.routineCreated, {})
           routine = await this.$createRoutine(routine)
           routine = Object.assign(new Home(), routine);
@@ -183,16 +194,14 @@ export default {
         } catch (e) {
           this.setResult(e)
         }
-
-        this.routineAdd = false,
-            this.houseSelected = {},
-            this.deviceSelected = {},
-            this.actionSelected = {},
-            this.roomSelected = {},
-            this.deviceType = {},
-            this.routineName = "",
-
-            this.routineCreated = []
+        this.routineAdd = false;
+        this.houseSelected = {};
+        this.deviceSelected = {};
+        this.actionSelected = {};
+        this.roomSelected = {};
+        this.deviceType = {};
+        this.routineName = "";
+        this.routineCreated = [];
       }
 
     },
@@ -230,6 +239,10 @@ export default {
 
   .hover-btn:hover {
     opacity: 75%;
+  }
+
+  .margin-button3 {
+    margin-bottom: 50px;
   }
 
 

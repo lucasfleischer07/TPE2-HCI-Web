@@ -7,15 +7,15 @@
     <div class="main-div">
       <div class="house-icon">
         <v-icon x-large>house</v-icon>
-        <span class="text-h5 color-class" >{{ house.nombreCasa }}</span>
+        <span class="text-h4 color-class" >{{ house.nombreCasa }}</span>
         <RemoveHouse/>
       </div>
-      <AddRoom/>
     </div>
+    <AddRoom/>
 
     <div class="rooms-class">
       <v-expansion-panels>
-        <v-expansion-panel v-for="room in house.cuartos" :key="room.nombreCasa">
+        <v-expansion-panel class="expansion-panel-margin" v-for="room in house.cuartos" :key="room.nombreCasa">
           <v-expansion-panel-header class="expansion-panel-div">
             <span>{{room.roomName}}: {{room.roomDevicestotalAmoount}} dispositivos totales y {{room.roomDevicesActiveAmount}} activos</span>
             <RemoveRoom :room_selected="room"/>
@@ -102,9 +102,9 @@ export default {
 
 <style scoped>
 
-  .v-btn:focus::before {
-    opacity: 0 !important;
-  }
+  /*.v-btn:focus::before {*/
+  /* opacity: 0 !important;*/
+  /* }*/
 
   .color-class {
     color: gray;
@@ -119,7 +119,7 @@ export default {
 
   .main-div {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
   }
 
@@ -154,6 +154,10 @@ export default {
 
   .margin-button {
     margin-top: 20px;
+  }
+
+  .expansion-panel-margin{
+    margin-bottom: 15px;
   }
 
   .col-division {

@@ -26,7 +26,7 @@ export default {
         async getAllRoutine({commit}) {
             let result = await RoutineApi.getAll()
             result = result.map((routine) => Object.assign(new Routine(),routine))
-            commit("update", result)
+            commit("updateRoutine", result)
             return result
         },
         async getRoutine({dispatch},id) {
@@ -44,7 +44,7 @@ export default {
 
     },
     mutations: {
-        update(state, routines) {
+        updateRoutine(state, routines) {
             state.routines = routines
         }
     }
