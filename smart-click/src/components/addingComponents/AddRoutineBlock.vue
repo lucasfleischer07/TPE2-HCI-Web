@@ -116,7 +116,6 @@
 </template>
 
 <script>
-import store from "@/store/store";
 import {mapActions} from "vuex";
 import {Routine} from "@/Api/Routine";
 import {Home} from "@/Api/House";
@@ -126,7 +125,6 @@ export default {
 
   data(){
     return {
-      myStore: store,
 
       routineAdd: false,
 

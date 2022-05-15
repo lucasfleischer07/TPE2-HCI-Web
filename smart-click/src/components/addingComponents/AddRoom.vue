@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import store from "@/store/store";
 import {mapActions, mapState} from "vuex";
 import {Room} from "@/Api/Room";
 
@@ -53,7 +52,6 @@ export default {
   data() {
     return {
 
-      houses: store.houses,
       roomAdd: false,
       houseSelected: {},
       roomName: "",

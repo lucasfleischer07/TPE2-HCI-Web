@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import store from "@/store/store";
 import {mapActions} from "vuex";
 import {Device} from "@/Api/Device";
 
@@ -95,8 +94,7 @@ export default {
 
     data() {
       return {
-        deviceMap: store.devicesMap,
-        houses: store.houses,
+
 
         deviceAdd: false,
 

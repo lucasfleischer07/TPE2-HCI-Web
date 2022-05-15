@@ -72,7 +72,6 @@
 
 <script>
 
-import store from "@/store/store";
 import {mapActions, mapState} from "vuex";
 
 export default {
@@ -80,7 +79,6 @@ export default {
 
   data() {
     return {
-      houses: store.houses,
       routineRemove: false,
       confirmRemoveRoutine:false,
 

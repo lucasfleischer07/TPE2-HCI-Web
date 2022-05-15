@@ -92,14 +92,12 @@
 </template>
 
 <script>
-import store from "@/store/store";
 
 export default {
   name: "RemoveDevice",
 
   data() {
     return {
-      houses: store.houses,
 
       deviceRemove: false,
       confirmRemoveDevice:false,
