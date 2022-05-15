@@ -23,11 +23,11 @@
             <v-list-item-content>
               <v-list-item-title>
                 <v-icon>bed</v-icon>
-                Agregar cuarto</v-list-item-title>
+                Agregar habitación</v-list-item-title>
             </v-list-item-content>
           </template>
           <v-list-item>
-            <p class="text-alignment">Para poder agregar un cuarto a una casa, primero se debe agregar o seleccionar una casa. Si necesita ayuda para realizar este paso, vea el ítem anterior de ayuda.
+            <p class="text-alignment">Para poder agregar una habitación en una casa, primero se debe agregar o seleccionar una casa. Si necesita ayuda para realizar este paso, vea el ítem anterior de ayuda.
             Una vez que haya una casa seleccionada, ir al apartado dispositivos y tocar el botón "+" a la derecha de las habitaciones.
           </p></v-list-item>
         </v-list-group>
