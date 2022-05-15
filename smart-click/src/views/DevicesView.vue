@@ -183,8 +183,8 @@ export default {
 
 
   .rooms-class{
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
   }
 
   .text{
