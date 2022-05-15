@@ -109,7 +109,6 @@ export default {
 
 .text-rooms{
   color: grey;
-  font-weight: lighter;
   margin-top: 16px;
 }
 

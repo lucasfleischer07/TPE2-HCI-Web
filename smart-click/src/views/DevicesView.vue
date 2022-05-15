@@ -15,24 +15,29 @@
       <AddRoom/>
 
       <div class="rooms-class">
-        <v-expansion-panels>
-          <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
-            <v-expansion-panel-header class="expansion-panel-div">
-              <span>{{room.name}}:  dispositivos totales y  activos</span>
-              <RemoveRoom :room_selected="room"/>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content >
-              <v-row>
-                <v-col v-for="device in getRoomDevices(room)" :key="device.id" class="flex-grow-0 col-division">
-                  <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
-                    <component v-if="deviceProto.id === device.id" :is="deviceProto.name" :deviceEntity="device"/>
-                  </v-container>
-                </v-col>
-              </v-row>
-              <AddDeviceRound/>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
+        <div v-if="Object.entries(rooms).length ===  0" class="h1-title">
+          <h1 class="title-h1"><v-icon x-large>bed</v-icon> No hay ninguna habitación dentro de {{ $myHome.name }}</h1>
+        </div>
+        <div v-else>
+          <v-expansion-panels>
+            <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
+              <v-expansion-panel-header class="expansion-panel-div">
+                <span>{{room.name}}:  dispositivos totales y  activos</span>
+                <RemoveRoom :room_selected="room"/>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content >
+                <v-row>
+                  <v-col v-for="device in getRoomDevices(room)" :key="device.id" class="flex-grow-0 col-division">
+                    <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
+                      <component v-if="deviceProto.id === device.id" :is="deviceProto.name" :deviceEntity="device"/>
+                    </v-container>
+                  </v-col>
+                </v-row>
+                <AddDeviceRound/>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </div>
       </div>
     </div>
   </div>
@@ -170,6 +175,10 @@ export default {
     justify-content: center;
     color: gray;
     padding-top: 20px;
+  }
+
+  .title-h1 {
+    font-size: 35px;
   }
 
 
