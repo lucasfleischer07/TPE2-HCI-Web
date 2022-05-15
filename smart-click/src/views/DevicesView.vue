@@ -45,11 +45,11 @@
 </template>
 
 <script>
-import SpeakerComp from "@/components/SpeakerComp";
-import DoorComp from "@/components/DoorComp";
-import RefrigeratorComp from "@/components/RefrigeratorComp";
-import LightbulbComp from "@/components/LightbulbComp";
-import OvenComp from "@/components/OvenComp";
+import SpeakerComp from "@/components/speaker";
+import DoorComp from "@/components/door";
+import RefrigeratorComp from "@/components/refrigerator";
+import LightbulbComp from "@/components/lamp";
+import OvenComp from "@/components/oven";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 import RemoveHouse from "@/components/addingComponents/RemoveHouse";
 import {mapActions, mapState} from "vuex";
