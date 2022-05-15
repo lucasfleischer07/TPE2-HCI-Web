@@ -90,9 +90,6 @@ export default {
     $myHome(){
       this.updateRooms()
     },
-    $rooms(){
-      this.updateRooms()
-    }
   },
 
 
@@ -134,6 +131,7 @@ export default {
 
   data() {
     return {
+      oldRooms: [],
       rooms: [],
       protoDevices: this.updateProto(),
       roomName: "",
