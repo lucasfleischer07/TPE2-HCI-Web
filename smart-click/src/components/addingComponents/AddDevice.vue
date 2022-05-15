@@ -18,8 +18,8 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="houses"
-                    item-text="nombreCasa"
+                    :items="this.$house"
+                    item-text="name"
                     label="Casa seleccionada:"
                     outlined
                     class="house-selector-slider"
@@ -27,8 +27,10 @@
                     return-object
                     required
                     v-model="deviceAddHouseSelected"
+                    @change="houseRooms=updateRooms(deviceAddHouseSelected.id)"
                     persistent-placeholder
                     placeholder="Seleccione una casa">
+
                 </v-select>
               </v-col>
             </v-row>
@@ -37,8 +39,9 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="deviceAddHouseSelected.cuartos"
-                    item-text="roomName"
+                    :items="houseRooms"
+                    item-text="name"
+                    return-object
                     :disabled="Object.entries(deviceAddHouseSelected).length ===  0"
                     :rules="[v => !!v || 'Campo obligatorio']"
                     label="Habitación seleccionada:"
@@ -55,8 +58,8 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="deviceMap"
-                    item-text="deviceName"
+                    :items="types"
+                    item-text="name"
                     label="Dispositivo seleccionado:"
                     outlined class="house-selector-slider"
                     dense
@@ -86,27 +89,85 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+
+import {mapActions, mapState} from "vuex";
 import {Device} from "@/Api/Device";
+
 
 export default {
   name: "AddDevice",
 
     data() {
       return {
-
-
+        types:this.updateTypes(),
+        houseRooms:null,
         deviceAdd: false,
-
         deviceAddHouseSelected: {},
         deviceAddRoomSelected: {},
         deviceSelected: {},
+
         deviceName: "",
         rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
 
       }
     },
+  computed: {
+
+    ...mapState("House", {
+      $house: "homes",
+    }),
+    ...mapState("Room",{
+      $rooms: "rooms"
+    }),
+
+    canCreate() {
+      return !this.house;
+    },
+    canOperate() {
+      return this.house;
+    },
+    canAbort() {
+      return this.controller;
+    },
+    updateHouse(){
+      return this.$house;},
+
+
+  },
+
   methods: {
+    ...mapActions("House", {
+      $getAllHouses: "getAllHomes",
+      $updateRooms: "getHomeRooms"
+
+    }),
+
+
+    async updateRooms(house){
+      let result=await this.$updateRooms(house);
+      this.houseRooms=result;
+    },
+
+    async getAllHouses() {
+      try {
+        this.controller = new AbortController();
+        await this.$getAllHouses(this.controller);
+        this.controller = null;
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+    ...mapActions("ProtoDevice", {
+      $updateTypes: "getAllDevicesTypes",
+
+    }),
+
+    async updateTypes(){
+      let result=await this.$updateTypes();
+      this.types=result;
+    },
+
+
     ...mapActions("Devices", {
       $createDevice: "createDevice",
 
@@ -115,19 +176,17 @@ export default {
       $addDevice: "addDevice",
 
     }),
-    async addDevice() {
-      if (this.deviceName === "" || this.deviceSelected == null || this.deviceAddHouseSelected == null || this.deviceAddRoomSelected == null)
+    async addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected) {
+      if (deviceName === "" || deviceSelected == null || deviceAddHouseSelected == null || deviceAddRoomSelected == null)
         console.log("Mal nombre de casa")
       else {
-        const type={
-          id: "c89b94e8581855bc"  //SACAR ESTO DESPUES, ESTA HARDCODEADO
-        }
-        const device = new Device(null, this.deviceName, type/*this.deviceSelected*/, {});
+        const device = new Device(null, deviceName, deviceSelected.id, {});
 
         try {
-          this.device = await this.$createDevice(device);
+          this.device=await this.$createDevice(device);
           this.device = Object.assign(new Device(), this.device);
-          //this.$addDevice(this.deviceAddRoomSelected.id,this.device.id) FALTA HACER
+          let id=[this.deviceAddRoomSelected.id,this.device.id]
+          await this.$addDevice(id)
         } catch (e) {
           console.log(e)
         }
