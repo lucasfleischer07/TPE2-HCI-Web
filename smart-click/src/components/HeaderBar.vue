@@ -1,9 +1,9 @@
 <template>
   <header>
     <div class="main-div">
-      <div class="div-header">
-        <router-link :to="{name: 'Home'}">
-          <img class="logo_img" :src=logo_image alt="SmartClick_Logo">
+      <div class="div-header" >
+        <router-link class="logo_img" :to="{name: 'Home'} ">
+          <img  :src=logo_image style="width: 100%" alt="SmartClick_Logo">
         </router-link>
       </div>
 
@@ -170,7 +170,7 @@ export default {
     text-align: left;
     display: flex;
     padding-top: 10px;
-    justify-content: space-between;
+   width: 40%;
   }
 
   .help-div {
@@ -181,13 +181,16 @@ export default {
   }
 
   .logo_img {
-    height: 100px;
-    width: 350px;
+    width:100%;
+    height:auto;
+    max-width: 400px;
+    min-width: 150px;
+
   }
 
   .help-buttons {
     display: block;
-    margin-left: 100px;
+
     margin-top: 6px;
   }
 
