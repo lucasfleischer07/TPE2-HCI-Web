@@ -9,7 +9,7 @@
 
 
       <div class="help-div">
-        <div>
+        <div class="selector-houses">
           <template>
             <v-container fluid c>
               <v-row aligned="center">
@@ -165,7 +165,7 @@ export default {
     text-align: left;
     display: flex;
     padding-top: 10px;
-   width: 40%;
+    width: 40%;
   }
 
   .help-div {
@@ -192,6 +192,10 @@ export default {
   .house-selector-slider {
     display: flex;
     text-align: left;
+  }
+
+  .selector-houses {
+    margin-right: 100px;
   }
 
   .append {
