@@ -13,9 +13,9 @@ export default {
             return result
         },
         async getDeviceType({dispatch},id) {
-            const result = await ProtoDeviceApi.getAll(id)
+            const result = await ProtoDeviceApi.get(id)
             dispatch("getAllDevicesTypes")
-            return Object.assign(new ProtoDevice(),result);
+            return Object.assign(new ProtoDevice(),result)
         },
 
 

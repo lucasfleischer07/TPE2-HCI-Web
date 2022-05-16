@@ -17,8 +17,8 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="myStore.houses"
-                    item-text="nombreCasa"
+                    :items="$house"
+                    item-text="name"
                     label="Casa seleccionada:"
                     outlined class="house-selector-slider"
                     dense
@@ -34,8 +34,8 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="houseSelected.cuartos"
-                    item-text="roomName"
+                    :items="rooms"
+                    item-text="name"
                     :disabled="Object.entries(houseSelected).length ===  0"
                     label="Habitación seleccionada:"
                     outlined class="house-selector-slider"
@@ -52,10 +52,9 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="roomSelected.roomDevices"
-                    item-text="deviceName"
+                    :items="devices"
+                    item-text="name"
                     :disabled="Object.entries(roomSelected).length ===  0"
-                    @change="getDeviceActions"
                     label="Dispositivo Seleccionado:"
                     outlined class="house-selector-slider"
                     dense
@@ -72,11 +71,13 @@
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
-                    :items="deviceType.actions"
+                    :items="actions"
                     label="Acción seleccionada:"
+                    item-text="name"
                     :disabled="Object.entries(deviceSelected).length ===  0"
                     outlined class="house-selector-slider"
                     dense
+                    return-object
                     v-model="actionSelected"
                     persistent-placeholder
                     placeholder="Seleccione una acción">
@@ -84,6 +85,7 @@
               </v-col>
             </v-row>
           </v-container>
+          <component v-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0"  :is="actionSelected.params[0].type"  v-model="paramater" :min="actionSelected.params[0].minValue" :max="actionSelected.params[0].maxValue"  :textOptions="actionSelected.params[0].supportedValues" />
           <v-text-field
               label="Nombre de la nueva rutina"
               class="margin-button3"
@@ -91,13 +93,13 @@
               hide-details="auto"
               v-model="routineName"
           />
-          <v-btn :disabled="Object.entries(houseSelected).length ===  0 || Object.entries(roomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || Object.entries(actionSelected).length ===  0" class="margin-button" color="primary" @click="AddDevice">
+          <v-btn :disabled="Object.entries(houseSelected).length ===  0 || Object.entries(roomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || Object.entries(actionSelected).length ===  0 || (Object.entries(actionSelected.params).length > 0 && paramater==='' )" class="margin-button" color="primary" @click="AddDevice">
             Agregar dispositivo a la rutina
           </v-btn>
           <v-row>
             <div v-for="devAndAct in routineCreated" :key="devAndAct" class="device-and-actions">
               <v-card outlined>
-                <span class="text-h6">{{devAndAct.device.id}}</span>
+                <span class="text-h6">{{devAndAct.actionName}}</span>
                 <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
                   <v-icon  color="error" >delete_forever</v-icon>
                 </v-btn>
@@ -116,24 +118,38 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 import {Routine} from "@/Api/Routine";
 import {Home} from "@/Api/House";
+import devicesImplemented from "@/store/localStore"
+import SelectColor from "@/components/paramComponents/SelectColor";
+import SelectNumber from "@/components/paramComponents/SelectNumber";
+import SelectString from "@/components/paramComponents/SelectString";
+
 
 export default {
   name: "AddRoutineBlock",
+  components:{
+    SelectColor,
+    SelectNumber,
+    SelectString
+  },
 
   data(){
     return {
-
+      devicesImplemented: devicesImplemented.devicesImplemented ,
+      type:"selectColor",
       routineAdd: false,
-
       routineName: "",
       houseSelected: {},
+      rooms: [],
       roomSelected: {},
       deviceSelected: {},
+      devices: [],
       actionSelected: {},
-      deviceType: {},
+      actions: [],
+      paramater: "",
+      parameterSelected: [],
       routineCreated: [],
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
 
@@ -141,12 +157,42 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState( "House", {
+      $house: "homes",
+    }),
+    ...mapState( "ProtoDevice", {
+      $devicesTypes: "devicesTypes",
+    }),
+  },
+
+  watch: {
+    houseSelected(){
+      this.updateRooms()
+    },
+    roomSelected(){
+      this.updateDevices()
+    },
+    deviceSelected(){
+      this.updateActions()
+    }
+  },
+
+
   methods: {
     ...mapActions("Routine",{
       $createRoutine: "createRoutine",
     }),
     ...mapActions("House", {
-      $modifyHouse: "modifyHome",
+      $getHomeRooms: "getHomeRooms",
+
+    }),
+    ...mapActions("Room", {
+      $getRoomDevices: "getDevices",
+
+    }),
+    ...mapActions("ProtoDevice", {
+      $getDeviceType: "getDeviceType",
 
     }),
 
@@ -163,10 +209,13 @@ export default {
         console.log("No hizo la seleccion de rutinas")
         //MENSAJE DE ERROR
       }else {
+        if(this.paramater){
+          this.parameterSelected.push(this.paramater)
+        }
         var actions = {
-          device: { id: "1fbc9ada2d9b1641"}, //this.deviceSelected.deviceCode,
-          actionName: "turnOn",
-          params: [],
+          device: { id: this.deviceSelected.id}, //this.deviceSelected.deviceCode,
+          actionName: this.actionSelected.name,
+          params: this.parameterSelected,
           meta: {}
         }
         this.routineCreated.push(actions)
@@ -174,6 +223,13 @@ export default {
         this.roomSelected = {}
         this.deviceType = {}
         this.actionSelected = {}
+        this.parameterSelected= []
+        this.rooms= []
+        this.devices= []
+        this.devices= []
+        let aux= this.houseSelected
+        this.houseSelected= {}
+        this.houseSelected= aux
       }
     },
 
@@ -200,17 +256,39 @@ export default {
         this.deviceType = {};
         this.routineName = "";
         this.routineCreated = [];
+        this.rooms= [];
+        this.devices= [];
       }
 
     },
-    // getDeviceActions(myDevice){
-    //   this.deviceType= store.devicesMap.find(
-    //       device => device.id === myDevice.deviceCode)
-    //
-    // },
+
     DeleteDeviceFromRoutine(deviceAndAct){
       this.routineCreated.splice(this.routineCreated.indexOf(deviceAndAct),1)
+    },
+    async updateRooms() {
+      try {
+        this.rooms = await this.$getHomeRooms(this.houseSelected.id)
+      } catch (e) {
+        this.setResult(e)
+      }
+    },
+    async updateDevices() {
+      try {
+        this.devices = await this.$getRoomDevices(this.roomSelected.id)
+      } catch (e) {
+        this.setResult(e)
+      }
+    },
+    updateActions() {
+        let deviceInfo = this.devicesImplemented.find(
+            device =>  device.id.localeCompare(this.deviceSelected.type.id)===0
+            )
+        this.actions=deviceInfo.actions
+    },
+    updateParamter(param){
+      this.paramater=param
     }
+
   }
 }
 </script>

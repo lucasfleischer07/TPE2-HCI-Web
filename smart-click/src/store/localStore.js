@@ -10,7 +10,7 @@ export default {
                 params: [
                     {
                         name: "volume",
-                        type: "selectNumber",
+                        type: "SelectNumber",
                         description: "volume level",
                         minValue: 0,
                         maxValue: 10,
@@ -82,7 +82,7 @@ export default {
                 params: [
                     {
                         name: "genre",
-                        type: "selectString",
+                        type: "SelectString",
                         description: "music genre",
                         supportedValues: [
                             "classical",
@@ -178,7 +178,7 @@ export default {
                         params: [
                             {
                                 name: "temperature",
-                                type: "selectNumber",
+                                type: "SelectNumber",
                                 description: "temperature in centigrades",
                                 minValue: -20,
                                 maxValue: -8,
@@ -196,7 +196,7 @@ export default {
                         params: [
                             {
                                 name: "temperature",
-                                type: "selectNumber",
+                                type: "SelectNumber",
                                 description: "temperature in centigrades",
                                 minValue: 2,
                                 maxValue: 8,
@@ -214,7 +214,7 @@ export default {
                         params: [
                             {
                                 name: "mode",
-                                type: "selectString",
+                                type: "SelectString",
                                 description: "mode",
                                 supportedValues: [
                                     "default",
@@ -296,7 +296,7 @@ export default {
                         params: [
                             {
                                 name: "temperature",
-                                type: "selectNumber",
+                                type: "SelectNumber",
                                 description: "temperature in centigrades",
                                 minValue: 90,
                                 maxValue: 230,
@@ -314,7 +314,7 @@ export default {
                         params: [
                             {
                                 name: "heat",
-                                type: "selectString",
+                                type: "SelectString",
                                 description: "heat mode",
                                 supportedValues: [
                                     "conventional",
@@ -335,7 +335,7 @@ export default {
                         params: [
                             {
                                 name: "grill",
-                                type: "selectString",
+                                type: "SelectString",
                                 description: "grill mode",
                                 supportedValues: [
                                     "large",
@@ -356,7 +356,7 @@ export default {
                         params: [
                             {
                                 name: "convection",
-                                type: "selectString",
+                                type: "SelectString",
                                 description: "convection mode",
                                 supportedValues: [
                                     "normal",
@@ -458,7 +458,7 @@ export default {
                         params: [
                             {
                                 name: "color",
-                                type: "selectColor",
+                                type: "SelectColor",
                                 description: "new RGB color",
                                 minValue: "000000",
                                 maxValue: "FFFFFF",
@@ -476,7 +476,7 @@ export default {
                         params: [
                             {
                                 name: "brightness",
-                                type: "selectNumber",
+                                type: "SelectNumber",
                                 description: "new brightness",
                                 minValue: 0,
                                 maxValue: 100,
