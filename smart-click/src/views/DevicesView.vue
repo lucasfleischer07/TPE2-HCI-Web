@@ -27,9 +27,9 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content >
               <v-row>
-                <v-col v-for="device in devices" :key="device.id" class="flex-grow-0 col-division">
-                  <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
-                    <component v-if="deviceProto.id === device.id" :is="deviceProto.name" :deviceEntity="device"/>
+                 <v-col v-for="device in getRoomDevices(room.id)" :key="device.id" class="flex-grow-0 col-division">
+                   <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
+                    <component v-if="deviceProto.id === device.type.id" :is="deviceProto.name" :deviceEntity="device"/>
                   </v-container>
                 </v-col>
               </v-row>
@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import SpeakerComp from "@/components/speaker";
-import DoorComp from "@/components/door";
-import RefrigeratorComp from "@/components/refrigerator";
-import LightbulbComp from "@/components/lamp";
-import OvenComp from "@/components/oven";
+import SpeakerComp from "@/components/Parlante";
+import DoorComp from "@/components/Puerta";
+import RefrigeratorComp from "@/components/Heladera";
+import LightbulbComp from "@/components/Lámpara";
+import OvenComp from "@/components/Horno";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 import RemoveHouse from "@/components/addingComponents/RemoveHouse";
 import {mapActions, mapState} from "vuex";
@@ -106,6 +106,7 @@ export default {
     ...mapActions("ProtoDevice", {
       $getAllDevicesTypes: "getAllDevicesTypes",
     }),
+
     async updateRooms(){
 
       try {
@@ -122,26 +123,15 @@ export default {
     async selectHome(home){
       await this.$changeCurrentHome(home)
     },
-    async getRoomDevices(room){
-      try {
-        await this.$getRoomDevices(room.id)
-      } catch (e) {
-        console.log(e)
-      }
+    async getRoomDevices(id){
+      return await this.$getRoomDevices(id)
     },
      getSelected(){
       return  this.$myHome
     },
 
 
-    async updateProto(){
-      try {
-        this.protoDevices=await this.$getAllDevicesTypes()
-      } catch (e) {
-        console.log(e)
-      }
-    }
-  },
+
 
 
   data() {
@@ -150,11 +140,11 @@ export default {
       oldRooms: [],
       rooms:  this.updateRooms(),
       devices:[],
-      protoDevices: this.updateProto(),
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
+}
 }
 </script>
 
