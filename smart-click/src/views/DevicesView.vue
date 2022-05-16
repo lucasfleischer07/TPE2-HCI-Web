@@ -12,7 +12,7 @@
           <RemoveHouse :house_selected="$myHome"/>
         </div>
       </div>
-      <AddRoom/>
+      <AddRoom :houseSelected="$myHome"/>
 
       <div class="rooms-class">
         <div v-if="Object.entries(rooms).length ===  0" class="h1-title">
@@ -33,7 +33,7 @@
                   </v-container>
                 </v-col>
               </v-row>
-              <AddDeviceRound/>
+              <AddDeviceRound :deviceAddHouseSelected="$myHome" :deviceAddRoomSelected="room"/>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>

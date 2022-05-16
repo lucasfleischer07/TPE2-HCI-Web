@@ -6,49 +6,9 @@
     <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
       <v-card @keyup.enter="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
         <v-card-title>
-          <h2>Agregue un nuevo dispositivo</h2>
+          <h2>Agregue un nuevo dispositivo en "{{deviceAddRoomSelected.name}}"</h2>
         </v-card-title>
         <v-card-text>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="this.$house"
-                    item-text="name"
-                    label="Casa seleccionada:"
-                    outlined
-                    class="house-selector-slider"
-                    dense
-                    return-object
-                    required
-                    v-model="deviceAddHouseSelected"
-                    @change="houseRooms=updateRooms(deviceAddHouseSelected.id)"
-                    persistent-placeholder
-                    placeholder="Seleccione una casa">
-
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="houseRooms"
-                    item-text="name"
-                    return-object
-                    :disabled="Object.entries(deviceAddHouseSelected).length ===  0"
-                    :rules="[v => !!v || 'Campo obligatorio']"
-                    label="Habitación seleccionada:"
-                    outlined class="house-selector-slider"
-                    dense
-                    v-model="deviceAddRoomSelected"
-                    persistent-placeholder
-                    placeholder="Seleccione una habitación">
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
           <v-container fluid c>
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
@@ -93,13 +53,16 @@ import localStore from "@/store/localStore";
 export default {
   name: "AddDevice",
 
+  props: {
+    deviceAddHouseSelected: {},
+    deviceAddRoomSelected: {},
+  },
+
   data() {
     return {
       types:localStore.devicesImplemented,
       houseRooms:null,
       deviceAdd: false,
-      deviceAddHouseSelected: {},
-      deviceAddRoomSelected: {},
       deviceSelected: {},
 
       deviceName: "",
@@ -187,8 +150,8 @@ export default {
           console.log(e)
         }
         this.deviceAdd = false,
-            this.deviceAddHouseSelected = {},
-            this.deviceAddRoomSelected = {},
+            // this.deviceAddHouseSelected = {},
+            // this.deviceAddRoomSelected = {},
             this.deviceSelected = {},
             this.deviceName = ""
       }

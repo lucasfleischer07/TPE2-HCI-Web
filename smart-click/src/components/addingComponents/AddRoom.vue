@@ -7,34 +7,16 @@
     <v-dialog v-model="roomAdd" max-width="600px" height="600px">
       <v-card @keyup.enter="createRoom(roomName)">
         <v-card-title>
-          <h2>Agregue una nueva habitación</h2>
+          <h2>Agregue una nueva habitación en "{{houseSelected.name}}"</h2>
         </v-card-title>
         <v-card-text>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="$house"
-                    label="Casa seleccionada:"
-                    outlined class="house-selector-slider"
-                    dense
-                    item-text="name"
-                    return-object
-                    v-model="houseSelected"
-                    persistent-placeholder
-                    placeholder="Selecciona casa ">
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
-
           <v-text-field
               label="Nombre de la habitación"
               :rules="rules"
               hide-details="auto"
               v-model="roomName"
           />
-          <v-btn :disabled=" Object.entries(houseSelected).length ===  0 || roomName.length < 3 || roomName.length > 60" class="margin-button" color="primary" @click="createRoom(roomName)">
+          <v-btn :disabled="roomName.length < 3 || roomName.length > 60" class="margin-button" color="primary" @click="createRoom(roomName)">
             Agregar habitación
           </v-btn>
         </v-card-text>
@@ -49,11 +31,15 @@ import {Room} from "@/Api/Room";
 
 export default {
   name: "AddRoom",
+
+  props: {
+    houseSelected: {},
+  },
+
   data() {
     return {
 
       roomAdd: false,
-      houseSelected: {},
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
