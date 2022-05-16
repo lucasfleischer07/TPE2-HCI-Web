@@ -9,14 +9,16 @@
 
     <v-card class="background-card">
       <v-row class="action-row action_btn" >
-          <v-switch inline></v-switch>
+          <v-switch inline :v-model="onOffLamp" @click="onOffLampFunction"></v-switch>
         </v-row>
         <v-row class="action-row action_btn" >
             <v-slider class="margin-slider" prepend-icon="brightness_6"
                       :max="100"
                       :min="0"
                       style="width: 50%"
-                      v-model="slider"></v-slider>
+                      v-model="slider"
+                      @click="(brightnessFunction)"
+            ></v-slider>
             <v-text-field dense
                 hide-details
                 single-line
@@ -33,11 +35,12 @@
               :color=btnColor
               @click="toggle= !toggle"
               class="margin-button"></v-btn>
+<!--      TODO: VER SI EL LLAMADO A LA FUNCION VA ACA EN EL COLOR-PICKER O DONDE VA-->
         <v-color-picker :show-swatches="toggle" hide-canvas hide-sliders hide-inputs
-        v-model="btnColor"
-        :swatches="swatches"
-        @update:color="toggle= !toggle"
-        >
+            v-model="btnColor"
+            :swatches="swatches"
+            @update:color="toggle= !toggle"
+            @click="colorChangeFunction">
         </v-color-picker>
     </v-card>
   </div>
@@ -45,6 +48,7 @@
 
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
+import {mapActions} from "vuex";
 
 export default {
 name: "LightbulbComp",
@@ -56,9 +60,53 @@ name: "LightbulbComp",
   props: {
     deviceEntity: {},
   },
+
+  methods: {
+    ...mapActions("Devices", {
+      $execute: "executeDeviceAction",
+    }),
+
+    async onOffLampFunction() {
+      let params
+      try {
+        if(this.onOffLamp) {
+          params = [this.deviceEntity.id, "turnOn", []]
+        } else {
+          params = [this.deviceEntity.id, "turnOff", []]
+        }
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async brightnessFunction() {
+      let params = [this.deviceEntity.id, "setBrightness", [this.slider]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async colorChangeFunction() {
+      let params = [this.deviceEntity.id, "setColor", [this.btnColor]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+
+
+  },
+
+
   data () {
     return {
       slider:0,
+      onOffLamp: false,
       toggle:true,
       btnColor:"red",
       swatches: [

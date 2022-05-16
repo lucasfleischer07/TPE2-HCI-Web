@@ -13,7 +13,9 @@
                   :max="8"
                   :min="2"
                   style="width: 50%"
-                  v-model="temperature"></v-slider>
+                  v-model="temperature"
+                  @click="setTemperatureFunction"
+        ></v-slider>
         <v-text-field dense
                       hide-details
                       single-line
@@ -29,7 +31,9 @@
                    :max="-8"
                    :min="-20"
                    style="width: 50%"
-                   v-model="freezerTemperature"></v-slider>
+                   v-model="freezerTemperature"
+                   @click="setTemperatureFreezerFunction"
+         ></v-slider>
          <v-text-field dense
                        hide-details
                        single-line
@@ -43,7 +47,7 @@
 
       <p style="padding-top: 30px">Modo</p>
       <v-row class="action-row action_btn">
-        <v-btn-toggle mandatory v-model="modeRefrigerator" class="grill-buttons">
+        <v-btn-toggle mandatory v-model="modeRefrigerator" class="grill-buttons" @click="setModeFunction">
           <v-btn width="70px"><v-icon>auto_mode</v-icon></v-btn>
           <v-btn width="70px"><v-icon>celebration</v-icon></v-btn>
           <v-btn width="70px"><v-icon>beach_access</v-icon></v-btn>
@@ -56,6 +60,7 @@
 
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
+import {mapActions} from "vuex";
 
 
 export default {
@@ -67,6 +72,41 @@ export default {
     components: {
           DeviceIcon,
     },
+
+  methods: {
+    ...mapActions("Devices", {
+      $execute: "executeDeviceAction",
+    }),
+
+    async setTemperatureFunction() {
+      let params = [this.deviceEntity.id, "setTemperature", [this.temperature]]
+
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async setTemperatureFreezerFunction() {
+      let params = [this.deviceEntity.id, "setFreezerTemperature", [this.freezerTemperature]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async setModeFunction() {
+      let params = [this.deviceEntity.id, "mode", [this.modeRefrigerator]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+  },
 
     data() {
         return {

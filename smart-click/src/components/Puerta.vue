@@ -10,20 +10,20 @@
     <v-card class="background-card">
       <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn depressed icon class="button-margin">
-              <v-icon x-large @click="openDoorFunction">open_in_full</v-icon>
+            <v-btn depressed icon class="button-margin" @click="openDoorFunction">
+              <v-icon x-large>open_in_full</v-icon>
             </v-btn >
-            <v-btn depressed icon>
+            <v-btn depressed icon @click="closeDoorFunction">
               <v-icon x-large>close_fullscreen</v-icon>
             </v-btn>
           </div>
         </v-row>
         <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn depressed icon class="button-margin">
+            <v-btn depressed icon class="button-margin" @click="lockDoorFunction">
               <v-icon x-large>lock</v-icon>
             </v-btn >
-            <v-btn depressed icon>
+            <v-btn depressed icon @click="unlockDoorFunction">
               <v-icon x-large>lock_open</v-icon>
             </v-btn>
           </div>
@@ -34,7 +34,7 @@
 
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
-// import {mapActions} from "vuex";
+import {mapActions} from "vuex";
 
 
 export default {
@@ -49,9 +49,50 @@ export default {
       DeviceIcon
   },
 
-  // methods: {
-  //   ...mapActions
-  // }
+  methods: {
+    ...mapActions("Devices", {
+      $execute: "executeDeviceAction",
+    }),
+
+    async openDoorFunction() {
+      let params = [this.deviceEntity.id, "open", []]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async closeDoorFunction() {
+      let params = [this.deviceEntity.id, "open", []]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async lockDoorFunction() {
+      let params = [this.deviceEntity.id, "lock", []]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async unlockDoorFunction() {
+      let params = [this.deviceEntity.id, "unlock", []]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+
+
+  },
 
   data () {
       return {

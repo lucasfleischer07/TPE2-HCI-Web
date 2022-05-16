@@ -9,14 +9,16 @@
 
     <v-card class="background-card">
       <v-row style="justify-content: center">
-        <v-switch inline></v-switch>
+        <v-switch inline :v-model="onOffOven" @click="onOffOvenFunction"></v-switch>
       </v-row>
       <v-row class="action-row">
         <v-slider class="margin-slider" prepend-icon="device_thermostat"
                   :max="230"
                   :min="90"
                   style="width: 50%"
-                  v-model="slider"></v-slider>
+                  v-model="slider"
+                  @click="setTemperatureFunction"
+                  ></v-slider>
         <v-text-field dense
                       hide-details
                       single-line
@@ -28,7 +30,7 @@
       </v-row>
       <p style="padding-top: 30px">Fuente calor</p>
       <v-row class="action-row action_btn">
-        <v-btn-toggle mandatory v-model="fuenteCalor">
+        <v-btn-toggle mandatory v-model="fuenteCalor" @click="setHeatFunction">
           <v-btn width="100px">ABAJO</v-btn>
           <v-btn width="100px">NORMAL</v-btn>
           <v-btn width="100px">ARRIBA</v-btn>
@@ -36,7 +38,7 @@
       </v-row>
       <p style="padding-top: 30px">Grill</p>
       <v-row class="action-row action_btn">
-        <v-btn-toggle mandatory v-model="grillMode" class="grill-buttons">
+        <v-btn-toggle mandatory v-model="grillMode" class="grill-buttons" @click="setGrillFunction">
           <v-btn width="100px"><v-icon>power_off</v-icon></v-btn>
           <v-btn width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
           <v-btn width="100px"><v-icon>bolt</v-icon></v-btn>
@@ -45,7 +47,7 @@
 
       <p style="padding-top: 30px">Convección</p>
       <v-row class="action-row action_btn">
-        <v-btn-toggle mandatory v-model="conveccionMode">
+        <v-btn-toggle mandatory v-model="conveccionMode" @click="setConvectionFunction">
           <v-btn width="100px"><v-icon>power_off</v-icon></v-btn>
           <v-btn width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
           <v-btn width="100px"><v-icon>bolt</v-icon></v-btn>
@@ -57,6 +59,8 @@
 
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
+import {mapActions} from "vuex";
+
 export default {
   name: "OvenComp",
   components: {DeviceIcon},
@@ -65,10 +69,71 @@ export default {
     deviceEntity: {},
 
   },
+
+
+  methods: {
+    ...mapActions("Devices", {
+      $execute: "executeDeviceAction",
+    }),
+
+    async onOffOvenFunction() {
+      let params
+      try {
+        if (this.onOffOven) {
+          params = [this.deviceEntity.id, "turnOn", []]
+        } else {
+          params = [this.deviceEntity.id, "turnOff", []]
+        }
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async setTemperatureFunction() {
+      let params = [this.deviceEntity.id, "setTemperature", [this.slider]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async setHeatFunction() {
+      let params = [this.deviceEntity.id, "setHeat", [this.fuenteCalor]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async setGrillFunction() {
+      let params = [this.deviceEntity.id, "setGrill", [this.grillMode]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async setConvectionFunction() {
+      let params = [this.deviceEntity.id, "setGrill", [this.conveccionMode]]
+      try {
+        await this.$execute(params)
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+  },
+
+
   data(){
     return{
       fuenteCalor:undefined,
       grillMode:undefined,
+      onOffOven: false,
       conveccionMode:undefined,
       slider:90
 

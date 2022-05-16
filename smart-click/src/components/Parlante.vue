@@ -23,7 +23,7 @@
                     :min="0"
                     style="width: 30%"
                     v-model="sound"
-                    @click="setVolumeFunction(sound)"></v-slider>
+                    @click="setVolumeFunction"></v-slider>
 <!--          TODO:  VER SI EL LLAMADO DE LA FUNCION VA ACA EN EL SLIDER, SINO NOSE DONDE VA-->
           <v-text-field dense
                         hide-details
@@ -38,7 +38,7 @@
           <div>
             <v-btn depressed icon><v-icon x-large @click="getPlaylistFunction">queue_music</v-icon></v-btn >
 <!--            TODO: HACER UN V-DILOG QUE CUANDO TOQUE, ME DEJE ELEGIR EL GENERO QUE QUIERO PONER-->
-            <v-btn class="margin-separation-icons2" v-model="genre" depressed icon @click="setGenreFunction(genre)"><v-icon x-large>radio</v-icon></v-btn>
+            <v-btn class="margin-separation-icons2" v-model="genre" depressed icon @click="setGenreFunction"><v-icon x-large>radio</v-icon></v-btn>
           </div>
         </v-row>
     </v-card>
@@ -59,6 +59,8 @@ export default {
   props: {
     deviceEntity: {},
   },
+
+
   data () {
     return {
       sound: 0,
@@ -118,8 +120,8 @@ export default {
       }
     },
 
-    async setGenreFunction(genre) {
-      let params = [this.deviceEntity.id, "setGenre", [genre]]
+    async setGenreFunction() {
+      let params = [this.deviceEntity.id, "setGenre", [this.genre]]
       try {
         await this.$execute(params)
       } catch (e) {
@@ -127,8 +129,8 @@ export default {
       }
     },
 
-    async setVolumeFunction(sound) {
-      let params = [this.deviceEntity.id, "setVolume", [sound]]
+    async setVolumeFunction() {
+      let params = [this.deviceEntity.id, "setVolume", [this.sound]]
       try {
         await this.$execute(params)
       } catch (e) {
