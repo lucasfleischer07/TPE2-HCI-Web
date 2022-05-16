@@ -2,11 +2,11 @@ export default {
     devicesImplemented: [
         {
         id: "c89b94e8581855bc",
-        name: "speaker",
+        name: "Parlante",
         powerUsage: 20,
         actions: [
             {
-                name: "setVolume",
+                name: "Seleccionar volumen",
                 params: [
                     {
                         name: "volume",
@@ -24,7 +24,7 @@ export default {
                 }
             },
             {
-                name: "play",
+                name: "Play",
                 params: [],
                 return: {
                     type: "boolean",
@@ -33,7 +33,7 @@ export default {
                 }
             },
             {
-                name: "stop",
+                name: "Stop",
                 params: [],
                 return: {
                     type: "boolean",
@@ -42,7 +42,7 @@ export default {
                 }
             },
             {
-                name: "pause",
+                name: "Pausa",
                 params: [],
                 return: {
                     type: "boolean",
@@ -51,7 +51,7 @@ export default {
                 }
             },
             {
-                name: "resume",
+                name: "Reanudar",
                 params: [],
                 return: {
                     type: "boolean",
@@ -60,7 +60,7 @@ export default {
                 }
             },
             {
-                name: "nextSong",
+                name: "Próxima canción",
                 params: [],
                 return: {
                     type: "boolean",
@@ -69,7 +69,7 @@ export default {
                 }
             },
             {
-                name: "previousSong",
+                name: "Canción anterior",
                 params: [],
                 return: {
                     type: "boolean",
@@ -78,7 +78,7 @@ export default {
                 }
             },
             {
-                name: "setGenre",
+                name: "Elegir género",
                 params: [
                     {
                         name: "genre",
@@ -102,7 +102,7 @@ export default {
                 }
             },
             {
-                name: "getPlaylist",
+                name: "Traer Playlist",
                 params: [],
                 return: {
                     type: "object",
@@ -170,11 +170,11 @@ export default {
         },
         {
                 id: "rnizejqr2di0okho",
-                name: "refrigerator",
+                name: "Heladera",
                 powerUsage: 90,
                 actions: [
                     {
-                        name: "setFreezerTemperature",
+                        name: "Seleccionar temperatura freezer",
                         params: [
                             {
                                 name: "temperature",
@@ -192,7 +192,7 @@ export default {
                         }
                     },
                     {
-                        name: "setTemperature",
+                        name: "Seleccionar temperatura",
                         params: [
                             {
                                 name: "temperature",
@@ -210,7 +210,7 @@ export default {
                         },
                     },
                     {
-                        name: "setMode",
+                        name: "Seleccionar genero",
                         params: [
                             {
                                 name: "mode",
@@ -270,11 +270,11 @@ export default {
 
             {
                 id: "im77xxyulpegfmv8",
-                name: "oven",
+                name: "Horno",
                 powerUsage: 1225,
                 actions: [
                     {
-                        name: "turnOn",
+                        name: "Encender",
                         params: [],
                         return: {
                             type: "boolean",
@@ -283,7 +283,7 @@ export default {
                         }
                     },
                     {
-                        name: "turnOff",
+                        name: "Apagar",
                         params: [],
                         return: {
                             type: "boolean",
@@ -292,7 +292,7 @@ export default {
                         }
                     },
                     {
-                        name: "setTemperature",
+                        name: "Seleccionar temperatura",
                         params: [
                             {
                                 name: "temperature",
@@ -310,7 +310,7 @@ export default {
                         }
                     },
                     {
-                        name: "setHeat",
+                        name: "Seleccionar fuente de calor",
                         params: [
                             {
                                 name: "heat",
@@ -331,7 +331,7 @@ export default {
                         }
                     },
                     {
-                        name: "setGrill",
+                        name: "Seleccionar grill",
                         params: [
                             {
                                 name: "grill",
@@ -352,7 +352,7 @@ export default {
                         }
                     },
                     {
-                        name: "setConvection",
+                        name: "Seleccionar convección",
                         params: [
                             {
                                 name: "convection",
@@ -432,11 +432,11 @@ export default {
             },
             {
                 id: "go46xmbqeomjrsjr",
-                name: "lamp",
+                name: "Lámpara",
                 powerUsage: 15,
                 actions: [
                     {
-                        name: "turnOn",
+                        name: "Encender",
                         params: [],
                         return: {
                             type: "boolean",
@@ -445,7 +445,7 @@ export default {
                         }
                     },
                     {
-                        name: "turnOff",
+                        name: "Apagar",
                         params: [],
                         return: {
                             type: "boolean",
@@ -454,7 +454,7 @@ export default {
                         }
                     },
                     {
-                        name: "setColor",
+                        name: "Seleccionar color",
                         params: [
                             {
                                 name: "color",
@@ -472,7 +472,7 @@ export default {
                         }
                     },
                     {
-                        name: "setBrightness",
+                        name: "Seleccionar brillo",
                         params: [
                             {
                                 name: "brightness",
@@ -527,11 +527,11 @@ export default {
             },
             {
                 id: "lsf78ly0eqrjbz91",
-                name: "door",
+                name: "Puerta",
                 powerUsage: 350,
                 actions: [
                     {
-                        name: "open",
+                        name: "Abrir",
                         params: [],
                         return: {
                             type: "boolean",
@@ -540,7 +540,7 @@ export default {
                         }
                     },
                     {
-                        name: "close",
+                        name: "Cerrar",
                         params: [],
                         return: {
                             type: "boolean",
@@ -549,7 +549,7 @@ export default {
                         }
                     },
                     {
-                        name: "lock",
+                        name: "Trabar",
                         params: [],
                         return: {
                             type: "boolean",
@@ -558,7 +558,7 @@ export default {
                         }
                     },
                     {
-                        name: "unlock",
+                        name: "Destrabar",
                         params: [],
                         return: {
                             type: "boolean",
@@ -591,5 +591,4 @@ export default {
                 ]
             },
         ]
-
 }
