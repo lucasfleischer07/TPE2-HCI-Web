@@ -92,6 +92,7 @@
 
 import {mapActions, mapState} from "vuex";
 import {Device} from "@/Api/Device";
+import localStore from "@/store/localStore";
 
 
 export default {
@@ -99,7 +100,7 @@ export default {
 
     data() {
       return {
-        types:this.updateTypes(),
+        types:localStore.devicesImplemented,
         houseRooms:null,
         deviceAdd: false,
         deviceAddHouseSelected: {},
