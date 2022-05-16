@@ -13,8 +13,8 @@
           </template>
           <v-list-item>
             <p class="text-alignment">Para poder agregar una casa, en la barra superior, tocar el selector de casa.
-            Debajo de las otras casas (si las hay) encontrara un botón con la opción "AGREGAR CASA". También puede agregar
-            una casa desde la pagina principal presionando el botón de "Agregar casa". </p>
+              Debajo de las otras casas (si las hay) encontrará un botón con la opción "agregar casa". También puede agregar
+              una casa desde la página principal presionando el botón de "agregar casa". </p>
           </v-list-item>
         </v-list-group>
 
@@ -42,8 +42,8 @@
           </template>
           <v-list-item>
             <p class="text-alignment">Para agregar un dispositivo, debe tener una casa y un cuarto agregados.
-            Teniendo esto, ir al apartado dispositivos, elegir casa(si necesario) y cuarto. Luego presionar el
-            botón "agregar dispositivo", elegir el tipo de dispositivo y luego presionar "confirmar".
+              Teniendo esto, ir al apartado dispositivos, elegir casa(si necesario) y una habitación. Luego presionar el
+              botón "agregar dispositivo", elegir el tipo de dispositivo y luego presionar "confirmar".
           </p></v-list-item>
         </v-list-group>
 
