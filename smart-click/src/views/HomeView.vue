@@ -7,6 +7,7 @@
       <div class="text-and-button">
         <h2 class="padding-h2-title3">En caso contrario, agregue una haciendo click aquí <v-icon class="icon-arrow">arrow_right_alt</v-icon></h2>
         <AddHouse class="button-add"/>
+        <AddRoutineRound/>
       </div>
     </div>
   </div>
@@ -15,11 +16,14 @@
 <script>
   import AddHouse from "@/components/addingComponents/AddHouse";
   import {mapActions} from "vuex"
+  import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
+
 
   export default {
     name: "HomeView",
     components: {
       AddHouse,
+      AddRoutineRound
     },
     data() {
       return {

@@ -6,7 +6,7 @@
             <p>{{detail.routineName}}</p>
           </div>
           <div class="boton-centrado">
-            <v-btn color="primary">Activar Rutina</v-btn>
+            <v-btn @click="executeRoutine" color="primary">Activar Rutina</v-btn>
           </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
 
 <script>
 
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "RoutineDetailView",
@@ -65,6 +65,20 @@ export default {
       }
   },
 
+  methods:{
+    ...mapActions("Routine", {
+      $executeRoutine: "executeRoutine",
+    }),
+    async executeRoutine() {
+      try {
+         await this.$executeRoutine(this.detail.id)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+
+  }
 
 }
 </script>
