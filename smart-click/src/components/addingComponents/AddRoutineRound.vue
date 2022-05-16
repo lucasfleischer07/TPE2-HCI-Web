@@ -250,13 +250,13 @@ export default {
         } catch (e) {
           this.setResult(e)
         }
-        try {
+        /*try {
 
           this.houseSelected.meta.homeRoutines.push(routine)
           await this.$modifyHome(this.houseSelected) //Modifico la casa y le agrego la rutina
         }catch (e) {
           this.setResult(e)
-        }
+        }*/
 
         this.houseSelected = {};
         this.deviceSelected = {};

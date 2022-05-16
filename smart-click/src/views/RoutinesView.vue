@@ -10,7 +10,23 @@
           <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.meta.slug}}">
               <v-btn class="hover-btn" color="success" large width="250" rounded >{{ routine.name }}</v-btn>
           </router-link>
-            <v-btn class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
+            <v-btn @click="confirmRemoveRoutine = true" class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
+            <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
+              <v-card @keyup.enter="removeRoutine(routine)">
+                <v-card-title>
+                  <h2>Esta seguro que desea eliminar "{{ routine.name }}"</h2>
+                </v-card-title>
+
+                <v-card-text>
+                  <v-btn color="error" @click="removeRoutine(routine)" >
+                    Eliminar
+                  </v-btn>
+                  <v-btn color="primary"  @click.stop="confirmRemoveRoutine=false">
+                    Cancelar
+                  </v-btn>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
           </div>
         </v-col>
       </v-row>
@@ -51,18 +67,30 @@
 
     methods: {
       ...mapActions("Routine", {
-        $getRoutine: "getAllRoutine"
+        $getRoutine: "getAllRoutine",
+        $deleteRoutine: "deleteRoutine"
       }),
 
       async getRoutines(){
         return await this.$getRoutine()
+      },
+      async removeRoutine(routine){
+        try{
+          await this.$deleteRoutine(routine.id)
+        }catch (e) {
+          this.setResult(e)
+        }
+        this.confirmRemoveRoutine= false
+
       }
     },
 
 
     data() {
       return {
-        routines: this.getRoutines()
+        routines: this.getRoutines(),
+        confirmRemoveRoutine: false
+
         // house: store.house,
       }
     },
