@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="delete-div">
-      <v-btn class="delete-button" small color="error" elevation="3" fab rounded @click.stop="houseRemove = true"><v-icon>delete_forever</v-icon></v-btn>
+      <v-btn class="delete-button" small color="error" elevation="3" fab rounded @click.stop="houseRemove = true;getHouse()"><v-icon>delete_forever</v-icon></v-btn>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeHouse()">
@@ -24,17 +24,16 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import House from "@/store/module/House";
 
 export default {
   name: "RemoveHouse",
   props: {
-    house_selected: House,
   },
   data() {
     return {
       houseRemove: false,
       rules: [v => !(v.empty) || 'Seleccione una casa'],
+      house_selected:this.getHouse()
     }
   },
 
@@ -64,6 +63,7 @@ export default {
 
     async removeHouse() {
       try {
+        await this.getHouse()
         let rooms=await this.$getRooms(this.house_selected.id)
         let devices
         for(let room of rooms){
@@ -75,6 +75,7 @@ export default {
         }
         await this.$removeHouse(this.house_selected.id);
         this.$parent.selectHome({});
+        await this.getHouse()
 
       } catch (e) {
        // this.setResult(e);
@@ -83,8 +84,11 @@ export default {
       this.confirmRemoveHouse = false
       this.houseRemove = false
       this.houseDeleteSelected = {}
-    }
+    },
 
+    async getHouse(){
+      return this.house_selected=await this.$parent.getSelected()
+    }
   }
 
 
