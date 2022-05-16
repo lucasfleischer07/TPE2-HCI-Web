@@ -31,8 +31,9 @@ class DeviceApi{
         return await Api.get(DeviceApi.getUrl(`${id}/state`))
     }
 
-    static async executeAction(id,action){
-        return await Api.put(DeviceApi.getUrl(`${id}/${action}`))
+    static async executeAction(id,action, params){
+        // const param = params ? [params] : params
+        return await Api.put(DeviceApi.getUrl(`${id}/${action}`), params)
     }
 
 }

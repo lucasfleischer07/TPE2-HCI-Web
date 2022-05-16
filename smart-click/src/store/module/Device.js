@@ -38,8 +38,8 @@ export default {
             dispatch("getAllDevice")
             return result
         },
-        async executeDeviceAction({dispatch},id,action) {
-            const result = await DeviceApi.executeAction(id,action)
+        async executeDeviceAction({dispatch},params) {
+            const result = await DeviceApi.executeAction(params[0],params[1], params[2])
             dispatch("getAllDevice")
             return result
         },

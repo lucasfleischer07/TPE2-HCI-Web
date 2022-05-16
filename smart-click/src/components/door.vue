@@ -11,7 +11,7 @@
       <v-row class="action-row  action_btn">
           <div class="div-margin">
             <v-btn depressed icon class="button-margin">
-              <v-icon x-large>open_in_full</v-icon>
+              <v-icon x-large @click="openDoorFunction">open_in_full</v-icon>
             </v-btn >
             <v-btn depressed icon>
               <v-icon x-large>close_fullscreen</v-icon>
@@ -34,26 +34,29 @@
 
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
+// import {mapActions} from "vuex";
 
 
 export default {
-    name: "DoorComp",
+  name: "DoorComp",
 
-    props: {
-      deviceEntity: {},
+  props: {
+    deviceEntity: {},
 
+  },
+
+  components: {
+      DeviceIcon
+  },
+
+  // methods: {
+  //   ...mapActions
+  // }
+
+  data () {
+      return {
+      }
     },
-
-    components: {
-        DeviceIcon
-    },
-
-    data () {
-        return {
-
-
-        }
-      },
 }
 </script>
 
