@@ -67,12 +67,10 @@ export default {
 
     }),
     async createHouse(name) {
-      const houseMeta= new HomeMeta();
-      const house = new Home(null, name, houseMeta);
-
+      let houseMeta= new HomeMeta(4);
+      let house = new Home(null, name, houseMeta);
       try {
-        this.house = await this.$createHouse(house);
-        this.house = Object.assign(new Home(), this.house);
+        await this.$createHouse(house);
         this.houseAdd = false
         this.nombreCasa = ""
       } catch (e) {

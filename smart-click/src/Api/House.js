@@ -53,8 +53,8 @@ class Home{
 }
 
 class HomeMeta{
-    constructor() {
-        this.homeRoutines=[]
+    constructor(homeRoutines) {
+        this.homeRoutines=homeRoutines
     }
 }
 

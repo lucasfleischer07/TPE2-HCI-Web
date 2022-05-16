@@ -46,6 +46,11 @@ class Routine{
         return JSON.stringify(this,null,2)
     }
 }
+class RoutineMeta{
+    constructor(slug){
+        this.slug=slug
+    }
+}
 
 
-export { RoutineApi,Routine }
+export { RoutineApi,Routine,RoutineMeta }
