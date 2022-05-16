@@ -79,6 +79,7 @@ export default {
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
     padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .text-alignment{
