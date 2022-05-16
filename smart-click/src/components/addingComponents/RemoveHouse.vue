@@ -24,11 +24,12 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import House from "@/store/module/House";
 
 export default {
   name: "RemoveHouse",
   props: {
-    house_selected: {}
+    house_selected: House,
   },
   data() {
     return {
@@ -72,7 +73,8 @@ export default {
           }
           await this.$deleteRoom(room.id)
         }
-        await this.$removeHouse(this.houseDeleteSelected.id);
+        await this.$removeHouse(this.house_selected.id);
+
 
       } catch (e) {
        // this.setResult(e);

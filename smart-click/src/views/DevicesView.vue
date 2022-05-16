@@ -9,7 +9,7 @@
         <div class="house-icon">
           <v-icon x-large>house</v-icon>
           <span class="text-h4 color-class">{{ $myHome.name }}</span>
-          <RemoveHouse house_selected="$myHome"/>
+          <RemoveHouse :house_selected="$myHome"/>
         </div>
       </div>
       <AddRoom/>

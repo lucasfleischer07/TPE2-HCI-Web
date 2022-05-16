@@ -34,6 +34,7 @@ export default {
   data(){
     return {
       removeRoom: false,
+      dev:null
     }
   },
 
@@ -45,7 +46,7 @@ export default {
 
     async deleteRoom() {
       try {
-        let devices =await this.getDevices(this.room_selected.id)
+        let devices =await this.$getDevices(this.room_selected.id)
         for(let device of devices){
           await this.removeDevice(device)
         }
@@ -59,16 +60,7 @@ export default {
     },
 
 
-    async getDevices(room) {
-      let devices
-      try {
-        devices = await this.$getDevices(room.id)
 
-      } catch (e) {
-        console.log(e)
-      }
-      return devices
-    },
     ...mapActions("Devices",{
       $removeDevice:"deleteDevice"
     }),
