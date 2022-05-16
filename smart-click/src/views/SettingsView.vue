@@ -73,6 +73,7 @@
   .settings-view {
     min-height: 530px;
     padding-top: 20px;
+    padding-bottom: 20px;
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
   }
