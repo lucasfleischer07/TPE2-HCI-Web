@@ -2,7 +2,7 @@
   <div class="action-row device-div" >
     <v-card class="background-card">
       <v-row class="action-row action_btn">
-        <device-icon name-device="kitchen"/>
+        <device-icon name-device="kitchen" :deviceEntity="deviceEntity"/>
       </v-row>
       <p class="text">{{deviceEntity.deviceName}}</p>
     </v-card>

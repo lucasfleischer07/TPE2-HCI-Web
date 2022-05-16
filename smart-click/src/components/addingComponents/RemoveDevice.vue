@@ -1,135 +1,76 @@
 <template>
-  <div>
-    <v-btn class="font-weight-bold" height="100px" width="300px" color="error" elevation="3" x-large @click.stop="deviceRemove = true">
-      <div class="icon-div">
-        Eliminar dispositivo
-        <v-icon large>tv_off</v-icon>
-      </div>
-    </v-btn>
+  <div class="main-div">
+    <v-btn depressed icon class="trash_class" @click.stop="deviceRemove = true"><v-icon color="error">delete_forever</v-icon></v-btn>
     <v-dialog v-model="deviceRemove" max-width="600px" height="600px">
-      <v-card @keyup.enter="removeDevice(deviceDeleteSelected)">
+      <v-card @keyup.enter="removeDevice">
         <v-card-title>
-          <h2>Elija dispositivo a eliminar</h2>
-
+          <h2>Esta seguro que desea eliminar </h2>
         </v-card-title>
         <v-card-text>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="houses"
-                    item-text="nombreCasa"
-                    label="Casa seleccionada:"
-                    outlined class="house-selector-slider"
-                    dense
-                    return-object
-                    v-model="deviceDeleteHouseSelected"
-                    persistent-placeholder
-                    placeholder="Seleccione una casa">
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="deviceDeleteHouseSelected.cuartos"
-                    item-text="roomName"
-                    label="Cuarto seleccionado:"
-                    outlined class="house-selector-slider"
-                    return-object
-                    dense
-                    v-model="deviceDeleteRoomSelected"
-                    persistent-placeholder
-                    placeholder="Seleccione un cuarto">
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="deviceDeleteRoomSelected.roomDevices"
-                    item-text="deviceName"
-                    label="Dispositivo seleccionado:"
-                    outlined class="house-selector-slider"
-                    dense
-                    return-object
-                    v-model="deviceDeleteSelected"
-                    persistent-placeholder
-                    placeholder="Seleccione un dispositivo">
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-btn color="primary" @click.stop="confirmRemoveDevice = true">
-            Eliminar dispositivo
+          <v-btn class="padding-btn" color="error" @click="removeDevice" >
+            Eliminar
           </v-btn>
-          <v-dialog v-model="confirmRemoveDevice" max-width="600px" height="600px">
-            <v-card @keyup.enter="removeDevice(deviceDeleteSelected)">
-              <v-card-title>
-                <h2>Esta seguro que desea eliminar "{{ deviceDeleteSelected.deviceName }}"</h2>
-              </v-card-title>
-
-              <v-card-text>
-                <v-btn color="error" @click="removeDevice(deviceDeleteSelected)" >
-                  Eliminar
-                </v-btn>
-                <v-btn color="primary"  @click.stop="confirmRemoveDevice=false">
-                  Cancelar
-                </v-btn>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
+          <v-btn color="grey"  @click.stop="deviceRemove=false">
+            Cancelar
+          </v-btn>
         </v-card-text>
       </v-card>
     </v-dialog>
-
-
   </div>
 </template>
 
 <script>
 
+
+import {mapActions} from "vuex";
+import {Device} from "@/Api/Device";
+
 export default {
   name: "RemoveDevice",
-
+  props: {
+  deviceEntity:{}
+  },
   data() {
     return {
+
 
       deviceRemove: false,
       confirmRemoveDevice:false,
 
-      deviceDeleteHouseSelected: {},
-      deviceDeleteRoomSelected: {},
-
-      deviceDeleteSelected: {},
-
-
       rules: [v => v.length <= 25 || 'Max 25 characters'],
     }
   },
-  methods: {
 
-    removeDevice(device){
-      if (device == null)
-        console.log("No selecciono Dispositivo")
-      else {
-        //AGREGAR DISPOSITIVOVO
+  methods: {
+    ...mapActions("Devices",{
+      $removeDevice:"deleteDevice"
+    }),
+
+    async removeDevice(){
+        let device=Object.assign(new Device(),this.deviceEntity)
+        await this.$removeDevice(device.id)
+
         this.confirmRemoveDevice = false
         this.deviceRemove = false
-        this.deviceDeleteHouseSelected= {}
-        this.deviceDeleteRoomSelected= {}
+
         this.deviceDeleteSelected = {}
       }
     }
-  }
+
 
 }
 </script>
 
 <style scoped>
+
+.main-div {
+  position: relative;
+  left: 80%;
+  bottom: 60%;
+}
+
+.padding-btn {
+  margin-right: 25px;
+}
 
 </style>
