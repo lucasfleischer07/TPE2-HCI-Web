@@ -11,30 +11,13 @@
 
         </v-card-title>
         <v-card-text>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="$house"
-                    item-text="name"
-                    label="Casa seleccionada:"
-                    outlined class="house-selector-slider"
-                    dense
-                    return-object
-                    v-model="houseSelected"
-                    persistent-placeholder
-                    placeholder="Seleccione una casa">
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
+
           <v-container fluid c>
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
                 <v-select
                     :items="rooms"
                     item-text="name"
-                    :disabled="Object.entries(houseSelected).length ===  0"
                     label="Habitación seleccionada:"
                     outlined class="house-selector-slider"
                     dense
@@ -95,7 +78,7 @@
               hide-details="auto"
               v-model="routineName"
           />
-          <v-btn :disabled="Object.entries(houseSelected).length ===  0 || Object.entries(roomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || Object.entries(actionSelected).length ===  0 || (Object.entries(actionSelected.params).length > 0 && paramater==='' )" class="margin-button" color="primary" @click="AddDevice">
+          <v-btn :disabled="Object.entries($myHome).length ===  0 || Object.entries(roomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || Object.entries(actionSelected).length ===  0 || (Object.entries(actionSelected.params).length > 0 && paramater==='' )" class="margin-button" color="primary" @click="AddDevice">
             Agregar dispositivo a la rutina
           </v-btn>
           <v-row>
@@ -141,7 +124,6 @@ export default {
       type:"selectColor",
       routineAdd: false,
       routineName: "",
-      houseSelected: {},
       rooms: [],
       roomSelected: {},
       deviceSelected: {},
@@ -156,10 +138,13 @@ export default {
 
     }
   },
-
+ async created(){
+    await this.updateRooms()
+  },
   computed: {
-    ...mapState( "House", {
+    ...mapState("House", {
       $house: "homes",
+      $myHome: "houseSelected"
     }),
     ...mapState( "ProtoDevice", {
       $devicesTypes: "devicesTypes",
@@ -167,9 +152,9 @@ export default {
   },
 
   watch: {
-    houseSelected(){
+    $myHome(){
       this.updateRooms()
-    },
+},
     roomSelected(){
       this.updateDevices()
     },
@@ -206,7 +191,7 @@ export default {
 
     //EL DEVICE ESTA HARCODEADO PERO ANDA
     AddDevice(){
-      if(!this.checkParam(this.houseSelected)  || !this.checkParam(this.roomSelected)  || !this.checkParam(this.deviceSelected) || !this.checkParam(this.actionSelected)){
+      if( !this.checkParam(this.roomSelected)  || !this.checkParam(this.deviceSelected) || !this.checkParam(this.actionSelected)){
         console.log("No hizo la seleccion de rutinas")
         //MENSAJE DE ERROR
       }else {
@@ -228,9 +213,7 @@ export default {
         this.rooms= []
         this.devices= []
         this.devices= []
-        let aux= this.houseSelected
-        this.houseSelected= {}
-        this.houseSelected= aux
+
       }
     },
 
@@ -242,7 +225,7 @@ export default {
         let routine
         try {
           let routineSlug= this.routineName.replace(/\s/g, '')
-          let routineMeta = new RoutineMeta(routineSlug)
+          let routineMeta = new RoutineMeta(routineSlug,this.$myHome.id)
           routine = new Routine(null, this.routineName, this.routineCreated, routineMeta)
           routine = await this.$createRoutine(routine)
           this.routineAdd = false
@@ -258,7 +241,7 @@ export default {
           this.setResult(e)
         }*/
 
-        this.houseSelected = {};
+
         this.deviceSelected = {};
         this.actionSelected = {};
         this.roomSelected = {};
@@ -276,7 +259,7 @@ export default {
     },
     async updateRooms() {
       try {
-        this.rooms = await this.$getHomeRooms(this.houseSelected.id)
+        this.rooms = await this.$getHomeRooms(this.$myHome.id)
       } catch (e) {
         this.setResult(e)
       }

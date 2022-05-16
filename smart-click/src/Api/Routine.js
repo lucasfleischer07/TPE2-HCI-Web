@@ -47,8 +47,9 @@ class Routine{
     }
 }
 class RoutineMeta{
-    constructor(slug){
-        this.slug=slug
+    constructor(slug,homeId){
+        this.slug=slug,
+        this.homeId=homeId
     }
 }
 

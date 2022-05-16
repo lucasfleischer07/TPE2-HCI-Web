@@ -1,11 +1,16 @@
 <template>
-  <div class="routines-view">
+  <div>
+    <div v-if="Object.entries($myHome).length ===  0" class="h1-title">
+      <v-icon x-large>house</v-icon>
+      <h1>Seleccione una casa</h1>
+    </div>
+  <div  v-else class="routines-view">
     <div>
       <div class="title-padding">
         <h2 class="color-title">Mis rutinas</h2>
       </div>
       <v-row v-for="routine in $routines" :key="routine.id">
-        <v-col class="routines-button">
+        <v-col v-if="routine.meta.homeId===$myHome.id" class="routines-button">
           <div class="delete-routine-div">
           <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.meta.slug}}">
               <v-btn class="hover-btn" color="success" large width="250" rounded >{{ routine.name }}</v-btn>
@@ -39,6 +44,7 @@
       <h2 class="details-title color-title margin-title">Detalle de rutina</h2>
       <router-view :key="$route.path"/>
     </div>
+  </div>
   </div>
 </template>
 
@@ -167,6 +173,15 @@
 
   .hover-btn:hover {
     opacity: 75%;
+  }
+  .h1-title {
+    justify-content: center;
+    color: gray;
+    min-height: 530px;
+    padding-bottom: 20px;
+    padding-top: 40px;
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
   }
 
   a {
