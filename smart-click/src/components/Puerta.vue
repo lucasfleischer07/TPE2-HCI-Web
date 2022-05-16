@@ -4,7 +4,7 @@
       <v-row class="action-row action_btn" >
         <device-icon name-device="door_front" :deviceEntity="deviceEntity"/>
       </v-row>
-      <p class="text">{{deviceEntity.deviceName}}</p>
+      <p class="text">{{deviceEntity.name}}</p>
     </v-card>
 
     <v-card class="background-card">
@@ -38,7 +38,8 @@ import {mapActions} from "vuex";
 
 
 export default {
-  name: "DoorComp",
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Puerta",
 
   props: {
     deviceEntity: {},

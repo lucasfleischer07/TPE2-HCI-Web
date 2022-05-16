@@ -4,7 +4,7 @@
       <v-row class="action-row action_btn">
         <DeviceIcon name-device="emoji_objects" :deviceEntity="deviceEntity"/>
       </v-row>
-      <p class="text">{{deviceEntity.deviceName}}</p>
+      <p class="text">{{deviceEntity.name}}</p>
     </v-card>
 
     <v-card class="background-card">
@@ -51,7 +51,8 @@ import DeviceIcon from "@/components/DeviceIcon";
 import {mapActions} from "vuex";
 
 export default {
-name: "LightbulbComp",
+  // eslint-disable-next-line vue/multi-word-component-names
+name: "Lámpara",
 
   components: {
     DeviceIcon

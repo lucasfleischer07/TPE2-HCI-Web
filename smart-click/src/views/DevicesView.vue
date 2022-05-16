@@ -27,13 +27,10 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content >
               <v-row>
-                <speaker-comp></speaker-comp>
-                 <v-col v-for="device in getRoomDevices(room.id)" :key="device.id" class="flex-grow-0 col-division">
-                   <speaker-comp :device-entity="device"></speaker-comp>
-                   <component :is="Parlante" :device-entity="device"></component>
+                 <v-col class="flex-grow-0 col-division" v-for="device in $devices" :key="device.id" >
                    <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in protos" :key="deviceProto.id">
-                    <component v-if="device.type.id == deviceProto.id"  :is="deviceProto.name" :deviceEntity="device"/>
-                  </v-container>!
+                    <component v-if="device.type.id === deviceProto.id && room.id===device.room.id"  :is="deviceProto.name" :deviceEntity="device"/>
+                  </v-container>
                 </v-col>
               </v-row>
               <AddDeviceRound :deviceAddHouseSelected="$myHome" :deviceAddRoomSelected="room"/>
@@ -47,15 +44,14 @@
 </template>
 
 <script>
-import SpeakerComp from "@/components/Parlante";
-import DoorComp from "@/components/Puerta";
-import RefrigeratorComp from "@/components/Heladera";
-import LightbulbComp from "@/components/Lámpara";
-import OvenComp from "@/components/Horno";
+import Parlante from "@/components/Parlante";
+import Puerta from "@/components/Puerta";
+import Heladera from "@/components/Heladera";
+import Lámpara from "@/components/Lámpara";
+import Horno from "@/components/Horno";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 import RemoveHouse from "@/components/addingComponents/RemoveHouse";
 import {mapActions, mapState} from "vuex";
-import AddHouse from "@/components/addingComponents/AddHouse";
 import AddRoom from "@/components/addingComponents/AddRoom";
 import RemoveRoom from "@/components/addingComponents/RemoveRoom";
 import devicesImplemented from "@/store/localStore";
@@ -66,15 +62,23 @@ export default {
 
   components: {
     RemoveHouse,
-    SpeakerComp,
-    DoorComp,
-    LightbulbComp,
-    RefrigeratorComp,
-    OvenComp,
+     Parlante,
+    Puerta,
+    Lámpara,
+    Heladera,
+    Horno,
     AddDeviceRound,
-    AddHouse,
+
     AddRoom,
     RemoveRoom
+  },
+  async created() {
+    try {
+      this.rooms=await this.$getHomeRooms(this.$myHome.id)
+    }
+    catch (e) {
+     console.log(e)
+    }
   },
 
   computed: {
@@ -85,6 +89,9 @@ export default {
 
     ...mapState("Room", {
       $rooms: "rooms",
+    }),
+    ...mapState("Devices", {
+      $devices: "devices",
     }),
   },
 
@@ -105,10 +112,12 @@ export default {
     ...mapActions("Room", {
       $getRoomDevices: "getDevices",
     }),
+    ...mapActions("Devices",{
+      $getAllDevices:"getAllDevices"
+    }),
 
 
     async updateRooms() {
-
       try {
         this.rooms = await this.$getHomeRooms(this.$myHome.id)
       } catch (e) {
@@ -141,8 +150,8 @@ export default {
 
       oldRooms: [],
       protos:devicesImplemented.devicesImplemented,
-      rooms:  this.updateRooms(),
-      devices:[],
+      rooms:{},
+      devices:this.$getAllDevices(),
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
