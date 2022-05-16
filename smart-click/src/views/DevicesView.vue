@@ -9,7 +9,7 @@
         <div class="house-icon">
           <v-icon x-large>house</v-icon>
           <span class="text-h4 color-class">{{ $myHome.name }}</span>
-          <RemoveHouse :house_selected="$myHome"/>
+          <RemoveHouse/>
         </div>
       </div>
       <AddRoom :houseSelected="$myHome"/>
@@ -27,7 +27,7 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content >
               <v-row>
-                <v-col v-for="device in getRoomDevices(room)" :key="device.id" class="flex-grow-0 col-division">
+                <v-col v-for="device in devices" :key="device.id" class="flex-grow-0 col-division">
                   <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
                     <component v-if="deviceProto.id === device.id" :is="deviceProto.name" :deviceEntity="device"/>
                   </v-container>
@@ -89,6 +89,7 @@ export default {
   watch: {
     $myHome(){
       this.updateRooms()
+
     },
   },
 
@@ -96,7 +97,8 @@ export default {
   methods: {
     ...mapActions("House", {
       $getHomeRooms: "getHomeRooms",
-      $changeCurrentHome:"changeCurrentHome"
+      $changeCurrentHome:"changeCurrentHome",
+      $getAllHomes:"getAllHomes"
     }),
     ...mapActions("Room", {
       $getRoomDevices: "getDevices",
@@ -113,6 +115,10 @@ export default {
       }
 
     },
+
+    async getAllHomes(){
+      await this.$getAllHomes()
+    },
     async selectHome(home){
       await this.$changeCurrentHome(home)
     },
@@ -123,9 +129,14 @@ export default {
         console.log(e)
       }
     },
+     getSelected(){
+      return  this.$myHome
+    },
+
+
     async updateProto(){
       try {
-        await this.$getAllDevicesTypes()
+        this.protoDevices=await this.$getAllDevicesTypes()
       } catch (e) {
         console.log(e)
       }
@@ -137,7 +148,8 @@ export default {
     return {
 
       oldRooms: [],
-      rooms: [],
+      rooms:  this.updateRooms(),
+      devices:[],
       protoDevices: this.updateProto(),
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],

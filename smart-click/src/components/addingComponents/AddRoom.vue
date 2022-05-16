@@ -53,7 +53,8 @@ export default {
 
   methods: {
     ...mapActions("Room", {
-      $createRoom: "create"
+      $createRoom: "create",
+      $getRooms:"getAll",
     }),
     ...mapActions("House",{
       $addHomeRoom : "addHomeRoom"
@@ -70,6 +71,7 @@ export default {
         await this.$addHomeRoom(array)
         this.roomAdd = false
         this.roomName = ""
+        await this.$getRooms()
       } catch (e) {
         console.log(e)
       }

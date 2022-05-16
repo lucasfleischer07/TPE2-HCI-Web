@@ -24,8 +24,8 @@
                       outlined 
                       class="house-selector-slider"
                       dense
-                      @change="selectHome"
-                      v-model="$myHome"
+                      @change="selectHome(home)"
+                      v-model="home"
                       return-object
                       persistent-placeholder
                       height="50px"
@@ -89,6 +89,7 @@ export default {
       myHouse: this.getAllHouses(),
       houseAdd: false,
       nombreCasa: "",
+      home:this.$myHome,
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
@@ -125,13 +126,14 @@ export default {
     }),
     async createHouse() {
       let house = new Home(null,this.nombreCasa , {});
-      await this.selectHome(house)
+
 
       try {
-        await this.$createHouse(house);
+        house=await this.$createHouse(house);
         this.houseAdd= false;
         this.nombreCasa=""
-
+        this.getAllHouses()
+        await this.selectHome(house)
       } catch (e) {
         console.log(e)
       }
@@ -148,7 +150,7 @@ export default {
     async selectHome(home){
       await this.$changeCurrentHome(home)
       await this.getAllHouses()
-    },
+      this.home=this.$myHome},
 
 
   }
