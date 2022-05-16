@@ -96,6 +96,7 @@ export default {
   methods: {
     ...mapActions("House", {
       $getHomeRooms: "getHomeRooms",
+      $changeCurrentHome:"changeCurrentHome"
     }),
     ...mapActions("Room", {
       $getRoomDevices: "getDevices",
@@ -111,6 +112,9 @@ export default {
         console.log(e)
       }
 
+    },
+    async selectHome(home){
+      await this.$changeCurrentHome(home)
     },
     async getRoomDevices(room){
       try {

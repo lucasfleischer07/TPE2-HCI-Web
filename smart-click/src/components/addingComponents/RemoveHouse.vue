@@ -74,7 +74,7 @@ export default {
           await this.$deleteRoom(room.id)
         }
         await this.$removeHouse(this.house_selected.id);
-
+        this.$parent.selectHome({});
 
       } catch (e) {
        // this.setResult(e);

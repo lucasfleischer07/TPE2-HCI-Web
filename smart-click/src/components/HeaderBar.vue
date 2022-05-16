@@ -25,6 +25,7 @@
                       class="house-selector-slider"
                       dense
                       @change="selectHome"
+                      v-model="$myHome"
                       return-object
                       persistent-placeholder
                       height="50px"
@@ -95,6 +96,7 @@ export default {
   computed: {
     ...mapState("House", {
           $house: "homes",
+          $myHome:"houseSelected"
     }),
     update(){
         return this.$house
@@ -123,6 +125,7 @@ export default {
     }),
     async createHouse() {
       let house = new Home(null,this.nombreCasa , {});
+      await this.selectHome(house)
 
       try {
         await this.$createHouse(house);
@@ -144,7 +147,8 @@ export default {
     },
     async selectHome(home){
       await this.$changeCurrentHome(home)
-    }
+      await this.getAllHouses()
+    },
 
 
   }
