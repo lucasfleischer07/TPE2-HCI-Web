@@ -4,44 +4,18 @@
       <v-btn class="delete-button" small color="error" elevation="3" fab rounded @click.stop="houseRemove = true"><v-icon>delete_forever</v-icon></v-btn>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
-      <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
+      <v-card @keyup.enter="removeHouse()">
         <v-card-title>
-          <h2>Seleccione la casa a eliminar</h2>
+          <h2>Esta seguro que desea eliminar "{{ house_selected.name }}"</h2>
         </v-card-title>
+
         <v-card-text>
-          <v-container fluid c>
-            <v-row aligned="center">
-              <v-col class="d-flex" cols="12" sm="10">
-                <v-select
-                    :items="houses"
-                    label="Casa seleccionada:"
-                    outlined class="house-selector-slider"
-                    dense
-                    v-model="houseDeleteSelected"
-                    persistent-placeholder
-                    placeholder="Seleccione casa a eliminar">
-                </v-select>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-btn :disabled=" Object.entries(houseDeleteSelected).length ===  0" color="error" @click.stop="confirmRemoveHouse=true">
-            Eliminar casa
+          <v-btn class="padding-btn" color="error" @click="removeHouse()" >
+            Eliminar
           </v-btn>
-          <v-dialog v-model="confirmRemoveHouse" max-width="600px" height="600px">
-            <v-card @keyup.enter="removeHouse(houseDeleteSelected)">
-              <v-card-title>
-                <h2>Esta seguro que desea eliminar "{{ houseDeleteSelected }}"</h2>
-              </v-card-title>
-              <v-card-text>
-                <v-btn class="padding-btn" color="error" @click="removeHouse(houseDeleteSelected)" >
-                  Eliminar
-                </v-btn>
-                <v-btn color="grey"  @click.stop="confirmRemoveHouse=false">
-                  Cancelar
-                </v-btn>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
+          <v-btn color="grey"  @click.stop="houseRemove=false">
+            Cancelar
+          </v-btn>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -53,12 +27,12 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   name: "RemoveHouse",
-
+  props: {
+    house_selected: {}
+  },
   data() {
     return {
       houseRemove: false,
-      confirmRemoveHouse:false,
-      houseDeleteSelected: {},
       rules: [v => !(v.empty) || 'Seleccione una casa'],
     }
   },
@@ -74,12 +48,31 @@ export default {
 
   methods: {
     ...mapActions("House", {
-      $removeHouse: "deleteHome",}),
+      $removeHouse: "deleteHome",
+      $getRooms:"getHomeRooms"
+      }),
+    ...mapActions("Room",{
+      $getDevices:"getDevices",
+      $deleteRoom:"delete"
+    }),
+    ...mapActions("Devices",{
+      $deleteDevice:"deleteDevice"
+    }),
 
-    async removeHouse(houseToDelete) {
+
+
+    async removeHouse() {
       try {
-        await this.$removeHouse(houseToDelete.id);
-        this.house = null;
+        let rooms=await this.$getRooms(this.house_selected.id)
+        let devices
+        for(let room of rooms){
+          devices=await this.$getDevices(room.id)
+          for(let device of devices){
+            await this.$deleteDevice(device.id)
+          }
+          await this.$deleteRoom(room.id)
+        }
+        await this.$removeHouse(this.houseDeleteSelected.id);
 
       } catch (e) {
        // this.setResult(e);

@@ -4,7 +4,7 @@
     <v-dialog v-model="removeRoom" max-width="600px" height="600px">
       <v-card @keyup.enter="deleteRoom()">
         <v-card-title>
-          <h2>Esta seguro que desea eliminar "{{ room_selected.routineName }}"</h2>
+          <h2>Esta seguro que desea eliminar "{{ room_selected.name }}"</h2>
         </v-card-title>
 
         <v-card-text>
@@ -23,6 +23,7 @@
 <script>
 import {mapActions} from "vuex";
 
+
 export default {
   name: "RemoveRoom",
 
@@ -39,20 +40,43 @@ export default {
   methods: {
     ...mapActions("Room", {
       $deleteRoom: "delete",
+      $getDevices: "getDevices",
     }),
 
-    async deleteRoom(){
+    async deleteRoom() {
       try {
-        //TODO: Esta harcodeado esto
-        await this.$deleteRoom("4c3c5705b8af92af");
+        let devices =await this.getDevices(this.room_selected.id)
+        for(let device of devices){
+          await this.removeDevice(device)
+        }
+        await this.$deleteRoom(this.room_selected.id);
         this.removeRoom = false
+
       } catch (e) {
         console.log(e)
       }
 
+    },
+
+
+    async getDevices(room) {
+      let devices
+      try {
+        devices = await this.$getDevices(room.id)
+
+      } catch (e) {
+        console.log(e)
+      }
+      return devices
+    },
+    ...mapActions("Devices",{
+      $removeDevice:"deleteDevice"
+    }),
+
+    async removeDevice(device){
+      await this.$removeDevice(device.id)
     }
   }
-
 
 }
 </script>

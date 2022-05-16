@@ -2,7 +2,7 @@
   <div class="action-row device-div" >
     <v-card class="background-card">
       <v-row class="action-row action_btn" >
-        <device-icon name-device="speaker"/>
+        <device-icon name-device="speaker" :deviceEntity="deviceEntity"/>
       </v-row>
       <p class="text">{{deviceEntity.deviceName}}</p>
     </v-card>
@@ -69,6 +69,7 @@ export default {
 
   props: {
     deviceEntity: {},
+
   },
   data () {
     return {
