@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-btn class="font-weight-bold hover-btn" height="100px" width="300px" color="success" elevation="3" x-large
-           @click.stop="houseAdd = true" rounded>
+           @click.stop="houseAdd = true" rounded >
       <div class="icon-div">
         Agregar Casa
         <v-icon large>house</v-icon>
       </div>
     </v-btn>
-    <v-dialog v-model="houseAdd" max-width="600px" height="600px">
+    <v-dialog v-model="houseAdd" max-width="600px" height="600px" @click:outside="resetText">
       <v-card  @keyup.enter="createHouse(nombreCasa)">
         <v-card-title>
           <h2>Agregue una nueva casa</h2>
@@ -79,6 +79,10 @@ export default {
       this.$parent.selectHome(this.house);
 
     },
+
+    resetText(){
+      this.nombreCasa = ""
+    }
 
 
   /*addHouse(text) {

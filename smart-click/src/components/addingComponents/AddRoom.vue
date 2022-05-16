@@ -4,7 +4,7 @@
       <h1 class="text-rooms" >Habitaciones:</h1>
       <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
     </div>
-    <v-dialog v-model="roomAdd" max-width="600px" height="600px">
+    <v-dialog v-model="roomAdd" max-width="600px" height="600px" @click:outside="resetText">
       <v-card @keyup.enter="createRoom(roomName)">
         <v-card-title>
           <h2>Agregue una nueva habitación en "{{houseSelected.name}}"</h2>
@@ -77,6 +77,9 @@ export default {
         console.log(e)
       }
       this.$parent.updateRooms()
+    },
+    resetText(){
+      this.roomName = ""
     }
 
 

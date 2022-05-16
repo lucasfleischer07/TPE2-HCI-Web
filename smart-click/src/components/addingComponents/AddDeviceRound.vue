@@ -3,7 +3,7 @@
     <div class="margin-div-button">
       <v-btn color="primary" elevation="3" fab @click.stop="deviceAdd = true"><v-icon>add</v-icon></v-btn>
     </div>
-    <v-dialog v-model="deviceAdd" max-width="600px" height="600px">
+    <v-dialog v-model="deviceAdd" max-width="600px" height="600px" @click:outside="resetAdd" >
       <v-card @keyup.enter="addDevice(deviceName,deviceSelected,deviceAddHouseSelected,deviceAddRoomSelected)">
         <v-card-title>
           <h2>Agregue un nuevo dispositivo en "{{deviceAddRoomSelected.name}}"</h2>
@@ -155,6 +155,10 @@ export default {
             this.deviceSelected = {},
             this.deviceName = ""
       }
+    },
+    resetAdd(){
+      this.deviceSelected = {},
+      this.deviceName = ""
     }
   }
 }
