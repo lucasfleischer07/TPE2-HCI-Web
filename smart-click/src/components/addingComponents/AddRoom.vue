@@ -65,11 +65,12 @@ export default {
       let room = new Room(null, roomName, null);
 
       try {
+        this.roomAdd = false
         room =(await this.$createRoom(room));
         room = Object.assign(new Room(), room);
         let array= [this.houseSelected.id,room.id]
         await this.$addHomeRoom(array)
-        this.roomAdd = false
+
         this.roomName = ""
         await this.$getRooms()
       } catch (e) {

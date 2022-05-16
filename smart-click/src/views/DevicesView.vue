@@ -27,10 +27,13 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content >
               <v-row>
+                <speaker-comp></speaker-comp>
                  <v-col v-for="device in getRoomDevices(room.id)" :key="device.id" class="flex-grow-0 col-division">
-                   <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in $allTypes" :key="deviceProto.id">
-                    <component v-if="deviceProto.id === device.type.id" :is="deviceProto.name" :deviceEntity="device"/>
-                  </v-container>
+                   <speaker-comp :device-entity="device"></speaker-comp>
+                   <component :is="Parlante" :device-entity="device"></component>
+                   <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in protos" :key="deviceProto.id">
+                    <component v-if="device.type.id == deviceProto.id"  :is="deviceProto.name" :deviceEntity="device"/>
+                  </v-container>!
                 </v-col>
               </v-row>
               <AddDeviceRound :deviceAddHouseSelected="$myHome" :deviceAddRoomSelected="room"/>
@@ -55,6 +58,7 @@ import {mapActions, mapState} from "vuex";
 import AddHouse from "@/components/addingComponents/AddHouse";
 import AddRoom from "@/components/addingComponents/AddRoom";
 import RemoveRoom from "@/components/addingComponents/RemoveRoom";
+import devicesImplemented from "@/store/localStore";
 
 
 export default {
@@ -78,9 +82,7 @@ export default {
       $house: "homes",
       $myHome: "houseSelected"
     }),
-    ...mapState("ProtoDevice", {
-      $allTypes: "devicesTypes",
-    }),
+
     ...mapState("Room", {
       $rooms: "rooms",
     }),
@@ -97,17 +99,15 @@ export default {
   methods: {
     ...mapActions("House", {
       $getHomeRooms: "getHomeRooms",
-      $changeCurrentHome:"changeCurrentHome",
-      $getAllHomes:"getAllHomes"
+      $changeCurrentHome: "changeCurrentHome",
+      $getAllHomes: "getAllHomes"
     }),
     ...mapActions("Room", {
       $getRoomDevices: "getDevices",
     }),
-    ...mapActions("ProtoDevice", {
-      $getAllDevicesTypes: "getAllDevicesTypes",
-    }),
 
-    async updateRooms(){
+
+    async updateRooms() {
 
       try {
         this.rooms = await this.$getHomeRooms(this.$myHome.id)
@@ -117,18 +117,20 @@ export default {
 
     },
 
-    async getAllHomes(){
+    async getAllHomes() {
       await this.$getAllHomes()
     },
-    async selectHome(home){
+    async selectHome(home) {
       await this.$changeCurrentHome(home)
     },
-    async getRoomDevices(id){
+    async getRoomDevices(id) {
+
       return await this.$getRoomDevices(id)
     },
-     getSelected(){
-      return  this.$myHome
+    getSelected() {
+      return this.$myHome
     },
+  },
 
 
 
@@ -138,13 +140,14 @@ export default {
     return {
 
       oldRooms: [],
+      protos:devicesImplemented.devicesImplemented,
       rooms:  this.updateRooms(),
       devices:[],
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
-}
+
 }
 </script>
 

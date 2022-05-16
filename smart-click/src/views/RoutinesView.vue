@@ -4,11 +4,11 @@
       <div class="title-padding">
         <h2 class="color-title">Mis rutinas</h2>
       </div>
-      <v-row v-for="routine in house.routines" :key="routine.name">
+      <v-row v-for="routine in $routines" :key="routine.id">
         <v-col class="routines-button">
           <div class="delete-routine-div">
-          <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.slug}}">
-              <v-btn class="hover-btn" color="success" large width="250" rounded >{{ routine.routineName }}</v-btn>
+          <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.meta.slug}}">
+              <v-btn class="hover-btn" color="success" large width="250" rounded >{{ routine.name }}</v-btn>
           </router-link>
             <v-btn class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
           </div>
@@ -29,8 +29,8 @@
 
 
 <script>
-  // import store from "@/store/store.js"
   import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
+  import {mapActions, mapState} from "vuex";
   // import RemoveRoutine from "@/components/addingComponents/RemoveRoutine";
 
   export default {
@@ -39,10 +39,30 @@
       AddRoutineRound,
       // RemoveRoutine
     },
+    computed: {
+      ...mapState("House", {
+        $myHome: "houseSelected"
+      }),
+      ...mapState("Routine", {
+        $routines: "routines",
+      }),
+
+    },
+
+    methods: {
+      ...mapActions("Routine", {
+        $getRoutine: "getAllRoutine"
+      }),
+
+      async getRoutines(){
+        return await this.$getRoutine()
+      }
+    },
 
 
     data() {
       return {
+        routines: this.getRoutines()
         // house: store.house,
       }
     },

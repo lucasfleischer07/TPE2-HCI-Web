@@ -83,7 +83,11 @@
               </v-col>
             </v-row>
           </v-container>
-          <component v-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0"  :is="actionSelected.params[0].type"  v-model="paramater" :min="actionSelected.params[0].minValue" :max="actionSelected.params[0].maxValue"  :textOptions="actionSelected.params[0].supportedValues" />
+          <component v-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0 && actionSelected.params[0].type==='SelectColor'"  :is="actionSelected.params[0].type"  v-model="paramater" />
+          <component v-else-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0  && actionSelected.params[0].type==='SelectString'"  :is="actionSelected.params[0].type"  v-model="paramater"   :textOptions="actionSelected.params[0].supportedValues" />
+          <component v-else-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0  && actionSelected.params[0].type==='SelectNumber'"  :is="actionSelected.params[0].type"  v-model="paramater" :min="actionSelected.params[0].minValue" :max="actionSelected.params[0].maxValue"   />
+
+
           <v-text-field
               label="Nombre de la nueva rutina"
               class="margin-button3"
@@ -117,15 +121,14 @@
 
 <script>
 import {mapActions, mapState} from "vuex";
-import {Routine} from "@/Api/Routine";
-import {Home} from "@/Api/House";
+import {Routine, RoutineMeta} from "@/Api/Routine";
 import devicesImplemented from "@/store/localStore"
 import SelectColor from "@/components/paramComponents/SelectColor";
 import SelectNumber from "@/components/paramComponents/SelectNumber";
 import SelectString from "@/components/paramComponents/SelectString";
 
 export default {
-  name: "AddRoutineBlock",
+  name: "AddRoutineRound",
   components:{
     SelectColor,
     SelectNumber,
@@ -181,6 +184,7 @@ export default {
       $createRoutine: "createRoutine",
     }),
     ...mapActions("House", {
+      $modifyHome: "modifyHome",
       $getHomeRooms: "getHomeRooms",
 
     }),
@@ -231,21 +235,29 @@ export default {
     },
 
     async AddRoutine() {
-      if(!this.checkParam(this.routineCreated) )
-        console.log("No completo la rutina completa" )
+      if(!this.checkParam(this.routineCreated) ) {
+        console.log("No completo la rutina completa")
+      }
       else {
+        let routine
         try {
-
-          let routine = new Routine(null, this.routineName, this.routineCreated, {})
+          let routineSlug= this.routineName.replace(/\s/g, '')
+          let routineMeta = new RoutineMeta(routineSlug)
+          routine = new Routine(null, this.routineName, this.routineCreated, routineMeta)
           routine = await this.$createRoutine(routine)
-          routine = Object.assign(new Home(), routine);
-          this.houseSelected.meta.homeRoutines.push(routine)
-          await this.$modifyHouse(this.houseSelected) //Modifico la casa y le agrego la rutina
+          this.routineAdd = false
           this.setResult(routine)
         } catch (e) {
           this.setResult(e)
         }
-        this.routineAdd = false;
+        try {
+
+          this.houseSelected.meta.homeRoutines.push(routine)
+          await this.$modifyHome(this.houseSelected) //Modifico la casa y le agrego la rutina
+        }catch (e) {
+          this.setResult(e)
+        }
+
         this.houseSelected = {};
         this.deviceSelected = {};
         this.actionSelected = {};
