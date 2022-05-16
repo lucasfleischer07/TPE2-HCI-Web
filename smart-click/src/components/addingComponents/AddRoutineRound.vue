@@ -4,7 +4,7 @@
       <v-btn color="primary" elevation="3" fab rounded @click.stop="routineAdd = true"><v-icon>add</v-icon></v-btn>
     </div>
 
-    <v-dialog v-model="routineAdd" max-width="600px" height="600px">
+    <v-dialog v-model="routineAdd" max-width="600px" height="600px" @click:outside="resetAdd">
       <v-card @keyup.enter="AddRoutine">
         <v-card-title>
           <h2>Cree una nueva rutina</h2>
@@ -207,11 +207,8 @@ export default {
         this.routineCreated.push(actions)
         this.deviceSelected = {}
         this.roomSelected = {}
-        this.deviceType = {}
         this.actionSelected = {}
         this.parameterSelected= []
-        this.rooms= []
-        this.devices= []
         this.devices= []
 
       }
@@ -245,13 +242,21 @@ export default {
         this.deviceSelected = {};
         this.actionSelected = {};
         this.roomSelected = {};
-        this.deviceType = {};
         this.routineName = "";
         this.routineCreated = [];
-        this.rooms= [];
         this.devices= [];
       }
 
+    },
+
+    resetAdd(){
+      this.routineAdd = false;
+      this.deviceSelected = {};
+      this.actionSelected = {};
+      this.roomSelected = {};
+      this.routineName = "";
+      this.routineCreated = [];
+      this.devices= [];
     },
 
     DeleteDeviceFromRoutine(deviceAndAct){
