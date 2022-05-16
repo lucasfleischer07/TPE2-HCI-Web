@@ -140,7 +140,7 @@ export default {
       rooms: [],
       protoDevices: this.updateProto(),
       roomName: "",
-      rules: [v => v.length <= 25 || 'Máximo 25 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
+      rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
 }
