@@ -28,6 +28,7 @@
                       v-model="home"
                       return-object
                       persistent-placeholder
+                      no-data-text="No hay casa registrada ¡Agregue una!"
                       height="50px"
                       placeholder="Seleccione una casa">
                   <template #append-item>

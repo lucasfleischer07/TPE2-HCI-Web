@@ -1,11 +1,20 @@
 <template>
   <div>
-    <v-text-field
-        label="texto de la accion"
-        :rules="rules"
-        hide-details="auto"
-        v-model="value"
-    />
+    <v-container fluid c>
+      <v-row aligned="center">
+        <v-col class="d-flex" cols="12" sm="10">
+          <v-select
+              :items="textOptions"
+              label="Acción seleccionada:"
+              outlined class="house-selector-slider"
+              dense
+              v-model="value"
+              persistent-placeholder
+              placeholder="Seleccione una acción">
+          </v-select>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -19,8 +28,7 @@ export default {
   },
   data() {
     return {
-      value: "",
-      rules: [v => ( v.length>=1 && v.length <=30)  || 'Debe tener entre 1 y 30 caracteres', v => this.textOptions.includes(v) || `debe ser una de las siguientes opciones ${this.textOptions.toString()}`]
+      value: this.textOptions[0],
     }
   },
   watch: {
