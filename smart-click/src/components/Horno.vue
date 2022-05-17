@@ -9,7 +9,7 @@
 
     <v-card class="background-card margin-card">
       <v-row style="justify-content: center">
-        <v-switch inline :v-model="onOffOven" @click="onOffOvenFunction"></v-switch>
+        <v-switch inline v-model="deviceState.status" true-value="on" false-value="off" @change="onOffOvenFunction"></v-switch>
       </v-row>
       <v-row class="action-row">
         <v-slider class="margin-slider" prepend-icon="device_thermostat"
@@ -17,7 +17,7 @@
                   :min="90"
                   style="width: 50%"
                   v-model="slider"
-                  @click="setTemperatureFunction"
+                  @change="setTemperatureFunction"
                   ></v-slider>
         <v-text-field dense
                       hide-details
@@ -30,27 +30,27 @@
       </v-row>
       <p style="padding-top: 30px">Fuente calor</p>
       <v-row class="action-row action_btn">
-        <v-btn-toggle mandatory v-model="fuenteCalor">
-          <v-btn @click="setHeatFunction" width="100px">ABAJO</v-btn>
-          <v-btn @click="setHeatFunction" width="100px">NORMAL</v-btn>
-          <v-btn @click="setHeatFunction" width="100px">ARRIBA</v-btn>
+        <v-btn-toggle mandatory v-model="fuenteCalor" @change="setHeatFunction">
+          <v-btn value="bottom"  width="100px">ABAJO</v-btn>
+          <v-btn value="conventional" width="100px">NORMAL</v-btn>
+          <v-btn value="top"  width="100px">ARRIBA</v-btn>
         </v-btn-toggle>
       </v-row>
       <p style="padding-top: 30px">Grill</p>
       <v-row class="action-row action_btn">
-        <v-btn-toggle mandatory v-model="grillMode" class="grill-buttons" >
-          <v-btn @click="setGrillFunction" width="100px"><v-icon>power_off</v-icon></v-btn>
-          <v-btn @click="setGrillFunction" width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
-          <v-btn @click="setGrillFunction" width="100px"><v-icon>bolt</v-icon></v-btn>
+        <v-btn-toggle mandatory v-model="grillMode" class="grill-buttons" @change="setGrillFunction">
+          <v-btn value="off"  width="100px"><v-icon>power_off</v-icon></v-btn>
+          <v-btn value="eco"  width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
+          <v-btn value="large"  width="100px"><v-icon>bolt</v-icon></v-btn>
         </v-btn-toggle>
       </v-row>
 
       <p style="padding-top: 30px">Convección</p>
       <v-row class="action-row action_btn">
-        <v-btn-toggle mandatory v-model="conveccionMode">
-          <v-btn @click="setConvectionFunction" width="100px"><v-icon>power_off</v-icon></v-btn>
-          <v-btn @click="setConvectionFunction" width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
-          <v-btn @click="setConvectionFunction" width="100px"><v-icon>bolt</v-icon></v-btn>
+        <v-btn-toggle mandatory v-model="conveccionMode" @change="setConvectionFunction">
+          <v-btn value="off" @click="setConvectionFunction" width="100px"><v-icon>power_off</v-icon></v-btn>
+          <v-btn value="eco" @click="setConvectionFunction" width="100px"><v-icon>energy_savings_leaf</v-icon></v-btn>
+          <v-btn value="normal" @click="setConvectionFunction" width="100px"><v-icon>bolt</v-icon></v-btn>
         </v-btn-toggle>
       </v-row>
     </v-card>
@@ -74,17 +74,19 @@ export default {
   methods: {
     ...mapActions("Devices", {
       $execute: "executeDeviceAction",
+      $getDeviceState:"getDeviceState"
     }),
 
     async onOffOvenFunction() {
       let params
       try {
-        if (this.onOffOven) {
+        if (this.deviceState.status=='on') {
           params = [this.deviceEntity.id, "turnOn", []]
         } else {
           params = [this.deviceEntity.id, "turnOff", []]
         }
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -94,61 +96,68 @@ export default {
       let params = [this.deviceEntity.id, "setTemperature", [this.slider]]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
     },
 
     async setHeatFunction() {
-      let heat;
-      if(this.fuenteCalor === 0) {
-        heat = "bottom";
-      } else if(this.fuenteCalor === 1) {
-        heat = "conventional";
-      } else if(this.fuenteCalor === 2) {
-        heat = "top";
-      }
-      let params = [this.deviceEntity.id, "setHeat", [heat]]
+
+      let params = [this.deviceEntity.id, "setHeat", [this.fuenteCalor]]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
     },
 
     async setGrillFunction() {
-      let grill;
-      if(this.grillMode === 0) {
-        grill = "off";
-      } else if(this.grillMode === 1) {
-        grill = "eco";
-      } else if(this.grillMode === 2) {
-        grill = "large";
-      }
-      let params = [this.deviceEntity.id, "setGrill", [grill]]
+
+      let params = [this.deviceEntity.id, "setGrill", [this.grillMode]]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
     },
 
     async setConvectionFunction() {
-      let convection;
-      if(this.conveccionMode == 0) {
-        convection = "off";
-      } else if(this.conveccionMode == 1) {
-        convection = "eco";
-      } else if(this.conveccionMode == 2) {
-        convection = "normal";
-      }
-      let params = [this.deviceEntity.id, "setConvection", [convection]]
+
+      let params = [this.deviceEntity.id, "setConvection", [this.conveccionMode]]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
     },
+
+
+    async updateContent(){
+
+      this.deviceState=await this.$getDeviceState(this.deviceEntity.id)
+      this.updateVars()
+
+    },
+
+    updateVars(){
+      this.fuenteCalor=this.deviceState.heat
+      this.grillMode=this.deviceState.grill
+      this.conveccionMode=this.deviceState.convection
+      this.slider=this.deviceState.temperature
+
+    },
+
+  },
+  created() {
+    this.deviceState=this.deviceEntity.state
+    this.fuenteCalor=this.deviceState.heat
+    this.grillMode=this.deviceState.grill
+    this.conveccionMode=this.deviceState.convection
+    this.slider=this.deviceState.temperature
 
   },
 
@@ -157,14 +166,16 @@ export default {
     return{
       fuenteCalor:undefined,
       grillMode:undefined,
-      onOffOven: false,
+      onOffOven:true,
       conveccionMode:undefined,
-      slider:90
+      slider:90,
+      deviceState:{}
 
     }
   }
 }
 </script>
+
 
 <style scoped>
 
