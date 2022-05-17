@@ -51,7 +51,7 @@ import Lámpara from "@/components/Lámpara";
 import Horno from "@/components/Horno";
 import AddDeviceRound from "@/components/addingComponents/AddDeviceRound";
 import RemoveHouse from "@/components/addingComponents/RemoveHouse";
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 import AddRoom from "@/components/addingComponents/AddRoom";
 import RemoveRoom from "@/components/addingComponents/RemoveRoom";
 import devicesImplemented from "@/store/localStore";
@@ -102,6 +102,9 @@ export default {
     },
   },
 
+  mounted() {
+    this.$setEditingTrue()
+  },
 
   methods: {
     ...mapActions("House", {
@@ -114,6 +117,9 @@ export default {
     }),
     ...mapActions("Devices",{
       $getAllDevices:"getAllDevices"
+    }),
+    ...mapMutations({
+      $setEditingTrue: "setEditingTrue"
     }),
 
 

@@ -13,11 +13,11 @@
         <v-col v-if="routine.meta.homeId===$myHome.id" class="routines-button">
           <div class="delete-routine-div">
           <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.meta.slug}}">
-            <v-btn class="hover-btn" color="success" large width="250" rounded>
+            <v-btn class="hover-btn" color="success" large width="250" rounded @click="DeshabilitarBorrado">
               <span style="overflow: hidden; max-width:250px">{{ routine.name }}</span>
             </v-btn>
           </router-link>
-            <v-btn @click="confirmRemoveRoutine = true" class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
+            <v-btn v-if="$canEdit" @click="confirmRemoveRoutine = true" class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
             <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
               <v-card @keyup.enter="removeRoutine(routine)">
                 <v-card-title>
@@ -54,7 +54,7 @@
 
 <script>
   import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
-  import {mapActions, mapState} from "vuex";
+  import {mapActions, mapState,mapMutations} from "vuex";
   // import RemoveRoutine from "@/components/addingComponents/RemoveRoutine";
 
   export default {
@@ -70,7 +70,14 @@
       ...mapState("Routine", {
         $routines: "routines",
       }),
+      ...mapState({
+        $canEdit: "editingRoutine",
+      }),
 
+    },
+
+    mounted(){
+      this.$setEditingTrue()
     },
 
     methods: {
@@ -78,6 +85,10 @@
         $getRoutine: "getAllRoutine",
         $deleteRoutine: "deleteRoutine"
       }),
+      ...mapMutations({
+        $setEditingFalse: "setEditingFalse"
+      }),
+
 
       async getRoutines(){
         return await this.$getRoutine()
@@ -90,15 +101,19 @@
         }
         this.confirmRemoveRoutine= false
 
-      }
+      },
+      DeshabilitarBorrado(){
+        this.$setEditingFalse()
+      },
+
+
     },
 
 
     data() {
       return {
         routines: this.getRoutines(),
-        confirmRemoveRoutine: false
-
+        confirmRemoveRoutine: false,
         // house: store.house,
       }
     },

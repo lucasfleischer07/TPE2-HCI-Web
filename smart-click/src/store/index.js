@@ -10,11 +10,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    editingRoutine: true
   },
   getters: {
 
   },
   mutations: {
+    setEditingTrue(state){
+      state.editingRoutine=true
+    },
+    setEditingFalse(state){
+      state.editingRoutine=false
+    }
   },
   actions: {
 

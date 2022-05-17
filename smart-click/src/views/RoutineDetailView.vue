@@ -1,5 +1,6 @@
 <template>
   <section>
+    <v-btn @click="closeDetail" icon color="primary" outlined><v-icon>close</v-icon></v-btn>
     <div class="routine-details">
           <div class="routine-name">
             <p>"{{detail.name}}"</p>
@@ -25,7 +26,7 @@
 
 <script>
 
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   name: "RoutineDetailView",
@@ -47,6 +48,9 @@ export default {
        ...mapState("Routine", {
          $routines: "routines",
        }),
+       ...mapState( {
+         $canEdit: "editingRoutine",
+       }),
        detail() {
           return this.$routines.find(
               detail => detail.meta.slug === this.routineSlug
@@ -67,12 +71,19 @@ export default {
     ...mapActions("Routine", {
       $executeRoutine: "executeRoutine",
     }),
+    ...mapMutations({
+      $setEditingTrue: "setEditingTrue",
+    }),
     async executeRoutine() {
       try {
          await this.$executeRoutine(this.detail.id)
       } catch (e) {
         console.log(e)
       }
+    },
+    closeDetail(){
+      this.$router.push('routines/')
+      this.$setEditingTrue()
     }
 
 

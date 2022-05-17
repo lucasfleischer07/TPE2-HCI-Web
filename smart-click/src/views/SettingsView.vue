@@ -60,11 +60,23 @@
 
 <script>
 
+  import {mapMutations} from "vuex";
+
   export default {
     name: "SettingsView",
 
-  }
 
+
+    mounted(){
+      this.$setEditingTrue()
+    },
+
+    methods:{
+    ...mapMutations({
+        $setEditingTrue: "setEditingTrue"
+      })
+    }
+  }
 
 </script>
 
