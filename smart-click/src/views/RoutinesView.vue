@@ -43,7 +43,7 @@
       <div class="vertical-line"></div>
     </div>
     <div>
-      <h2 class="details-title color-title margin-title">Detalle de rutina</h2>
+      <h2 class="details-title color-title ">Detalle de rutina: </h2>
       <router-view :key="$route.path"/>
     </div>
   </div>
@@ -117,7 +117,7 @@
 
   .color-title {
     color: gray;
-
+    font-size: 30px;
   }
 
   .routines-view {
@@ -133,10 +133,6 @@
 
   .title-padding {
     padding-bottom: 25px;
-  }
-
-  .margin-title {
-    margin-right: 150px;
   }
 
   .add-button{
@@ -162,7 +158,10 @@
   }
 
   .details-title {
-    padding-bottom: 25px;
+    color: grey;
+    font-size: 30px;
+    padding-bottom: 20px;
+    justify-content: center;
   }
 
   .delete-routine-div {
