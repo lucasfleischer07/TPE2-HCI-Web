@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      value: this.textOptions[0],
+      value: "",
     }
   },
   watch: {
