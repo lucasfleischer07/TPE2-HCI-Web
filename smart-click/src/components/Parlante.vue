@@ -9,7 +9,7 @@
 
     <v-card class="background-card margin-card">
       <v-row class="action-row action_btn">
-          <div >
+          <div>
             <v-btn depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
 <!--            TODO: VER DE METER EL BOTON DE PAUSA. HAGO CLICK EN PLAY SE PONE EL BOTON DE PAUSA Y ASI SUSECIVAMENTE-->
             <v-btn class="margin-separation-icons" depressed icon @click="playFunction"><v-icon x-large>play_circle</v-icon></v-btn>
@@ -36,8 +36,17 @@
         </v-row>
         <v-row class="action-row">
           <div>
-            <v-btn depressed icon><v-icon x-large @click="getPlaylistFunction">queue_music</v-icon></v-btn >
-<!--            TODO: HACER UN V-DILOG QUE CUANDO TOQUE, ME DEJE ELEGIR EL GENERO QUE QUIERO PONER-->
+            <v-btn depressed icon><v-icon x-large @click="getPlaylistFunction" @click.stop="playlist = true">queue_music</v-icon></v-btn >
+            <v-dialog v-model="playlist" max-width="350px" height="50px" content-class="my-custon-dialog">
+              <v-card>
+                <v-card-title style="font-weight: bold">Canciones de la playlist:</v-card-title>
+                <v-card-text>
+                  <ul class="songs" v-for="song in songs" :key="song">
+                    <li>{{song.title}}</li>
+                  </ul>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
             <v-btn class="margin-separation-icons2" v-model="genre" depressed icon @click="setGenreFunction"><v-icon x-large>radio</v-icon></v-btn>
           </div>
         </v-row>
@@ -66,6 +75,8 @@ export default {
     return {
       sound: 0,
       genre: '',
+      playlist: false,
+      songs:[],
 
     }
   },
@@ -115,7 +126,7 @@ export default {
     async getPlaylistFunction() {
       let params = [this.deviceEntity.id, "getPlaylist", []]
       try {
-        await this.$execute(params)
+        this.songs = await this.$execute(params)
       } catch (e) {
         this.setResult(e);
       }
@@ -157,6 +168,17 @@ export default {
 .margin-slider {
   margin-left: 10px;
 }
+
+.songs {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  align-items: flex-start;
+}
+
+/*>>> .my-custon-dialog {*/
+/*  align-self: flex-end;*/
+/*}*/
 
 .margin-text {
   margin-right: 15px;
