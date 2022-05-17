@@ -202,7 +202,8 @@ export default {
   }
 
   .selector-houses {
-    margin-right: 100px;
+    margin-right: 90px;
+
   }
 
   .append {
