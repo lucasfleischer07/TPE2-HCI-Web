@@ -8,10 +8,8 @@
       <v-card @keyup.enter="AddRoutine">
         <v-card-title>
           <h2>Cree una nueva rutina</h2>
-
         </v-card-title>
-        <v-card-text>
-
+        <v-card-text class="styling">
           <v-container fluid c>
             <v-row aligned="center">
               <v-col class="d-flex" cols="12" sm="10">
@@ -43,7 +41,6 @@
                     v-model="deviceSelected"
                     persistent-placeholder
                     placeholder="Seleccione un dispositivo">
-
                 </v-select>
               </v-col>
             </v-row>
@@ -56,7 +53,8 @@
                     label="Acción seleccionada:"
                     item-text="name"
                     :disabled="Object.entries(deviceSelected).length ===  0"
-                    outlined class="house-selector-slider"
+                    outlined
+                    class="house-selector-slider"
                     dense
                     return-object
                     v-model="actionSelected"
@@ -78,13 +76,10 @@
               hide-details="auto"
               v-model="routineName"
           />
-          <v-btn :disabled="Object.entries($myHome).length ===  0 || Object.entries(roomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || Object.entries(actionSelected).length ===  0 || (Object.entries(actionSelected.params).length > 0 && paramater==='' )" class="margin-button" color="primary" @click="AddDevice">
-            Agregar dispositivo a la rutina
-          </v-btn>
           <v-row>
             <div v-for="devAndAct in routineCreated" :key="devAndAct" class="device-and-actions">
-              <v-card outlined>
-                <span class="text-h6">{{devAndAct.actionName}}</span>
+              <v-card outlined style="background-color: #f2f9fb; display: flex; align-items: center">
+                <span style="padding-left: 10px; padding-right: 10px" class="text-h6">{{devAndAct.actionName}}</span>
                 <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
                   <v-icon  color="error" >delete_forever</v-icon>
                 </v-btn>
@@ -92,9 +87,14 @@
               </v-card>
             </div>
           </v-row>
-          <v-btn :disabled="Object.entries(routineCreated).length ===  0 || routineName.length < 3 || routineName.length > 60" class="margin-button2" color="primary" @click="AddRoutine()">
-            Crear Rutina
-          </v-btn>
+          <div class="margin-button">
+            <v-btn :disabled="Object.entries($myHome).length ===  0 || Object.entries(roomSelected).length ===  0 || Object.entries(deviceSelected).length ===  0 || Object.entries(actionSelected).length ===  0 || (Object.entries(actionSelected.params).length > 0 && paramater==='' )" color="success" @click="AddDevice">
+              Agregar accion a la rutina
+            </v-btn>
+            <v-btn :disabled="Object.entries(routineCreated).length ===  0 || routineName.length < 3 || routineName.length > 60" class="margin-button2" color="primary" @click="AddRoutine()">
+              Crear Rutina
+            </v-btn>
+          </div>
 
         </v-card-text>
       </v-card>
@@ -133,7 +133,7 @@ export default {
       paramater: "",
       parameterSelected: [],
       routineCreated: [],
-      rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
+      rules: [v => v.length <= 17 || 'Máximo 17 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
 
 
     }
@@ -296,15 +296,19 @@ export default {
   }
 
   .margin-button {
-    margin-bottom: 20px;
+    display: flex;
+    margin-top: 40px;
   }
 
   .margin-button2 {
-    margin-top: 50px;
+    margin-left: 20px;
   }
 
   .margin-button3 {
     margin-bottom: 50px;
+    display: flex;
+    padding-left: 20px;
+    width: 80%;
   }
 
 

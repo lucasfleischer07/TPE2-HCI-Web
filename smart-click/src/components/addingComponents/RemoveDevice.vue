@@ -4,7 +4,7 @@
     <v-dialog v-model="deviceRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeDevice">
         <v-card-title>
-          <h2>Esta seguro que desea eliminar {{deviceEntity.name}}</h2>
+          <h2>Esta seguro que desea eliminar "{{deviceEntity.name}}"</h2>
         </v-card-title>
         <v-card-text>
           <v-btn class="padding-btn" color="error" @click="removeDevice" >

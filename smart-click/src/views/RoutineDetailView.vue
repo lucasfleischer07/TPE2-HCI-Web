@@ -1,23 +1,21 @@
 <template>
   <section>
     <div class="routine-details">
-        <div class="routineName-and-switch">
-          <div>
-            <p>{{detail.routineName}}</p>
+          <div class="routine-name">
+            <p>"{{detail.name}}"</p>
           </div>
           <div class="boton-centrado">
-            <v-btn @click="executeRoutine" color="primary">Activar Rutina</v-btn>
+            <v-btn @click="executeRoutine" color="primary" x-large>Activar Rutina</v-btn>
           </div>
-        </div>
     </div>
 
-      <p style="padding-top: 25px">Dispositivos involucrados</p>
+      <p class="dev-involved-text" style="padding-top: 25px" >Dispositivos involucrados y sus acciones:</p>
       <v-list two-line class="list-class">
         <template v-for="item in detail.actions">
           <v-list-item :key="item.device.id">
-          <v-list-item-content >
-            <v-list-item-title v-text="item.device.name"></v-list-item-title>
-            <v-list-item-subtitle v-text="item.actionName"></v-list-item-subtitle>
+          <v-list-item-content>
+            <v-list-item-title class="device-name" v-text="item.device.name"></v-list-item-title>
+            <v-list-item-subtitle  class="device-info"  v-text="item.actionName"></v-list-item-subtitle>
           </v-list-item-content>
           </v-list-item>
         </template>
@@ -88,25 +86,32 @@ export default {
     color: gray;
   }
 
-  .routineName-and-switch {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: center;
-  }
-
   .list-class {
     background-color: transparent;
   }
 
-  .remove-button {
-    display: flex;
-    padding-left: 100px;
+  .dev-involved-text{
+    color: grey;
+    font-size: 25px;
+    font-weight: bold;
   }
 
   .boton-centrado{
+    margin-bottom: 20px;
     justify-content: center;
   }
 
+  .routine-name{
+    font-size: 30px;
+    padding-bottom: 30px;
+  }
+
+  .device-name{
+    font-size: 30px;
+  }
+
+  .device-info{
+    font-size: 20px;
+  }
 
 </style>

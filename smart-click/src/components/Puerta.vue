@@ -10,20 +10,20 @@
     <v-card class="background-card margin-card">
       <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn depressed icon class="button-margin" @click="openDoorFunction">
+            <v-btn v-if="openOrClose" depressed icon @click="(openDoorFunction) && (openOrClose = !openOrClose) ">
               <v-icon x-large>open_in_full</v-icon>
             </v-btn >
-            <v-btn depressed icon @click="closeDoorFunction">
+            <v-btn v-else depressed icon @click="(closeDoorFunction) && (openOrClose = !openOrClose)">
               <v-icon x-large>close_fullscreen</v-icon>
             </v-btn>
           </div>
         </v-row>
         <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn depressed icon class="button-margin" @click="lockDoorFunction">
+            <v-btn v-if="lock=='unlocked' && !openOrClose" depressed icon :disabled="openOrClose === true" @click="lockDoorFunction">
               <v-icon x-large>lock</v-icon>
             </v-btn >
-            <v-btn depressed icon @click="unlockDoorFunction">
+            <v-btn v-else depressed icon @click="unlockDoorFunction" :disabled="openOrClose === true">
               <v-icon x-large>lock_open</v-icon>
             </v-btn>
           </div>
@@ -49,25 +49,35 @@ export default {
   components: {
       DeviceIcon
   },
-
+  created() {
+    this.open=this.deviceEntity.state.status
+    this.lock=this.deviceEntity.state.lock
+    this.deviceState=this.deviceEntity.state
+  },
   methods: {
     ...mapActions("Devices", {
       $execute: "executeDeviceAction",
+      $getDeviceState:"getDeviceState",
+      $getAllDevice:"getAllDevices"
     }),
 
     async openDoorFunction() {
       let params = [this.deviceEntity.id, "open", []]
       try {
+
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
     },
 
     async closeDoorFunction() {
-      let params = [this.deviceEntity.id, "open", []]
+      let params = [this.deviceEntity.id, "close", []]
       try {
+
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -76,7 +86,9 @@ export default {
     async lockDoorFunction() {
       let params = [this.deviceEntity.id, "lock", []]
       try {
+
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -85,11 +97,26 @@ export default {
     async unlockDoorFunction() {
       let params = [this.deviceEntity.id, "unlock", []]
       try {
+
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
     },
+
+    async updateContent(){
+
+      this.deviceState=await this.$getDeviceState(this.deviceEntity.id)
+      this.updateVars()
+
+    },
+
+    updateVars(){
+      this.open=this.deviceState.status
+      this.lock=this.deviceState.lock
+    },
+
 
 
 
@@ -97,6 +124,10 @@ export default {
 
   data () {
       return {
+        deviceState:[],
+        open:null,
+        lock:null,
+        openOrClose: false
       }
     },
 }
@@ -111,6 +142,8 @@ export default {
 
   .text {
     margin-bottom: 20px;
+    font-size: 25px;
+
   }
 
   .button-margin {
