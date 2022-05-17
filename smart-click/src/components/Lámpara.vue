@@ -182,6 +182,8 @@ name: "Lámpara",
 
   .text {
     margin-bottom: 20px;
+    font-size: 25px;
+
   }
 
   .action-row{

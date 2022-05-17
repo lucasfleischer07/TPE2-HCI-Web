@@ -22,7 +22,7 @@
         <v-expansion-panels>
           <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
             <v-expansion-panel-header class="expansion-panel-div">
-              <span>{{room.name}}:  dispositivos totales y  activos</span>
+              <span><span style="font-weight: bold"> {{room.name}}:</span>  dispositivos totales y  activos</span>
               <RemoveRoom :room_selected="room"/>
             </v-expansion-panel-header>
             <v-expansion-panel-content >
@@ -222,6 +222,7 @@ export default {
 
   .expansion-panel-margin{
     margin-bottom: 15px;
+    font-size: 20px;
   }
 
   .col-division {

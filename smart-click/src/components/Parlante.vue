@@ -19,13 +19,16 @@
         </div>
         </v-row>
         <v-row class="action-row action_btn slider-class" >
-          <v-btn disabled  depressed icon v-model="sound" ><v-icon x-large>volume_down_alt</v-icon></v-btn>
+<!--          <v-btn @click="(sound = 0) && (setVolumeFunction)" depressed icon v-model="sound" ><v-icon x-large>volume_down_alt</v-icon></v-btn>-->
           <v-slider class="margin-slider"
                     :max="10"
                     :min="0"
                     style="width: 30%"
                     v-model="sound"
-                    @change="setVolumeFunction"></v-slider>
+                    @change="setVolumeFunction"
+                    prepend-icon="volume_down_alt"
+
+          ></v-slider>
 <!--          TODO:  VER SI EL LLAMADO DE LA FUNCION VA ACA EN EL SLIDER, SINO NOSE DONDE VA-->
           <v-text-field dense
                         hide-details
@@ -39,17 +42,14 @@
         </v-row>
         <v-row class="action-row">
           <div>
-            <v-btn depressed icon><v-icon x-large @click="list=true">queue_music</v-icon></v-btn >
-              <v-dialog v-model="list">
+            <v-btn depressed icon style="padding-bottom: 40px; padding-top: 30px"><v-icon x-large @click="list=true">queue_music</v-icon></v-btn >
+              <v-dialog v-model="list"  max-width="600px" height="50px">
                 <v-card >
-                  <v-card-title>
-                    Playlist
-                  </v-card-title>
+                  <v-card-title>Lista de Reproducción</v-card-title>
                   <v-card-text v-for="song in playlist" :key="song.title">
-                    title:"{{song.title}}"
-                  artist:"{{song.artist}}"
-                    album:"{{song.album}}"
-                    duration:{{song.duration}}
+                    <ul class="songs">
+                      <li><span style="font-weight: bold">Nombre: </span>{{song.title}}, <span style="font-weight: bold">duración: </span>{{song.duration}}</li>
+                    </ul>
                   </v-card-text>
 
                 </v-card>
@@ -63,7 +63,7 @@
         prepend-inner-icon="radio"
         v-model="genre"
         :items="localStore.devicesImplemented[0].actions[7].params[0].supportedValues"
-        style=""
+        style="margin-left: 30px; margin-right: 30px"
         @change="setGenreFunction"
         >
 
@@ -245,6 +245,13 @@ export default {
   margin-left: 10px;
 }
 
+.songs {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  align-items: flex-start;
+}
+
 .action-row{
   justify-content: center;
 }
@@ -265,6 +272,7 @@ export default {
 
   .text {
     margin-bottom: 20px;
+    font-size: 25px;
   }
 
   .margin-slider {
