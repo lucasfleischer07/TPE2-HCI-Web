@@ -7,7 +7,7 @@
       <p class="text">{{deviceEntity.name}}</p>
     </v-card>
 
-    <v-card class="background-card">
+    <v-card class="background-card margin-card">
       <v-row class="action-row action_btn">
         <v-slider class="margin-slider" prepend-icon="device_thermostat"
                   :max="8"
@@ -150,6 +150,10 @@ export default {
 
   .text {
     margin-bottom: 20px;
+  }
+
+  .margin-card {
+    margin-bottom: 50px;
   }
 
 </style>

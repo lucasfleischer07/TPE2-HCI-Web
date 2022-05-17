@@ -7,7 +7,7 @@
       <p class="text">{{deviceEntity.name}}</p>
     </v-card>
 
-    <v-card class="background-card">
+    <v-card class="background-card margin-card">
       <v-row class="action-row action_btn" >
           <v-switch inline :v-model="onOffLamp" @click="onOffLampFunction"></v-switch>
         </v-row>
@@ -163,6 +163,10 @@ name: "Lámpara",
 
   .action_btn{
     padding: 5px;
+  }
+
+  .margin-card {
+    margin-bottom: 50px;
   }
 
 

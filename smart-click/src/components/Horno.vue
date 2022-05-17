@@ -7,7 +7,7 @@
       <p class="text">{{deviceEntity.name}}</p>
     </v-card>
 
-    <v-card class="background-card">
+    <v-card class="background-card margin-card">
       <v-row style="justify-content: center">
         <v-switch inline :v-model="onOffOven" @click="onOffOvenFunction"></v-switch>
       </v-row>
@@ -175,6 +175,10 @@ export default {
 
   .background-card {
     background-color: #E6F2FF;
+  }
+
+  .margin-card {
+    margin-bottom: 50px;
   }
 
 

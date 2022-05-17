@@ -7,7 +7,7 @@
       <p class="text">{{deviceEntity.name}}</p>
     </v-card>
 
-    <v-card class="background-card">
+    <v-card class="background-card margin-card">
       <v-row class="action-row  action_btn">
           <div class="div-margin">
             <v-btn depressed icon class="button-margin" @click="openDoorFunction">
@@ -133,10 +133,9 @@ export default {
     background-color: #E6F2FF;
   }
 
-   .favourite{
-      padding-right: 110px;
-      padding-top: 10px;
-    }
+  .margin-card {
+    margin-bottom: 50px;
+  }
 
 
 </style>

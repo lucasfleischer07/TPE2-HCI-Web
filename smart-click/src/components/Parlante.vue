@@ -7,7 +7,7 @@
       <p class="text">{{deviceEntity.name}}</p>
     </v-card>
 
-    <v-card class="background-card">
+    <v-card class="background-card margin-card">
       <v-row class="action-row action_btn">
           <div >
             <v-btn depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
@@ -194,9 +194,13 @@ export default {
     margin-right: 20px;
   }
 
-.margin-separation-icons2 {
-  margin-left: 80px;
-  margin-bottom: 5px;
-}
+  .margin-separation-icons2 {
+    margin-left: 80px;
+    margin-bottom: 5px;
+  }
+
+  .margin-card {
+    margin-bottom: 50px;
+  }
 
 </style>
