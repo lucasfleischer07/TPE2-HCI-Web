@@ -54,10 +54,10 @@
               </v-card-title>
 
               <v-card-text>
-                <v-btn color="error" @click="removeRoutine(routineDeleteSelected)" >
+                <v-btn color="error" class="margin-btn" @click="removeRoutine(routineDeleteSelected)" >
                   Eliminar
                 </v-btn>
-                <v-btn color="primary"  @click.stop="confirmRemoveRoutine=false">
+                <v-btn color="grey"  @click.stop="confirmRemoveRoutine=false">
                   Cancelar
                 </v-btn>
               </v-card-text>
@@ -147,5 +147,9 @@ export default {
     color: gray;
     font-size: 13px;
     padding-left: 10px;
+  }
+
+  .margin-btn {
+    margin-right: 25px;
   }
 </style>

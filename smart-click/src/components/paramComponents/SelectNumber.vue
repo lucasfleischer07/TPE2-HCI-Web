@@ -1,13 +1,12 @@
 <template>
-  <div style="justify-content: center">
+  <div style="justify-content: center; padding-left: 20px; display: flex; width: 80%">
     <v-slider class="justify-center"
               :max="max"
               :min="min"
               style="width: 80%"
               v-model="value"
               thumb-label="always"
-              @click="(brightnessFunction)"
-    >
+              @click="(brightnessFunction)">
       <template v-slot:prepend>
         <h3>{{min}}</h3>
       </template>
