@@ -150,11 +150,11 @@ export default {
           console.log(e)
         }
         this.deviceAdd = false,
-            // this.deviceAddHouseSelected = {},
-            // this.deviceAddRoomSelected = {},
-            this.deviceSelected = {},
-            this.deviceName = ""
-        this.getAllHouses()
+        // this.deviceAddHouseSelected = {},
+        // this.deviceAddRoomSelected = {},
+        this.deviceSelected = {},
+        this.deviceName = ""
+        this.$parent.$parent.$parent.$parent.updateDevices()
       }
     },
     resetAdd(){

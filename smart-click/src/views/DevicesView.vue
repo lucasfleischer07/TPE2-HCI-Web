@@ -23,7 +23,7 @@
           <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
             <v-expansion-panel-header class="expansion-panel-div">
               <span><span style="font-weight: bold"> {{room.name}}:</span>  dispositivos totales y  activos</span>
-              <RemoveRoom :room_selected="room"/>
+              <RemoveRoom :room_selected="room" />
             </v-expansion-panel-header>
             <v-expansion-panel-content >
               <v-row>
@@ -139,7 +139,11 @@ export default {
     getSelected() {
       return this.$myHome
     },
+    async updateDevices(){
+      await this.$getAllDevices()
+    }
   },
+
 
 
 

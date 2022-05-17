@@ -28,8 +28,7 @@ export default {
   name: "RemoveRoom",
 
   props: {
-    room_selected: {}
-
+    room_selected: {},
   },
   data(){
     return {
@@ -44,6 +43,7 @@ export default {
       $getDevices: "getDevices",
     }),
 
+
     async deleteRoom() {
       try {
         let devices =await this.$getDevices(this.room_selected.id)
@@ -56,8 +56,10 @@ export default {
       } catch (e) {
         console.log(e)
       }
+      this.$parent.$parent.$parent.$parent.updateRooms()
 
     },
+
 
 
 

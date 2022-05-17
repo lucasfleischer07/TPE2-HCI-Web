@@ -151,7 +151,8 @@ export default {
     async selectHome(home){
       await this.$changeCurrentHome(home)
       await this.getAllHouses()
-      this.home=this.$myHome},
+      this.home=this.$myHome
+    },
 
 
   }
