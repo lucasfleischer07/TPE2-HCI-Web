@@ -13,7 +13,9 @@
         <v-col v-if="routine.meta.homeId===$myHome.id" class="routines-button">
           <div class="delete-routine-div">
           <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.meta.slug}}">
-              <v-btn class="hover-btn" color="success" large width="250" rounded >{{ routine.name }}</v-btn>
+            <v-btn class="hover-btn" color="success" large width="250" rounded>
+              <span style="overflow: hidden; max-width:250px">{{ routine.name }}</span>
+            </v-btn>
           </router-link>
             <v-btn @click="confirmRemoveRoutine = true" class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
             <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
@@ -23,10 +25,10 @@
                 </v-card-title>
 
                 <v-card-text>
-                  <v-btn color="error" @click="removeRoutine(routine)" >
+                  <v-btn class="padding-right" color="error" @click="removeRoutine(routine)" >
                     Eliminar
                   </v-btn>
-                  <v-btn color="primary"  @click.stop="confirmRemoveRoutine=false">
+                  <v-btn color="grey"  @click.stop="confirmRemoveRoutine=false">
                     Cancelar
                   </v-btn>
                 </v-card-text>
@@ -173,6 +175,8 @@
 
   .hover-btn:hover {
     opacity: 75%;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .h1-title {
     justify-content: center;
@@ -182,6 +186,10 @@
     padding-top: 40px;
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
+  }
+
+  .padding-right {
+    margin-right: 25px;
   }
 
   a {
