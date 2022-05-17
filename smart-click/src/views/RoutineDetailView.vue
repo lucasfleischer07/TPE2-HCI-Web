@@ -5,7 +5,7 @@
             <p>"{{detail.name}}"</p>
           </div>
           <div class="boton-centrado">
-            <v-btn @click="executeRoutine" color="primary" x-large>Activar Rutina</v-btn>
+            <v-btn @click="executeRoutine" color="primary" x-large rounded>Ejecutar Rutina</v-btn>
           </div>
     </div>
 
