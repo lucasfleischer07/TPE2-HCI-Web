@@ -1,12 +1,12 @@
 <template>
   <div class="div-button-delete-room">
-    <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="removeRoom = true"><v-icon>delete_forever</v-icon></v-btn>
+    <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="deleteModal"><v-icon>delete_forever</v-icon></v-btn>
     <v-dialog v-model="removeRoom" max-width="600px" height="600px">
       <v-card @keyup.enter="deleteRoom()">
         <v-card-title>
           <h2>Esta seguro que desea eliminar "{{ room_selected.name }}"</h2>
         </v-card-title>
-
+        <input style="outline:none; cursor: none; color: transparent; width: 1px; height: 1px" ref="inputElem" @keypress="deleteModal" value="">
         <v-card-text>
           <v-btn class="padding-btn" color="error" @click="deleteRoom()" >
             Eliminar
@@ -42,6 +42,12 @@ export default {
       $deleteRoom: "delete",
       $getDevices: "getDevices",
     }),
+
+    deleteModal() {
+      this.removeRoom = true;
+      this.$parent.$parent.$parent.$parent.updateRooms()
+      setTimeout(()=> this.$refs.inputElem.focus(), 300)
+    },
 
 
     async deleteRoom() {

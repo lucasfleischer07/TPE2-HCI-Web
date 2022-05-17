@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="delete-div">
-      <v-btn class="delete-button" small color="error" elevation="3" fab rounded @click.stop="houseRemove = true;getHouse()"><v-icon>delete_forever</v-icon></v-btn>
+      <v-btn class="delete-button" small color="error" elevation="3" fab rounded @click.stop="deleteModal"><v-icon>delete_forever</v-icon></v-btn>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeHouse()">
         <v-card-title>
           <h2>Esta seguro que desea eliminar "{{ house_selected.name }}"</h2>
         </v-card-title>
-
+        <input style="outline:none; cursor: none; color: transparent; width: 1px; height: 1px" ref="inputElem" @keypress="removeHouse" value="">
         <v-card-text>
           <v-btn class="padding-btn" color="error" @click="removeHouse()" >
             Eliminar
@@ -59,7 +59,11 @@ export default {
       $deleteDevice:"deleteDevice"
     }),
 
-
+    deleteModal() {
+      this.houseRemove = true;
+      this.getHouse();
+      setTimeout(()=> this.$refs.inputElem.focus(), 300)
+    },
 
     async removeHouse() {
       try {
@@ -75,8 +79,7 @@ export default {
         }
         await this.$removeHouse(this.house_selected.id);
         this.$parent.selectHome({});
-        await this.getHouse()
-
+        await this.getHouse();
       } catch (e) {
        // this.setResult(e);
       }
