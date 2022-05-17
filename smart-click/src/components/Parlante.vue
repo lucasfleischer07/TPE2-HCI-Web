@@ -9,21 +9,23 @@
 
     <v-card class="background-card margin-card">
       <v-row class="action-row action_btn">
-          <div>
-            <v-btn depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
-<!--            TODO: VER DE METER EL BOTON DE PAUSA. HAGO CLICK EN PLAY SE PONE EL BOTON DE PAUSA Y ASI SUSECIVAMENTE-->
-            <v-btn class="margin-separation-icons" depressed icon @click="playFunction"><v-icon x-large>play_circle</v-icon></v-btn>
-            <v-btn depressed icon @click="nextSongFunction"><v-icon x-large>last_page</v-icon></v-btn>
-          </div>
+        <div >
+          <v-btn depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
+          <v-btn v-if="deviceState.status!= 'stopped'" class="margin-separation-icons" depressed icon @click="stopFunction"><v-icon x-large>stop</v-icon></v-btn>
+          <v-btn v-if="deviceState.status== 'stopped'" class="margin-separation-icons" depressed icon @click="playFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
+          <v-btn v-if="deviceState.status== 'playing' " class="margin-separation-icons" depressed icon @click="pauseFunction"><v-icon x-large>pause</v-icon></v-btn>
+          <v-btn v-if="deviceState.status== 'paused' " class="margin-separation-icons" depressed icon @click="resumeFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
+          <v-btn depressed icon @click="nextSongFunction"><v-icon x-large>last_page</v-icon></v-btn>
+        </div>
         </v-row>
         <v-row class="action-row action_btn slider-class" >
-          <v-btn depressed icon v-model="sound" @click="sound=0"><v-icon x-large>volume_down_alt</v-icon></v-btn>
+          <v-btn disabled  depressed icon v-model="sound" ><v-icon x-large>volume_down_alt</v-icon></v-btn>
           <v-slider class="margin-slider"
                     :max="10"
                     :min="0"
                     style="width: 30%"
                     v-model="sound"
-                    @click="setVolumeFunction"></v-slider>
+                    @change="setVolumeFunction"></v-slider>
 <!--          TODO:  VER SI EL LLAMADO DE LA FUNCION VA ACA EN EL SLIDER, SINO NOSE DONDE VA-->
           <v-text-field dense
                         hide-details
@@ -31,37 +33,43 @@
                         v-model="sound"
                         style="width: 20%"
                         type="number"
-                        class="margin-text">
+                        class="margin-text"
+                        readonly>
           </v-text-field>
         </v-row>
         <v-row class="action-row">
           <div>
-            <v-btn style="margin-bottom: 10px" depressed icon><v-icon x-large @click="getPlaylistFunction" @click.stop="playlist = true">queue_music</v-icon></v-btn >
-            <v-dialog v-model="playlist" max-width="350px" height="50px" content-class="my-custon-dialog">
-              <v-card>
-                <v-card-title style="font-weight: bold">Canciones de la playlist:</v-card-title>
-                <v-card-text>
-                  <ul class="songs" v-for="song in songs" :key="song">
-                    <li>{{song.title}}</li>
-                  </ul>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
-            <v-row>
-              <div>
-                <v-select
-                    :items="genres"
-                    v-model="genre"
-                    placeholder="Seleccionar genero"
-                    persistent-placeholder
-                    solo
-                    style="margin: 25px"
-                    @change="setGenreFunction"
-                ></v-select>
-              </div>
-            </v-row>
+            <v-btn depressed icon><v-icon x-large @click="list=true">queue_music</v-icon></v-btn >
+              <v-dialog v-model="list">
+                <v-card >
+                  <v-card-title>
+                    Playlist
+                  </v-card-title>
+                  <v-card-text v-for="song in playlist" :key="song.title">
+                    title:"{{song.title}}"
+                  artist:"{{song.artist}}"
+                    album:"{{song.album}}"
+                    duration:{{song.duration}}
+                  </v-card-text>
+
+                </v-card>
+              </v-dialog>
           </div>
         </v-row>
+
+      <v-row >
+        <v-select
+        outlined
+        prepend-inner-icon="radio"
+        v-model="genre"
+        :items="localStore.devicesImplemented[0].actions[7].params[0].supportedValues"
+        style=""
+        @change="setGenreFunction"
+        >
+
+        </v-select>
+      </v-row>
+
     </v-card>
   </div>
 </template>
@@ -69,11 +77,18 @@
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
 import {mapActions} from "vuex";
+import localStore from "@/store/localStore";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Parlante",
+  async created() {
+    this.deviceState=this.deviceEntity.state
+    await this.getPlaylistFunction()
+    this.sound=this.deviceState.volume
+    this.genre=this.deviceState.genre
 
+  },
   components: {
     DeviceIcon
   },
@@ -85,25 +100,61 @@ export default {
 
   data () {
     return {
-      sound: 0,
+      sound: 3,
       genre: '',
-      playlist: false,
-      songs:[],
-      genres: ['Clásica', 'Country', 'Dance', 'Latina', 'Pop', 'Rock'],
+      list:false,
+      deviceState:{},
+      playlist:{},
+      localStore
 
     }
   },
+
 
   methods: {
 
     ...mapActions("Devices", {
       $execute: "executeDeviceAction",
+      $getDeviceState:"getDeviceState",
+      $getAllDevice:"getAllDevices"
     }),
+    async updateContent(){
+
+      this.deviceState=await this.$getDeviceState(this.deviceEntity.id)
+      await this.getPlaylistFunction()
+      this.updateVars()
+
+    },
+
+    updateVars(){
+      this.sound=this.deviceState.volume
+      this.genre=this.deviceState.genre
+    },
 
     async playFunction() {
       let params = [this.deviceEntity.id, "play", []]
       try {
         await this.$execute(params)
+        await this.updateContent()
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+    async stopFunction() {
+      let params = [this.deviceEntity.id, "stop", []]
+      try {
+        await this.$execute(params)
+        await this.updateContent()
+      } catch (e) {
+        this.setResult(e);
+      }
+    },
+
+    async resumeFunction() {
+      let params = [this.deviceEntity.id, "resume", []]
+      try {
+        await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -113,6 +164,7 @@ export default {
       let params = [this.deviceEntity.id, "pause", []]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -122,6 +174,8 @@ export default {
       let params = [this.deviceEntity.id, "nextSong", []]
       try {
         await this.$execute(params)
+        await this.updateContent()
+
       } catch (e) {
         this.setResult(e);
       }
@@ -131,6 +185,7 @@ export default {
       let params = [this.deviceEntity.id, "previousSong", []]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -139,30 +194,18 @@ export default {
     async getPlaylistFunction() {
       let params = [this.deviceEntity.id, "getPlaylist", []]
       try {
-        this.songs = await this.$execute(params)
+        this.playlist=await this.$execute(params)
       } catch (e) {
         this.setResult(e);
       }
     },
 
     async setGenreFunction() {
-      let paramGenre;
-      if(this.genre === 'Clásica') {
-        paramGenre = "classical";
-      } else if(this.genre === 'Country') {
-        paramGenre = "country";
-      } else if(this.genre === 'Dance') {
-        paramGenre = "dance";
-      } else if(this.genre === 'Latina') {
-        paramGenre = "latina";
-      } else if(this.genre === 'Pop') {
-        paramGenre = "pop";
-      } else if(this.genre === 'Rock') {
-        paramGenre = "rock";
-      }
-      let params = [this.deviceEntity.id, "setGenre", [paramGenre]]
+      let params = [this.deviceEntity.id, "setGenre", [this.genre]]
       try {
         await this.$execute(params)
+        await this.updateContent()
+
       } catch (e) {
         this.setResult(e);
       }
@@ -172,6 +215,7 @@ export default {
       let params = [this.deviceEntity.id, "setVolume", [this.sound]]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -196,17 +240,6 @@ export default {
   margin-left: 10px;
 }
 
-.songs {
-  display: flex;
-  flex-direction: column;
-  color: black;
-  align-items: flex-start;
-}
-
-/*>>> .my-custon-dialog {*/
-/*  align-self: flex-end;*/
-/*}*/
-
 .margin-text {
   margin-right: 15px;
   margin-left: 10px;
@@ -222,6 +255,7 @@ export default {
 
   .background-card {
     background-color: #E6F2FF;
+
   }
 
   .slider-class {

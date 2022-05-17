@@ -136,7 +136,7 @@ export default {
       this.deviceState=this.deviceEntity.state
       this.temperature=this.deviceState.temperature
       this.freezerTemperature=this.deviceState.freezerTemperature
-      this.mode=this.deviceState.state.mode
+      this.mode=this.deviceState.mode
     },
   data() {
         return {
