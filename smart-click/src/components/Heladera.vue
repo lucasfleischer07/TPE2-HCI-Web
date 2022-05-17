@@ -33,7 +33,7 @@
                    :min="-20"
                    style="width: 50%"
                    v-model="freezerTemperature"
-                   @click="setTemperatureFreezerFunction"
+                   @change="setTemperatureFreezerFunction"
          ></v-slider>
          <v-text-field dense
                        hide-details
@@ -63,14 +63,14 @@
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
 import {mapActions} from "vuex";
-import {Device} from "@/Api/Device";
+
 
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
     name: "Heladera",
     props: {
-      deviceEntity: Device,
+      deviceEntity: {},
     },
 
     components: {
@@ -118,6 +118,7 @@ export default {
         this.setResult(e);
       }
     },
+
     async updateContent(){
 
       this.deviceState=await this.$getDeviceState(this.deviceEntity.id)
@@ -132,15 +133,15 @@ export default {
     },
   },
     created() {
-      this.temperature=this.deviceEntity.state.temperature
-      this.freezerTemperature=this.deviceEntity.state.freezerTemperature
-      this.mode=this.deviceEntity.state.mode
       this.deviceState=this.deviceEntity.state
+      this.temperature=this.deviceState.temperature
+      this.freezerTemperature=this.deviceState.freezerTemperature
+      this.mode=this.deviceState.state.mode
     },
   data() {
         return {
-          temperature:0,
-          freezerTemperature: 0,
+          temperature:null,
+          freezerTemperature: null,
           mode:"default" ,
           deviceState:[],
         }
