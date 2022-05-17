@@ -36,7 +36,7 @@
         </v-row>
         <v-row class="action-row">
           <div>
-            <v-btn depressed icon><v-icon x-large @click="getPlaylistFunction" @click.stop="playlist = true">queue_music</v-icon></v-btn >
+            <v-btn style="margin-bottom: 10px" depressed icon><v-icon x-large @click="getPlaylistFunction" @click.stop="playlist = true">queue_music</v-icon></v-btn >
             <v-dialog v-model="playlist" max-width="350px" height="50px" content-class="my-custon-dialog">
               <v-card>
                 <v-card-title style="font-weight: bold">Canciones de la playlist:</v-card-title>
@@ -47,7 +47,19 @@
                 </v-card-text>
               </v-card>
             </v-dialog>
-            <v-btn class="margin-separation-icons2" v-model="genre" depressed icon @click="setGenreFunction"><v-icon x-large>radio</v-icon></v-btn>
+            <v-row>
+              <div>
+                <v-select
+                    :items="genres"
+                    v-model="genre"
+                    placeholder="Seleccionar genero"
+                    persistent-placeholder
+                    solo
+                    style="margin: 25px"
+                    @change="setGenreFunction"
+                ></v-select>
+              </div>
+            </v-row>
           </div>
         </v-row>
     </v-card>
@@ -77,6 +89,7 @@ export default {
       genre: '',
       playlist: false,
       songs:[],
+      genres: ['Clásica', 'Country', 'Dance', 'Latina', 'Pop', 'Rock'],
 
     }
   },
@@ -133,7 +146,21 @@ export default {
     },
 
     async setGenreFunction() {
-      let params = [this.deviceEntity.id, "setGenre", [this.genre]]
+      let paramGenre;
+      if(this.genre === 'Clásica') {
+        paramGenre = "classical";
+      } else if(this.genre === 'Country') {
+        paramGenre = "country";
+      } else if(this.genre === 'Dance') {
+        paramGenre = "dance";
+      } else if(this.genre === 'Latina') {
+        paramGenre = "latina";
+      } else if(this.genre === 'Pop') {
+        paramGenre = "pop";
+      } else if(this.genre === 'Rock') {
+        paramGenre = "rock";
+      }
+      let params = [this.deviceEntity.id, "setGenre", [paramGenre]]
       try {
         await this.$execute(params)
       } catch (e) {
