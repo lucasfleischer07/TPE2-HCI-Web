@@ -226,6 +226,12 @@ export default {
           routine = new Routine(null, this.routineName, this.routineCreated, routineMeta)
           routine = await this.$createRoutine(routine)
           this.routineAdd = false
+          this.deviceSelected = {};
+          this.actionSelected = {};
+          this.roomSelected = {};
+          this.routineName = "";
+          this.routineCreated = [];
+          this.devices= [];
           this.setResult(routine)
         } catch (e) {
           this.setResult(e)
@@ -238,13 +244,6 @@ export default {
           this.setResult(e)
         }*/
 
-
-        this.deviceSelected = {};
-        this.actionSelected = {};
-        this.roomSelected = {};
-        this.routineName = "";
-        this.routineCreated = [];
-        this.devices= [];
       }
 
     },
