@@ -154,12 +154,14 @@ export default {
             // this.deviceAddRoomSelected = {},
             this.deviceSelected = {},
             this.deviceName = ""
+        this.getAllHouses()
       }
     },
     resetAdd(){
       this.deviceSelected = {},
       this.deviceName = ""
     }
+
   }
 }
 </script>
