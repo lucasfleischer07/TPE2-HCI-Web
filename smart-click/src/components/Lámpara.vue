@@ -9,7 +9,7 @@
 
     <v-card class="background-card margin-card">
       <v-row class="action-row action_btn" >
-          <v-switch inline :v-model="onOffLamp" @click="onOffLampFunction"></v-switch>
+          <v-switch inline v-model="onOffLamp" @change="onOffLampFunction"></v-switch>
         </v-row>
         <v-row class="action-row action_btn" >
             <v-slider class="margin-slider" prepend-icon="brightness_6"
@@ -17,7 +17,7 @@
                       :min="0"
                       style="width: 50%"
                       v-model="slider"
-                      @click="(brightnessFunction)"
+                      @change="brightnessFunction"
             ></v-slider>
             <v-text-field dense
                 hide-details
@@ -26,7 +26,8 @@
                 style="width: 25%"
                 type="number"
                 suffix="%"
-                class="margin-text">
+                class="margin-text"
+                readonly>
             </v-text-field>
 
         </v-row>
@@ -35,12 +36,12 @@
               :color=btnColor
               @click="toggle= !toggle"
               class="margin-button"></v-btn>
-<!--      TODO: VER SI EL LLAMADO A LA FUNCION VA ACA EN EL COLOR-PICKER O DONDE VA-->
+
         <v-color-picker :show-swatches="toggle" hide-canvas hide-sliders hide-inputs
-            v-model="btnColor"
+            v-model="btnColor" @update:color="toggle = !toggle"
+        >
             :swatches="swatches"
-            @update:color="toggle= !toggle"
-            @click="colorChangeFunction">
+
         </v-color-picker>
     </v-card>
   </div>
@@ -61,21 +62,37 @@ name: "Lámpara",
   props: {
     deviceEntity: {},
   },
+  created() {
+    this.deviceState=this.deviceEntity.state
+    this.btnColor=this.deviceEntity.state.color
+    this.slider=this.deviceEntity.state.brightness
+    this.setOnOff()
+  },
+  watch: {
+    btnColor(){
+      this.colorChangeFunction()
+
+
+    },
+  },
 
   methods: {
     ...mapActions("Devices", {
       $execute: "executeDeviceAction",
+      $getDeviceState:"getDeviceState",
+      $getAllDevice:"getAllDevices"
     }),
 
     async onOffLampFunction() {
       let params
       try {
-        if(this.onOffLamp) {
+        if(this.onOffLamp==true) {
           params = [this.deviceEntity.id, "turnOn", []]
         } else {
           params = [this.deviceEntity.id, "turnOff", []]
         }
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -85,6 +102,7 @@ name: "Lámpara",
       let params = [this.deviceEntity.id, "setBrightness", [this.slider]]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -94,10 +112,32 @@ name: "Lámpara",
       let params = [this.deviceEntity.id, "setColor", [this.btnColor]]
       try {
         await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
     },
+
+    async updateContent(){
+
+      this.deviceState=await this.$getDeviceState(this.deviceEntity.id)
+      this.updateVars()
+
+    },
+
+
+    updateVars(){
+      this.btnColor=this.deviceState.color
+      this.slider=this.deviceState.brightness
+      this.setOnOff()
+
+    },
+    setOnOff(){
+      if(this.deviceState.status=='on'){
+        this.onOffLamp=true
+      }else this.onOffLamp=false
+    }
+
 
 
 
@@ -107,9 +147,10 @@ name: "Lámpara",
   data () {
     return {
       slider:0,
-      onOffLamp: false,
-      toggle:true,
-      btnColor:"red",
+      deviceState: {},
+      onOffLamp:true,
+      toggle:false,
+      btnColor:"",
       swatches: [
         ['#FF0000', '#AA0000', '#550000'],
         ['#FFBF80', '#FF8000', '#663300'],

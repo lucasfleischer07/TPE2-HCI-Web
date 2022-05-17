@@ -88,8 +88,9 @@ export default {
       let params = [this.deviceEntity.id, "setTemperature", [this.temperature]]
 
       try {
-        await this.updateContent()
+
         await this.$execute(params)
+        await this.updateContent()
 
       } catch (e) {
         this.setResult(e);
@@ -99,9 +100,9 @@ export default {
     async setTemperatureFreezerFunction() {
       let params = [this.deviceEntity.id, "setFreezerTemperature", [this.freezerTemperature]]
       try {
-        await this.updateContent()
-        await this.$execute(params)
 
+        await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
@@ -110,9 +111,9 @@ export default {
     async setModeFunction() {
       let params = [this.deviceEntity.id, "setMode", [this.mode]]
       try {
-        await this.updateContent()
-        await this.$execute(params)
 
+        await this.$execute(params)
+        await this.updateContent()
       } catch (e) {
         this.setResult(e);
       }
