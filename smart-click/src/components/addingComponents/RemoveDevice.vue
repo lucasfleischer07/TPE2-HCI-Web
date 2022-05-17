@@ -1,11 +1,12 @@
 <template>
   <div class="main-div">
-    <v-btn depressed icon class="trash_class" @click.stop="deviceRemove = true"><v-icon color="error">delete_forever</v-icon></v-btn>
+    <v-btn depressed icon class="trash_class" @click.stop="deleteModal"><v-icon color="error">delete_forever</v-icon></v-btn>
     <v-dialog v-model="deviceRemove" max-width="600px" height="600px">
       <v-card @keyup.enter="removeDevice">
         <v-card-title>
           <h2>Esta seguro que desea eliminar "{{deviceEntity.name}}"</h2>
         </v-card-title>
+        <input style="outline:none; cursor: none; color: transparent; width: 1px; height: 1px" ref="inputElem" @keypress="deleteModal" value="">
         <v-card-text>
           <v-btn class="padding-btn" color="error" @click="removeDevice" >
             Eliminar
@@ -32,11 +33,8 @@ export default {
   },
   data() {
     return {
-
-
       deviceRemove: false,
       confirmRemoveDevice:false,
-
       rules: [v => v.length <= 25 || 'Max 25 characters'],
     }
   },
@@ -45,6 +43,11 @@ export default {
     ...mapActions("Devices",{
       $removeDevice:"deleteDevice"
     }),
+
+    deleteModal() {
+      this.deviceRemove = true;
+      setTimeout(()=> this.$refs.inputElem.focus(), 300)
+    },
 
     async removeDevice(){
         let device=Object.assign(new Device(),this.deviceEntity)
@@ -55,8 +58,7 @@ export default {
 
         this.deviceDeleteSelected = {}
       }
-    }
-
+    },
 
 }
 </script>
