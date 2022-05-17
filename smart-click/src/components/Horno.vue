@@ -201,6 +201,8 @@ export default {
 
   .text {
     margin-bottom: 20px;
+    font-size: 25px;
+
   }
 
   .margin-slider {
