@@ -268,7 +268,7 @@ export default {
           let routineSlug= this.routineName.replace(/\s/g, '')
           let routineMeta = new RoutineMeta(routineSlug,this.$myHome.id)
           routine = new Routine(null, this.routineName, this.routineCreated, routineMeta)
-          routine = await this.$createRoutine(routine)
+          await this.$createRoutine(routine)
           this.routineAdd = false
           this.deviceSelected = {};
           this.actionSelected = {};
