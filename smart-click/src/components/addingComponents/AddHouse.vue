@@ -41,7 +41,9 @@
           <v-card-title style="justify-content: center; font-weight: bold">Nombre inválido</v-card-title>
           <v-btn class="close-button" @click="nameError=false" icon color="black" outlined><v-icon>close</v-icon></v-btn>
           <v-container style="padding-bottom: 12px; padding-top: 0px">
-            <v-card-text style="justify-content: flex-start; text-align: initial">El nombre seleccionado ya ha sido utilizado en otra casa. Por favor elija otro nombre.</v-card-text>
+            <v-card-text style="justify-content: flex-start; text-align: initial">{{
+                errorMsg
+              }}</v-card-text>
           </v-container>
         </v-card>
       </v-dialog>
@@ -61,6 +63,7 @@ export default {
       snackbar:false,
       nameError:false,
       houseAdd: false,
+      errorMsg:"",
       nombreCasa: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
@@ -100,7 +103,11 @@ export default {
           this.$router.push('NotFound/')
         }
         if(e.code===2){
-          this.nameError= !this.nameError
+          this.errorMsg="El nombre seleccionado ya ha sido utilizado en otra casa. Por favor elija otro nombre."
+          this.nameError=true}
+        if(e.code===1){
+          this.errorMsg="El nombre solo puede tener letras,numeros o espacios. Por favor elija otro nombre."
+          this.nameError=true
         }
       }
       this.$parent.selectHome(this.house);

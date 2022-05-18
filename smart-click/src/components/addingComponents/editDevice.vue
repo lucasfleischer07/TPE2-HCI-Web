@@ -24,12 +24,24 @@
           <v-card-title style="justify-content: center; font-weight: bold">Nombre inválido</v-card-title>
           <v-btn class="close-button" @click="nameError=false" icon color="black" outlined><v-icon>close</v-icon></v-btn>
           <v-container style="padding-bottom: 12px; padding-top: 0px">
-            <v-card-text style="justify-content: flex-start; text-align: initial">El nombre seleccionado ya ha sido utilizado en otro dispositivo. Por favor elija otro nombre.</v-card-text>
+            <v-card-text style="justify-content: flex-start; text-align: initial">{{
+                errorMsg
+              }}</v-card-text>
           </v-container>
         </v-card>
       </v-dialog>
     </v-dialog>
-
+    <v-snackbar v-model="snackbar" :timeout="2000" color="#737373"> Nombre editado correctamente
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
 
   </div>
 </template>
@@ -44,9 +56,11 @@ export default {
 
   data() {
     return {
+      snackbar:false,
       nameError: false,
       deviceEdit:false,
       nameDevice:"",
+      errorMsg:"",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
     }
   },
@@ -63,13 +77,19 @@ export default {
       try {
     let aux=[this.deviceEntity.id,new EditDevice(name)]
       await this.$update(aux)
-      this.deviceEdit=false}
+      this.deviceEdit=false
+      this.snackbar=true}
       catch (e){
         if(e.code===99){
           this.$router.push('NotFound/')
         }
-        if(e.code===2)
+        if(e.code===2){
+          this.errorMsg="El nombre seleccionado ya ha sido utilizado en otro dispositivo. Por favor elija otro nombre."
+          this.nameError=true}
+        if(e.code===1){
+          this.errorMsg="El nombre solo puede tener letras,numeros o espacios. Por favor elija otro nombre."
           this.nameError=true
+        }
       }
     },
     resetText(){
