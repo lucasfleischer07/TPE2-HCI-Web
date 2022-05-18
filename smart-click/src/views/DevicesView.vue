@@ -48,8 +48,7 @@
     <v-snackbar
         v-model="snackbar"
         :timeout="2000"
-        color="success"
-    >
+        color="#737373">
       {{text}}
 
       <template v-slot:action="{ attrs }">
@@ -57,8 +56,7 @@
             color="white"
             text
             v-bind="attrs"
-            @click="snackbar = false"
-        >
+            @click="snackbar = false">
           Close
         </v-btn>
       </template>

@@ -49,7 +49,7 @@
   </div><v-snackbar
       v-model="snackbar"
       :timeout="2000"
-      color="success"
+      color="#737373"
   >
     Rutina borrada correctamente
 
@@ -111,9 +111,14 @@
       }),
 
       deleteModal() {
-        this.confirmRemoveRoutine = true;
-        // this.getRoutines();
-        setTimeout(()=> this.$refs.inputElem.focus(), 300)
+        try {
+          this.confirmRemoveRoutine = true;
+          // this.getRoutines();
+          setTimeout(()=> this.$refs.inputElem.focus(), 300)
+        } catch (e) {
+          this.setResult(e)
+        }
+
       },
 
 
