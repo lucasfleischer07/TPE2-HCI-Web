@@ -16,7 +16,7 @@
 
       <div class="rooms-class">
         <div v-if="Object.entries(rooms).length ===  0" class="h1-title">
-          <h1 class="title-h1"><v-icon x-large>bed</v-icon> No hay ninguna habitación dentro de {{ $myHome.name }}</h1>
+          <h1 class="title-h1"><v-icon x-large>bed</v-icon> No hay ninguna habitación dentro de "{{ $myHome.name }}"</h1>
         </div>
         <div v-else>
         <v-expansion-panels>

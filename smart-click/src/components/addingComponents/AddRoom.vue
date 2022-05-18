@@ -1,7 +1,7 @@
 <template>
   <div class="add-button">
     <div class="rooms-alignment">
-      <h1 class="text-rooms" >Habitaciones:</h1>
+      <h1 class="text-rooms" >Habitaciones</h1>
       <v-btn color="primary" elevation="3" fab rounded @click.stop="roomAdd = true"><v-icon>add</v-icon></v-btn>
     </div>
     <v-dialog v-model="roomAdd" max-width="600px" height="600px" @click:outside="resetText">
