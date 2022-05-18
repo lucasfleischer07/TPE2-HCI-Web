@@ -12,28 +12,11 @@
       <v-row v-for="routine in $routines" :key="routine.id">
         <v-col v-if="routine.meta.homeId===$myHome.id" class="routines-button">
           <div class="delete-routine-div">
-          <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.meta.slug}}">
-            <v-btn class="hover-btn" color="success" large width="250" rounded @click="DeshabilitarBorrado">
-              <span style="overflow: hidden; max-width:250px">{{ routine.name }}</span>
-            </v-btn>
-          </router-link>
-            <v-btn v-if="$canEdit" @click.stop="deleteModal" class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
-            <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
-              <v-card>
-                <v-card-title>
-                  <h2>Esta seguro que desea eliminar "{{ routine.name }}"</h2>
-                </v-card-title>
-                <input style="outline:none; cursor: none; color: transparent; width: 1px; height: 1px" ref="inputElem" @keypress="removeRoutine(routine)" value="">
-                <v-card-text>
-                  <v-btn class="padding-right" color="error" @click="removeRoutine(routine)" >
-                    Eliminar
-                  </v-btn>
-                  <v-btn color="grey"  @click.stop="confirmRemoveRoutine=false">
-                    Cancelar
-                  </v-btn>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
+            <router-link :to="{name: 'routineDetailsView', params: {routineSlug: routine.meta.slug}}">
+              <v-btn class="hover-btn" color="success" large width="250" rounded @click="DeshabilitarBorrado">
+                <span style="overflow: hidden; max-width:250px">{{ routine.name }}</span>
+              </v-btn>
+            </router-link>
           </div>
         </v-col>
       </v-row>
@@ -110,18 +93,6 @@
         $setApiDown: "setApiDown"
       }),
 
-      deleteModal() {
-        try {
-          this.confirmRemoveRoutine = true;
-          // this.getRoutines();
-          setTimeout(()=> this.$refs.inputElem.focus(), 300)
-        } catch (e) {
-          this.setResult(e)
-        }
-
-      },
-
-
       async getRoutines(){
         let response
         try {
@@ -133,18 +104,8 @@
         }
         return response
       },
-      async removeRoutine(routine){
-        try{
-          await this.$deleteRoutine(routine.id)
-          this.snackbar=true
-        }catch (e) {
-          if(e.code===99){
-            this.$router.push('NotFound/')
-          }
-        }
-        this.confirmRemoveRoutine= false
 
-      },
+
       DeshabilitarBorrado(){
         this.$setEditingFalse()
       },
@@ -246,9 +207,7 @@
     background-repeat: repeat round;
   }
 
-  .padding-right {
-    margin-right: 25px;
-  }
+
 
   a {
     text-decoration: none;
