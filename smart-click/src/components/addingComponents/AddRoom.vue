@@ -21,6 +21,11 @@
           </v-btn>
         </v-card-text>
       </v-card>
+      <v-dialog v-model="nameError">
+        <v-card>
+          <v-card-title>Nombre ya usado para una habitacion</v-card-title>
+        </v-card>
+      </v-dialog>
     </v-dialog>
   </div>
 </template>
@@ -38,7 +43,7 @@ export default {
 
   data() {
     return {
-
+      nameError:false,
       roomAdd: false,
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
@@ -65,18 +70,21 @@ export default {
       let room = new Room(null, roomName, null);
 
       try {
-        this.roomAdd = false
+
         room =(await this.$createRoom(room));
         room = Object.assign(new Room(), room);
         let array= [this.houseSelected.id,room.id]
         await this.$addHomeRoom(array)
-
+        this.roomAdd = false
         this.roomName = ""
         await this.$getRooms()
+        this.$parent.updateRooms()
       } catch (e) {
-        console.log(e)
+        if(e.code==2){
+          this.nameError= true
+        }
       }
-      this.$parent.updateRooms()
+
     },
     resetText(){
       this.roomName = ""

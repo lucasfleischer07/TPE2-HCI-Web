@@ -24,6 +24,11 @@
           </v-btn>
         </v-card-text>
       </v-card>
+      <v-dialog v-model="nameError">
+        <v-card>
+          <v-card-title>Nombre ya usado para una casa</v-card-title>
+        </v-card>
+      </v-dialog>
     </v-dialog>
 
 
@@ -38,7 +43,7 @@ export default {
   name: "AddHouse",
   data() {
     return {
-
+      nameError:false,
       houseAdd: false,
       nombreCasa: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
@@ -74,7 +79,9 @@ export default {
         this.houseAdd = false
         this.nombreCasa = ""
       } catch (e) {
-        console.log(e)
+        if(e.code==2){
+          this.nameError= !this.nameError
+        }
       }
       this.$parent.selectHome(this.house);
 

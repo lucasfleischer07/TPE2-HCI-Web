@@ -37,6 +37,11 @@
           </v-btn>
         </v-card-text>
       </v-card>
+      <v-dialog v-model="nameError">
+        <v-card>
+          <v-card-title>Nombre ya usado para un dispositivo</v-card-title>
+        </v-card>
+      </v-dialog>
     </v-dialog>
 
 
@@ -63,6 +68,7 @@ export default {
       types:localStore.devicesImplemented,
       houseRooms:null,
       deviceAdd: false,
+      nameError:false,
       deviceSelected: {},
 
       deviceName: "",
@@ -146,15 +152,16 @@ export default {
           this.device = Object.assign(new Device(), this.device);
           let id=[this.deviceAddRoomSelected.id,this.device.id]
           await this.$addDevice(id)
+          this.deviceAdd = false,
+              this.deviceSelected = {},
+              this.deviceName = ""
+          this.$parent.$parent.$parent.$parent.updateDevices()
         } catch (e) {
-          console.log(e)
+          if(e.code==2){
+            this.nameError= true
+          }
         }
-        this.deviceAdd = false,
-        // this.deviceAddHouseSelected = {},
-        // this.deviceAddRoomSelected = {},
-        this.deviceSelected = {},
-        this.deviceName = ""
-        this.$parent.$parent.$parent.$parent.updateDevices()
+
       }
     },
     resetAdd(){

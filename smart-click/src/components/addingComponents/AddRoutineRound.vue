@@ -98,6 +98,11 @@
 
         </v-card-text>
       </v-card>
+      <v-dialog v-model="nameError">
+        <v-card>
+          <v-card-title>Nombre ya usado para una rutina</v-card-title>
+        </v-card>
+      </v-dialog>
     </v-dialog>
   </div>
 </template>
@@ -125,6 +130,7 @@ export default {
       routineAdd: false,
       routineName: "",
       rooms: [],
+      nameError:false,
       roomSelected: {},
       deviceSelected: {},
       devices: [],
@@ -234,15 +240,10 @@ export default {
           this.devices= [];
           this.setResult(routine)
         } catch (e) {
-          this.setResult(e)
+          if(e.code==2){
+            this.nameError= true
+          }
         }
-        /*try {
-
-          this.houseSelected.meta.homeRoutines.push(routine)
-          await this.$modifyHome(this.houseSelected) //Modifico la casa y le agrego la rutina
-        }catch (e) {
-          this.setResult(e)
-        }*/
 
       }
 
