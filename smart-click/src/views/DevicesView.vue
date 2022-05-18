@@ -23,7 +23,7 @@
           <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
             <v-expansion-panel-header class="expansion-panel-div">
               <span>
-                <span style="font-weight: bold"> {{room.name}}:</span>
+                <span style="font-weight: bold; font-size: 20px"> {{room.name}}:</span>
                 <span v-if="(getRoomAmountOfDevices(room.id) > 0) && (getRoomAmountOfDevices(room.id) != 1)"> {{getRoomAmountOfDevices(room.id)}} dispositivos vinculados</span>
                 <span v-else-if="getRoomAmountOfDevices(room.id) == 1"> {{getRoomAmountOfDevices(room.id)}} dispositivo vinculado</span>
                 <span v-else> No hay ningún dispositivo vinculado</span>
