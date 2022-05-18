@@ -1,15 +1,11 @@
 <template>
-  <div>
-    <v-btn   depressed icon color="primary"
-           @click.stop="deviceEdit = true"  >
-      <v-icon>
-        edit
-      </v-icon>
+  <div class="edit-button">
+    <v-btn depressed icon color="primary" @click.stop="deviceEdit = true"><v-icon>edit</v-icon>
     </v-btn>
     <v-dialog v-model="deviceEdit" max-width="600px" height="600px" @click:outside="resetText">
       <v-card  @keyup.enter="editDevice(nameDevice)">
         <v-card-title>
-          <h2>Editar NOMBRE</h2>
+          <h2>Editar nombre</h2>
         </v-card-title>
         <v-card-text>
           <v-text-field
@@ -18,7 +14,7 @@
               hide-details="auto"
               v-model="nameDevice"
           />
-          <v-btn :disabled="nameDevice.length < 3 || nameDevice.length > 60" class="margin-button" color="primary" @click="editDevice(nameDevice)">
+          <v-btn style="margin-top: 20px" :disabled="nameDevice.length < 3 || nameDevice.length > 60" class="margin-button" color="primary" @click="editDevice(nameDevice)">
             Cambiar nombre
           </v-btn>
         </v-card-text>
@@ -89,5 +85,9 @@ class EditDevice {
 </script>
 
 <style scoped>
-
+  .edit-button {
+    position: absolute;
+    top: 1%;
+    right: 60%;
+  }
 </style>

@@ -2,11 +2,11 @@
   <div class="action-row device-div">
     <v-card class="background-card">
       <v-row class="action-row action_btn" >
+        <edit-device class="edit-button" :deviceEntity="deviceEntity" ></edit-device>
         <device-icon name-device="door_front" :deviceEntity="deviceEntity"/>
       </v-row>
-      <v-row>
-      <p class="text">{{deviceEntity.name}}</p>
-        <edit-device :deviceEntity="deviceEntity" ></edit-device>
+      <v-row style="display: contents">
+        <p class="text">{{deviceEntity.name}}</p>
       </v-row>
     </v-card>
 
@@ -162,9 +162,6 @@ export default {
 
   }
 
-  .button-margin {
-    margin-right: 35px;
-  }
 
   .div-margin {
     margin-bottom: 25px;

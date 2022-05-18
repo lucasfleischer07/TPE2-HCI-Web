@@ -4,7 +4,7 @@
       <v-row class="action-row action_btn">
         <DeviceIcon name-device="emoji_objects" :deviceEntity="deviceEntity"/>
       </v-row>
-      <v-row>
+      <v-row style="display: contents">
         <p class="text">{{deviceEntity.name}}</p>
         <edit-device :deviceEntity="deviceEntity" ></edit-device>
       </v-row>
