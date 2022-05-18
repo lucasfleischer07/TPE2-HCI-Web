@@ -105,8 +105,7 @@ export default {
       list:false,
       deviceState:{},
       playlist:{},
-      localStore
-
+      localStore,
     }
   },
 
@@ -250,6 +249,7 @@ export default {
   flex-direction: column;
   color: black;
   align-items: flex-start;
+  text-align: start;
 }
 
 .action-row{

@@ -7,6 +7,7 @@ export default {
             actions: [
                 {
                     name: "setVolume",
+                    nameSpanish: "Establecer Volumen",
                     params: [
                         {
                             name: "volume",
@@ -25,6 +26,7 @@ export default {
                 },
                 {
                     name: "play",
+                    nameSpanish: "Play",
                     params: [],
                     return: {
                         type: "boolean",
@@ -34,6 +36,7 @@ export default {
                 },
                 {
                     name: "stop",
+                    nameSpanish: "Frenar",
                     params: [],
                     return: {
                         type: "boolean",
@@ -43,6 +46,7 @@ export default {
                 },
                 {
                     name: "pause",
+                    nameSpanish: "Pausar",
                     params: [],
                     return: {
                         type: "boolean",
@@ -52,6 +56,7 @@ export default {
                 },
                 {
                     name: "resume",
+                    nameSpanish: "Continuar",
                     params: [],
                     return: {
                         type: "boolean",
@@ -61,6 +66,7 @@ export default {
                 },
                 {
                     name: "nextSong",
+                    nameSpanish: "Próxima canción",
                     params: [],
                     return: {
                         type: "boolean",
@@ -70,6 +76,7 @@ export default {
                 },
                 {
                     name: "previousSong",
+                    nameSpanish: "Canción anterior",
                     params: [],
                     return: {
                         type: "boolean",
@@ -79,6 +86,7 @@ export default {
                 },
                 {
                     name: "setGenre",
+                    nameSpanish: "Establecer genero",
                     params: [
                         {
                             name: "genre",
@@ -103,6 +111,7 @@ export default {
                 },
                 {
                     name: "getPlaylist",
+                    nameSpanish: "Obtener lista de reproducción",
                     params: [],
                     return: {
                         type: "object",
@@ -175,6 +184,7 @@ export default {
             actions: [
                 {
                     name: "setFreezerTemperature",
+                    nameSpanish: "Establecer temperatura freezer",
                     params: [
                         {
                             name: "temperature",
@@ -193,6 +203,7 @@ export default {
                 },
                 {
                     name: "setTemperature",
+                    nameSpanish: "Establecer temperatura",
                     params: [
                         {
                             name: "temperature",
@@ -211,6 +222,7 @@ export default {
                 },
                 {
                     name: "setMode",
+                    nameSpanish: "Establecer modo",
                     params: [
                         {
                             name: "mode",
@@ -275,6 +287,7 @@ export default {
             actions: [
                 {
                     name: "turnOn",
+                    nameSpanish: "Prender",
                     params: [],
                     return: {
                         type: "boolean",
@@ -284,6 +297,7 @@ export default {
                 },
                 {
                     name: "turnOff",
+                    nameSpanish: "Apagar",
                     params: [],
                     return: {
                         type: "boolean",
@@ -293,6 +307,7 @@ export default {
                 },
                 {
                     name: "setTemperature",
+                    nameSpanish: "Establecer temperatura",
                     params: [
                         {
                             name: "temperature",
@@ -311,6 +326,7 @@ export default {
                 },
                 {
                     name: "setHeat",
+                    nameSpanish: "Establecer dirección del calor",
                     params: [
                         {
                             name: "heat",
@@ -332,6 +348,7 @@ export default {
                 },
                 {
                     name: "setGrill",
+                    nameSpanish: "Establecer modo de cocción",
                     params: [
                         {
                             name: "grill",
@@ -353,6 +370,7 @@ export default {
                 },
                 {
                     name: "setConvection",
+                    nameSpanish: "Establecer modo de convención",
                     params: [
                         {
                             name: "convection",
@@ -437,6 +455,7 @@ export default {
             actions: [
                 {
                     name: "turnOn",
+                    nameSpanish: "Prender",
                     params: [],
                     return: {
                         type: "boolean",
@@ -446,6 +465,7 @@ export default {
                 },
                 {
                     name: "turnOff",
+                    nameSpanish: "Apagar",
                     params: [],
                     return: {
                         type: "boolean",
@@ -455,6 +475,7 @@ export default {
                 },
                 {
                     name: "setColor",
+                    nameSpanish: "Establecer color",
                     params: [
                         {
                             name: "color",
@@ -473,6 +494,7 @@ export default {
                 },
                 {
                     name: "setBrightness",
+                    nameSpanish: "Establecer brillo",
                     params: [
                         {
                             name: "brightness",
@@ -532,6 +554,7 @@ export default {
             actions: [
                 {
                     name: "open",
+                    nameSpanish: "Abrir",
                     params: [],
                     return: {
                         type: "boolean",
@@ -541,6 +564,7 @@ export default {
                 },
                 {
                     name: "close",
+                    nameSpanish: "Cerrar",
                     params: [],
                     return: {
                         type: "boolean",
@@ -550,6 +574,7 @@ export default {
                 },
                 {
                     name: "lock",
+                    nameSpanish: "Bloquear",
                     params: [],
                     return: {
                         type: "boolean",
@@ -559,6 +584,7 @@ export default {
                 },
                 {
                     name: "unlock",
+                    nameSpanish: "Desbloquear",
                     params: [],
                     return: {
                         type: "boolean",
