@@ -9,7 +9,7 @@
 
     <v-card class="background-card margin-card">
       <v-row class="action-row action_btn">
-        <v-slider class="margin-slider" prepend-icon="device_thermostat"
+        <v-slider :disabled="temperaturePush" class="margin-slider" prepend-icon="device_thermostat"
                   :max="8"
                   :min="2"
                   style="width: 50%"
@@ -28,7 +28,7 @@
         </v-text-field>
        </v-row>
        <v-row class="action-row action_btn">
-         <v-slider class="margin-slider" prepend-icon="ac_unit"
+         <v-slider :disabled="freezerTemperaturePush" class="margin-slider" prepend-icon="ac_unit"
                    :max="-8"
                    :min="-20"
                    style="width: 50%"
@@ -50,9 +50,9 @@
       <p style="padding-top: 30px">Modo</p>
       <v-row class="action-row action_btn">
         <v-btn-toggle mandatory v-model="mode" class="grill-buttons" @change="setModeFunction">
-          <v-btn value="default" width="70px"><v-icon>auto_mode</v-icon></v-btn>
-          <v-btn value="party" width="70px"><v-icon>celebration</v-icon></v-btn>
-          <v-btn value="vacation" width="70px"><v-icon>beach_access</v-icon></v-btn>
+          <v-btn :disabled="modePush" value="default" width="70px"><v-icon>auto_mode</v-icon></v-btn>
+          <v-btn :disabled="modePush" value="party" width="70px"><v-icon>celebration</v-icon></v-btn>
+          <v-btn :disabled="modePush" value="vacation" width="70px"><v-icon>beach_access</v-icon></v-btn>
         </v-btn-toggle>
       </v-row>
 
@@ -85,6 +85,7 @@ export default {
     }),
 
     async setTemperatureFunction() {
+      this.temperaturePush= true
       let params = [this.deviceEntity.id, "setTemperature", [this.temperature]]
 
       try {
@@ -95,9 +96,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.temperaturePush= false
     },
 
     async setTemperatureFreezerFunction() {
+      this.freezerTemperaturePush= true
       let params = [this.deviceEntity.id, "setFreezerTemperature", [this.freezerTemperature]]
       try {
 
@@ -106,9 +109,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.freezerTemperaturePush= false
     },
 
     async setModeFunction() {
+      this.modePush= true
       let params = [this.deviceEntity.id, "setMode", [this.mode]]
       try {
 
@@ -117,6 +122,8 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.modePush= false
+
     },
 
     async updateContent(){
@@ -144,6 +151,9 @@ export default {
           freezerTemperature: null,
           mode:"default" ,
           deviceState:[],
+          temperaturePush: false,
+          freezerTemperaturePush: false,
+          modePush: false,
         }
     }
 }

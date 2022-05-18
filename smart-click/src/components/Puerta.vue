@@ -10,20 +10,20 @@
     <v-card class="background-card margin-card">
       <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn v-if="open=='closed'" depressed icon :disabled="lock=='locked'" @click="openDoorFunction">
+            <v-btn v-if="open=='closed'" depressed icon :disabled="lock=='locked' || openPush" @click="openDoorFunction">
               <v-icon x-large>open_in_full</v-icon>
             </v-btn >
-            <v-btn v-else depressed icon @click="closeDoorFunction">
+            <v-btn v-else depressed icon :disabled="closePush" @click="closeDoorFunction">
               <v-icon x-large>close_fullscreen</v-icon>
             </v-btn>
           </div>
         </v-row>
         <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn v-if="lock=='unlocked'" depressed icon :disabled="open=='opened'" @click="lockDoorFunction">
+            <v-btn v-if="lock=='unlocked'" depressed icon :disabled="open=='opened' || lockPush" @click="lockDoorFunction">
               <v-icon x-large>lock</v-icon>
             </v-btn >
-            <v-btn v-else depressed icon @click="unlockDoorFunction" >
+            <v-btn v-else depressed icon :disabled="unlockPush" @click="unlockDoorFunction" >
               <v-icon x-large>lock_open</v-icon>
             </v-btn>
           </div>
@@ -62,6 +62,7 @@ export default {
     }),
 
     async openDoorFunction() {
+      this.openPush = true
       let params = [this.deviceEntity.id, "open", []]
       try {
 
@@ -70,9 +71,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.openPush = false
     },
 
     async closeDoorFunction() {
+      this.closePush = true
       let params = [this.deviceEntity.id, "close", []]
       try {
 
@@ -81,9 +84,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.closePush = false
     },
 
     async lockDoorFunction() {
+      this.lockPush = true
       let params = [this.deviceEntity.id, "lock", []]
       try {
 
@@ -92,9 +97,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.lockPush = false
     },
 
     async unlockDoorFunction() {
+      this.unlockPush = true
       let params = [this.deviceEntity.id, "unlock", []]
       try {
 
@@ -103,6 +110,7 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.unlockPush = false
     },
 
     async updateContent(){
@@ -127,6 +135,10 @@ export default {
         deviceState:[],
         open:null,
         lock:null,
+        openPush: false,
+        closePush: false,
+        lockPush: false,
+        unlockPush: false,
       }
     },
 }

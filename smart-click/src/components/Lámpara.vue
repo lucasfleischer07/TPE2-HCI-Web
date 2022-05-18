@@ -9,9 +9,9 @@
 
     <v-card class="background-card margin-card">
       <v-row class="action-row action_btn" >
-          <v-switch inline v-model="onOffLamp" @change="onOffLampFunction"></v-switch>
+          <v-switch :disabled="setOnOFfPush" inline v-model="onOffLamp" @change="onOffLampFunction"></v-switch>
         </v-row>
-        <v-row class="action-row action_btn" >
+        <v-row :disabled="brightnessPush" class="action-row action_btn" >
             <v-slider class="margin-slider" prepend-icon="brightness_6"
                       :max="100"
                       :min="0"
@@ -37,7 +37,7 @@
               @click="toggle= !toggle"
               class="margin-button"></v-btn>
 
-        <v-color-picker :show-swatches="toggle" hide-canvas hide-sliders hide-inputs
+        <v-color-picker :disabled="colorChangePush" :show-swatches="toggle" hide-canvas hide-sliders hide-inputs
             v-model="btnColor" @update:color="toggle = !toggle"
         >
             :swatches="swatches"
@@ -84,6 +84,7 @@ name: "Lámpara",
     }),
 
     async onOffLampFunction() {
+      this.setOnOFfPush=true
       let params
       try {
         if(this.onOffLamp==true) {
@@ -96,9 +97,11 @@ name: "Lámpara",
       } catch (e) {
         this.setResult(e);
       }
+      this.setOnOFfPush=false
     },
 
     async brightnessFunction() {
+      this.brightnessPush=true
       let params = [this.deviceEntity.id, "setBrightness", [this.slider]]
       try {
         await this.$execute(params)
@@ -106,9 +109,12 @@ name: "Lámpara",
       } catch (e) {
         this.setResult(e);
       }
+      this.brightnessPush=false
+
     },
 
     async colorChangeFunction() {
+      this.colorChangePush=true
       let params = [this.deviceEntity.id, "setColor", [this.btnColor]]
       try {
         await this.$execute(params)
@@ -116,6 +122,7 @@ name: "Lámpara",
       } catch (e) {
         this.setResult(e);
       }
+      this.colorChangePush=false
     },
 
     async updateContent(){
@@ -163,6 +170,9 @@ name: "Lámpara",
         ['#FF80DF', '#FF00BF', '#66004D'],
         ['#D9D9D9', '#CCCCCC', '#808080'],
       ],
+      setOnOFfPush: false,
+      colorChangePush: false,
+      brightnessPush: false,
     }
   },
 }

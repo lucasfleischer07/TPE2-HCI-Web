@@ -83,7 +83,7 @@ export default {
         this.houseAdd = false
         this.nombreCasa = ""
       } catch (e) {
-        if(e.code==2){
+        if(e.code===2){
           this.nameError= !this.nameError
         }
       }

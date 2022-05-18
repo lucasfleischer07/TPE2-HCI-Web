@@ -84,7 +84,7 @@ export default {
         await this.$getRooms()
         this.$parent.updateRooms()
       } catch (e) {
-        if(e.code==2){
+        if(e.code===2){
           this.nameError= true
         }
       }

@@ -184,12 +184,14 @@ export default {
         const device = new Device(null, deviceName, deviceSelected.id, {});
 
         try {
-          this.device=await this.$createDevice(device);
+          this.device = await this.$createDevice(device);
           this.device = Object.assign(new Device(), this.device);
-          let id=[this.deviceAddRoomSelected.id,this.device.id]
+          let id = [this.deviceAddRoomSelected.id, this.device.id]
           await this.$addDevice(id)
-        } catch (e) {
-          console.log(e)
+        }catch (e) {
+          if (e.code === 2) {
+            this.nameError = true
+          }
         }
         this.deviceAdd = false,
             this.deviceAddHouseSelected = {},

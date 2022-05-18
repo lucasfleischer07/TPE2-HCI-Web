@@ -10,17 +10,17 @@
     <v-card class="background-card margin-card">
       <v-row class="action-row action_btn">
         <div >
-          <v-btn depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
-          <v-btn v-if="deviceState.status!= 'stopped'" class="margin-separation-icons" depressed icon @click="stopFunction"><v-icon x-large>stop</v-icon></v-btn>
-          <v-btn v-if="deviceState.status== 'stopped'" class="margin-separation-icons" depressed icon @click="playFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
-          <v-btn v-if="deviceState.status== 'playing' " class="margin-separation-icons" depressed icon @click="pauseFunction"><v-icon x-large>pause</v-icon></v-btn>
-          <v-btn v-if="deviceState.status== 'paused' " class="margin-separation-icons" depressed icon @click="resumeFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
-          <v-btn depressed icon @click="nextSongFunction"><v-icon x-large>last_page</v-icon></v-btn>
+          <v-btn :disabled="prevPush" depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
+          <v-btn v-if="deviceState.status!= 'stopped'" class="margin-separation-icons" :disabled="stopPush" depressed icon @click="stopFunction"><v-icon x-large>stop</v-icon></v-btn>
+          <v-btn v-if="deviceState.status== 'stopped'" class="margin-separation-icons" :disabled="playPush" depressed icon @click="playFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
+          <v-btn v-if="deviceState.status== 'playing' " class="margin-separation-icons" :disabled="pausePush" depressed icon @click="pauseFunction"><v-icon x-large>pause</v-icon></v-btn>
+          <v-btn v-if="deviceState.status== 'paused' " class="margin-separation-icons" :disabled="resumePush" depressed icon @click="resumeFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
+          <v-btn :disabled="nextPush" depressed icon @click="nextSongFunction"><v-icon x-large>last_page</v-icon></v-btn>
         </div>
         </v-row>
         <v-row class="action-row action_btn slider-class" >
 <!--          <v-btn @click="(sound = 0) && (setVolumeFunction)" depressed icon v-model="sound" ><v-icon x-large>volume_down_alt</v-icon></v-btn>-->
-          <v-slider class="margin-slider"
+          <v-slider :disabled="volumePush" class="margin-slider"
                     :max="10"
                     :min="0"
                     style="width: 30%"
@@ -64,6 +64,7 @@
         v-model="genre"
         :items="localStore.devicesImplemented[0].actions[7].params[0].supportedValues"
         style="margin-left: 30px; margin-right: 30px"
+        :disabled="genrePush"
         @change="setGenreFunction"
         >
 
@@ -106,6 +107,15 @@ export default {
       deviceState:{},
       playlist:{},
       localStore,
+      playPush: false,
+      stopPush: false,
+      pausePush: false,
+      prevPush: false,
+      nextPush: false,
+      playlistPush: false,
+      genrePush: false,
+      volumePush: false,
+      resumePush: false
     }
   },
 
@@ -131,6 +141,7 @@ export default {
     },
 
     async playFunction() {
+      this.playPush = true
       let params = [this.deviceEntity.id, "play", []]
       try {
         await this.$execute(params)
@@ -138,8 +149,10 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.playPush = false
     },
     async stopFunction() {
+      this.stopPush = true
       let params = [this.deviceEntity.id, "stop", []]
       try {
         await this.$execute(params)
@@ -147,9 +160,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.stopPush = false
     },
 
     async resumeFunction() {
+      this.resumePush = true
       let params = [this.deviceEntity.id, "resume", []]
       try {
         await this.$execute(params)
@@ -157,9 +172,12 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.resumePush = false
+
     },
 
     async pauseFunction() {
+      this.pausePush = true
       let params = [this.deviceEntity.id, "pause", []]
       try {
         await this.$execute(params)
@@ -167,9 +185,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.pausePush = false
     },
 
     async nextSongFunction() {
+      this.nextPush = true
       let params = [this.deviceEntity.id, "nextSong", []]
       try {
         await this.$execute(params)
@@ -178,9 +198,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.nextPush = false
     },
 
     async previousSongFunction() {
+      this.prevPush = true
       let params = [this.deviceEntity.id, "previousSong", []]
       try {
         await this.$execute(params)
@@ -188,18 +210,24 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      await setTimeout(() => {  console.log("World!"); }, 5000);
+      console.log("Goodbye!");
+      this.prevPush = false
     },
 
     async getPlaylistFunction() {
+      this.playlistPush = true
       let params = [this.deviceEntity.id, "getPlaylist", []]
       try {
         this.playlist=await this.$execute(params)
       } catch (e) {
         this.setResult(e);
       }
+      this.playlistPush = false
     },
 
     async setGenreFunction() {
+      this.genrePush = true
       let params = [this.deviceEntity.id, "setGenre", [this.genre]]
       try {
         await this.$execute(params)
@@ -208,9 +236,11 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.genrePush = false
     },
 
     async setVolumeFunction() {
+      this.volumePush = true
       let params = [this.deviceEntity.id, "setVolume", [this.sound]]
       try {
         await this.$execute(params)
@@ -218,6 +248,7 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
+      this.volumePush = true
     },
 
 

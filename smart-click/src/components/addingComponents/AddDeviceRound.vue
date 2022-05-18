@@ -161,7 +161,7 @@ export default {
               this.deviceName = ""
           this.$parent.$parent.$parent.$parent.updateDevices()
         } catch (e) {
-          if(e.code==2){
+          if(e.code===2){
             this.nameError= true
           }
         }
