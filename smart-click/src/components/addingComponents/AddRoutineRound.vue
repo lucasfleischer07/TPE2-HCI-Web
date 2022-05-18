@@ -39,6 +39,7 @@
                     outlined class="house-selector-slider"
                     dense
                     return-object
+                    no-data-text="No hay hay dispositivos en el cuarto ¡Agregue uno!"
                     v-model="deviceSelected"
                     persistent-placeholder
                     placeholder="Seleccione un dispositivo">
@@ -80,7 +81,8 @@
           <v-row>
             <div v-for="(devAndAct,index) in routineCreated" :key="devAndAct" class="device-and-actions">
               <v-card outlined style="background-color: #f2f9fb; display: flex; align-items: center">
-                <span style="padding-left: 10px; padding-right: 10px" class="text-h6">{{routineCreatedEspanol[index]}}</span>
+                <span v-if="devAndAct.params.length===0" style="padding-left: 10px; padding-right: 10px" class="text-h6">{{routineCreatedEspanol[index].action}}</span>
+                <span v-else style="padding-left: 10px; padding-right: 10px" class="text-h6">{{routineCreatedEspanol[index].action}}: {{routineCreatedEspanol[index].paramName}}</span>
                 <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct,index)">
                   <v-icon  color="error" >delete_forever</v-icon>
                 </v-btn>
@@ -209,7 +211,23 @@ export default {
         //MENSAJE DE ERROR
       }else {
         if(this.paramater){
-          this.parameterSelected.push(this.paramater)
+          this.parameterSelected.push(this.paramater.name)
+          if(this.paramater.nameSpanish) {
+            this.routineCreatedEspanol.push({
+              action: this.actionSelected.nameSpanish,
+              paramName: this.paramater.nameSpanish
+            })
+          }else{
+            this.routineCreatedEspanol.push({
+              action: this.actionSelected.nameSpanish,
+              paramName: this.paramater
+            })
+          }
+        }else{
+          this.routineCreatedEspanol.push({
+            action: this.actionSelected.nameSpanish,
+            paramName: null
+          })
         }
         var actions = {
           device: { id: this.deviceSelected.id}, //this.deviceSelected.deviceCode,
@@ -217,7 +235,6 @@ export default {
           params: this.parameterSelected,
           meta: {}
         }
-        this.routineCreatedEspanol.push(this.actionSelected.nameSpanish)
         this.routineCreated.push(actions)
         this.deviceSelected = {}
         this.roomSelected = {}

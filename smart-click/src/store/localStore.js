@@ -86,19 +86,30 @@ export default {
                 },
                 {
                     name: "setGenre",
-                    nameSpanish: "Establecer genero",
+                    nameSpanish: "Establecer género",
                     params: [
                         {
                             name: "genre",
                             type: "SelectString",
                             description: "music genre",
                             supportedValues: [
-                                "classical",
-                                "country",
-                                "dance",
-                                "latina",
-                                "pop",
-                                "rock"
+                                { name: "classical",
+                                    nameSpanish: "Clásico"
+                                },
+                                { name: "country",
+                                    nameSpanish: "Country"
+                                },
+                                { name: "dance",
+                                    nameSpanish: "Baile"
+                                },{ name: "latina",
+                                    nameSpanish: "Latina"
+                                },
+                                { name: "pop",
+                                    nameSpanish: "Pop"
+                                },
+                                { name: "rock",
+                                    nameSpanish: "Rock"
+                                },
                             ],
                             example: "pop"
                         }
@@ -229,9 +240,16 @@ export default {
                             type: "SelectString",
                             description: "mode",
                             supportedValues: [
-                                "default",
-                                "vacation",
-                                "party"
+                                { name: "default",
+                                    nameSpanish: "Predeterminado"
+                                },
+                                { name: "vacation",
+                                    nameSpanish: "Vacaciones"
+                                },
+                                {
+                                    name: "party",
+                                    nameSpanish: "Fiesta"
+                                }
                             ],
                             example: "default"
                         }
@@ -333,9 +351,16 @@ export default {
                             type: "SelectString",
                             description: "heat mode",
                             supportedValues: [
-                                "conventional",
-                                "bottom",
-                                "top"
+                                { name: "conventional",
+                                    nameSpanish: "Normal"
+                                },
+                                { name: "bottom",
+                                    nameSpanish: "Abajo"
+                                },
+                                {
+                                    name: "top",
+                                    nameSpanish: "Arriba"
+                                }
                             ],
                             example: "conventional"
                         }
@@ -355,9 +380,16 @@ export default {
                             type: "SelectString",
                             description: "grill mode",
                             supportedValues: [
-                                "large",
-                                "eco",
-                                "off"
+                                { name: "large",
+                                    nameSpanish: "Largo"
+                                },
+                                { name: "eco",
+                                    nameSpanish: "Ecológico"
+                                },
+                                {
+                                    name: "off",
+                                    nameSpanish: "Apagado"
+                                }
                             ],
                             example: "off"
                         }
@@ -377,9 +409,16 @@ export default {
                             type: "SelectString",
                             description: "convection mode",
                             supportedValues: [
-                                "normal",
-                                "eco",
-                                "off"
+                                { name: "normal",
+                                    nameSpanish: "Normal"
+                                },
+                                { name: "eco",
+                                    nameSpanish: "Ecológico"
+                                },
+                                {
+                                    name: "off",
+                                    nameSpanish: "Apagado"
+                                }
                             ],
                             example: "off"
                         }

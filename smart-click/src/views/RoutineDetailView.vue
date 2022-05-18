@@ -16,7 +16,8 @@
           <v-list-item :key="item.device.id">
           <v-list-item-content>
             <v-list-item-title class="device-name" v-text="item.device.name"></v-list-item-title>
-            <v-list-item-subtitle  class="device-info"  v-text="item.actionName"></v-list-item-subtitle>
+            <v-list-item-subtitle  v-if="item.params.length===0" class="device-info">{{item.actionName}}</v-list-item-subtitle>
+            <v-list-item-subtitle v-else class="device-info">{{item.actionName}}: {{item.params[0]}}</v-list-item-subtitle>
           </v-list-item-content>
           </v-list-item>
         </template>

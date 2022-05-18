@@ -68,9 +68,9 @@ export default {
         if(Object.entries(acts).length==0){
           await this.$remove(routine.id)
         }else{
-
-        let aux=[routine.id,new Rout(routine.name,acts,routine.meta)]
-        await this.$update(aux)}
+          let aux=[routine.id,new Rout(routine.name,acts,routine.meta)]
+          await this.$update(aux)
+        }
       }
       await this.$removeDevice(device.id)
       this.confirmRemoveDevice = false
