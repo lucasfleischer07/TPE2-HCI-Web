@@ -11,6 +11,9 @@
     </v-card>
 
     <v-card class="background-card margin-card">
+      <v-row v-if="deviceState.status=='playing' ||deviceState.status=='paused'">
+        <p style="margin: 10px">{{ deviceState.status }}-{{deviceState.song.title}}. Avance: {{deviceState.song.progress}} de {{deviceState.song.duration}}</p>
+      </v-row>
       <v-row class="action-row action_btn">
         <div >
           <v-btn :disabled="prevPush" depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >

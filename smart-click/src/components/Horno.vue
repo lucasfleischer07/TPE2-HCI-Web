@@ -23,6 +23,7 @@
                   @change="setTemperatureFunction"
                   ></v-slider>
         <v-text-field dense
+                      readonly
                       hide-details
                       single-line
                       v-model="slider"
