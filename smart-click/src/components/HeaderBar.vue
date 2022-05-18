@@ -78,6 +78,24 @@
           </router-link>
         </div>
       </div>
+      <v-snackbar
+          v-model="snackbar"
+          :timeout="2000"
+          color="success"
+      >
+        Cuarto agregado correctamente
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+              color="white"
+              text
+              v-bind="attrs"
+              @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
     </div>
   </header>
 </template>
@@ -94,6 +112,7 @@ export default {
 
   data() {
     return {
+      snackbar:false,
       logo_image: require('@/assets/logo.png'),
       nameError: false,
       myHouse: this.getAllHouses(),
@@ -142,6 +161,7 @@ export default {
         this.nombreCasa=""
         this.getAllHouses();
         await this.selectHome(house);
+        this.snackbar=true
       } catch (e) {
         if(e.code==2) {
           this.nameError= !this.nameError;

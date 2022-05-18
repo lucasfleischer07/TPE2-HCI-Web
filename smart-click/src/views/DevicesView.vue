@@ -45,6 +45,24 @@
         </div>
       </div>
     </div>
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="success"
+    >
+      {{text}}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -158,6 +176,10 @@ export default {
       let devicesCount = 0
       this.$devices.forEach(device => device.room.id === id ? devicesCount++ : devicesCount)
       return devicesCount
+    },
+    setSnack(text){
+      this.text=text
+      this.snackbar=true
     }
 
   },
@@ -169,7 +191,8 @@ export default {
 
   data() {
     return {
-
+      snackbar:false,
+      text:"",
       oldRooms: [],
       protos:devicesImplemented.devicesImplemented,
       rooms:{},

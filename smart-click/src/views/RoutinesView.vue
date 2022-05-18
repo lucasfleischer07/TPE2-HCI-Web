@@ -46,7 +46,25 @@
       <h2 class="details-title color-title ">Detalle de rutina</h2>
       <router-view :key="$route.path"/>
     </div>
-  </div>
+  </div><v-snackbar
+      v-model="snackbar"
+      :timeout="2000"
+      color="success"
+  >
+    Rutina borrada correctamente
+
+    <template v-slot:action="{ attrs }">
+      <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
+
   </div>
 </template>
 
@@ -102,6 +120,7 @@
       async removeRoutine(routine){
         try{
           await this.$deleteRoutine(routine.id)
+          this.snackbar=true
         }catch (e) {
           this.setResult(e)
         }
@@ -118,6 +137,7 @@
 
     data() {
       return {
+        snackbar:false,
         routines: this.getRoutines(),
         confirmRemoveRoutine: false,
         // house: store.house,

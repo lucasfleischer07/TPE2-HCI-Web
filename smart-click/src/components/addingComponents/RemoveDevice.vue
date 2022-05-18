@@ -17,6 +17,24 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="success"
+    >
+      Cuarto agregado correctamente
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -34,6 +52,7 @@ export default {
   },
   data() {
     return {
+      snackbar:false,
       deviceRemove: false,
       confirmRemoveDevice:false,
       rules: [v => v.length <= 25 || 'Max 25 characters'],
@@ -57,6 +76,8 @@ export default {
     },
 
     async removeDevice(){
+      try {
+
       let device=Object.assign(new Device(),this.deviceEntity)
       let routines=await this.$getRoutines()
       for(let routine of routines){
@@ -73,9 +94,13 @@ export default {
         }
       }
       await this.$removeDevice(device.id)
+        this.$parent.$parent.$parent.$parent.$parent.$parent.$parent.setSnack("Dispositivo eliminado correctamente")
       this.confirmRemoveDevice = false
       this.deviceRemove = false
-      this.deviceDeleteSelected = {}
+      this.deviceDeleteSelected = {}}
+    catch (e) {
+        console.log(e)
+      }
       }
     },
 

@@ -1,5 +1,23 @@
 <template>
   <div>
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="success"
+    >
+      Cuarto agregado correctamente
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <div class="add-button-padding">
       <v-btn color="primary" elevation="3" fab rounded @click.stop="routineAdd = true"><v-icon>add</v-icon></v-btn>
     </div>
@@ -111,6 +129,7 @@
         </v-card>
       </v-dialog>
     </v-dialog>
+
   </div>
 </template>
 
@@ -132,6 +151,7 @@ export default {
 
   data(){
     return {
+      snackbar:false,
       devicesImplemented: devicesImplemented.devicesImplemented ,
       type:"selectColor",
       routineAdd: false,
@@ -265,6 +285,7 @@ export default {
           this.routineCreatedEspanol = [];
           this.devices= [];
           this.setResult(routine)
+          this.snackbar= !this.snackbar
         } catch (e) {
           if(e.code==2){
             this.nameError= true

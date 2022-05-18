@@ -1,5 +1,23 @@
 <template>
   <div>
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="success"
+    >
+      Cuarto agregado correctamente
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-btn class="font-weight-bold hover-btn" height="100px" width="300px" color="success" elevation="3" x-large
            @click.stop="houseAdd = true" rounded >
       <div class="icon-div">
@@ -35,7 +53,6 @@
       </v-dialog>
     </v-dialog>
 
-
   </div>
 </template>
 
@@ -47,6 +64,7 @@ export default {
   name: "AddHouse",
   data() {
     return {
+      snackbar:false,
       nameError:false,
       houseAdd: false,
       nombreCasa: "",
@@ -82,12 +100,14 @@ export default {
         await this.$createHouse(house);
         this.houseAdd = false
         this.nombreCasa = ""
+        this.snackbar= !this.snackbar
       } catch (e) {
         if(e.code===2){
           this.nameError= !this.nameError
         }
       }
       this.$parent.selectHome(this.house);
+
 
     },
 

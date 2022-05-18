@@ -31,6 +31,7 @@ export default {
   },
   data() {
     return {
+      snackbar:false,
       houseRemove: false,
       rules: [v => !(v.empty) || 'Seleccione una casa'],
       house_selected:this.getHouse()
@@ -80,6 +81,7 @@ export default {
         await this.$removeHouse(this.house_selected.id);
         this.$parent.selectHome({});
         await this.getHouse();
+        this.$parent.setSnack("Casa removida correctamente");
       } catch (e) {
        // this.setResult(e);
       }

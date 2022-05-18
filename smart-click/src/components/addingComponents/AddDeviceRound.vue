@@ -47,6 +47,24 @@
         </v-card>
       </v-dialog>
     </v-dialog>
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="success"
+    >
+      Cuarto agregado correctamente
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
 
 
   </div>
@@ -69,6 +87,7 @@ export default {
 
   data() {
     return {
+      snackbar:false,
       types:localStore.devicesImplemented,
       houseRooms:null,
       deviceAdd: false,
@@ -159,6 +178,7 @@ export default {
               this.deviceSelected = {},
               this.deviceName = ""
           this.$parent.$parent.$parent.$parent.updateDevices()
+          this.snackbar= !this.snackbar
         } catch (e) {
           if(e.code===2){
             this.nameError= true

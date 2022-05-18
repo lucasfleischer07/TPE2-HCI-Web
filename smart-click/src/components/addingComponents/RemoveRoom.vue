@@ -17,6 +17,24 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="success"
+    >
+      Se elimino correctamente la habitacion
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -33,6 +51,7 @@ export default {
   },
   data(){
     return {
+      snackbar:false,
       removeRoom: false,
       dev:null
     }
@@ -65,7 +84,7 @@ export default {
         }
         await this.$deleteRoom(this.room_selected.id);
         this.removeRoom = false
-
+        this.snackbar= !this.snackbar
       } catch (e) {
         console.log(e)
       }
