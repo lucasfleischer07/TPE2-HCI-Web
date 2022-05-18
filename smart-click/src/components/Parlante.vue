@@ -255,7 +255,7 @@ export default {
       } catch (e) {
         this.setResult(e);
       }
-      this.volumePush = true
+      this.volumePush = false
     },
 
 
