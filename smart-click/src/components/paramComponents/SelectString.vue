@@ -5,9 +5,11 @@
         <v-col class="d-flex" cols="12" sm="10">
           <v-select
               :items="textOptions"
+              item-text="nameSpanish"
               label="Acción seleccionada:"
               outlined class="house-selector-slider"
               dense
+              return-object
               v-model="value"
               persistent-placeholder
               placeholder="Seleccione una acción">
