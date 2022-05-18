@@ -22,7 +22,7 @@
         <v-expansion-panels>
           <v-expansion-panel class="expansion-panel-margin" v-for="room in rooms" :key="room.id">
             <v-expansion-panel-header class="expansion-panel-div">
-              <span><span style="font-weight: bold"> {{room.name}}:</span>  dispositivos totales y  activos</span>
+              <span><span style="font-weight: bold"> {{room.name}}:</span> {{getRoomAmountOfDevices(room.id)}} dispositivos totales</span>
               <RemoveRoom :room_selected="room" />
             </v-expansion-panel-header>
             <v-expansion-panel-content >
@@ -93,6 +93,7 @@ export default {
     ...mapState("Devices", {
       $devices: "devices",
     }),
+
   },
 
   watch: {
@@ -147,7 +148,13 @@ export default {
     },
     async updateDevices(){
       await this.$getAllDevices()
+    },
+    getRoomAmountOfDevices(id) {
+      let devicesCount = 0
+      this.$devices.forEach(device => device.room.id === id ? devicesCount++ : devicesCount)
+      return devicesCount
     }
+
   },
 
 
