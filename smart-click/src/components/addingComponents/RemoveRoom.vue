@@ -22,7 +22,6 @@
 
 <script>
 import {mapActions} from "vuex";
-import {Device} from "@/Api/Device";
 import {Act, Rout} from "@/components/addingComponents/RemoveDevice";
 
 
