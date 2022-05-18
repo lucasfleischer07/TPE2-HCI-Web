@@ -1,7 +1,8 @@
 <template>
   <div class="main-page">
-    <h1>Not Found</h1>
-    <p>Oooops no pudimos encontrar su página. Por favor trate yendo a <router-link :to="{name: 'Home'}">Página principal</router-link></p>
+    <h1 style="padding-bottom: 20px">Página no encontrada</h1>
+    <p >Oops no pudimos encontrar su página. Por favor trate ingresando a <router-link :to="{name: 'Home'}">página principal</router-link>. Si
+    vuelve a fallar puede que el servidor este en mantenimiento</p>
   </div>
 </template>
 
@@ -14,6 +15,8 @@ export default {
 <style scoped>
   .main-page {
     min-height: 580px;
-    color: gray;
+    padding-top: 20px;
+    background-image: url("@/assets/fondo1.jpg");
+    background-repeat: repeat round;
   }
 </style>
