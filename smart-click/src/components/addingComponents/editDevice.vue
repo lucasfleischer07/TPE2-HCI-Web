@@ -5,7 +5,7 @@
     <v-dialog v-model="deviceEdit" max-width="600px" height="600px" @click:outside="resetText">
       <v-card  @keyup.enter="editDevice(nameDevice)">
         <v-card-title>
-          <h2>Editar nombre</h2>
+          <h2>Editar nombre del dispositivo</h2>
         </v-card-title>
         <v-card-text>
           <v-text-field
@@ -47,7 +47,7 @@ export default {
       nameError: false,
       deviceEdit:false,
       nameDevice:"",
-
+      rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
     }
   },
   props:{

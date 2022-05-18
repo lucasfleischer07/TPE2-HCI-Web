@@ -74,7 +74,6 @@ export default {
       deviceAdd: false,
       nameError:false,
       deviceSelected: {},
-
       deviceName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
 
