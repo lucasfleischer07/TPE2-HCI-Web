@@ -1,9 +1,9 @@
 <template>
   <section>
-    <v-btn @click="closeDetail" icon color="primary" outlined><v-icon>close</v-icon></v-btn>
     <div class="routine-details">
           <div class="routine-name">
             <p>"{{detail.name}}"</p>
+            <v-btn class="close-button" @click="closeDetail" icon color="primary" outlined><v-icon>close</v-icon></v-btn>
           </div>
           <div class="boton-centrado">
             <v-btn @click="executeRoutine" color="primary" x-large rounded>Ejecutar Rutina</v-btn>
@@ -113,8 +113,15 @@ export default {
   }
 
   .routine-name{
+    display: flex;
+    justify-content: center;
     font-size: 30px;
     padding-bottom: 30px;
+  }
+
+  .close-button {
+    position: absolute;
+    right: 10%;
   }
 
   .device-name{
