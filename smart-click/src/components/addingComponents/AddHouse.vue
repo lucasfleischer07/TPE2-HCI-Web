@@ -24,9 +24,13 @@
           </v-btn>
         </v-card-text>
       </v-card>
-      <v-dialog v-model="nameError">
-        <v-card>
-          <v-card-title>Nombre ya usado para una casa</v-card-title>
+      <v-dialog v-model="nameError" max-width="480px" height="50px">
+        <v-card style="background-color: #ff6666">
+          <v-card-title style="justify-content: center; font-weight: bold">Nombre inválido</v-card-title>
+          <v-btn class="close-button" @click="nameError=false" icon color="black" outlined><v-icon>close</v-icon></v-btn>
+          <v-container style="padding-bottom: 12px; padding-top: 0px">
+            <v-card-text style="justify-content: flex-start; text-align: initial">El nombre seleccionado ya ha sido utilizado en otra casa. Por favor elija otro nombre.</v-card-text>
+          </v-container>
         </v-card>
       </v-dialog>
     </v-dialog>
@@ -126,6 +130,12 @@ export default {
 
   .margin-button {
     margin-top: 20px;
+  }
+
+  .close-button {
+    position: absolute;
+    right: 2%;
+    top: 7%;
   }
 
   .hover-btn:hover {

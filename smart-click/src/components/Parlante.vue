@@ -44,7 +44,7 @@
           <div>
             <v-btn depressed icon style="padding-bottom: 40px; padding-top: 30px"><v-icon x-large @click="list=true">queue_music</v-icon></v-btn >
               <v-dialog v-model="list"  max-width="600px" height="50px">
-                <v-card >
+                <v-card>
                   <v-card-title>Lista de Reproducción</v-card-title>
                   <v-card-text v-for="song in playlist" :key="song.title">
                     <ul class="songs">

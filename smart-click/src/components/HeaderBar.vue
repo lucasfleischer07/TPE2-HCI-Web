@@ -53,6 +53,15 @@
                                 </v-btn>
                               </v-card-text>
                           </v-card>
+                          <v-dialog v-model="nameError" max-width="480px" height="50px">
+                            <v-card style="background-color: #ff6666">
+                              <v-card-title style="justify-content: center; font-weight: bold">Nombre inválido</v-card-title>
+                              <v-btn class="close-button" @click="nameError=false" icon color="black" outlined><v-icon>close</v-icon></v-btn>
+                              <v-container style="padding-bottom: 12px; padding-top: 0px">
+                                <v-card-text style="justify-content: flex-start; text-align: initial">El nombre seleccionado ya ha sido utilizado en otra casa. Por favor elija otro nombre.</v-card-text>
+                              </v-container>
+                            </v-card>
+                          </v-dialog>
                         </v-dialog>
                       </div>
                     </template>
@@ -86,7 +95,7 @@ export default {
   data() {
     return {
       logo_image: require('@/assets/logo.png'),
-
+      nameError: false,
       myHouse: this.getAllHouses(),
       houseAdd: false,
       nombreCasa: "",
@@ -127,16 +136,16 @@ export default {
     }),
     async createHouse() {
       let house = new Home(null,this.nombreCasa , {});
-
-
       try {
         house=await this.$createHouse(house);
         this.houseAdd= false;
         this.nombreCasa=""
-        this.getAllHouses()
-        await this.selectHome(house)
+        this.getAllHouses();
+        await this.selectHome(house);
       } catch (e) {
-        console.log(e)
+        if(e.code==2) {
+          this.nameError= !this.nameError;
+        }
       }
     },
     async getAllHouses() {
@@ -181,6 +190,12 @@ export default {
     margin-top: 10px;
     margin-right: 10px;
 
+  }
+
+  .close-button {
+    position: absolute;
+    right: 2%;
+    top: 7%;
   }
 
   .logo_img {
