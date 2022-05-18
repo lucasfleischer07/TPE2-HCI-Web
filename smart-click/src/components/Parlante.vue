@@ -16,12 +16,12 @@
       </v-row>
       <v-row class="action-row action_btn">
         <div >
-          <v-btn :disabled="prevPush" depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
+          <v-btn v-if="deviceState.status== 'playing' " :disabled="prevPush" depressed icon @click="previousSongFunction"><v-icon  x-large>first_page</v-icon></v-btn >
           <v-btn v-if="deviceState.status!= 'stopped'" class="margin-separation-icons" :disabled="stopPush" depressed icon @click="stopFunction"><v-icon x-large>stop</v-icon></v-btn>
           <v-btn v-if="deviceState.status== 'stopped'" class="margin-separation-icons" :disabled="playPush" depressed icon @click="playFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
           <v-btn v-if="deviceState.status== 'playing' " class="margin-separation-icons" :disabled="pausePush" depressed icon @click="pauseFunction"><v-icon x-large>pause</v-icon></v-btn>
           <v-btn v-if="deviceState.status== 'paused' " class="margin-separation-icons" :disabled="resumePush" depressed icon @click="resumeFunction"><v-icon x-large>play_arrow</v-icon></v-btn>
-          <v-btn :disabled="nextPush" depressed icon @click="nextSongFunction"><v-icon x-large>last_page</v-icon></v-btn>
+          <v-btn v-if="deviceState.status== 'playing' " :disabled="nextPush" depressed icon @click="nextSongFunction"><v-icon x-large>last_page</v-icon></v-btn>
         </div>
         </v-row>
         <v-row class="action-row action_btn slider-class" >
