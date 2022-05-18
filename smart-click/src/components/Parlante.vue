@@ -66,6 +66,8 @@
         prepend-inner-icon="radio"
         v-model="genre"
         :items="localStore.devicesImplemented[0].actions[7].params[0].supportedValues"
+        item-text="name"
+        return-object
         style="margin-left: 30px; margin-right: 30px"
         :disabled="genrePush"
         @change="setGenreFunction"
@@ -233,7 +235,7 @@ export default {
 
     async setGenreFunction() {
       this.genrePush = true
-      let params = [this.deviceEntity.id, "setGenre", [this.genre]]
+      let params = [this.deviceEntity.id, "setGenre", [this.genre.name]]
       try {
         await this.$execute(params)
         await this.updateContent()
