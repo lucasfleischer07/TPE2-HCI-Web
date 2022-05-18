@@ -22,6 +22,8 @@
 
 <script>
 import {mapActions} from "vuex";
+import {Device} from "@/Api/Device";
+import {Act, Rout} from "@/components/addingComponents/RemoveDevice";
 
 
 export default {
@@ -42,7 +44,12 @@ export default {
       $deleteRoom: "delete",
       $getDevices: "getDevices",
     }),
-
+    ...mapActions("Routine",
+        {
+          $getRoutines:"getAllRoutine",
+          $update:"modifyRoutine",
+          $remove:"deleteRoutine"
+        }),
     deleteModal() {
       this.removeRoom = true;
       this.$parent.$parent.$parent.$parent.updateRooms()
@@ -74,9 +81,26 @@ export default {
     }),
 
     async removeDevice(device){
+      let routines=await this.$getRoutines()
+      for(let routine of routines){
+        let acts=[]
+        for(let action of routine.actions){
+          if(device.id !== action.device.id){
+            acts.push(new Act(action.device.id,action.actionName,action.params))}
+        }
+        if(Object.entries(acts).length==0){
+          await this.$remove(routine.id)
+        }else{
+
+          let aux=[routine.id,new Rout(routine.name,acts,routine.meta)]
+          await this.$update(aux)}
+      }
       await this.$removeDevice(device.id)
+      this.confirmRemoveDevice = false
+      this.deviceRemove = false
+      this.deviceDeleteSelected = {}
     }
-  }
+  },
 
 }
 </script>

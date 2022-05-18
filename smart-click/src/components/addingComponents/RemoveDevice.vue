@@ -25,7 +25,7 @@
 
 import {mapActions} from "vuex";
 import {Device} from "@/Api/Device";
-import {Routine} from "@/Api/Routine";
+
 
 export default {
   name: "RemoveDevice",
@@ -100,6 +100,7 @@ class Dev{
     this.id=id
   }
 }
+export {Rout,Act,Dev}
 </script>
 
 <style scoped>

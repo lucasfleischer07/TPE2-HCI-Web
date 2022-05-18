@@ -10,20 +10,20 @@
     <v-card class="background-card margin-card">
       <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn v-if="openOrClose" depressed icon @click="(openDoorFunction) && (openOrClose = !openOrClose) ">
+            <v-btn v-if="open=='closed'" depressed icon :disabled="lock=='locked'" @click="openDoorFunction">
               <v-icon x-large>open_in_full</v-icon>
             </v-btn >
-            <v-btn v-else depressed icon @click="(closeDoorFunction) && (openOrClose = !openOrClose)">
+            <v-btn v-else depressed icon @click="closeDoorFunction">
               <v-icon x-large>close_fullscreen</v-icon>
             </v-btn>
           </div>
         </v-row>
         <v-row class="action-row  action_btn">
           <div class="div-margin">
-            <v-btn v-if="lock=='unlocked' && !openOrClose" depressed icon :disabled="openOrClose === true" @click="lockDoorFunction">
+            <v-btn v-if="lock=='unlocked'" depressed icon :disabled="open=='opened'" @click="lockDoorFunction">
               <v-icon x-large>lock</v-icon>
             </v-btn >
-            <v-btn v-else depressed icon @click="unlockDoorFunction" :disabled="openOrClose === true">
+            <v-btn v-else depressed icon @click="unlockDoorFunction" >
               <v-icon x-large>lock_open</v-icon>
             </v-btn>
           </div>
@@ -127,7 +127,6 @@ export default {
         deviceState:[],
         open:null,
         lock:null,
-        openOrClose: false
       }
     },
 }
