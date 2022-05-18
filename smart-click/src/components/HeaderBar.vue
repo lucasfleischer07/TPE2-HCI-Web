@@ -174,7 +174,9 @@ export default {
         await this.$getAllHouses(this.controller);
         this.controller = null;
       } catch (e) {
-        this.setResult(e);
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
       }
     },
     async selectHome(home){

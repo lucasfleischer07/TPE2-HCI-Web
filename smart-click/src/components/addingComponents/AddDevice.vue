@@ -189,6 +189,9 @@ export default {
           let id = [this.deviceAddRoomSelected.id, this.device.id]
           await this.$addDevice(id)
         }catch (e) {
+          if(e.code===99){
+            this.$router.push('NotFound/')
+          }
           if (e.code === 2) {
             this.nameError = true
           }

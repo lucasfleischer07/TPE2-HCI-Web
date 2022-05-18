@@ -102,6 +102,9 @@ export default {
         this.nombreCasa = ""
         this.snackbar= !this.snackbar
       } catch (e) {
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
         if(e.code===2){
           this.nameError= !this.nameError
         }

@@ -65,6 +65,9 @@ export default {
       await this.$update(aux)
       this.deviceEdit=false}
       catch (e){
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
         if(e.code===2)
           this.nameError=true
       }

@@ -141,8 +141,21 @@
 </template>
 
 <script>
+import { mapMutations} from "vuex";
+
 export default {
-  name: "HelpView"
+  name: "HelpView",
+
+  mounted(){
+    this.$setEditingTrue()
+  },
+  methods: {
+    ...mapMutations({
+      $setEditingTrue: "setEditingTrue"
+    }),
+  }
+
+
 }
 </script>
 

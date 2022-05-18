@@ -83,7 +83,9 @@ export default {
         await this.getHouse();
         this.$parent.setSnack("Casa removida correctamente");
       } catch (e) {
-       // this.setResult(e);
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
       }
 
       this.confirmRemoveHouse = false

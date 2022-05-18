@@ -111,7 +111,9 @@ export default {
         this.routines = null;
 
       } catch (e) {
-       // this.setResult(e);
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
       }
 
       this.confirmRemoveRoutine = false

@@ -131,7 +131,13 @@ export default {
 
 
     async updateRooms(house){
-      let result=await this.$updateRooms(house);
+      try {
+        let result = await this.$updateRooms(house);
+      }catch(e){
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
+      }
       this.houseRooms=result;
     },
 
@@ -141,7 +147,9 @@ export default {
         await this.$getAllHouses(this.controller);
         this.controller = null;
       } catch (e) {
-        this.setResult(e);
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
       }
     },
     ...mapActions("ProtoDevice", {
@@ -180,6 +188,9 @@ export default {
           this.$parent.$parent.$parent.$parent.updateDevices()
           this.snackbar= !this.snackbar
         } catch (e) {
+          if(e.code===99){
+            this.$router.push('NotFound/')
+          }
           if(e.code===2){
             this.nameError= true
           }

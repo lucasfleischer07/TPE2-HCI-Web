@@ -284,9 +284,11 @@ export default {
           this.routineCreated = [];
           this.routineCreatedEspanol = [];
           this.devices= [];
-          this.setResult(routine)
           this.snackbar= !this.snackbar
         } catch (e) {
+          if(e.code===99){
+            this.$router.push('NotFound/')
+          }
           if(e.code==2){
             this.nameError= true
           }

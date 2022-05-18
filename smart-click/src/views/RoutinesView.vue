@@ -90,7 +90,9 @@
       }),
       ...mapState({
         $canEdit: "editingRoutine",
+        $apiDown: "apiDown"
       }),
+
 
     },
 
@@ -104,7 +106,8 @@
         $deleteRoutine: "deleteRoutine"
       }),
       ...mapMutations({
-        $setEditingFalse: "setEditingFalse"
+        $setEditingFalse: "setEditingFalse",
+        $setApiDown: "setApiDown"
       }),
 
       deleteModal() {
@@ -115,14 +118,24 @@
 
 
       async getRoutines(){
-        return await this.$getRoutine()
+        let response
+        try {
+           response = await this.$getRoutine()
+        }catch(e){
+          if(e.code===99){
+            this.$router.push('NotFound/')
+          }
+        }
+        return response
       },
       async removeRoutine(routine){
         try{
           await this.$deleteRoutine(routine.id)
           this.snackbar=true
         }catch (e) {
-          this.setResult(e)
+          if(e.code===99){
+            this.$router.push('NotFound/')
+          }
         }
         this.confirmRemoveRoutine= false
 

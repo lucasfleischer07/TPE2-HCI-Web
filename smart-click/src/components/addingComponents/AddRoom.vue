@@ -104,6 +104,9 @@ export default {
         this.$parent.updateRooms()
         this.snackbar= !this.snackbar
       } catch (e) {
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
         if(e.code===2){
           this.nameError= true
         }

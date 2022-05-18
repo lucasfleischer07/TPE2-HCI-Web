@@ -75,33 +75,36 @@ export default {
       setTimeout(()=> this.$refs.inputElem.focus(), 300)
     },
 
-    async removeDevice(){
+    async removeDevice() {
       try {
 
-      let device=Object.assign(new Device(),this.deviceEntity)
-      let routines=await this.$getRoutines()
-      for(let routine of routines){
-        let acts=[]
-        for(let action of routine.actions){
-          if(device.id !== action.device.id){
-          acts.push(new Act(action.device.id,action.actionName,action.params))}
+        let device = Object.assign(new Device(), this.deviceEntity)
+        let routines = await this.$getRoutines()
+        for (let routine of routines) {
+          let acts = []
+          for (let action of routine.actions) {
+            if (device.id !== action.device.id) {
+              acts.push(new Act(action.device.id, action.actionName, action.params))
+            }
+          }
+          if (Object.entries(acts).length == 0) {
+            await this.$remove(routine.id)
+          } else {
+            let aux = [routine.id, new Rout(routine.name, acts, routine.meta)]
+            await this.$update(aux)
+          }
         }
-        if(Object.entries(acts).length==0){
-          await this.$remove(routine.id)
-        }else{
-          let aux=[routine.id,new Rout(routine.name,acts,routine.meta)]
-          await this.$update(aux)
-        }
-      }
-      await this.$removeDevice(device.id)
+        await this.$removeDevice(device.id)
         this.$parent.$parent.$parent.$parent.$parent.$parent.$parent.setSnack("Dispositivo eliminado correctamente")
-      this.confirmRemoveDevice = false
-      this.deviceRemove = false
-      this.deviceDeleteSelected = {}}
-    catch (e) {
-        console.log(e)
+        this.confirmRemoveDevice = false
+        this.deviceRemove = false
+        this.deviceDeleteSelected = {}
+      } catch (e) {
+        if (e.code === 99) {
+          this.$router.push('NotFound/')
+        }
       }
-      }
+    }
     },
 
 }

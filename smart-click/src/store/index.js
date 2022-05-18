@@ -10,7 +10,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    editingRoutine: true
+    editingRoutine: true,
+    apiDown: false
   },
   getters: {
 
@@ -21,7 +22,13 @@ export default new Vuex.Store({
     },
     setEditingFalse(state){
       state.editingRoutine=false
-    }
+    },
+    setApiDown(state){
+      state.apiDown=true
+    },
+    setApiUp(state){
+      state.apiDown=false
+    },
   },
   actions: {
 

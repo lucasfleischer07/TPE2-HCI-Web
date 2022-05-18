@@ -16,7 +16,6 @@ export default {
             const result = await DeviceApi.modify(params)
             dispatch("getAllDevices")
             return result
-
         },
         async deleteDevice({dispatch}, id) {
             const result = await DeviceApi.delete(id)

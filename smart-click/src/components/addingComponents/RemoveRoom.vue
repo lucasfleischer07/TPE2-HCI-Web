@@ -86,7 +86,9 @@ export default {
         this.removeRoom = false
         this.snackbar= !this.snackbar
       } catch (e) {
-        console.log(e)
+        if(e.code===99){
+          this.$router.push('NotFound/')
+        }
       }
       this.$parent.$parent.$parent.$parent.updateRooms()
 

@@ -14,7 +14,7 @@
 
 <script>
   import AddHouse from "@/components/addingComponents/AddHouse";
-  import {mapActions} from "vuex"
+  import { mapMutations} from "vuex"
 
 
   export default {
@@ -22,97 +22,22 @@
     components: {
       AddHouse,
     },
+
+    mounted(){
+      this.$setEditingTrue()
+    },
+
     data() {
       return {
-        houseAdd: false,
-        nombreCasa: "",
-        deviceAdd: false,
-        houseRemove: false,
-        confirmRemoveHouse:false,
-        deviceRemove: false,
-        confirmRemoveDevice:false,
-        routineRemove:false,
-        confirmRemoveRoutine: false,
-        houseDeleteSelected: {},
-        deviceDeleteSelected: {},
-        routineDeleteSeleceted: {},
-        deviceAddHouseSelected: {},
-        deviceAddRoomSelected: {},
-        deviceSelected: {},
-        deviceName: "",
-        rules: [v => v.length <= 25 || 'Max 25 characters'],
+
       }
     },
     methods: {
-      ...mapActions("room",{
-        $createRoom: "create",   //Pongo $ para q no coincida con el metodo q esta debajo
-        $modifyRoom: "modify",
-        $deleteRoom: "delete"
+      ...mapMutations({
+        $setEditingTrue: "setEditingTrue"
       }),
-      setResult(result){
-        console.log(result)
-      },
-      /*async createRoom(){
-        try{
-          let room = { name: "myRoom", meta: { size: "9m2"}}
-          await this.$createRoom(room)
-          this.setResult(room)
-        }catch (e){
-          this.setResult(e)
-        }
-      },*/
-      addHouse(text) {
-        if (text === "")
-          console.log("Mal nombre de casa")
-        else {
-          //AGREGAR CASAx
-          this.houseAdd = false
-        }
-      },
-      addDevice(text, deviceType, house, room) {
-        if (text === "" || deviceType == null || house == null || room == null)
-          console.log("Mal nombre de casa")
-        else {
-          //AGREGAR DISPOSITIVO
-          this.deviceAdd = false
-          house = {}
-          room = {}
-          deviceType = {}
-        }
-      },
-      removeHouse(houseToDelete) {
-        if (houseToDelete == null)
-          console.log("No selecciono casa")
-        else {
-          this.houses.splice(this.houses.indexOf(houseToDelete), 1)
-          this.confirmRemoveHouse = false
-          this.houseRemove = false
-          this.houseDeleteSelected = {}
-        }
-      },
-      removeDevice(device){
-        if (device == null)
-          console.log("No selecciono Dispositivo")
-        else {
-          this.confirmRemoveDevice = false
-          this.deviceRemove = false
-          this.deviceAddHouseSelected= {}
-          this.deviceAddRoomSelected= {}
-          this.deviceDeleteSelected = {}
-        }
-      },
-      removeRoutine(routine) {
-        if (routine == null)
-          console.log("No selecciono Dispositivo")
-        else {
-          this.confirmRemoveRoutine = false
-          this.routineRemove = false
-          this.deviceAddHouseSelected= {}
-          this.deviceAddRoomSelected= {}
-          this.routineDeleteSelected = {}
-        }
-      }
     }
+
   }
 </script>
 

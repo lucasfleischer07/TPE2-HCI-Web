@@ -151,7 +151,9 @@ export default {
       try {
         this.rooms = await this.$getHomeRooms(this.$myHome.id)
       } catch (e) {
-        console.log(e)
+        if (e.code === 99) {
+          this.$router.push('NotFound/')
+        }
       }
 
     },
@@ -169,9 +171,7 @@ export default {
     getSelected() {
       return this.$myHome
     },
-    async updateDevices(){
-      await this.$getAllDevices()
-    },
+
     getRoomAmountOfDevices(id) {
       let devicesCount = 0
       this.$devices.forEach(device => device.room.id === id ? devicesCount++ : devicesCount)
@@ -196,7 +196,7 @@ export default {
       oldRooms: [],
       protos:devicesImplemented.devicesImplemented,
       rooms:{},
-      devices:this.$getAllDevices(),
+      devices: this.updateDevices(),
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
