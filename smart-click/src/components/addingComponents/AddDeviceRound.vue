@@ -131,8 +131,9 @@ export default {
 
 
     async updateRooms(house){
+      let result
       try {
-        let result = await this.$updateRooms(house);
+        result = await this.$updateRooms(house);
       }catch(e){
         if(e.code===99){
           this.$router.push('NotFound/')

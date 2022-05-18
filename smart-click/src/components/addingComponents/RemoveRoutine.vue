@@ -21,15 +21,27 @@
 </template>
 
 <script>
-  import {Routine} from "@/Api/Routine";
-  import {mapActions} from "vuex";
+  import {mapActions, mapState} from "vuex";
 
 
   export default {
     name: "RemoveRoutine",
 
     props: {
-      routine: Routine
+      routine: {}
+    },
+
+    data(){
+      return{
+        confirmRemoveRoutine:false,
+
+      }
+    },
+
+    computed: {
+      ...mapState({
+        $canEdit: "editingRoutine",
+      }),
     },
 
     methods: {
@@ -47,7 +59,7 @@
         }
       },
 
-      async removeRoutine(routine){
+      async   removeRoutine(routine){
         try{
           await this.$deleteRoutine(routine.id)
           this.snackbar=true

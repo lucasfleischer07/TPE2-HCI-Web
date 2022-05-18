@@ -17,6 +17,7 @@
                 <span style="overflow: hidden; max-width:250px">{{ routine.name }}</span>
               </v-btn>
             </router-link>
+            <RemoveRoutine style="padding-left: 10px" :routine="routine"/>
           </div>
         </v-col>
       </v-row>
@@ -56,13 +57,13 @@
 <script>
   import AddRoutineRound from "@/components/addingComponents/AddRoutineRound";
   import {mapActions, mapState,mapMutations} from "vuex";
-  // import RemoveRoutine from "@/components/addingComponents/RemoveRoutine";
+  import RemoveRoutine from "@/components/addingComponents/RemoveRoutine";
 
   export default {
     name: "RoutinesView",
     components: {
       AddRoutineRound,
-      // RemoveRoutine
+      RemoveRoutine
     },
     computed: {
       ...mapState("House", {

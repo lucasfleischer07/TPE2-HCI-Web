@@ -124,10 +124,6 @@ export default {
     },
   },
 
-  mounted() {
-    this.$setEditingTrue()
-  },
-
   methods: {
     ...mapActions("House", {
       $getHomeRooms: "getHomeRooms",
@@ -170,6 +166,10 @@ export default {
       return this.$myHome
     },
 
+    async updateDevices(){
+      await this.$getAllDevices()
+    },
+
     getRoomAmountOfDevices(id) {
       let devicesCount = 0
       this.$devices.forEach(device => device.room.id === id ? devicesCount++ : devicesCount)
@@ -194,7 +194,7 @@ export default {
       oldRooms: [],
       protos:devicesImplemented.devicesImplemented,
       rooms:{},
-      devices: this.updateDevices(),
+      devices:this.$getAllDevices(),
       roomName: "",
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
