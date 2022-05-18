@@ -4,7 +4,7 @@
       <v-btn class="delete-button" small color="error" elevation="3" fab rounded @click.stop="deleteModal"><v-icon>delete_forever</v-icon></v-btn>
     </div>
     <v-dialog v-model="houseRemove" max-width="600px" height="600px">
-      <v-card @keyup.enter="removeHouse()">
+      <v-card>
         <v-card-title>
           <h2>Esta seguro que desea eliminar "{{ house_selected.name }}"</h2>
         </v-card-title>

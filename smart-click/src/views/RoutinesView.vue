@@ -17,13 +17,13 @@
               <span style="overflow: hidden; max-width:250px">{{ routine.name }}</span>
             </v-btn>
           </router-link>
-            <v-btn v-if="$canEdit" @click="confirmRemoveRoutine = true" class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
+            <v-btn v-if="$canEdit" @click.stop="deleteModal" class="delete-button hover-btn" color="error" elevation="3" fab rounded small><v-icon>delete_forever</v-icon></v-btn>
             <v-dialog v-model="confirmRemoveRoutine" max-width="600px" height="600px">
-              <v-card @keyup.enter="removeRoutine(routine)">
+              <v-card>
                 <v-card-title>
                   <h2>Esta seguro que desea eliminar "{{ routine.name }}"</h2>
                 </v-card-title>
-
+                <input style="outline:none; cursor: none; color: transparent; width: 1px; height: 1px" ref="inputElem" @keypress="removeRoutine(routine)" value="">
                 <v-card-text>
                   <v-btn class="padding-right" color="error" @click="removeRoutine(routine)" >
                     Eliminar
@@ -89,6 +89,12 @@
         $setEditingFalse: "setEditingFalse"
       }),
 
+      deleteModal() {
+        this.confirmRemoveRoutine = true;
+        // this.getRoutines();
+        setTimeout(()=> this.$refs.inputElem.focus(), 300)
+      },
+
 
       async getRoutines(){
         return await this.$getRoutine()
@@ -125,9 +131,9 @@
 
 <style scoped>
 
-  .v-btn:focus::before {
-    opacity: 0 !important;
-  }
+  /*.v-btn:focus::before {*/
+  /*  opacity: 0 !important;*/
+  /*}*/
 
 
   .color-title {

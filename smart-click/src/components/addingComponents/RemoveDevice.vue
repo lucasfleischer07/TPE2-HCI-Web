@@ -2,7 +2,7 @@
   <div class="main-div">
     <v-btn depressed icon class="trash_class" @click.stop="deleteModal"><v-icon color="error">delete_forever</v-icon></v-btn>
     <v-dialog v-model="deviceRemove" max-width="600px" height="600px">
-      <v-card @keyup.enter="removeDevice">
+      <v-card>
         <v-card-title>
           <h2>Esta seguro que desea eliminar "{{deviceEntity.name}}"</h2>
         </v-card-title>

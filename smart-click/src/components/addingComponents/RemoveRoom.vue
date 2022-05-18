@@ -2,7 +2,7 @@
   <div class="div-button-delete-room">
     <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="deleteModal"><v-icon>delete_forever</v-icon></v-btn>
     <v-dialog v-model="removeRoom" max-width="600px" height="600px">
-      <v-card @keyup.enter="deleteRoom()">
+      <v-card>
         <v-card-title>
           <h2>Esta seguro que desea eliminar "{{ room_selected.name }}"</h2>
         </v-card-title>
@@ -49,6 +49,7 @@ export default {
           $update:"modifyRoutine",
           $remove:"deleteRoutine"
         }),
+
     deleteModal() {
       this.removeRoom = true;
       this.$parent.$parent.$parent.$parent.updateRooms()

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="div-button-delete-routine">
-      <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="routineRemove = true"><v-icon>delete</v-icon></v-btn>
+      <v-btn class="delete-button" color="error" elevation="3" fab rounded small @click.stop="deleteModal"><v-icon>delete</v-icon></v-btn>
       <span class="span-class">ELIMINAR RUTINA</span>
     </div>
 
@@ -9,8 +9,8 @@
       <v-card @keyup.enter="removeRoutine(routineDeleteSelected)">
         <v-card-title>
           <h2>Elija rutina a eliminar</h2>
-
         </v-card-title>
+        <input style="outline:none; cursor: none; color: transparent; width: 1px; height: 1px" ref="inputElem" @keypress="deleteModal" value="">
         <v-card-text>
           <v-container fluid c>
             <v-row aligned="center">
@@ -97,6 +97,13 @@ export default {
   methods: {
     ...mapActions("Routine", {
       $removeRoutine: "deleteRoutine",}),
+
+
+    deleteModal() {
+      this.routineRemove = true;
+      // this.$parent.$parent.$parent.$parent.updateRooms()
+      setTimeout(()=> this.$refs.inputElem.focus(), 300)
+    },
 
     async removeRoutine(routineToDelete) {
       try {
