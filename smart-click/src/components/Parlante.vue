@@ -12,7 +12,7 @@
 
     <v-card class="background-card margin-card">
       <v-row v-if="deviceState.status=='playing' ||deviceState.status=='paused'">
-        <p>{{ deviceState.status }}-{{deviceState.song.title}} progress:{{deviceState.song.progress}}of{{deviceState.song.duration}}</p>
+        <p style="margin: 10px">{{ deviceState.status }}-{{deviceState.song.title}}. Avance: {{deviceState.song.progress}} de {{deviceState.song.duration}}</p>
       </v-row>
       <v-row class="action-row action_btn">
         <div >
