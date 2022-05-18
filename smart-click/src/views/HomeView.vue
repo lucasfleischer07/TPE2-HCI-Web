@@ -120,7 +120,7 @@
   .main-div2 {
     display: flex;
     justify-content: center;
-    min-height: 530px;
+    min-height: 580px;
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
   }

@@ -165,7 +165,7 @@
     display: flex;
     justify-content: space-evenly;
     text-align: center;
-    min-height: 530px;
+    min-height: 580px;
     padding-bottom: 20px;
     padding-top: 20px;
     background-image: url("@/assets/fondo1.jpg");
@@ -185,7 +185,7 @@
     background-color: black;
     height: 100%;
     float: left;
-    min-height: 500px;
+    min-height: 550px;
     background-color: gray;
   }
 
@@ -221,7 +221,7 @@
   .h1-title {
     justify-content: center;
     color: gray;
-    min-height: 530px;
+    min-height: 580px;
     padding-bottom: 20px;
     padding-top: 40px;
     background-image: url("@/assets/fondo1.jpg");

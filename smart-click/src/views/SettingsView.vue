@@ -83,7 +83,7 @@
 <style scoped>
 
   .settings-view {
-    min-height: 530px;
+    min-height: 580px;
     padding-top: 20px;
     padding-bottom: 20px;
     background-image: url("@/assets/fondo1.jpg");

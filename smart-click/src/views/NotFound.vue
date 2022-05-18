@@ -13,7 +13,7 @@ export default {
 
 <style scoped>
   .main-page {
-    min-height: 530px;
+    min-height: 580px;
     color: gray;
   }
 </style>
