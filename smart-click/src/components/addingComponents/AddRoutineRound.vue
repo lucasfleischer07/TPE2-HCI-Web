@@ -20,6 +20,7 @@
                     outlined class="house-selector-slider"
                     dense
                     return-object
+                    no-data-text="No hay cuartos registrados ¡Agregue uno!"
                     v-model="roomSelected"
                     persistent-placeholder
                     placeholder="Seleccione una habitación">
@@ -51,7 +52,7 @@
                 <v-select
                     :items="actions"
                     label="Acción seleccionada:"
-                    item-text="name"
+                    item-text="nameSpanish"
                     :disabled="Object.entries(deviceSelected).length ===  0"
                     outlined
                     class="house-selector-slider"
