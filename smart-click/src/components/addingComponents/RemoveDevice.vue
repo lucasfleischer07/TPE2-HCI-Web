@@ -25,6 +25,7 @@
 
 import {mapActions} from "vuex";
 import {Device} from "@/Api/Device";
+import {Routine} from "@/Api/Routine";
 
 export default {
   name: "RemoveDevice",
@@ -43,6 +44,12 @@ export default {
     ...mapActions("Devices",{
       $removeDevice:"deleteDevice"
     }),
+    ...mapActions("Routine",
+        {
+          $getRoutines:"getAllRoutine",
+          $update:"modifyRoutine",
+          $remove:"deleteRoutine"
+        }),
 
     deleteModal() {
       this.deviceRemove = true;
@@ -50,16 +57,48 @@ export default {
     },
 
     async removeDevice(){
-        let device=Object.assign(new Device(),this.deviceEntity)
-        await this.$removeDevice(device.id)
+      let device=Object.assign(new Device(),this.deviceEntity)
+      let routines=await this.$getRoutines()
+      for(let routine of routines){
+        let acts=[]
+        for(let action of routine.actions){
+          if(device.id !== action.device.id){
+          acts.push(new Act(action.device.id,action.actionName,action.params))}
+        }
+        if(Object.entries(acts).length==0){
+          await this.$remove(routine.id)
+        }else{
 
-        this.confirmRemoveDevice = false
-        this.deviceRemove = false
-
-        this.deviceDeleteSelected = {}
+        let aux=[routine.id,new Rout(routine.name,acts,routine.meta)]
+        await this.$update(aux)}
+      }
+      await this.$removeDevice(device.id)
+      this.confirmRemoveDevice = false
+      this.deviceRemove = false
+      this.deviceDeleteSelected = {}
       }
     },
 
+}
+class Rout{
+  constructor(name,actions,meta) {
+    this.name=name
+    this.actions=actions
+    this.meta=meta
+  }
+}
+class Act{
+  constructor(id,actionName,params) {
+    this.device=new Dev(id)
+    this.actionName=actionName
+    this.params=params
+    this.meta={}
+  }
+}
+class Dev{
+  constructor(id) {
+    this.id=id
+  }
 }
 </script>
 

@@ -10,8 +10,8 @@ class RoutineApi{
         return await Api.post(RoutineApi.getUrl(),routine,controller)
     }
 
-    static async modify(routine,controller){
-        return await Api.put(RoutineApi.getUrl(routine.id),routine,controller)
+    static async modify(params,controller){
+        return await Api.put(RoutineApi.getUrl(params[0]),params[1],controller)
     }
 
     static async delete(id,controller){

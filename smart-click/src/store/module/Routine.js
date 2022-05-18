@@ -12,8 +12,8 @@ export default {
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Routine(),result)
         },
-        async modifyRoutine({dispatch}, routine) {
-            const result = await RoutineApi.modify(routine)
+        async modifyRoutine({dispatch}, params) {
+            const result = await RoutineApi.modify(params)
             dispatch("getAllRoutine")
             return result
 
