@@ -94,12 +94,14 @@ export default {
     RemoveRoom
   },
   async created() {
+
     try {
       this.rooms=await this.$getHomeRooms(this.$myHome.id)
     }
     catch (e) {
      console.log(e)
     }
+    this.$setEditingTrue()
   },
 
   computed: {
@@ -114,6 +116,9 @@ export default {
     ...mapState("Devices", {
       $devices: "devices",
     }),
+    ...mapMutations({
+      $setEditingTrue: "setEditingTrue"
+    })
 
   },
 

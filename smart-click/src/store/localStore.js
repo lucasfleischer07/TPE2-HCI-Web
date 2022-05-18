@@ -655,5 +655,183 @@ export default {
                 }
             ]
         },
+    ],
+    actionsMap:[
+        {
+            name: "setVolume",
+            nameSpanish: "Establecer Volumen",
+        },
+        {
+            name: "play",
+            nameSpanish: "Play",
+        },
+        {
+            name: "stop",
+            nameSpanish: "Frenar",
+        },
+        {
+            name: "pause",
+            nameSpanish: "Pausar",
+        },
+        {
+            name: "resume",
+            nameSpanish: "Continuar",
+        },
+        {
+            name: "nextSong",
+            nameSpanish: "Próxima canción",
+        },
+        {
+            name: "previousSong",
+            nameSpanish: "Canción anterior",
+        },
+        {
+            name: "setGenre",
+            nameSpanish: "Establecer género",
+        },
+        {
+            name: "getPlaylist",
+            nameSpanish: "Obtener lista de reproducción",
+        },
+
+        {
+            name: "setFreezerTemperature",
+            nameSpanish: "Establecer temperatura freezer",
+        },
+
+        {
+            name: "setTemperature",
+            nameSpanish: "Establecer temperatura",
+        },
+
+        {
+            name: "setMode",
+            nameSpanish: "Establecer modo",
+        },
+
+        {
+            name: "turnOn",
+            nameSpanish: "Prender",
+        },
+
+        {
+            name: "turnOff",
+            nameSpanish: "Apagar",
+        },
+        {
+            name: "turnOff",
+            nameSpanish: "Apagar",
+        },
+
+        {
+            name: "setHeat",
+            nameSpanish: "Establecer dirección del calor",
+        },
+
+        {
+            name: "setGrill",
+            nameSpanish: "Establecer modo de cocción",
+        },
+
+        {
+            name: "setConvection",
+            nameSpanish: "Establecer modo de convención",
+        },
+
+        {
+            name: "turnOn",
+            nameSpanish: "Prender",
+        },
+
+        {
+            name: "turnOff",
+            nameSpanish: "Apagar",
+        },
+
+        {
+            name: "setColor",
+            nameSpanish: "Establecer color",
+        },
+
+        {
+            name: "setBrightness",
+            nameSpanish: "Establecer brillo",
+        },
+        {
+            name: "open",
+            nameSpanish: "Abrir",
+        },
+        {
+            name: "close",
+            nameSpanish: "Cerrar",
+        },
+        {
+            name: "lock",
+            nameSpanish: "Bloquear",
+        },
+        {
+            name: "unlock",
+            nameSpanish: "Desbloquear",
+        }
+
+    ],
+    parameterMap:[
+        { name: "classical",
+            nameSpanish: "Clásico"
+        },
+        { name: "country",
+            nameSpanish: "Country"
+        },
+        { name: "dance",
+            nameSpanish: "Baile"
+        },{ name: "latina",
+            nameSpanish: "Latina"
+        },
+        { name: "pop",
+            nameSpanish: "Pop"
+        },
+        { name: "rock",
+            nameSpanish: "Rock"
+        },
+        { name: "default",
+            nameSpanish: "Predeterminado"
+        },
+        { name: "vacation",
+            nameSpanish: "Vacaciones"
+        },
+        {
+            name: "party",
+            nameSpanish: "Fiesta"
+        },
+        { name: "conventional",
+            nameSpanish: "Normal"
+        },
+        { name: "bottom",
+            nameSpanish: "Abajo"
+        },
+        {
+            name: "top",
+            nameSpanish: "Arriba"
+        },
+        { name: "large",
+            nameSpanish: "Largo"
+        },
+        { name: "eco",
+            nameSpanish: "Ecológico"
+        },
+        {
+            name: "off",
+            nameSpanish: "Apagado"
+        },
+        { name: "normal",
+            nameSpanish: "Normal"
+        },
+        { name: "eco",
+            nameSpanish: "Ecológico"
+        },
+        {
+            name: "off",
+            nameSpanish: "Apagado"
+        }
     ]
 }
