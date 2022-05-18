@@ -78,10 +78,10 @@
               v-model="routineName"
           />
           <v-row>
-            <div v-for="devAndAct in routineCreated" :key="devAndAct" class="device-and-actions">
+            <div v-for="(devAndAct,index) in routineCreated" :key="devAndAct" class="device-and-actions">
               <v-card outlined style="background-color: #f2f9fb; display: flex; align-items: center">
-                <span style="padding-left: 10px; padding-right: 10px" class="text-h6">{{devAndAct.actionName}}</span>
-                <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct)">
+                <span style="padding-left: 10px; padding-right: 10px" class="text-h6">{{routineCreatedEspanol[index]}}</span>
+                <v-btn depressed icon class="trash_class" @click="DeleteDeviceFromRoutine(devAndAct,index)">
                   <v-icon  color="error" >delete_forever</v-icon>
                 </v-btn>
                 <h3>{{devAndAct.action}}</h3>
@@ -141,9 +141,11 @@ export default {
       devices: [],
       actionSelected: {},
       actions: [],
+
       paramater: "",
       parameterSelected: [],
       routineCreated: [],
+      routineCreatedEspanol: [],
       rules: [v => v.length <= 17 || 'Máximo 17 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
 
 
@@ -215,6 +217,7 @@ export default {
           params: this.parameterSelected,
           meta: {}
         }
+        this.routineCreatedEspanol.push(this.actionSelected.nameSpanish)
         this.routineCreated.push(actions)
         this.deviceSelected = {}
         this.roomSelected = {}
@@ -242,6 +245,7 @@ export default {
           this.roomSelected = {};
           this.routineName = "";
           this.routineCreated = [];
+          this.routineCreatedEspanol = [];
           this.devices= [];
           this.setResult(routine)
         } catch (e) {
@@ -264,8 +268,9 @@ export default {
       this.devices= [];
     },
 
-    DeleteDeviceFromRoutine(deviceAndAct){
+    DeleteDeviceFromRoutine(deviceAndAct,index){
       this.routineCreated.splice(this.routineCreated.indexOf(deviceAndAct),1)
+      this.routineCreatedEspanol.splice(index,1)
     },
     async updateRooms() {
       try {
