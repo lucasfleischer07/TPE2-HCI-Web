@@ -43,7 +43,7 @@
       <div class="vertical-line"></div>
     </div>
     <div>
-      <h2 class="details-title color-title ">Detalle de rutina: </h2>
+      <h2 class="details-title color-title ">Detalle de rutina</h2>
       <router-view :key="$route.path"/>
     </div>
   </div>
