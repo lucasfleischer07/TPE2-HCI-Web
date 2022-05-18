@@ -10,8 +10,8 @@ class DeviceApi{
         return await Api.post(DeviceApi.getUrl(),device)
     }
 
-    static async modify(device){
-        return await Api.put(DeviceApi.getUrl(device.id),device)
+    static async modify(params){
+        return await Api.put(DeviceApi.getUrl(params[0]),params[1])
     }
 
     static async delete(id){

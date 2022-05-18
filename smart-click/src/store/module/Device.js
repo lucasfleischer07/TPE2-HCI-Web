@@ -12,8 +12,8 @@ export default {
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Device(),result);
         },
-        async modifyDevice({dispatch}, device) {
-            const result = await DeviceApi.modify(device)
+        async modifyDevice({dispatch}, params) {
+            const result = await DeviceApi.modify(params)
             dispatch("getAllDevices")
             return result
 

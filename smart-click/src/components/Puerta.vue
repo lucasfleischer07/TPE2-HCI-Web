@@ -4,7 +4,10 @@
       <v-row class="action-row action_btn" >
         <device-icon name-device="door_front" :deviceEntity="deviceEntity"/>
       </v-row>
+      <v-row>
       <p class="text">{{deviceEntity.name}}</p>
+        <edit-device :deviceEntity="deviceEntity" ></edit-device>
+      </v-row>
     </v-card>
 
     <v-card class="background-card margin-card">
@@ -35,6 +38,7 @@
 <script>
 import DeviceIcon from "@/components/DeviceIcon";
 import {mapActions} from "vuex";
+import EditDevice from "@/components/addingComponents/editDevice";
 
 
 export default {
@@ -47,6 +51,7 @@ export default {
   },
 
   components: {
+    EditDevice,
       DeviceIcon
   },
   created() {

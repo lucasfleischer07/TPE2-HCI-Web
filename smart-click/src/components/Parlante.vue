@@ -4,7 +4,10 @@
       <v-row class="action-row action_btn" >
         <device-icon name-device="speaker" :deviceEntity="deviceEntity"/>
       </v-row>
-      <p class="text">{{deviceEntity.name}}</p>
+      <v-row>
+        <p class="text">{{deviceEntity.name}}</p>
+        <edit-device :deviceEntity="deviceEntity" ></edit-device>
+      </v-row>
     </v-card>
 
     <v-card class="background-card margin-card">
@@ -79,6 +82,7 @@
 import DeviceIcon from "@/components/DeviceIcon";
 import {mapActions} from "vuex";
 import localStore from "@/store/localStore";
+import EditDevice from "@/components/addingComponents/editDevice";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -91,6 +95,7 @@ export default {
 
   },
   components: {
+    EditDevice,
     DeviceIcon
   },
 
