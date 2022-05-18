@@ -20,9 +20,8 @@
     <v-snackbar
         v-model="snackbar"
         :timeout="2000"
-        color="success"
-    >
-      Se elimino correctamente la habitacion
+        color="#737373">
+      Habitación eliminada correctamente
 
       <template v-slot:action="{ attrs }">
         <v-btn

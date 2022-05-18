@@ -81,9 +81,9 @@
       <v-snackbar
           v-model="snackbar"
           :timeout="2000"
-          color="success"
+          color="#737373"
       >
-        Cuarto agregado correctamente
+        Casa agregada correctamente
 
         <template v-slot:action="{ attrs }">
           <v-btn

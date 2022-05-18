@@ -1,12 +1,6 @@
 <template>
   <div>
-    <v-snackbar
-        v-model="snackbar"
-        :timeout="2000"
-        color="success"
-    >
-      Cuarto agregado correctamente
-
+    <v-snackbar v-model="snackbar" :timeout="2000" color="#737373"> Casa agregada correctamente
       <template v-slot:action="{ attrs }">
         <v-btn
             color="white"

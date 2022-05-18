@@ -31,13 +31,7 @@
         </v-card>
       </v-dialog>
     </v-dialog>
-    <v-snackbar
-        v-model="snackbar"
-        :timeout="2000"
-        color="success"
-    >
-      Cuarto agregado correctamente
-
+    <v-snackbar v-model="snackbar" :timeout="2000" color="#737373">Habitación agregada correctamente
       <template v-slot:action="{ attrs }">
         <v-btn
             color="white"

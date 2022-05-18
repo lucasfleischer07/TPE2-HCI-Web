@@ -81,7 +81,7 @@ export default {
         await this.$removeHouse(this.house_selected.id);
         this.$parent.selectHome({});
         await this.getHouse();
-        this.$parent.setSnack("Casa removida correctamente");
+        this.$parent.setSnack("Casa eliminada correctamente");
       } catch (e) {
        // this.setResult(e);
       }

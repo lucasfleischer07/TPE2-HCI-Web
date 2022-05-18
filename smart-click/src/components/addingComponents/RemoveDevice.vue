@@ -20,9 +20,9 @@
     <v-snackbar
         v-model="snackbar"
         :timeout="2000"
-        color="success"
+        color="#737373"
     >
-      Cuarto agregado correctamente
+      Dispositivo eliminado correctamente
 
       <template v-slot:action="{ attrs }">
         <v-btn
