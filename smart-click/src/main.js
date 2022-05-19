@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import vuetify from './plugins/vuetify'
 
 import Vuetify from 'vuetify/lib'
 import colors from 'vuetify/lib/util/colors'
@@ -27,8 +26,6 @@ new Vue({
           warning: colors.pink.base,
           info: colors.cyan.base,
           success: "#80ccff"
-          // success: "#003d66"
-
         },
       },
     },

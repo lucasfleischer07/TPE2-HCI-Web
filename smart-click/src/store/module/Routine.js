@@ -8,7 +8,7 @@ export default {
     actions: {
         async createRoutine({dispatch}, routine) {
             const result = await RoutineApi.add(routine)
-            dispatch("getAllRoutine")          //Con esto ejecuto una accion desde otra accion,
+            dispatch("getAllRoutine")    //Con esto ejecuto una accion desde otra accion,
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Routine(),result)
         },
@@ -40,8 +40,6 @@ export default {
             dispatch("getAllRoutine")
             return result
         },
-
-
     },
     mutations: {
         updateRoutine(state, routines) {

@@ -94,7 +94,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.onOffPush=false
     },
@@ -106,7 +106,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.temperaturePush=false
     },
@@ -118,7 +118,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.heatModePush=false
     },
@@ -130,7 +130,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.grillModePush=false
     },
@@ -142,7 +142,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.convectionModePush=false
     },

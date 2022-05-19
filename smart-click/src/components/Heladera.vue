@@ -99,7 +99,7 @@ export default {
         await this.updateContent()
 
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.temperaturePush= false
     },
@@ -112,7 +112,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.freezerTemperaturePush= false
     },
@@ -125,7 +125,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.modePush= false
 

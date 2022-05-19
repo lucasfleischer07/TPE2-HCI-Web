@@ -33,7 +33,7 @@
             <v-expansion-panel-content >
               <v-row>
                  <v-col class="flex-grow-0 col-division" v-for="device in $devices" :key="device.id" >
-                   <v-container style="min-height: 0px;padding: 0" v-for="deviceProto in protos" :key="deviceProto.id">
+                   <v-container style="min-height: 0;padding: 0" v-for="deviceProto in protos" :key="deviceProto.id">
                     <component v-if="device.type.id === deviceProto.id && room.id===device.room.id"  :is="deviceProto.name" :deviceEntity="device"/>
                   </v-container>
                 </v-col>
@@ -83,7 +83,7 @@ export default {
 
   components: {
     RemoveHouse,
-     Parlante,
+    Parlante,
     Puerta,
     Lámpara,
     Heladera,
@@ -125,7 +125,6 @@ export default {
   watch: {
     $myHome(){
       this.updateRooms()
-
     },
   },
 
@@ -151,21 +150,13 @@ export default {
         this.rooms = await this.$getHomeRooms(this.$myHome.id)
       } catch (e) {
         if (e.code === 99) {
-          this.$router.push('NotFound/')
+          await this.$router.push('NotFound/')
         }
       }
-
     },
 
-    async getAllHomes() {
-      await this.$getAllHomes()
-    },
     async selectHome(home) {
       await this.$changeCurrentHome(home)
-    },
-    async getRoomDevices(id) {
-
-      return await this.$getRoomDevices(id)
     },
     getSelected() {
       return this.$myHome
@@ -180,17 +171,8 @@ export default {
       this.$devices.forEach(device => device.room.id === id ? devicesCount++ : devicesCount)
       return devicesCount
     },
-    setSnack(text){
-      this.text=text
-      this.snackbar=true
-    }
 
   },
-
-
-
-
-
 
   data() {
     return {
@@ -204,15 +186,10 @@ export default {
       rules: [v => v.length <= 60 || 'Máximo 60 caracteres', v => v.length >= 3 || 'Mínimo 3 caracteres'],
     }
   },
-
 }
 </script>
 
 <style scoped>
-
-  /*.v-btn:focus::before {*/
-  /* opacity: 0 !important;*/
-  /* }*/
 
   .color-class {
     color: gray;
@@ -237,11 +214,6 @@ export default {
     padding-bottom: 20px;
   }
 
-  .add-button {
-    justify-content: flex-end;
-    padding-bottom: 10px;
-  }
-
   .h1-title {
     justify-content: center;
     color: gray;
@@ -252,22 +224,6 @@ export default {
     font-size: 35px;
   }
 
-
-  .rooms-class{
-    /*display: flex;*/
-    /*justify-content: center;*/
-  }
-
-  .text{
-    display: inline;
-    padding-left: 10px;
-    color: grey;
-  }
-
-  .margin-button {
-    margin-top: 20px;
-  }
-
   .expansion-panel-margin{
     margin-bottom: 15px;
     font-size: 20px;
@@ -275,21 +231,6 @@ export default {
 
   .col-division {
     padding-right: 100px;
-  }
-
-  .div-button-delete-room {
-    display: flex;
-    width: auto;
-    justify-content: end;
-    margin-right: 50px;
-    align-items: center;
-  }
-
-  .span-class {
-    display: flex;
-    color: gray;
-    font-size: 13px;
-    padding-left: 10px;
   }
 
 </style>

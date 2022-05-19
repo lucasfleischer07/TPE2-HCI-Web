@@ -51,7 +51,6 @@ export default{
             dispatch("getAll")
             return result
         }
-
     },
     mutations: {
         update(state, rooms){

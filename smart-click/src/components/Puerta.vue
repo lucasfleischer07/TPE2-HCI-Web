@@ -74,7 +74,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.openPush = false
     },
@@ -87,7 +87,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.closePush = false
     },
@@ -100,7 +100,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.lockPush = false
     },
@@ -113,7 +113,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.unlockPush = false
     },
@@ -129,10 +129,6 @@ export default {
       this.open=this.deviceState.status
       this.lock=this.deviceState.lock
     },
-
-
-
-
   },
 
   data () {

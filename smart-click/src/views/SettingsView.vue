@@ -6,7 +6,6 @@
             <template v-slot:activator>
               <v-list-item-title>General</v-list-item-title>
             </template>
-
             <v-list-group no-action sub-group>
               <template v-slot:activator>
               <v-list-item-content>
@@ -21,13 +20,10 @@
 
         </v-list-group>
 
-        <!------------------------------------------------------------------------------------------------------------->
-
         <v-list-group prepend-icon="lock">
           <template v-slot:activator>
             <v-list-item-title>Privacidad</v-list-item-title>
           </template>
-
           <v-list-group no-action sub-group>
             <template v-slot:activator>
               <v-list-item-content >
@@ -39,7 +35,6 @@
             </template>
             <v-list-item class="text-alignment">SmartClick asegura que sus datos personales no seran compartidos intencionalmente con ningún otro usuario. SmartClick se reserva el derecho de utilizar los datos personales a su favor. </v-list-item>
           </v-list-group>
-
           <v-list-group no-action sub-group>
             <template v-slot:activator >
               <v-list-item-content>
@@ -52,7 +47,6 @@
           </v-list-group>
 
         </v-list-group>
-
       </v-list>
     </v-card>
   </div>
@@ -64,8 +58,6 @@
 
   export default {
     name: "SettingsView",
-
-
 
     mounted(){
       this.$setEditingTrue()

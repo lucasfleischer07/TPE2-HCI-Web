@@ -25,7 +25,6 @@
         </div>
         </v-row>
         <v-row class="action-row action_btn slider-class" >
-<!--          <v-btn @click="(sound = 0) && (setVolumeFunction)" depressed icon v-model="sound" ><v-icon x-large>volume_down_alt</v-icon></v-btn>-->
           <v-slider :disabled="volumePush" class="margin-slider"
                     :max="10"
                     :min="0"
@@ -35,7 +34,6 @@
                     prepend-icon="volume_down_alt"
 
           ></v-slider>
-<!--          TODO:  VER SI EL LLAMADO DE LA FUNCION VA ACA EN EL SLIDER, SINO NOSE DONDE VA-->
           <v-text-field dense
                         hide-details
                         single-line
@@ -157,7 +155,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.playPush = false
     },
@@ -168,7 +166,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.stopPush = false
     },
@@ -180,7 +178,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.resumePush = false
 
@@ -193,7 +191,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.pausePush = false
     },
@@ -206,7 +204,7 @@ export default {
         await this.updateContent()
 
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.nextPush = false
     },
@@ -218,7 +216,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       await setTimeout(() => {  console.log("World!"); }, 5000);
       console.log("Goodbye!");
@@ -231,7 +229,7 @@ export default {
       try {
         this.playlist=await this.$execute(params)
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.playlistPush = false
     },
@@ -244,7 +242,7 @@ export default {
         await this.updateContent()
 
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.genrePush = false
     },
@@ -256,7 +254,7 @@ export default {
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.volumePush = false
     },

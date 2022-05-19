@@ -10,7 +10,7 @@ class RoomApi{
     }
 
     static async modify(room){
-        return await Api.put(RoomApi.getUrl(room.id),room)        //le pasamos room.id para matchear la sintaxis de la api
+        return await Api.put(RoomApi.getUrl(room.id),room)
     }
 
     static async delete(id){
@@ -54,12 +54,5 @@ class Room{
         return JSON.stringify(this,null,2)
     }
 }
-/*
-class RoomMeta{
-    constructor(size,color) {
-        this.size=size;
-        this.color=color;
-    }
-}
-*/
+
 export {RoomApi,Room}

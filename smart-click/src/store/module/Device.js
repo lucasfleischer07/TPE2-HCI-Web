@@ -8,7 +8,7 @@ export default {
     actions: {
         async createDevice({dispatch}, device) {
             const result = await DeviceApi.add(device)
-            dispatch("getAllDevices")          //Con esto ejecuto una accion desde otra accion,
+            dispatch("getAllDevices")    //Con esto ejecuto una accion desde otra accion,
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Device(),result);
         },
@@ -42,8 +42,6 @@ export default {
             dispatch("getAllDevices")
             return result
         },
-
-
     },
     mutations: {
         updateDevices(state, devices) {

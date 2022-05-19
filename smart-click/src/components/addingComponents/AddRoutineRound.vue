@@ -159,14 +159,11 @@ export default {
       actionSelected: {},
       actions: [],
       errorMsg:"",
-
       paramater: "",
       parameterSelected: [],
       routineCreated: [],
       routineCreatedEspanol: [],
       rules: [v => v.length <= 17 || 'Máximo 17 caracteres', v => v.length >= 3 || 'Mínimo 3 characters'],
-
-
     }
   },
  async created(){
@@ -220,12 +217,10 @@ export default {
       return false
     },
 
-    //EL DEVICE ESTA HARCODEADO PERO ANDA
     AddDevice(){
       if( !this.checkParam(this.roomSelected)  || !this.checkParam(this.deviceSelected) || !this.checkParam(this.actionSelected)){
         console.log("No hizo la seleccion de rutinas")
-        //MENSAJE DE ERROR
-      }else {
+      } else {
         if(this.paramater){
           this.parameterSelected.push(this.paramater.name)
           if(this.paramater.nameSpanish) {
@@ -246,7 +241,7 @@ export default {
           })
         }
         var actions = {
-          device: { id: this.deviceSelected.id}, //this.deviceSelected.deviceCode,
+          device: { id: this.deviceSelected.id},
           actionName: this.actionSelected.name,
           params: this.parameterSelected,
           meta: {}
@@ -289,7 +284,7 @@ export default {
             this.errorMsg="El nombre seleccionado ya ha sido utilizado en otra rutina. Por favor elija otro nombre."
             this.nameError=true}
           if(e.code===1){
-            this.errorMsg="El nombre solo puede tener letras,numeros o espacios. Por favor elija otro nombre."
+            this.errorMsg="El nombre puede tener letras, números o espacios solamente. Por favor elija otro nombre."
             this.nameError=true
           }
         }

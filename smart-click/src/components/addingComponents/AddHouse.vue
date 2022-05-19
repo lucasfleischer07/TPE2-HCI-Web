@@ -106,7 +106,7 @@ export default {
           this.errorMsg="El nombre seleccionado ya ha sido utilizado en otra casa. Por favor elija otro nombre."
           this.nameError=true}
         if(e.code===1){
-          this.errorMsg="El nombre solo puede tener letras,numeros o espacios. Por favor elija otro nombre."
+          this.errorMsg="El nombre puede tener letras, números o espacios solamente. Por favor elija otro nombre."
           this.nameError=true
         }
       }
@@ -119,32 +119,12 @@ export default {
       this.nombreCasa = ""
     }
 
-
-  /*addHouse(text) {
-      if (text === "")
-        console.log("Mal nombre de casa")
-      else {
-        //AGREGAR CASA
-        this.houseAdd = false
-        this.nombreCasa = ""
-      }
-    },*/
   }
 }
 
 </script>
 
 <style scoped>
-
-/*  .buttons {*/
-/*    display: flex;*/
-/*    justify-content: space-evenly;*/
-/*    padding-bottom: 50px;*/
-/*    font-size: 40px;*/
-/*  }*/
-  .v-btn:focus::before {
-    opacity: 0 !important;
-  }
 
   .icon-div {
     display: flex;

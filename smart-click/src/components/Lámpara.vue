@@ -100,7 +100,7 @@ name: "Lámpara",
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.setOnOFfPush=false
     },
@@ -112,7 +112,7 @@ name: "Lámpara",
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.brightnessPush=false
 
@@ -125,7 +125,7 @@ name: "Lámpara",
         await this.$execute(params)
         await this.updateContent()
       } catch (e) {
-        this.setResult(e);
+        console.log(e);
       }
       this.colorChangePush=false
     },
@@ -149,10 +149,6 @@ name: "Lámpara",
         this.onOffLamp=true
       }else this.onOffLamp=false
     }
-
-
-
-
   },
 
 

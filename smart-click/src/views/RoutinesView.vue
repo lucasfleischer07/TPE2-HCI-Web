@@ -120,7 +120,6 @@
         snackbar:false,
         routines: this.getRoutines(),
         confirmRemoveRoutine: false,
-        // house: store.house,
       }
     },
   }
@@ -130,12 +129,6 @@
 
 
 <style scoped>
-
-  /*.v-btn:focus::before {*/
-  /*  opacity: 0 !important;*/
-  /*}*/
-
-
   .color-title {
     color: gray;
     font-size: 30px;
@@ -189,10 +182,6 @@
     display: flex;
   }
 
-  .delete-button {
-    margin-left: 15px;
-  }
-
   .hover-btn:hover {
     opacity: 75%;
     text-overflow: ellipsis;
@@ -207,8 +196,6 @@
     background-image: url("@/assets/fondo1.jpg");
     background-repeat: repeat round;
   }
-
-
 
   a {
     text-decoration: none;

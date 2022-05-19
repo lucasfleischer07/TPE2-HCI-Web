@@ -10,7 +10,7 @@ export default {
     actions: {
         async createHome({dispatch}, home) {
             const result = await HouseApi.add(home);
-            dispatch("getAllHomes") ;      //Con esto ejecuto una accion desde otra accion,
+            dispatch("getAllHomes") ;    //Con esto ejecuto una accion desde otra accion,
                                         // agrega el home y pide getAll y actualiza
             return Object.assign(new Home(),result);
         },
@@ -55,7 +55,6 @@ export default {
         changeCurrentHome({commit},home){
             commit("updateMyHouse",home)
         }
-
     },
     mutations: {
         updateHomes(state, homes) {
@@ -64,6 +63,5 @@ export default {
         updateMyHouse(state,home){
             state.houseSelected=home
         }
-
     }
 }

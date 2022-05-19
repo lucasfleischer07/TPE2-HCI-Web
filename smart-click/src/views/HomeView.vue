@@ -37,7 +37,6 @@
         $setEditingTrue: "setEditingTrue"
       }),
     }
-
   }
 </script>
 
@@ -52,7 +51,6 @@
 
 
   .padding-h1-title {
-    /*display: flex;*/
     justify-content: center;
     padding-top: 30px;
     font-size: 60px;
@@ -61,7 +59,6 @@
 
   .padding-h2-title {
     padding-top: 50px;
-    /*padding-left: 80px;*/
     font-size: 33px;
     display: flex;
     justify-content: left;

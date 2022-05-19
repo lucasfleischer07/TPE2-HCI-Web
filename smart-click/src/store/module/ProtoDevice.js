@@ -17,9 +17,6 @@ export default {
             dispatch("getAllDevicesTypes")
             return Object.assign(new ProtoDevice(),result)
         },
-
-
-
     },
     mutations: {
         updateProtoDevices(state, devicesTypes) {

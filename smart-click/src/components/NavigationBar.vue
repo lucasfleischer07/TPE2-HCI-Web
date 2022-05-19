@@ -45,8 +45,6 @@
     background-color: dodgerblue;
     padding-top: 20px;
     padding-bottom: 20px;
-
-
   }
 
   .nav-icons {
