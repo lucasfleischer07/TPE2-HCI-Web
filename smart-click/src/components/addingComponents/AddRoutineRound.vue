@@ -77,10 +77,10 @@
               </v-col>
             </v-row>
           </v-container>
+
           <component v-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0 && actionSelected.params[0].type==='SelectColor'"  :is="actionSelected.params[0].type"  v-model="paramater" />
           <component v-else-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0  && actionSelected.params[0].type==='SelectString'"  :is="actionSelected.params[0].type"  v-model="paramater"   :textOptions="actionSelected.params[0].supportedValues" />
           <component v-else-if="Object.entries(actionSelected).length !== 0 && Object.entries(actionSelected.params).length !== 0  && actionSelected.params[0].type==='SelectNumber'"  :is="actionSelected.params[0].type"  v-model="paramater" :min="actionSelected.params[0].minValue" :max="actionSelected.params[0].maxValue"   />
-
 
           <v-text-field
               label="Nombre de la nueva rutina"
@@ -251,6 +251,7 @@ export default {
         this.roomSelected = {}
         this.actionSelected = {}
         this.parameterSelected= []
+        this.paramater = "";
         this.devices= []
 
       }
@@ -274,11 +275,12 @@ export default {
           this.routineName = "";
           this.routineCreated = [];
           this.routineCreatedEspanol = [];
+          this.paramater = "";
           this.devices= [];
           this.snackbar= !this.snackbar
         } catch (e) {
           if(e.code===99){
-            this.$router.push('NotFound/')
+            await this.$router.push('NotFound/')
           }
           if(e.code===2){
             this.errorMsg="El nombre seleccionado ya ha sido utilizado en otra rutina. Por favor elija otro nombre."
@@ -300,6 +302,8 @@ export default {
       this.roomSelected = {};
       this.routineName = "";
       this.routineCreated = [];
+      this.routineCreatedEspanol = [];
+      this.paramater = "";
       this.devices= [];
     },
 
@@ -309,28 +313,31 @@ export default {
     },
     async updateRooms() {
       try {
-        this.rooms = await this.$getHomeRooms(this.$myHome.id)
+        this.rooms = await this.$getHomeRooms(this.$myHome.id);
+        this.paramater = "";
+        this.actionSelected={};
       } catch (e) {
-        this.setResult(e)
+        console.log(e)
       }
     },
     async updateDevices() {
       try {
-        this.devices = await this.$getRoomDevices(this.roomSelected.id)
+        this.devices = await this.$getRoomDevices(this.roomSelected.id);
+        this.paramater = "";
+        this.updateActions();
+        this.actionSelected= {};
       } catch (e) {
-        this.setResult(e)
+        console.log(e)
       }
     },
     updateActions() {
       let deviceInfo = this.devicesImplemented.find(
           device =>  device.id.localeCompare(this.deviceSelected.type.id)===0
       )
-      this.actions=deviceInfo.actions
-    },
-    updateParamter(param){
-      this.paramater=param
+      this.actions=deviceInfo.actions;
+      this.paramater = "";
+      this.actionSelected={};
     }
-
   }
 }
 </script>
