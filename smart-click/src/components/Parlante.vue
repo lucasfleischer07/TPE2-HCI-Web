@@ -218,8 +218,6 @@ export default {
       } catch (e) {
         console.log(e);
       }
-      await setTimeout(() => {  console.log("World!"); }, 5000);
-      console.log("Goodbye!");
       this.prevPush = false
     },
 
